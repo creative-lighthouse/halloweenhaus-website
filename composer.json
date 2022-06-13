@@ -27,7 +27,8 @@
     "extra": {
         "expose": [
             "app/client/dist",
-            "app/client/icons"
+            "app/client/icons",
+            "app/client/images"
         ],
         "resources-dir": "_resources",
         "project-files-installed": [

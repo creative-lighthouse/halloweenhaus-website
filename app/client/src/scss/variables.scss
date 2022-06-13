@@ -7,8 +7,11 @@ $breakpoints: (
   'desktop': 1000px
 );
 
-$ColorPrimary: #1E3755;
-$ColorSecondary: #C9A141;
+$ColorPrimary: #ffffff;
+$ColorSecondary: #ff2c2c;
+$ColorSecondaryDark: darken($ColorSecondary, 50%);
 
-$ColorBlack: #131F42;
+$ColorBlack: #000000;
 $ColorWhite: #FFF;
+
+$ColorBackground: #1b1b1b;

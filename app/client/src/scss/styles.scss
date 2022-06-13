@@ -12,6 +12,10 @@
 @import "layout/textimage.scss";
 @import "layout/text.scss";
 
+html {
+    background-color: $ColorBackground;
+}
+
 .section {
     max-width: $maxWidth;
 }
