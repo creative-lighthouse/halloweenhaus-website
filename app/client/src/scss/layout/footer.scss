@@ -63,6 +63,15 @@
         border-radius: 50%;
         padding: 10px;
         color: white;
-        animation: rainbow 20s infinite;
+        animation: rainbow 25s infinite;
+
+        .eyes{
+            transform-origin: 40% 31%;
+            animation: leftright 20s infinite;
+        }
+
+        .mouth{
+            animation: updown 10s infinite ease-in-out;
+        }
     }
 }

@@ -30,6 +30,13 @@
                 color: $ColorWhite;
                 animation: rainbow 20s infinite;
 
+                .eyes{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    animation: leftright 2s alternate;
+                }
+
                 &.mobile{
                     display: none;
                     @include media("<desktop") {
