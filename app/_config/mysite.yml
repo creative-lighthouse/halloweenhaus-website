@@ -1,5 +1,5 @@
 ---
-Name: myproject
+Name: Halloweenhaus Schmalenbeck
 ---
 SilverStripe\Core\Manifest\ModuleManifest:
   project: app
@@ -20,6 +20,11 @@ SilverStripe\Assets\File:
     - svg
   extensions:
     - Symbiote\ContextAwareUpload\ForceRootToDefaultExtension
+
+SilverStripe\Admin\LeftAndMain:
+  extra_requirements_css:
+    - 'app/client/dist/css/icons.css'
+
 SilverStripe\Forms\HTMLEditor\TinyMCEConfig:
   editor_css:
     - 'app/client/dist/css/editor.css'

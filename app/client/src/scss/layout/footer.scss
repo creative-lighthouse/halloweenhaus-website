@@ -1,52 +1,68 @@
 .footer {
-  display: block;
-  margin-top: 80px;
-  padding: 37px 20px;
-  flex-direction: column;
-  background-color: $ColorSecondary;
-}
+    display: block;
+    margin-top: 80px;
+    flex-direction: column;
+    background-color: $ColorBackground;
+    position: relative;
 
-.footer_content {
-  max-width: $maxWidth;
-  margin-right: auto;
-  margin-left: auto;
-  justify-content: space-between;
-  flex: 1;
+    .footer_content_wrap{
+        background-color: $ColorBackgroundLight;
 
-  a {
-    color: $ColorWhite;
-  }
+        .footer_content {
+            max-width: $maxWidth;
+            margin-right: auto;
+            margin-left: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-  @media screen and (min-width: 992px) {
-    display: flex;
-  }
-}
+            padding: 0px 20px;
 
-.footer_text {
-  color: $ColorWhite;
-  font-size: 17px;
-  text-decoration: none;
-}
+            .footer_text {
+                color: $ColorWhite;
+                font-size: 17px;
+                text-decoration: none;
+                padding: 15px 10px;
+            }
 
-.footer_menu_list {
-  justify-content: flex-start;
-  margin: 0;
-  padding: 20px 0;
+            .footer_menu_list {
+                padding: 0;
+                margin: 0;
+            }
 
-  @media screen and (min-width: 992px) {
-    display: flex;
-    padding:0;
-  }
-}
+            .footer_menu_item {
+                list-style: none;
 
-.footer_menu_item {
-  list-style: none;
+                a {
+                    display: block;
+                    text-decoration: none;
+                    padding: 15px 10px;
+                    &:hover{
+                        background-color: $ColorSecondary;
+                    }
+                }
+            }
 
-  @media screen and (min-width: 992px) {
-    padding: 0 20px;
-  }
+            @include media("<medium") {
+                padding-top: 100px;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    }
 
-  a {
-    text-decoration: none;
-  }
+    .footer_logo{
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 128px;
+        height: 128px;
+        background-color: $ColorBackground;
+        border-radius: 50%;
+        padding: 10px;
+        color: white;
+        animation: rainbow 20s infinite;
+    }
 }

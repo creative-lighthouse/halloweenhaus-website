@@ -30,5 +30,23 @@ namespace {
             ]), "Content");
             return $fields;
         }
+
+        public function getTimeToHalloween(){
+            $date = strtotime("October 31, ".date("Y")." 2:00 PM");
+            $remaining = $date - time();
+            $days_remaining = floor($remaining / 86400);
+            return "Noch $days_remaining Tage bis Halloween";
+        }
+
+        public function getNearHalloween(){
+            return true;
+            $date = strtotime("October 31, ".date("Y")." 2:00 PM");
+            $remaining = $date - time();
+            $days_remaining = floor($remaining / 86400);
+            if($days_remaining < 1){
+                return true;
+            }
+            return false;
+        }
     }
 }

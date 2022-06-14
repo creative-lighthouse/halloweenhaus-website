@@ -11,82 +11,30 @@
 
         padding-right: 20px;
 
-        img{ 
+        img{
             width: 100%;
             height: 100%;
-
-            @media screen and (min-width: 991px) {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
+            object-fit: cover;
         }
     }
 
     .textimage_text {
         width: auto;
-        color: $ColorBlack;        
-
-        .textimage_text_title {
-            color: $ColorPrimary;
-        }
 
         .textimage_text_content {
             position: relative;
             padding-bottom: 20px;
+            height: 100%;
             .textimage_text_button{
                 position: absolute;
                 right: 0;
                 bottom: 0;
             }
         }
-    }  
-
-    &.highlighted{
-        background-color: $ColorPrimary;
-        max-width: $maxWidth;
-        padding: 0;
-
-        .textimage_text {
-            display: flex;
-            align-items: center;
-
-            .textimage_text_content {
-                padding: 20px;
-            }
-
-            .textimage_text_title{
-                color: $ColorWhite;
-            }
-
-            color: white;
-
-            .textimage_text_button {
-                color: white;
-
-                &:hover {
-                    color: $ColorSecondary;
-                }
-            }
-
-            @media screen and (max-width: 991px) {
-                padding: 20px;
-            }
-        }
-
-        &.image-right{
-            .textimage_text{
-                order: 1;
-            }
-            .textimage_image{
-                order: 2;
-            }
-        }
     }
 
-    @media screen and (min-width: 991px) {
+    @include media(">medium") {
         flex-wrap: nowrap;
-        margin: 50px auto;
 
         &.image-30{
             .textimage_image{
@@ -99,25 +47,25 @@
                 width: 40%;
             }
         }
-    
+
         &.image-50{
             .textimage_image{
                 width: 50%;
             }
         }
-    
+
         &.image-60{
             .textimage_image{
                 width: 60%;
             }
         }
-    
+
         &.image-70{
             .textimage_image{
                 width: 70%;
             }
         }
-    
+
         &.image-right{
             .textimage_text{
                 order: 1;

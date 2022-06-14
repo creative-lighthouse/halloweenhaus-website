@@ -11,8 +11,8 @@
                 <h2 class="textimage_text_title">$Title</h2>
             <% end_if %>
             $Text
-            <% if $ButtonText && $ButtonLink %>
-                <a href="$ButtonLink" class="textimage_text_button readmore">$ButtonText</a>
+            <% if $Button %>
+                <a href="$Button.Url" <% if $Button.OpenInNew %> target="_blank"<% end_if %> class="link--button hollow textimage_text_button readmore">$Button.Title</a>
             <% end_if %>
         </div>
     </div>
