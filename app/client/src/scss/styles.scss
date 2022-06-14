@@ -12,6 +12,7 @@
 
 @import "layout/TextImageElement.scss";
 @import "layout/TextElement.scss";
+@import "layout/ImageBannerElement.scss";
 
 html {
     background-color: $ColorBackground;
@@ -19,7 +20,7 @@ html {
 }
 
 body{
-    margin-top: 150px;
+    margin-top: 100px;
 
     .menu--fixed &{
         margin-top: 50px;

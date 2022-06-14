@@ -31,19 +31,35 @@ namespace {
             return $fields;
         }
 
-        public function getTimeToHalloween(){
-            $date = strtotime("October 31, ".date("Y")." 2:00 PM");
-            $remaining = $date - time();
-            $days_remaining = floor($remaining / 86400);
-            return "Noch $days_remaining Tage bis Halloween";
+        function daysTillHalloween(){
+            //Today's date.
+            $today = new DateTime();
+
+            //Halloween.
+            $halloweenDay = date("Y") . "-10-31";
+
+            //Have we already passed this year's Halloween?
+            if(date("m") >= 6){
+                if (date("d") > 15){
+                    //Use next year's Halloween date.
+                    $halloweenDay = (date("Y") + 1) . "-10-31";
+                }
+            }
+
+            //Create DateTime object for Christmas Day.
+            $halloweenDay = new DateTime($halloweenDay);
+
+            //Get the interval difference between the two dates.
+            $interval = $today->diff($halloweenDay);
+
+            //Print out the number of days between
+            //now and the next Halloween.
+            return $interval->days;
         }
 
         public function getNearHalloween(){
-            return true;
-            $date = strtotime("October 31, ".date("Y")." 2:00 PM");
-            $remaining = $date - time();
-            $days_remaining = floor($remaining / 86400);
-            if($days_remaining < 1){
+            $remaining = $this->daysTillHalloween();
+            if($remaining < 1){
                 return true;
             }
             return false;

@@ -34,7 +34,8 @@
                     position: absolute;
                     left: 0;
                     top: 0;
-                    animation: leftright 2s alternate;
+                    transform-origin: 22px 17px;
+                    animation: leftright 10s infinite;
                 }
 
                 &.mobile{

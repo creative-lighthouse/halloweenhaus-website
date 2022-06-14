@@ -39,40 +39,40 @@
 
 @keyframes leftright {
     0%{
-        transform: translateX(-3%);
+        transform: translateX(-2px);
     }
     15%{
-        transform: translateX(3%);
+        transform: translateX(2px);
     }
     25%{
-        transform: translateX(-3%);
+        transform: translateX(-2px);
     }
     30%{
-        transform: translateX(3%);
+        transform: translateX(2px);
     }
     50%{
-        transform: translateX(-3%);
+        transform: translateX(-2px);
     }
     56%{
-        transform: translateX(3%) scaleY(1);
+        transform: translateX(2px) scaleY(1);
     }
     58%{
-        transform: translateX(3%) scaleY(0);
+        transform: translateX(2px) scaleY(0);
     }
     60%{
-        transform: translateX(3%) scaleY(1);
+        transform: translateX(2px) scaleY(1);
     }
     65%{
-        transform: translateX(3%);
+        transform: translateX(2px);
     }
     70%{
-        transform: translateX(-3%);
+        transform: translateX(-2px);
     }
     80%{
-        transform: translateX(3%);
+        transform: translateX(2px);
     }
     100%{
-        transform: translateX(-3%);
+        transform: translateX(-2px);
     }
 }
 
