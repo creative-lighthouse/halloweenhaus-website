@@ -4,7 +4,7 @@
             <% loop $Characters %>
                 <div class="character_item">
                     <div class="character_image">
-                        $Image.FocusFill(400,800)
+                        $Image.FocusFill(800,800)
                     </div>
                     <div class="character_text">
                         <h2>$Title</h2>
