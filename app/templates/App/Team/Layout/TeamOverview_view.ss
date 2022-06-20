@@ -2,7 +2,7 @@
     <div class="section section--team_details">
         <div class="section_content">
             <div class="teammember_item_image">
-                $Image.FocusFill(800,800)
+                $Image.FocusFill(600,600)
             </div>
             <h1 class="teammember_name">$Title</h1>
             <p class="teammember_profession">$Profession</p>

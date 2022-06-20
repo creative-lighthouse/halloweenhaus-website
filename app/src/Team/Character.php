@@ -16,6 +16,7 @@ use SilverStripe\ORM\DataObject;
  * @property string $Bodysize
  * @property string $Age
  * @property string $Description
+ * @property int $Importance
  * @property int $ImageID
  * @property int $ButtonID
  * @property int $Button2ID
@@ -31,7 +32,8 @@ class Character extends DataObject
         "Jointime" => "Varchar(255)",
         "Bodysize" => "Varchar(255)",
         "Age" => "Varchar(255)",
-        "Description" => "HTMLText"
+        "Description" => "HTMLText",
+        "Importance" => "Int"
     ];
 
     private static $has_one = [
@@ -44,7 +46,11 @@ class Character extends DataObject
         "Image"
     ];
 
-    private static $default_sort = "Title ASC";
+    private static $indexes = [
+        'Importance' => true,
+    ];
+
+    private static $default_sort = "Importance ASC";
 
     private static $field_labels = [
         "Title" => "Name",
@@ -54,9 +60,11 @@ class Character extends DataObject
         "Description" => "Beschreibung",
         "Button" => "Button",
         "Button2" => "Button 2",
+        "Importance" => "Wichtigkeit"
     ];
 
     private static $summary_fields = [
+        "Importance" => "Wichtigkeit",
         "Title" => "Name",
     ];
 

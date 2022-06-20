@@ -4,7 +4,7 @@
             <h1 class="teammember_title">$Title</h1>
         <% end_if %>
         <div class="teammember_list">
-            <% loop $TeamMembers.Sort("Title", ASC) %>
+            <% loop $TeamMembers.Sort("Importance", DESC) %>
                 <a href="$Top.Link('view')/$ID" class="teammember_item">
                     <div class="teammember_item_image">
                         $Image.FocusFill(400,400)

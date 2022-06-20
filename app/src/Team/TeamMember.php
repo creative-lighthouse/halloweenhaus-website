@@ -12,6 +12,7 @@ use SilverStripe\ORM\DataObject;
  * @property string $Profession
  * @property string $Jointime
  * @property string $Description
+ * @property int $Importance
  * @property int $ImageID
  * @method \SilverStripe\Assets\Image Image()
  * @method \SilverStripe\ORM\ManyManyList|\App\Team\TeamSocial[] Socials()
@@ -22,7 +23,8 @@ class TeamMember extends DataObject
         "Title" => "Varchar(255)",
         "Profession" => "Varchar(255)",
         "Jointime" => "Varchar(255)",
-        "Description" => "HTMLText"
+        "Description" => "HTMLText",
+        "Importance" => "Int"
     ];
 
     private static $has_one = [
@@ -37,22 +39,29 @@ class TeamMember extends DataObject
         "Socials" => TeamSocial::class
     ];
 
-    private static $default_sort = "Title ASC";
+    private static $default_sort = "Importance DESC";
 
     private static $field_labels = [
         "Title" => "Name",
         "Profession" => "Aufgabenbereich",
         "Jointime" => "Seit wann dabei",
         "Description" => "Beschreibung",
-        "Socials" => "Soziale Links"
+        "Socials" => "Soziale Links",
+        "Importance" => "Wichtigkeit"
     ];
 
     private static $summary_fields = [
+        "Importance" => "Wichtigkeit",
         "Title" => "Name",
+        "Profession" => "Aufgabenbereich",
     ];
 
     private static $searchable_fields = [
         "Title", "Description",
+    ];
+
+    private static $indexes = [
+        'SortOrder' => true,
     ];
 
     private static $table_name = "TeamMembers";
