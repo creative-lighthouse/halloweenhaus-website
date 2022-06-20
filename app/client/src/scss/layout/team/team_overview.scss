@@ -1,0 +1,43 @@
+.section.section--team_overview{
+    .section_content{
+        .teammember_list{
+            padding: 20px 0;
+            display: grid;
+            grid-template-columns: 25% 25% 25%;
+            justify-content: space-between;
+            gap: 20px;
+            .teammember_item{
+                color: $ColorWhite;
+                text-align: center;
+                margin: 20px 0;
+                .teammember_item_image{
+                    width: 100%;
+                    aspect-ratio: 1;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .teammember_item_name{
+                    font-weight: 700;
+                    font-size: 22px;
+                    margin: 15px 0 0 0;
+                }
+
+                .teammember_item_profession{
+                    font-weight: 200;
+                    margin: 5px;
+                }
+
+                .teammember_item_time{
+                    font-weight: 200;
+                    margin: 5px;
+                }
+            }
+        }
+    }
+}

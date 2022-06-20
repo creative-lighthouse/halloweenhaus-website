@@ -27,6 +27,50 @@ document.addEventListener("DOMContentLoaded", function (event) {
     });
     parallax();
 
+    //CharacterSlider
+    const nextSlide_button = document.querySelector('[data-behaviour="nextSlide"]');
+    const prevSlide_button = document.querySelector('[data-behaviour="prevSlide"]');
+    const slider_holder = document.querySelector('[data-behaviour="characterSlider"]');
+    var currentSlide = 0;
+    var maxSlides = slider_holder.childElementCount;
+    nextSlide_button.addEventListener('click', () => {
+        currentSlide += 1;
+        if(currentSlide >= maxSlides){
+            currentSlide = 0;
+        }
+        displaySlider();
+    });
+
+    prevSlide_button.addEventListener('click', () => {
+        currentSlide -= 1;
+        if(currentSlide < 0){
+            currentSlide = maxSlides - 1;
+        }
+        displaySlider();
+    });
+
+    function displaySlider(){
+        let slides = slider_holder.children;
+        let i;
+        for(i = 0; i < slides.length; i++){
+            if (i < currentSlide) {
+                slides[i].classList.remove("visible");
+                slides[i].classList.remove("right");
+                slides[i].classList.add("left");
+            } else if (i > currentSlide) {
+                slides[i].classList.remove("visible");
+                slides[i].classList.add("right");
+                slides[i].classList.remove("left");
+            } else {
+                slides[i].classList.add("visible");
+                slides[i].classList.remove("right");
+                slides[i].classList.remove("left");
+            }
+        }
+    }
+
+    displaySlider();
+
     /**
      * Our JavaScript function, which calculates the days, hours,
      * minutes and seconds left until Halloween day.
@@ -73,7 +117,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     calculateHalloweenCountdown();
 });
-
 
 function parallax() {
 

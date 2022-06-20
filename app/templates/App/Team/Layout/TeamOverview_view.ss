@@ -1,0 +1,16 @@
+<% with $TeamMember %>
+    <div class="section section--team_details">
+        <div class="section_content">
+            <div class="teammember_item_image">
+                $Image.FocusFill(800,800)
+            </div>
+            <h1 class="teammember_name">$Title</h1>
+            <p class="teammember_profession">$Profession</p>
+            <p class="teammember_time">$Jointime</p>
+
+            <div class="teammember_description">
+                $Description
+            </div>
+        </div>
+    </div>
+<% end_with %>

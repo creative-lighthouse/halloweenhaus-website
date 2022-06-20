@@ -14,8 +14,8 @@
                 id="defs8" />
             <g
                 id="layer1">
-                <circle class="eyes" cx="22px" cy="17px" r="2px" fill="currentColor"/>
-                <circle class="eyes" cx="31.5px" cy="17px" r="2px" fill="currentColor"/>
+                <circle class="eyes" cx="22.5px" cy="17px" r="1.5px" fill="currentColor"/>
+                <circle class="eyes" cx="32px" cy="17px" r="1.5px" fill="currentColor"/>
                 <path
                 id="path869"
                 fill="#ffffff"

@@ -10,9 +10,13 @@
 @import "layout/footer.scss";
 @import "layout/header.scss";
 
+@import "layout/team/team_overview.scss";
+@import "layout/team/team_details.scss";
+
 @import "layout/TextImageElement.scss";
 @import "layout/TextElement.scss";
 @import "layout/ImageBannerElement.scss";
+@import "layout/CharacterCarousel.scss";
 
 html {
     background-color: $ColorBackground;
