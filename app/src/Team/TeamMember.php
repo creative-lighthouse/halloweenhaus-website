@@ -61,7 +61,7 @@ class TeamMember extends DataObject
     ];
 
     private static $indexes = [
-        'SortOrder' => true,
+        'Importance' => true,
     ];
 
     private static $table_name = "TeamMembers";
