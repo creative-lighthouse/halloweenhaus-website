@@ -18,14 +18,16 @@
                 align-items: center;
                 position: absolute;
                 bottom: 0;
-                height: 700px;
+                height: 500px;
                 left: 0;
                 justify-content: flex-end;
                 opacity: 0;
                 pointer-events: none;
+                width: 100%;
 
                 .character_image{
                     height: 100%;
+                    width: 60%;
                     transition: 0.3s ease-in-out;
                     overflow: hidden;
                     img{

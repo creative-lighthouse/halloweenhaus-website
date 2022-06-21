@@ -1,0 +1,51 @@
+.section.section--references{
+    .section_content{
+        text-align: center;
+
+        .referenceelement_list{
+            display: grid;
+            grid-template-columns: repeat(3, calc(100% / 3));
+            justify-content: space-around;
+            gap: 20px;
+
+            .referenceitem{
+                background-color: $ColorBackgroundLight;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+                border-radius: 20px;
+
+                p{
+                    margin-bottom: 0px;
+                }
+
+                .link--button{
+                    margin-top: 10px;
+                }
+
+                .referenceitem_text{
+                    height: calc(100% - 20px);
+                    padding-bottom: 10px;
+                    border-bottom: 2px solid $ColorWhite;
+                }
+
+                .referenceitem_source{
+                    color: $ColorWhite;
+                    margin: 1em 0 0 0;
+                    font-weight: 200;
+                }
+            }
+
+            @include media("<medium") {
+                grid-template-columns: repeat(2, calc(100% / 2));
+            }
+            @include media("<smartphone") {
+                grid-template-columns: repeat(1, calc(100% / 1));
+            }
+        }
+    }
+}

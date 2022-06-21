@@ -9,7 +9,7 @@ use SilverStripe\LinkField\Form\LinkField;
 use DNADesign\Elemental\Models\BaseElement;
 
 /**
- * Class \App\Elements\TextImageElement
+ * Class \App\Elements\CharacterCarouselElement
  *
  * @property string $Text
  * @property int $ButtonID
@@ -31,11 +31,6 @@ class CharacterCarouselElement extends BaseElement
 
     private static $table_name = 'CharacterCarouselElement';
     private static $icon = 'icon_block-text';
-
-    private static $translate = [
-        'Text',
-        'Button'
-    ];
 
     private static $has_one = [
         "Button" => Link::class,
