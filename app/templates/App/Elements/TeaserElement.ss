@@ -9,7 +9,7 @@
                 <div class="teaseritem">
                     <% if $Image %>
                         <div class="teaseritem_image">
-                            $Image.FocusFill(200,200)
+                            $Image
                         </div>
                     <% end_if %>
                     <% if $Title %><h3 class="teaseritem_title">$Title</h3><% end_if %>
