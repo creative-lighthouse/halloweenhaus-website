@@ -2,11 +2,15 @@
 
 namespace App\Team;
 
+use App\Team\TeamAdmin;
+use App\Team\TeamMember;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\Forms\DropdownField;
 
 /**
  * Class \App\Team\TeamSocial
  *
+ * @property int $SortOrder
  * @property string $Plattform
  * @property string $Link
  * @method \SilverStripe\ORM\ManyManyList|\App\Team\TeamMember[] Members()
@@ -14,6 +18,7 @@ use SilverStripe\ORM\DataObject;
 class TeamSocial extends DataObject
 {
     private static $db = [
+        "SortOrder" => "Int",
         "Plattform" => "Varchar(255)",
         "Link" => "Varchar(255)"
     ];
@@ -44,6 +49,26 @@ class TeamSocial extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
+        $fields->replaceField('Plattform', new DropdownField('Plattform', 'Plattform', [
+            "website" => "Website",
+            "mail" => "Mail",
+            "youtube" => "Youtube",
+            "twitch" => "Twitch",
+            "twitter" => "Twitter",
+            "instagram" => "Instagram",
+            "linkedin" => "LinkedIn",
+            "behance" => "Behance",
+            "github" => "Github",
+            "facebook" => "Facebook",
+            "flickr" => "Flickr",
+            "spotify" => "Spotify",
+            "soundcloud" => "Soundcloud",
+            "telegram" => "Telegram",
+            "discord" => "Discord",
+            "itchio" => "Itch.io",
+            "reddit" => "Reddit",
+            "tiktok" => "TikTok",
+        ]));
         $fields->removeByName("Categories");
         $category_map = [];
         if($categories = TeamMember::get())

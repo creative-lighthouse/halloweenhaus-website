@@ -11,6 +11,11 @@
             <div class="teammember_description">
                 $Description
             </div>
+            <div class="social_icons">
+                <% loop $Socials %>
+                    <% include SocialIcon %>
+                <% end_loop %>
+            </div>
         </div>
     </div>
 <% end_with %>
