@@ -18,7 +18,8 @@ class TeamOverviewController extends PageController {
 
     public function view() {
         $id = $this->getRequest()->param("ID");
-        $article = TeamMember::get()->byId($id);
+        $deformatted = str_replace('_', ' ', $id);
+        $article = TeamMember::get()->filter("Title", $deformatted)->first();
         return array(
             "TeamMember" => $article,
         );

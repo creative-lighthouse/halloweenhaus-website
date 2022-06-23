@@ -12,7 +12,7 @@
         "undefinedoffset/sortablegridfield": "^2.0",
         "symbiote/silverstripe-contextawareupload": "^2.0",
         "jonom/focuspoint": "^4.0",
-        "tractorcow/silverstripe-fluent": "5",
+        "tractorcow/silverstripe-fluent": "^5",
         "silverstripe/login-forms": "^4.6",
         "silverstripe/blog": "dev-master",
         "dnadesign/silverstripe-elemental-userforms": "3.x-dev",
@@ -26,8 +26,6 @@
         }
     },
     "require-dev": {
-        "sminnee/phpunit": "^5.7",
-        "sminnee/phpunit-mock-objects": "^3.4.5",
         "silverleague/ideannotator": "^3",
         "squizlabs/php_codesniffer": "^3.6"
     },

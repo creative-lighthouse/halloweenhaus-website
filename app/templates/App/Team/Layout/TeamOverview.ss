@@ -6,7 +6,7 @@
             <div class="teammember_list">
                 <% loop $TeamMembers.Sort("Importance", DESC).Filter("Status", "active") %>
                     <div class="teammember_item">
-                        <a class="teammember_texts" href="$Top.Link('view')/$ID">
+                        <a class="teammember_texts" href="$Top.Link('view')/$FormattedName">
                             <div class="teammember_item_image">
                                 $Image.FocusFill(400,400)
                             </div>

@@ -95,4 +95,8 @@ class TeamMember extends DataObject
         $urlClass = str_replace('\\', '-', self::class);
         return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/item/{$this->ID}/edit");
     }
+
+    public function getFormattedName(){
+        return str_replace(' ', '_', $this->Title);
+    }
 }
