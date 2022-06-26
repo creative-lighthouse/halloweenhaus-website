@@ -1,9 +1,10 @@
 @import "include-media";
 @import "~glightbox/dist/css/glightbox.css";
 
+@import "variables";
 @import "fonts";
 @import "normalize";
-@import "variables";
+
 @import "typography";
 @import "animations";
 
@@ -46,3 +47,28 @@ body{
     max-width: $maxWidthContent;
     margin: 0 auto;
 }
+
+.social_icon{
+    display: block;
+    width: 35px;
+    height: 35px;
+    margin: 10px;
+    transition: transform 0.1s ease-in-out;
+
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    &:hover{
+        transform: scale(1.1);
+    }
+
+    @include media("<medium") {
+        height: 35px;
+        width: 35px;
+        margin: 5px;
+    }
+}
+

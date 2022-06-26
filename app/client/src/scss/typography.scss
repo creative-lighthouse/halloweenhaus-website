@@ -18,7 +18,11 @@ h1{
 
 a{
     cursor: pointer;
-    text-decoration: none;
+    color: $ColorWhite;
+
+    &.no_deco{
+        text-decoration: none;
+    }
 
     &.centered{
         text-align: center;
@@ -68,16 +72,9 @@ a{
             background-color: $ColorPrimaryDark;
         }
     }
-}
 
-.social_icon{
-    display: block;
-    width: 40px;
-    height: 40px;
-    margin: 10px;
-    img{
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+    &:hover {
+        text-decoration: none;
+        color: $ColorPrimary;
     }
 }

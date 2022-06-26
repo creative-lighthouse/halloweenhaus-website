@@ -3,14 +3,15 @@
         .teammember_list{
             padding: 20px 0;
             display: grid;
-            grid-template-columns: 25% 25% 25%;
+            grid-template-columns: repeat(3, calc(100% / 3));
             justify-content: space-between;
-            gap: 20px;
+
             .teammember_item{
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: center;
+                padding: 10px;
                 .teammember_texts{
                     color: $ColorWhite;
                     text-align: center;
@@ -46,7 +47,13 @@
 
                 .social_icons{
                     display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
                 }
+            }
+
+            @include media("<medium") {
+                grid-template-columns: repeat(2, calc(100% / 2));
             }
         }
     }
