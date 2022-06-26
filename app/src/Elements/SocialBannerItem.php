@@ -1,30 +1,29 @@
 <?php
 
-namespace App\Team;
+namespace App\Elements;
 
-use App\Team\TeamAdmin;
-use App\Team\TeamMember;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\DropdownField;
 
 /**
  * Class \App\Team\TeamSocial
  *
- * @property int $SortOrder
  * @property string $Plattform
  * @property string $Link
- * @method \SilverStripe\ORM\ManyManyList|\App\Team\TeamMember[] Members()
+ * @property int $SortOrder
+ * @property int $ParentID
+ * @method \App\Elements\SocialBannerElement Parent()
  */
-class TeamSocial extends DataObject
+class SocialBannerItem extends DataObject
 {
     private static $db = [
-        "SortOrder" => "Int",
         "Plattform" => "Varchar(255)",
-        "Link" => "Varchar(255)"
+        "Link" => "Varchar(255)",
+        "SortOrder" => "Int",
     ];
 
-    private static $many_many = [
-        "Members" => TeamMember::class,
+    private static $has_one = [
+        "Parent" => SocialBannerElement::class,
     ];
 
     private static $default_sort = "Plattform DESC";
@@ -39,12 +38,12 @@ class TeamSocial extends DataObject
         "Link" => "Link",
     ];
 
-    private static $table_name = "TeamSocial";
+    private static $table_name = "SocialBannerItem";
 
     private static $singular_name = "Sozialer Link";
     private static $plural_name = "Soziale Links";
 
-    private static $url_segment = "teamsocial";
+    private static $url_segment = "socialbannerlink";
 
     public function getCMSFields()
     {
@@ -69,23 +68,8 @@ class TeamSocial extends DataObject
             "reddit" => "Reddit",
             "tiktok" => "TikTok",
         ]));
-        $fields->removeByName("Categories");
-        $category_map = [];
-        if($categories = TeamMember::get())
         return $fields;
     }
 
     private static $inline_editable = true;
-
-    public function CMSEditLink()
-    {
-        $admin = TeamAdmin::singleton();
-        $urlClass = str_replace('\\', '-', self::class);
-        return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/item/{$this->ID}/edit");
-    }
-
-    public function getFirstCategory()
-    {
-        return $this->Categories->first();
-    }
 }

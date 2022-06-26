@@ -1,0 +1,92 @@
+.section.section--timeline{
+    .section_content{
+        padding: 40px 0;
+        .section_title{
+
+        }
+
+        .section_list{
+            .list_item{
+                display: flex;
+                align-items: stretch;
+
+                .list_item_timeline{
+                    min-width: 50px;
+                    position: relative;
+
+                    .circle{
+                        display: block;
+                        position: absolute;
+                        left: 15px;
+                        top: 25px;
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 20px;
+                        background-color: $ColorWhite;
+                    }
+                    .line{
+                        position: absolute;
+                        left: 21px;
+                        top: 50px;
+                        height: calc(100% - 35px);
+                        display: block;
+                        width: 2px;
+                        background-color: $ColorWhite;
+                    }
+                }
+
+                .list_item_content{
+                    transition: transform 0.1s ease-in-out;
+
+                    .list_item_content_title{
+                        &:hover{
+                            color: $ColorWhite;
+                        }
+                    }
+                    .list_item_content_date{
+                        h3{
+                            color: $ColorWhite;
+
+                        }
+                        h4{
+                            margin-top: 21px;
+                            color: $ColorWhite;
+                        }
+                        color: $ColorWhite;
+                    }
+
+                    .list_item_content_text{
+                        max-height: 0;
+                        overflow: hidden;
+                        transition: max-height 0.2s ease-in-out;
+                        margin-bottom: 10px;
+
+                        img{
+                            width: 100%;
+                            height: auto;
+                            object-fit: contain;
+                        }
+                    }
+
+                    &:hover{
+                        transform: translateX(5px);
+                    }
+                }
+
+                &.list_item--visible{
+                    .list_item_content_text{
+                        max-height: 2000px;
+                    }
+                }
+
+                &:last-of-type{
+                    .list_item_timeline{
+                        .line{
+                            height: calc(100% - 60px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
