@@ -34,7 +34,7 @@ class ReferencesElement extends BaseElement
     }
 
     private static $table_name = 'ReferencesElement';
-    private static $icon = 'icon_block-text';
+    private static $icon = 'font-icon-book-open';
 
     public function getType()
     {

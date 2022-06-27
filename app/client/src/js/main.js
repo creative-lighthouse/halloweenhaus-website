@@ -30,6 +30,49 @@ document.addEventListener("DOMContentLoaded", function (event) {
         })
     });
 
+    //TimelineFilter
+    let timelineItems = [...document.querySelectorAll('[data-behaviour="timelineItem"]')];
+    let timelineFilters = [...document.querySelectorAll('[data-behaviour="timelineFilter"]')]
+    timelineFilters.forEach(filter => {
+        var isAvailable = false;
+        var isActive = true;
+        var checkedType = filter.getAttribute('data-type');
+        timelineItems.forEach(item => {
+            if(item.getAttribute('data-type') == checkedType){
+                isAvailable = true;
+            }
+        });
+        if(!isAvailable){
+            filter.classList.add("hidden");
+        }
+
+        filter.classList.add("active");
+        filter.classList.remove("inactive");
+
+        filter.addEventListener("click", (e) => {
+            isActive = !isActive;
+            if(isActive){
+                filter.classList.add("active");
+                filter.classList.remove("inactive");
+            } else {
+                filter.classList.add("inactive");
+                filter.classList.remove("active");
+            }
+
+            timelineItems.forEach(item => {
+                if(item.getAttribute('data-type') == checkedType){
+                    if(isActive){
+                        item.classList.add("active");
+                        item.classList.remove("inactive");
+                    } else {
+                        item.classList.add("inactive");
+                        item.classList.remove("active");
+                    }
+                }
+            });
+        });
+    });
+
     //Fixed Menu
     window.addEventListener('scroll', () => {
         parallax();

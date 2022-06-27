@@ -30,7 +30,7 @@ class CharacterCarouselElement extends BaseElement
     ];
 
     private static $table_name = 'CharacterCarouselElement';
-    private static $icon = 'icon_block-text';
+    private static $icon = 'font-icon-torsos-all';
 
     private static $has_one = [
         "Button" => Link::class,

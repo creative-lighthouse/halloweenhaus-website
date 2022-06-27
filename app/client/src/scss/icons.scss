@@ -38,6 +38,32 @@ button.icon_block-textimage{
     }
 }
 
+button.icon_block-image{
+    display: flex;
+    align-items: center;
+    &::before{
+        content: "";
+        mask-image: url("../../icons/block-image.svg");
+        background-color: $cmsColor;
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+    }
+}
+
+button.icon_block-references{
+    display: flex;
+    align-items: center;
+    &::before{
+        content: "";
+        mask-image: url("../../icons/block-references.svg");
+        background-color: $cmsColor;
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+    }
+}
+
 i.icon_block-text{
     mask-image: url("../../icons/block-text.svg");
     background-color: $cmsColor;
@@ -50,5 +76,15 @@ i.icon_block-textimage{
 
 i.icon_block-carousel{
     mask-image: url("../../icons/block-carousel.svg");
+    background-color: $cmsColor;
+}
+
+i.icon_block-image{
+    mask-image: url("../../icons/block-image.svg");
+    background-color: $cmsColor;
+}
+
+i.icon_block-references{
+    mask-image: url("../../icons/block-references.svg");
     background-color: $cmsColor;
 }

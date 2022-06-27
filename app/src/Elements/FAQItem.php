@@ -9,61 +9,49 @@ use SilverStripe\Security\Permission;
 /**
  * Class \App\Elements\TimelineItem
  *
- * @property string $Year
- * @property string $Headline
- * @property string $Type
+ * @property string $Title
  * @property string $Text
  * @property int $SortOrder
  * @property int $ParentID
- * @method \App\Elements\TimelineElement Parent()
+ * @method \App\Elements\FAQElement Parent()
  */
-class TimelineItem extends DataObject
+class FAQItem extends DataObject
 {
 
     private static $db = [
-        "Year" => "Varchar(50)",
-        "Headline" => "Varchar(255)",
-        "Type" => "Varchar(255)",
+        "Title" => "Varchar(50)",
         "Text" => "HTMLText",
         "SortOrder" => "Int",
     ];
 
     private static $has_one = [
-        "Parent" => TimelineElement::class
+        "Parent" => FAQElement::class
     ];
 
     private static $field_labels = [
-        "Year" => "Jahr",
-        "Headline" => "Überschrift",
+        "Title" => "Titel",
         "Text" => "Text"
     ];
 
     private static $default_sort = 'SortOrder ASC, ID ASC';
 
     private static $summary_fields = [
-        'ID' => 'ID',
-        'Year' => 'Jahr',
-        'Headline' => 'Überschrift'
+        'Title' => 'Titel'
     ];
 
     private static $searchable_fields = [
-        "Year",
-        "Headline"
+        "Title",
+        "Text"
     ];
 
-    private static $table_name = 'TimelineItem';
-    private static $singular_name = "Zeitleisten-Eintrag";
-    private static $plural_name = "Zeitleisten-Einträge";
+    private static $table_name = 'FAQItem';
+    private static $singular_name = "FAQ-Eintrag";
+    private static $plural_name = "FAQ-Einträge";
 
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
         $fields->removeFieldFromTab("Root.Main", "ParentID");
-        $fields->replaceField('Type', new DropdownField('Type', 'Typ', [
-            "halloween" => "Halloween",
-            "movie" => "Film",
-            "other" => "Sonstiges",
-        ]));
         $fields->removeFieldFromTab("Root.Main", "SortOrder");
         return $fields;
     }
@@ -86,16 +74,5 @@ class TimelineItem extends DataObject
     public function canCreate($member = null, $context = [])
     {
         return Permission::check('CMS_ACCESS_NewsAdmin', 'any', $member);
-    }
-
-    public function getFormattedType($usedType){
-        switch($usedType){
-            case 'halloween':
-                return "Halloween";
-            case 'movie':
-                return "Film";
-            case 'other':
-                return "Anderes";
-        }
     }
 }

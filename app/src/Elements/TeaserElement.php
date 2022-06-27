@@ -34,7 +34,7 @@ class TeaserElement extends BaseElement
     }
 
     private static $table_name = 'TeaserElement';
-    private static $icon = 'icon_block-text';
+    private static $icon = 'font-icon-thumbnails';
 
     public function getType()
     {
