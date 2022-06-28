@@ -19,7 +19,7 @@ class FAQItem extends DataObject
 {
 
     private static $db = [
-        "Title" => "Varchar(50)",
+        "Title" => "Varchar(255)",
         "Text" => "HTMLText",
         "SortOrder" => "Int",
     ];
