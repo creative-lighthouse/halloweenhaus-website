@@ -6,13 +6,23 @@
             <div class="teammember_list">
                 <% loop $TeamMembers.Sort("Importance", DESC).Filter("Status", "active") %>
                     <div class="teammember_item">
-                        <a class="teammember_texts no_deco" <% if $Description %>href="$Top.Link('view')/$FormattedName"<% end_if %>>
-                            <div class="teammember_item_image">
-                                $Image.FocusFill(400,400)
+                        <% if $Description %>
+                            <a class="teammember_texts no_deco" href="$Top.Link('view')/$FormattedName">
+                                <div class="teammember_item_image">
+                                    $Image.FocusFill(400,400)
+                                </div>
+                                <p class="teammember_item_name">$Title</p>
+                                <p class="teammember_item_profession">$Profession</p>
+                            </a>
+                        <% else %>
+                            <div class="teammember_texts no_deco">
+                                <div class="teammember_item_image">
+                                    $Image.FocusFill(400,400)
+                                </div>
+                                <p class="teammember_item_name">$Title</p>
+                                <p class="teammember_item_profession">$Profession</p>
                             </div>
-                            <p class="teammember_item_name">$Title</p>
-                            <p class="teammember_item_profession">$Profession</p>
-                        </a>
+                        <% end_if %>
                         <div class="social_icons">
                             <% loop $Socials %>
                                 <% include SocialIcon %>
@@ -29,13 +39,23 @@
             <div class="teammember_list">
                 <% loop $TeamMembers.Sort("Importance", DESC).Filter("Status", "formerly") %>
                     <div class="teammember_item">
-                    <a class="teammember_texts no_deco" <% if $Description %>href="$Top.Link('view')/$FormattedName"<% end_if %>>
-                            <div class="teammember_item_image">
-                                $Image.FocusFill(400,400)
+                        <% if $Description %>
+                            <a class="teammember_texts no_deco" href="$Top.Link('view')/$FormattedName">
+                                <div class="teammember_item_image">
+                                    $Image.FocusFill(400,400)
+                                </div>
+                                <p class="teammember_item_name">$Title</p>
+                                <p class="teammember_item_profession">$Profession</p>
+                            </a>
+                        <% else %>
+                            <div class="teammember_texts no_deco">
+                                <div class="teammember_item_image">
+                                    $Image.FocusFill(400,400)
+                                </div>
+                                <p class="teammember_item_name">$Title</p>
+                                <p class="teammember_item_profession">$Profession</p>
                             </div>
-                            <p class="teammember_item_name">$Title</p>
-                            <p class="teammember_item_profession">$Profession</p>
-                        </a>
+                        <% end_if %>
                         <div class="social_icons">
                             <% loop $Socials %>
                                 <% include SocialIcon %>
