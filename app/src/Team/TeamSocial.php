@@ -20,7 +20,7 @@ class TeamSocial extends DataObject
     private static $db = [
         "SortOrder" => "Int",
         "Plattform" => "Varchar(255)",
-        "Link" => "Varchar(255)"
+        "Link" => "Varchar(255)",
     ];
 
     private static $many_many = [
