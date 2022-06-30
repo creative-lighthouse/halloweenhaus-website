@@ -1,4 +1,4 @@
-.section.section--timeline{
+.section.section--faq{
     .section_content{
         padding: 40px 0;
         .section_title{
@@ -30,7 +30,8 @@
             .list_item{
                 display: flex;
                 align-items: stretch;
-                transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+                transition: max-height 1s ease-in-out, opacity 0.3s ease-in-out;
+                overflow: hidden;
 
                 .list_item_timeline{
                     min-width: 50px;
@@ -66,9 +67,13 @@
                         }
                     }
                     .list_item_content_date{
-                        p{
+                        h3{
+                            color: $ColorWhite;
+
+                        }
+                        h4{
                             margin-top: 21px;
-                            margin-bottom: 3px;
+                            color: $ColorWhite;
                         }
                         color: $ColorWhite;
                     }
@@ -93,7 +98,7 @@
 
                 &.list_item--visible{
                     .list_item_content_text{
-                        max-height: 2000px;
+                        max-height: 200px;
                     }
                 }
 
@@ -114,7 +119,7 @@
                     max-height: 200px;
                     opacity: 1;
                     &.list_item--visible{
-                        max-height: 2000px;
+                        max-height: 500px;
                     }
                 }
             }

@@ -9,6 +9,7 @@
         .character_holder{
             position: relative;
             margin: auto;
+            overflow: hidden;
 
             .character_item{
                 transition: 0.3s ease-in-out;
@@ -51,6 +52,16 @@
                     flex-shrink: 0;
                     flex-grow: 0;
                     transition: 0.3s ease-in-out;
+                    text-align: right;
+                    padding-right: 60px;
+
+                    @include media("<medium") {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        align-items: flex-end;
+                        gap: 10px;
+                    }
                 }
 
                 &:first-of-type{

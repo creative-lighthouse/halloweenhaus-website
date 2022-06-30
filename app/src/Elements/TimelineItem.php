@@ -61,7 +61,8 @@ class TimelineItem extends DataObject
         $fields->removeFieldFromTab("Root.Main", "ParentID");
         $fields->replaceField('Type', new DropdownField('Type', 'Typ', [
             "halloween" => "Halloween",
-            "movie" => "Film",
+            "media" => "Medien",
+            "milestone" => "Meilenstein",
             "other" => "Sonstiges",
         ]));
         $fields->removeFieldFromTab("Root.Main", "SortOrder");
@@ -92,8 +93,10 @@ class TimelineItem extends DataObject
         switch($usedType){
             case 'halloween':
                 return "Halloween";
-            case 'movie':
-                return "Film";
+            case 'media':
+                return "Medien";
+            case 'milestone':
+                return "Meilenstein";
             case 'other':
                 return "Anderes";
         }

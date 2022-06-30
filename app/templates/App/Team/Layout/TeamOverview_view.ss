@@ -1,6 +1,7 @@
 <% with $TeamMember %>
     <div class="section section--team_details">
         <div class="section_content">
+            <a class="white no_deco back" href="$Top.Link">Zurück zur Übersicht</a>
             <div class="teammember_item_image">
                 $Image.FocusFill(600,600)
             </div>

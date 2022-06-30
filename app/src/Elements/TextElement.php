@@ -13,6 +13,7 @@ use SilverStripe\Forms\DropdownField;
  * @property string $Text
  * @property string $AlignVariant
  * @property string $ColorVariant
+ * @property boolean $OnlyNearHalloween
  * @property int $ButtonID
  * @method \SilverStripe\LinkField\Models\Link Button()
  */
@@ -23,11 +24,13 @@ class TextElement extends BaseElement
         "Text" => "HTMLText",
         "AlignVariant" => "Varchar(20)",
         "ColorVariant" => "Varchar(20)",
+        "OnlyNearHalloween" => "Boolean"
     ];
 
     private static $field_labels = [
         "Text" => "Text",
-        "Button" => "Button"
+        "Button" => "Button",
+        "OnlyNearHalloween" => "Nur nahe Halloween zu sehen"
     ];
 
     private static $table_name = 'TextElement';

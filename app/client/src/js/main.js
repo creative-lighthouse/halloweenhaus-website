@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             diffSeconds  -= minutes * 60;
             seconds = diffSeconds;
 
-            halloweenCountdown.innerHTML = 'Noch ' + days + 'T | ' + hours + 'h | ' + minutes + 'm | ' + seconds + 's bis Halloween!';
+            halloweenCountdown.innerHTML = 'Noch ' + days + 'd | ' + hours + 'h | ' + minutes + 'm | ' + seconds + 's bis Halloween!';
         }
         else
         {

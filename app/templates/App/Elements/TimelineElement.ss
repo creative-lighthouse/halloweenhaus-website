@@ -7,7 +7,8 @@
         <% end_if %>
         <div class="section_list_filter">
             <a class="filter_item" data-behaviour="timelineFilter" data-type="halloween">Halloween</a>
-            <a class="filter_item" data-behaviour="timelineFilter" data-type="movie">Filme</a>
+            <a class="filter_item" data-behaviour="timelineFilter" data-type="media">Medien</a>
+            <a class="filter_item" data-behaviour="timelineFilter" data-type="milestone">Meilensteine</a>
             <a class="filter_item" data-behaviour="timelineFilter" data-type="other">Anderes</a>
         </div>
         <div class="section_list">
@@ -20,7 +21,7 @@
                     <div class="list_item_content">
                         <% if Up.IsCollapsible %>
                             <a class="list_item_content_date no_deco" href="" data-behaviour="list-toggle">
-                            <h4>$Year <% if $Type %>- $getFormattedType($Type)<% end_if %></h4>
+                            <p>$Year <% if $Type %>- $getFormattedType($Type)<% end_if %></p>
                             </a>
                             <a class="list_item_content_title no_deco" href="" data-behaviour="list-toggle">
                                 <h3>$Headline</h3>

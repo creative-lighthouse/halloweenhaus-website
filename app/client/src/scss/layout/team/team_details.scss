@@ -5,6 +5,22 @@
         justify-content: center;
         align-items: center;
         padding-top: 20px;
+        .back{
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            margin: -10px;
+            &::before{
+                content:"";
+                display: inline-block;
+                border-bottom: 2px solid white;
+                border-left: 2px solid white;
+                width: 10px;
+                height: 10px;
+                transform-origin: center;
+                transform: rotate(45deg);
+            }
+        }
         .teammember_item_image{
             width: 30%;
             aspect-ratio: 1;

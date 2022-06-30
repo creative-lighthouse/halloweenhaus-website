@@ -14,7 +14,7 @@
                     <% end_if %>
 
                     <% if $Button && $Title %>
-                        <a href="$Button.Url" <% if $Button.OpenInNew %> target="_blank"<% end_if %> class="referenceitem_source">$Title</a>
+                        <a href="$Button.Url" <% if $Button.OpenInNew %> target="_blank"<% end_if %> class="referenceitem_source no_deco">$Title</a>
                     <% else_if $Title %>
                         <p class="referenceitem_source">$Title</p>
                     <% end_if %>

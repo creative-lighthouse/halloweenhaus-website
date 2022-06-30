@@ -35,6 +35,7 @@
                     text-decoration: none;
                     padding: 15px 10px;
                     &:hover{
+                        color: white;
                         background-color: $ColorSecondary;
                     }
                 }
@@ -64,7 +65,7 @@
         border-radius: 50%;
         padding: 20px;
         color: white;
-        animation: rainbow 25s infinite;
+        animation: rainbow 45s infinite;
 
         .eyes{
             transform-origin: 40% 31%;

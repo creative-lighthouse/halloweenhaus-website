@@ -40,7 +40,7 @@ namespace {
 
             //Have we already passed this year's Halloween?
             if(date("m") >= 6){
-                if (date("d") > 15){
+                if (date("d") > 31){
                     //Use next year's Halloween date.
                     $halloweenDay = (date("Y") + 1) . "-10-31";
                 }

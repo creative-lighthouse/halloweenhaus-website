@@ -3,6 +3,7 @@
     justify-content: space-between;
     max-width: $maxWidthContent;
     flex-wrap: wrap;
+    align-items: center;
 
     .textimage_image {
         width: 100%;
@@ -26,17 +27,22 @@
 
         .textimage_text_content {
             position: relative;
-            padding-bottom: 20px;
+            padding-bottom: 40px;
             height: 100%;
             .textimage_text_button{
                 position: absolute;
-                right: 0;
+                left: 0;
                 bottom: 0;
+                @include media("<medium") {
+                    text-align: center;
+                    right: 0;
+                }
             }
         }
 
         @include media("<medium") {
             padding-top: 20px;
+            text-align: center;
         }
     }
 

@@ -14,6 +14,7 @@ use SilverStripe\Forms\DropdownField;
  * @property string $Text
  * @property string $Variant
  * @property string $ImgWidth
+ * @property boolean $ImageIsLinked
  * @property int $ImageID
  * @property int $ButtonID
  * @method \SilverStripe\Assets\Image Image()
@@ -26,6 +27,7 @@ class TextImageElement extends BaseElement
         "Text" => "HTMLText",
         "Variant" => "Varchar(20)",
         "ImgWidth" => "Varchar(20)",
+        "ImageIsLinked" => "Boolean"
     ];
 
     private static $has_one = [
@@ -40,7 +42,8 @@ class TextImageElement extends BaseElement
     private static $field_labels = [
         "Text" => "Text",
         "Image" => "Bild",
-        "Button" => "Button"
+        "Button" => "Button",
+        "ImageIsLinked" => "Bild ist verlinkt",
     ];
 
     private static $table_name = 'TextImageElement';

@@ -28,7 +28,7 @@
                 height: 100%;
                 object-fit: contain;
                 color: $ColorWhite;
-                animation: rainbow 15s infinite;
+                animation: rainbow 75s infinite;
 
                 .eyes{
                     position: absolute;
@@ -118,6 +118,7 @@
                     backdrop-filter: blur(0px);
                     transition: 0.2s ease-in-out;
                     background-color: rgba(0, 0, 0, 0.3);
+                    padding-right: 0;
 
                     .menu--fixed &{
                         top: 50px;
@@ -127,6 +128,15 @@
                         backdrop-filter: blur(10px);
                         max-height: 1000px;
                         opacity: 1;
+                    }
+                }
+
+                .virtualqueue{
+                    margin-right: 30px;
+                    margin-left: 0px;
+                    @include media("<medium") {
+                        width: 100%;
+                        display: block;
                     }
                 }
             }
@@ -165,6 +175,8 @@
                     width: 100%;
                     left: 0;
                     top: 150px;
+                    border-top-left-radius: 0;
+                    border-top-right-radius: 0;
                 }
             }
 
