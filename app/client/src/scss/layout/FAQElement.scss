@@ -98,7 +98,7 @@
 
                 &.list_item--visible{
                     .list_item_content_text{
-                        max-height: 200px;
+                        max-height: 400px;
                     }
                 }
 
@@ -116,7 +116,7 @@
                 }
 
                 &.active{
-                    max-height: 200px;
+                    max-height: 400px;
                     opacity: 1;
                     &.list_item--visible{
                         max-height: 500px;
