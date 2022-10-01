@@ -4,6 +4,7 @@ namespace App\Team;
 
 use App\Team\TeamAdmin;
 use App\Team\TeamSocial;
+use App\Team\TeamMemberImage;
 use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\DropdownField;
@@ -19,7 +20,9 @@ use SilverStripe\Forms\DropdownField;
  * @property string $Status
  * @property int $ImageID
  * @method \SilverStripe\Assets\Image Image()
+ * @method \SilverStripe\ORM\DataList|\PurpleSpider\BasicGalleryExtension\PhotoGalleryImage[] PhotoGalleryImages()
  * @method \SilverStripe\ORM\ManyManyList|\App\Team\TeamSocial[] Socials()
+ * @mixin \PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
  */
 class TeamMember extends DataObject
 {

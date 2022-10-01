@@ -89,6 +89,13 @@
                             height: auto;
                             object-fit: contain;
                         }
+
+                        .faq_gallery{
+                            display: flex;
+                            gap: 20px;
+                            flex-wrap: wrap;
+                            justify-content: space-evenly;
+                        }
                     }
 
                     &:hover{

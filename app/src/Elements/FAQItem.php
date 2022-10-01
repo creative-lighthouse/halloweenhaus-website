@@ -3,7 +3,6 @@
 namespace App\Elements;
 
 use SilverStripe\ORM\DataObject;
-use SilverStripe\Forms\DropdownField;
 use SilverStripe\Security\Permission;
 
 /**
@@ -14,6 +13,8 @@ use SilverStripe\Security\Permission;
  * @property int $SortOrder
  * @property int $ParentID
  * @method \App\Elements\FAQElement Parent()
+ * @method \SilverStripe\ORM\DataList|\PurpleSpider\BasicGalleryExtension\PhotoGalleryImage[] PhotoGalleryImages()
+ * @mixin \PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
  */
 class FAQItem extends DataObject
 {

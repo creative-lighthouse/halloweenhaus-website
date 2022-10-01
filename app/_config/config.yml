@@ -1,0 +1,23 @@
+SilverStripe\MimeValidator\MimeUploadValidator:
+  MimeTypes:
+    svg:
+      - 'image/svg+xml'
+      - 'image/svg'
+
+SilverStripe\Assets\File:
+    allowed_extensions:
+    - svg
+
+App\Team\TeamMember:
+  extensions:
+    - PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
+  gallery-title: Galerie
+  gallery-cms-tab: Galerie
+  content-cms-tab: Top Content
+
+App\Elements\FAQItem:
+  extensions:
+    - PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
+  gallery-title: Galerie
+  gallery-cms-tab: Galerie
+  content-cms-tab: Top Content

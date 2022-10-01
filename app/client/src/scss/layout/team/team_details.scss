@@ -55,5 +55,12 @@
         .social_icons{
             display: flex;
         }
+
+        .teammember_gallery{
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
     }
 }

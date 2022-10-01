@@ -9,10 +9,7 @@ use SilverStripe\Forms\DropdownField;
 /**
  * Class \App\Elements\SpaceElement
  *
- * @property string $Variant
  * @property int $Height
- * @property int $ImageID
- * @method \SilverStripe\Assets\Image Image()
  */
 class SpaceElement extends BaseElement
 {
