@@ -13,7 +13,7 @@ use SilverStripe\Forms\DropdownField;
  * @property string $Text
  * @property string $AlignVariant
  * @property string $ColorVariant
- * @property boolean $OnlyNearHalloween
+ * @property bool $OnlyNearHalloween
  * @property int $ButtonID
  * @method \SilverStripe\LinkField\Models\Link Button()
  */

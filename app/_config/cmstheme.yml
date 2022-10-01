@@ -1,16 +1,16 @@
 SilverStripe\SiteConfig\SiteConfig:
-  cms_logo: '_resources/app/client/src/images/ExperienceLogger-Icon-White.svg'
+  cms_logo: '_resources/app/client/images/logo_footer.svg'
   cms_logo_width: 60 # Optional width constraint
 
 SilverStripe\Admin\LeftAndMain:
   cms_background: '#000000'
-  cms_border_color: '#1F4F47'
+  cms_border_color: '#151515'
   cms_color: '#fff'
-  cms_hover_background: '#1A423B'
+  cms_hover_background: '#151515'
   cms_hover_color: currentColor
-  cms_active_background: '#1A423B'
+  cms_active_background: '#151515'
   cms_active_color: currentColor
-  cms_drawer_background: '#22564D'
+  cms_drawer_background: '#151515'
   cms_drawer_color: 'inherit'
   cms_icon_color: currentColor
   menu_groups:
@@ -23,6 +23,8 @@ SilverStripe\Admin\LeftAndMain:
         - SilverStripe-CampaignAdmin-CampaignAdmin
         - SilverStripe-VersionedAdmin-ArchiveAdmin
         - SilverStripe-Reports-ReportAdmin
+        - TractorCow-Fluent-Control-LocaleAdmin
+        - SilverStripe-SiteConfig-SiteConfigLeftAndMain
 
 SilverStripe\Admin\SecurityAdmin:
   menu_priority: -1

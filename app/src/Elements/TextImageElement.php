@@ -14,7 +14,7 @@ use SilverStripe\Forms\DropdownField;
  * @property string $Text
  * @property string $Variant
  * @property string $ImgWidth
- * @property boolean $ImageIsLinked
+ * @property bool $ImageIsLinked
  * @property int $ImageID
  * @property int $ButtonID
  * @method \SilverStripe\Assets\Image Image()
