@@ -16,6 +16,8 @@ use SilverStripe\Security\Permission;
  * @property int $SortOrder
  * @property int $ParentID
  * @method \App\Elements\TimelineElement Parent()
+ * @method \SilverStripe\ORM\DataList|\PurpleSpider\BasicGalleryExtension\PhotoGalleryImage[] PhotoGalleryImages()
+ * @mixin \PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
  */
 class TimelineItem extends DataObject
 {

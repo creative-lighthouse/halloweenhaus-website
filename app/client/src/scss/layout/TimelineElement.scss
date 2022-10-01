@@ -84,6 +84,13 @@
                             height: auto;
                             object-fit: contain;
                         }
+
+                        .timeline_gallery{
+                            display: flex;
+                            gap: 20px;
+                            flex-wrap: wrap;
+                            justify-content: flex-start;
+                        }
                     }
 
                     &:hover{
