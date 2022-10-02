@@ -12,17 +12,18 @@
             <div class="teammember_description">
                 $Description
             </div>
-            <div class="social_icons">
-                <% loop $Socials %>
-                    <% include SocialIcon %>
-                <% end_loop %>
-            </div>
 
             <div class="teammember_gallery">
                 <% loop PhotoGalleryImages %>
                     <div class="item_gallery_image">
                         <a data-gallery="gallery" data-glightbox="description: $Title" data-caption="$Title" href="$Image.FitMax(2000,2000).URL"><img src="$Image.FocusFill(150,150).URL" /></a>
                     </div>
+                <% end_loop %>
+            </div>
+
+            <div class="social_icons">
+                <% loop $Socials %>
+                    <% include SocialIcon %>
                 <% end_loop %>
             </div>
         </div>
