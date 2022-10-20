@@ -10,22 +10,25 @@ use PageController;
  * @method \App\Team\TeamOverview data()
  * @mixin \App\Team\TeamOverview
  */
-class TeamOverviewController extends PageController {
+class TeamOverviewController extends PageController
+{
 
     private static $allowed_actions = [
         "view",
     ];
 
-    public function view() {
+    public function view()
+    {
         $id = $this->getRequest()->param("ID");
-        $deformatted = str_replace('_', ' ', $id);
-        $article = TeamMember::get()->filter("Title", $deformatted)->first();
+        $exploded = explode("-", $id);
+        $article = TeamMember::get()->filter("ID", $exploded[0])->first();
         return array(
             "TeamMember" => $article,
         );
     }
 
-    public function getTeamMembers() {
+    public function getTeamMembers()
+    {
         return TeamMember::get();
     }
 }
