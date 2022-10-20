@@ -3,7 +3,7 @@
         <div class="character_holder" data-behaviour="characterSlider">
             <% loop $Characters %>
                 <div class="character_item">
-                    <div class="character_image" data-behaviour="parallax" data-speed="0.9">
+                    <div class="character_image" data-behaviour="parallax" data-speed="0.1">
                         $Image.FocusFill(800,800)
                     </div>
                     <div class="character_text">
