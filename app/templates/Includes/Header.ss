@@ -48,8 +48,8 @@
         </a>
         <div class="menus">
             <div class="place">
-                <p>31.10.22 | 18:00 - ca.21:00</p>
-                <p>Alte Landstraße, Großhansdorf</p>
+                <p>$SiteConfig.DateText</p>
+                <p>$SiteConfig.PlaceText</p>
             </div>
             <div class="nav_mainmenu">
                 <a href="faq" class="nav_link faq">FAQ</a>
@@ -71,3 +71,9 @@
         </div>
     </div>
 </div>
+
+<% if $SiteConfig.ShowBanner %>
+    <div class="banner">
+        $SiteConfig.BannerText
+    </div>
+<% end_if %>

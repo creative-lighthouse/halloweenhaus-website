@@ -31,7 +31,8 @@ namespace {
             return $fields;
         }
 
-        function daysTillHalloween(){
+        function daysTillHalloween()
+        {
             //Today's date.
             $today = new DateTime();
 
@@ -39,8 +40,8 @@ namespace {
             $halloweenDay = date("Y") . "-10-31";
 
             //Have we already passed this year's Halloween?
-            if(date("m") >= 6){
-                if (date("d") > 31){
+            if (date("m") >= 6) {
+                if (date("d") > 31) {
                     //Use next year's Halloween date.
                     $halloweenDay = (date("Y") + 1) . "-10-31";
                 }
@@ -57,9 +58,10 @@ namespace {
             return $interval->days;
         }
 
-        public function getNearHalloween(){
+        public function getNearHalloween()
+        {
             $remaining = $this->daysTillHalloween();
-            if($remaining < 1){
+            if ($remaining < 1) {
                 return true;
             }
             return false;

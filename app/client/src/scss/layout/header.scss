@@ -251,3 +251,22 @@
         }
     }
 }
+
+.banner{
+    left: 0;
+    right: 0;
+    display: block;
+    width: 100%;
+    max-width: $maxWidth;
+    margin: 0 auto;
+    padding: 5px 20px;
+    opacity: 0.9;
+    background-color: gray;
+    border-radius: 0 0 20px 20px;
+    transition: opacity 0.2s ease-in-out;
+
+    .menu--fixed &{
+        opacity: 0;
+        pointer-events: none;
+    }
+}
