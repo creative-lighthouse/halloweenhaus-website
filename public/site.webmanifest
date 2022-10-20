@@ -1,0 +1,10 @@
+{
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "name": "Halloweenhaus Schmalenbeck",
+    "short_name": "HWHS",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#151515",
+    "theme_color": "#383838",
+    "description": "Das Halloweenhaus in Schmalenbeck für die ganze Familie"
+  }

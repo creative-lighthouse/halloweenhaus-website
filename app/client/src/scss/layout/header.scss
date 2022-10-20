@@ -230,6 +230,24 @@
                     }
                 }
             }
+
+            .place{
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                flex-direction: column;
+                p{
+                    font-size: 14px;
+                    text-align: right;
+                    margin: 0;
+                    padding: 0;
+                    line-height: 1.2;
+                }
+
+                @include media("<medium") {
+                    display: none;
+                }
+            }
         }
     }
 }

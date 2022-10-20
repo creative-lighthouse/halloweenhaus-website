@@ -47,6 +47,10 @@
 
         </a>
         <div class="menus">
+            <div class="place">
+                <p>31.10.22 | 18:00 - ca.21:00</p>
+                <p>Alte Landstraße, Großhansdorf</p>
+            </div>
             <div class="nav_mainmenu">
                 <a href="faq" class="nav_link faq">FAQ</a>
             <% if $NearHalloween %><a href="virtualqueue" class="link--button hollow nav_link virtualqueue">Virtual Queue</a><% end_if %>
