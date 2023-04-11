@@ -73,6 +73,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
         });
     });
 
+    timelineItems.forEach(element => {
+        let togglers = [...element.getElementsByClassName("timeline_toggle")];
+        console.log(togglers);
+        togglers.forEach(toggler => {
+            toggler.addEventListener("click", (e) => {
+                e.preventDefault();
+                element.classList.toggle("list_item--visible")
+
+                timelineItems.filter(e => e != element).forEach((e) => {
+                    e.classList.remove("list_item--visible")
+                });
+            });
+        });
+    });
+
     //Fixed Menu
     window.addEventListener('scroll', () => {
         parallax();

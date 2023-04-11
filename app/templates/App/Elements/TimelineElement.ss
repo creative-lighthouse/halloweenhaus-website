@@ -13,19 +13,15 @@
         </div>
         <div class="section_list">
             <% loop $TimelineItems %>
-            <div class="list_item active <% if Up.IsCollapsible %><% else %>list_item--visible<% end_if %>" data-behaviour="timelineItem" data-type="$Type">
-                    <div class="list_item_timeline">
+                <div class="list_item active <% if Up.IsCollapsible %><% else %>list_item--visible<% end_if %>" data-behaviour="timelineItem" data-type="$Type" data-collapsible="true">
+                    <div class="list_item_timeline timeline_toggle">
                         <span class="circle"></span>
                         <span class="line"></span>
                     </div>
                     <div class="list_item_content">
                         <% if Up.IsCollapsible %>
-                            <a class="list_item_content_date no_deco" href="" data-behaviour="list-toggle">
-                            <p>$Year <% if $Type %>- $getFormattedType($Type)<% end_if %></p>
-                            </a>
-                            <a class="list_item_content_title no_deco" href="" data-behaviour="list-toggle">
-                                <h3>$Headline</h3>
-                            </a>
+                            <p class="list_item_content_date no_deco timeline_toggle">$Year <% if $Type %>- $getFormattedType($Type)<% end_if %></p>
+                            <h3 class="list_item_content_title no_deco timeline_toggle">$Headline</h3>
                             <div class="list_item_content_text">
                                 $Text
                                 <div class="timeline_gallery">
@@ -53,6 +49,11 @@
                                     <% end_loop %>
                                 </div>
                             </div>
+                        <% end_if %>
+                    </div>
+                    <div class="list_item_arrow timeline_toggle">
+                        <% if Up.IsCollapsible %>
+                            <div class="arrow"></div>
                         <% end_if %>
                     </div>
                 </div>
