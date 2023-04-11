@@ -18,6 +18,7 @@
                 text-align: center;
                 padding: 20px;
                 border-radius: 20px;
+                transition: background-color 0.2s ease-in-out;
 
                 p{
                     margin-bottom: 0px;
@@ -37,6 +38,11 @@
                     color: $ColorWhite;
                     margin: 1em 0 0 0;
                     font-weight: 200;
+                }
+
+                &:hover{
+                    color: $ColorWhite;
+                    background-color: $ColorSecondary;
                 }
             }
 
