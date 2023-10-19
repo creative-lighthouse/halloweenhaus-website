@@ -90,6 +90,9 @@
         max-width: $maxWidth;
         border-radius: 20px;
         height: auto;
+        margin-top: -140px;
+        z-index: 10;
+        margin-bottom: -60px;
 
         .section_description{
             max-width: $maxWidth;
