@@ -11,7 +11,6 @@
         <% end_if %>
     <% else %>
         <% if $Variant == "variant--contained" %>
-            <h1>Buh!</h1>
             <div class="section_content">
                 <img src="$Image.FocusFill(2000, 700).Link" alt="$Image.Title" />
             </div>
