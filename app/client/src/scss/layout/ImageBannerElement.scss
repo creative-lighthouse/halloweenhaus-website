@@ -85,6 +85,30 @@
         }
     }
 
+    &.variant--contained{
+        margin: 20px auto;
+        max-width: $maxWidth;
+        border-radius: 20px;
+        height: auto;
+
+        .section_description{
+            max-width: $maxWidth;
+            padding-left: 30px;
+        }
+
+        .section_content{
+            background-size: contain;
+            background-repeat: no-repeat;
+            height: auto;
+
+            img{
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+            }
+        }
+    }
+
     &.variant--hovering{
         max-width: $maxWidth;
         margin: 50px auto;

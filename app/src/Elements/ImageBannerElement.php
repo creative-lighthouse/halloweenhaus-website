@@ -60,6 +60,7 @@ class ImageBannerElement extends BaseElement
         $fields->replaceField('Variant', new DropdownField('Variant', 'Variante', [
             "" => "Volle Breite",
             "variant--limited" => "Begrenzte Breite",
+            "variant--contained" => "Angepasste Breite",
             "variant--hovering" => "Hervorgehoben",
         ]));
         $fields->replaceField('Overlay', new DropdownField('Overlay', 'Überlagerung', [
