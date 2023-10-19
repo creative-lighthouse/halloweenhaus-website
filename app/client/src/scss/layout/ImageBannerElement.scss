@@ -110,6 +110,14 @@
                 object-fit: contain;
             }
         }
+
+        @include media("<desktop") {
+            margin-top: -75px;
+        }
+
+        @include media("<smartphone") {
+            margin-top: -40px;
+        }
     }
 
     &.variant--hovering{
