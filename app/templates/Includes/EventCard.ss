@@ -5,7 +5,7 @@
             <p class="event_date_day">$StartTime.Format("dd.MM.")</p>
             <p class="event_date_year">$StartTime.Format("YYYY")</p>
         </div>
-        <p class="event_time">$StartTime.Format("hh:mm")</p>
+        <p class="event_time">$StartTime.Format("HH:mm")</p>
         <% if $RemainingSeats > 0 %>
             <p class="event_seats">Noch $RemainingSeats Plätze</p>
             <a class="link--button event_register" href="$RegistrationLink">Jetzt registrieren →</a>
