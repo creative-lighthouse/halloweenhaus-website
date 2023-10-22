@@ -1,0 +1,14 @@
+.section.section--events{
+    .section_content{
+        .events_list{
+            margin: 10px 0;
+
+            .event_entry{
+                border: 1px solid $ColorWhite;
+                margin: 10px 0;
+                padding: 20px;
+                background-size: cover;
+            }
+        }
+    }
+}
