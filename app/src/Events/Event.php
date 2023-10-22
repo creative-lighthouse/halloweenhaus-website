@@ -101,7 +101,7 @@ class Event extends DataObject
             $registrations = Registration::get()->filter("EventID", $this->ID);
             return sprintf("%d / %d", $registrations->Count(), $this->MaxAttendees) . " Anmeldungen";
         } else {
-            return $this->Registrations()->Count() . " Anmeldungen";
+            return $this->getRegistrations()->Count() . " Anmeldungen";
         }
     }
 
@@ -121,11 +121,20 @@ class Event extends DataObject
         }
     }
 
-    public function GetRegistrationLink()
+    public function getRegistrationLink()
     {
         $holderNew = EventPage::get()->sort("ID", "ASC")->First();
         if ($holderNew) {
             return $holderNew->AbsoluteLink("register/") . $this->ID;
+        }
+        return "/404";
+    }
+
+    public function getLink()
+    {
+        $holderNew = EventPage::get()->sort("ID", "ASC")->First();
+        if ($holderNew) {
+            return $holderNew->AbsoluteLink("view/") . $this->ID;
         }
         return "/404";
     }

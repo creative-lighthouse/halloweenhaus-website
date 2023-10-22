@@ -16,6 +16,8 @@ use SilverStripe\ORM\DataExtension;
  * @property string $PlaceText
  * @property bool $ShowBanner
  * @property string $BannerText
+ * @property string $AckMessageSubject
+ * @property string $AckMessageContent
  */
 class CustomSiteConfig extends DataExtension
 {
@@ -25,6 +27,8 @@ class CustomSiteConfig extends DataExtension
         "PlaceText" => "Varchar(255)",
         "ShowBanner" => "Boolean",
         "BannerText" => "HTMLText",
+        'AckMessageSubject' => 'Varchar(255)',
+        'AckMessageContent' => 'HTMLText',
     ];
 
     public function updateCMSFields(FieldList $fields)
@@ -33,5 +37,7 @@ class CustomSiteConfig extends DataExtension
         $fields->addFieldToTab("Root.Main", new TextField("PlaceText", "Place Text"));
         $fields->addFieldToTab("Root.Main", new CheckboxField("ShowBanner", "Show Banner"));
         $fields->addFieldToTab("Root.Main", new HTMLEditorField("BannerText", "Banner Text"));
+        $fields->addFieldToTab('Root.Event Emails', TextField::create('AckMessageSubject', 'Empfangsbestätigung Betreff'));
+        $fields->addFieldToTab('Root.Event Emails', HTMLEditorField::create('AckMessageContent', 'Empfangsbestätigung Inhalt'));
     }
 }

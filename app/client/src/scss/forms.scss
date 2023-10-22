@@ -1,0 +1,24 @@
+form{
+    border: none;
+    padding: 0;
+
+    fieldset{
+        border: none;
+        padding: 0;
+        margin: 0;
+
+        .field{
+            margin: 10px 0;
+            input[type="text"]{
+                width: 50%;
+                border-radius: 25px;
+                border: 1px solid $ColorPrimaryDark;
+                padding: 10px;
+
+                @include media("<medium") {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

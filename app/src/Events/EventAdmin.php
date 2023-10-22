@@ -2,12 +2,9 @@
 namespace App\Events;
 
 use App\Events\Event;
-use App\Team\Character;
-use App\Team\TeamMember;
 use App\Events\Registration;
+use App\Events\EmailNotification;
 use SilverStripe\Admin\ModelAdmin;
-use SilverStripe\Forms\GridField\GridField;
-use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 
 /**
  * Class \App\Team\TeamAdmin
@@ -18,6 +15,7 @@ class EventAdmin extends ModelAdmin
     private static $managed_models = array (
         Event::class,
         Registration::class,
+        EmailNotification::class,
     );
 
     private static $url_segment = "events";

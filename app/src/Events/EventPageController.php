@@ -33,6 +33,8 @@ class EventPageController extends PageController
         "registrationsuccessful",
         "registrationfull",
         "eventnotfound",
+        "unsubscribe",
+        "unsubscribesuccessful",
     ];
 
     public function view(HTTPRequest $request)
@@ -46,12 +48,11 @@ class EventPageController extends PageController
 
     public function attendeeinfo(HTTPRequest $request)
     {
-        $event_id = $request->param("ID");
-        $event = Event::get()->byId($event_id);
-        $hash = $request->param("OtherID");
+        $hash = $request->param("ID");
+        $registration = Registration::get()->filter(array("Hash" => $hash))->First();
+        $event = $registration->Event();
 
         if (isset($hash) && isset($event)) {
-            $registration = Registration::get()->filter(array("Hash" => $hash))->First();
             if ($registration) {
                 return array(
                     "Event" => $event,
@@ -152,5 +153,19 @@ class EventPageController extends PageController
     public function getEvents()
     {
         return Event::get();
+    }
+
+    public function unsubscribe(HTTPRequest $request)
+    {
+        $hash = $request->param("ID");
+
+        if (isset($hash)) {
+            $registration = Registration::get()->filter(array("Hash" => $hash))->First();
+            if ($registration) {
+                $registration->delete();
+                return $this->redirect($this->Link("unsubscribesuccessful"));
+            }
+        }
+        return $this->redirect($this->Link("eventnotfound"));
     }
 }
