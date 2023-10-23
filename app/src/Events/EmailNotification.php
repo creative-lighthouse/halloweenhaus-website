@@ -87,7 +87,7 @@ class EmailNotification extends DataObject
 
         $registration = $this->Registration();
         $email = Email::create()
-            ->setHTMLTemplate('emails/EventEmail')
+            ->setPlainTemplate('emails/EventEmail')
             ->setData([
                 "Registration" => $registration,
                 "Subject" => $this->Title,
