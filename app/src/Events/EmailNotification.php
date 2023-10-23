@@ -93,7 +93,7 @@ class EmailNotification extends DataObject
                 "Subject" => $this->Title,
                 "Text" => DBField::create_field('HTMLText', $this->Text)
             ])
-            ->setFrom("kontakt@halloweenhaus-schmalenbeck.de")
+            ->setFrom("kontakt@halloweenhaus-schmalenbeck.de", "Halloweenhaus Schmalenbeck")
             ->setTo($this->Email)
             ->setSubject(SSViewer::execute_string($this->Title, $this->Event()));
 
