@@ -86,7 +86,8 @@ class EmailNotification extends DataObject
         parent::onAfterWrite();
 
         $registration = $this->Registration();
-        $email = Email::create()
+        $email = new Email('kontakt@halloweenhaus-schmalenbeck.de', $this->Email, $this->Title, $this->Text);
+        /*$email = Email::create()
             ->setPlainTemplate('emails/EventEmail')
             ->setData([
                 "Registration" => $registration,
@@ -95,7 +96,7 @@ class EmailNotification extends DataObject
             ])
             ->setFrom("kontakt@halloweenhaus-schmalenbeck.de", "Halloweenhaus Schmalenbeck")
             ->setTo($this->Email)
-            ->setSubject(SSViewer::execute_string($this->Title, $this->Event()));
+            ->setSubject(SSViewer::execute_string($this->Title, $this->Event()));*/
 
         $email->send();
     }
