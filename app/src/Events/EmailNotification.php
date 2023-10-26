@@ -85,20 +85,27 @@ class EmailNotification extends DataObject
     {
         parent::onAfterWrite();
 
-        $registration = $this->Registration();
-        $email = new Email('kontakt@halloweenhaus-schmalenbeck.de', $this->Email, $this->Title, $this->Text);
-        /*$email = Email::create()
-            ->setPlainTemplate('emails/EventEmail')
-            ->setData([
-                "Registration" => $registration,
-                "Subject" => $this->Title,
-                "Text" => DBField::create_field('HTMLText', $this->Text)
-            ])
-            ->setFrom("kontakt@halloweenhaus-schmalenbeck.de", "Halloweenhaus Schmalenbeck")
-            ->setTo($this->Email)
-            ->setSubject(SSViewer::execute_string($this->Title, $this->Event()));*/
+        if ($this->Email) {
+            $registration = $this->Registration();
+            $this->Email = strtolower($this->Email);
+            $email = Email::create()
+                ->setHTMLTemplate('emails/EventEmail')
+                ->setPlainTemplate('emails/EventEmailPlain')
+                ->setData([
+                    "Registration" => $registration,
+                    "Subject" => $this->Title,
+                    "Text" => DBField::create_field('HTMLText', $this->Text)
+                ])
+                ->setFrom("kontakt@halloweenhaus-schmalenbeck.de", "Halloweenhaus Schmalenbeck")
+                ->setTo($this->Email)
+                ->setSubject(SSViewer::execute_string($this->Title, $this->Event()));
 
-        $email->send();
+            if ($email->send()) {
+                //email sent successfully
+            } else {
+                // there may have been 1 or more failures
+            }
+        }
     }
 
     function getDateFormatted()
