@@ -120,7 +120,7 @@ class Registration extends DataObject
         $emailNotification->Text = "
         Eine neue Anmeldung von " . $this->Title . " ist für das Event '" . $this->Event->Title . "' eingegangen.<br/>";
         $emailNotification->Type = "NewRegistration";
-        $emailNotification->Email = "kontakt@halloweenhaus-schmalenbeck.de";
+        $emailNotification->Email = "events@halloweenhaus-schmalenbeck.de";
         $emailNotification->Event = $this->Event;
         $emailNotification->Registration = $this;
         $emailNotification->write();
