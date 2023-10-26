@@ -88,7 +88,7 @@ class EmailNotification extends DataObject
         if ($this->Email) {
             $registration = $this->Registration();
             $this->Email = strtolower($this->Email);
-            $email = Email::create()
+            /*$email = Email::create()
                 ->setHTMLTemplate('emails/EventEmail')
                 ->setPlainTemplate('emails/EventEmailPlain')
                 ->setData([
@@ -98,13 +98,11 @@ class EmailNotification extends DataObject
                 ])
                 ->setFrom("kontakt@halloweenhaus-schmalenbeck.de", "Halloweenhaus Schmalenbeck")
                 ->setTo($this->Email)
-                ->setSubject(SSViewer::execute_string($this->Title, $this->Event()));
+                ->setSubject(SSViewer::execute_string($this->Title, $this->Event()));*/
 
-            if ($email->send()) {
-                //email sent successfully
-            } else {
-                // there may have been 1 or more failures
-            }
+
+            $email = new Email("kontakt@halloweenhaus-schmalenbeck.de", $this->Email, SSViewer::execute_string($this->Title, $this->Event()), SSViewer::execute_string($this->Text, $registration));
+            $email->sendPlain();
         }
     }
 
