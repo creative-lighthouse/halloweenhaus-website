@@ -71,8 +71,9 @@ class TeamSocial extends DataObject
         ]));
         $fields->removeByName("Categories");
         $category_map = [];
-        if($categories = TeamMember::get())
-        return $fields;
+        if ($categories = TeamMember::get()) {
+            return $fields;
+        }
     }
 
     private static $inline_editable = true;

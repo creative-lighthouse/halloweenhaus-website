@@ -70,7 +70,7 @@ a{
 
                 &.white{
                     background-color: $ColorWhite;
-                    color: $ColorPrimaryDark;
+                    color: $ColorSecondary;
                 }
             }
 
@@ -82,12 +82,13 @@ a{
 
         &:hover {
             text-decoration: none;
-            background-color: $ColorPrimaryDark;
+            background-color: $ColorSecondary;
+            color: $ColorWhite;
         }
     }
 
     &:hover {
         text-decoration: none;
-        color: $ColorPrimary;
+        color: $ColorSecondary;
     }
 }

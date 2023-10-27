@@ -6,11 +6,13 @@ use App\Team\TeamMember;
 use SilverStripe\Admin\ModelAdmin;
 use SilverStripe\Forms\GridField\GridField;
 use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
+
 /**
  * Class \App\Team\TeamAdmin
  *
  */
-class TeamAdmin extends ModelAdmin {
+class TeamAdmin extends ModelAdmin
+{
 
     private static $managed_models = array (
         TeamMember::class,
@@ -23,7 +25,8 @@ class TeamAdmin extends ModelAdmin {
 
     private static $menu_icon = "app/client/icons/team.svg";
 
-    public function init() {
+    public function init()
+    {
         parent::init();
     }
 

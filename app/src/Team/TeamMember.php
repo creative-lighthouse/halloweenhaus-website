@@ -99,7 +99,8 @@ class TeamMember extends DataObject
         return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/item/{$this->ID}/edit");
     }
 
-    public function getFormattedName(){
+    public function getFormattedName()
+    {
         return str_replace(' ', '_', $this->Title);
     }
 }
