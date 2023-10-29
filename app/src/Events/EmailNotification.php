@@ -44,7 +44,7 @@ class EmailNotification extends DataObject
         "Event.Title" => "Veranstaltung",
         "Registration.Title" => "Empfänger",
         "Email" => "Email-Adresse",
-        "Type" => "Typ",
+        "Created" => "Datum",
         "Title" => "Betreff",
     );
 

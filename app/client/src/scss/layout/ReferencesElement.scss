@@ -43,6 +43,10 @@
                 &:hover{
                     color: $ColorWhite;
                     background-color: $ColorSecondary;
+
+                    &.no_color{
+                        background-color: $ColorBackgroundLight;
+                    }
                 }
             }
 

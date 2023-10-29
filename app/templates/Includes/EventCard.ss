@@ -6,7 +6,7 @@
             <p class="event_date_year">$StartTime.Format("YYYY")</p>
         </div>
         <p class="event_time">$StartTime.Format("HH:mm")</p>
-        <div class="event_description">$Description</div>
+        <div class="event_description">$ShortDescription</div>
     </a>
     <div class="event_card_footer">
         <% if $RemainingSeats > 0 %>

@@ -152,7 +152,7 @@ class EventPageController extends PageController
 
     public function getEvents()
     {
-        return Event::get();
+        return Event::get()->filter("StartTime:GreaterThan", date("Y-m-d H:i:s"))->sort("StartTime ASC");
     }
 
     public function unsubscribe(HTTPRequest $request)

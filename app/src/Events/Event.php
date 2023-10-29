@@ -15,6 +15,7 @@ use SilverStripe\ORM\FieldType\DBDatetime;
  * Class \App\Team\TeamMember
  *
  * @property string $Title
+ * @property string $ShortDescription
  * @property string $Place
  * @property string $StartTime
  * @property string $EndTime
@@ -28,6 +29,7 @@ class Event extends DataObject
 {
     private static $db = [
         "Title" => "Varchar(255)",
+        "ShortDescription" => "HTMLText",
         "Place" => "Varchar(255)",
         "StartTime" => DBDatetime::class,
         "EndTime" => DBDatetime::class,

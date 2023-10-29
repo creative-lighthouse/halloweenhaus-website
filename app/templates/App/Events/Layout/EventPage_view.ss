@@ -6,6 +6,7 @@
             <h1>$Title</h1>
             <h3>$StartTime.Nice <% if $EndTime %>- $EndTime.Nice <% end_if %></h3>
             <div>$Description</div>
+            <a class="link--button event_registration" href="$RegistrationLink">Jetzt registrieren →</a>
         <% end_with %>
 </div>
 </div>

@@ -1,6 +1,20 @@
 .section.section--events{
     margin-top: 130px;
     .section_content{
+
+        .event_registration{
+            border: 1px solid $ColorWhite;
+
+            &:hover{
+                background-color: $ColorSecondary;
+                border: 1px solid $ColorSecondary;
+            }
+        }
+
+        .section_title{
+            text-align: center;
+        }
+
         .events_list{
             margin: 10px 0;
         }
