@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             nextHalloweenYear = nextHalloweenYear + 1;
         }
 
-        var nextHalloweenDate = nextHalloweenYear + '-10-31T15:00:00.000Z'; //-2h wegen Zeitverschiebung
+        var nextHalloweenDate = nextHalloweenYear + '-10-30T22:00:00.000Z'; //-2h wegen Zeitverschiebung
         var HalloweenDay = new Date(nextHalloweenDate);
 
         var diffSeconds = Math.floor((HalloweenDay.getTime() - now.getTime()) / 1000);
