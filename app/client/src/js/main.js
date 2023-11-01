@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     timelineItems.forEach(element => {
         let togglers = [...element.getElementsByClassName("timeline_toggle")];
-        console.log(togglers);
         togglers.forEach(toggler => {
             toggler.addEventListener("click", (e) => {
                 e.preventDefault();
@@ -156,11 +155,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
         var currentMonth = (now.getMonth() + 1);
         var currentDay = now.getDate();
         var nextHalloweenYear = now.getFullYear();
-        if(currentMonth >= 10 && currentDay >= 31){
+        if(currentMonth > 10){
             nextHalloweenYear = nextHalloweenYear + 1;
         }
 
-        var nextHalloweenDate = '2023-10-31T15:00:00.000Z'; //-2h wegen Zeitverschiebung
+        var nextHalloweenDate = nextHalloweenYear + '-10-31T15:00:00.000Z'; //-2h wegen Zeitverschiebung
         var HalloweenDay = new Date(nextHalloweenDate);
 
         var diffSeconds = Math.floor((HalloweenDay.getTime() - now.getTime()) / 1000);
@@ -179,7 +178,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
             diffSeconds  -= minutes * 60;
             seconds = diffSeconds;
 
-            halloweenCountdown.innerHTML = 'Noch ' + days + 'd | ' + hours + 'h | ' + minutes + 'm | ' + seconds + 's bis Halloween!';
+            if(days > 0) {
+                halloweenCountdown.innerHTML = 'Noch ' + days + 'd | ' + hours + 'h | ' + minutes + 'm | ' + seconds + 's bis Halloween!';
+            } else {
+                halloweenCountdown.innerHTML = 'Noch ' + hours + 'h | ' + minutes + 'm | ' + seconds + 's bis Halloween!';
+            }
         }
         else
         {

@@ -40,11 +40,9 @@ namespace {
             $halloweenDay = date("Y") . "-10-31";
 
             //Have we already passed this year's Halloween?
-            if (date("m") >= 6) {
-                if (date("d") > 31) {
-                    //Use next year's Halloween date.
-                    $halloweenDay = (date("Y") + 1) . "-10-31";
-                }
+            if (date("m") > 10) {
+                //Use next year's Halloween date.
+                $halloweenDay = (date("Y") + 1) . "-10-31";
             }
 
             //Create DateTime object for Christmas Day.
