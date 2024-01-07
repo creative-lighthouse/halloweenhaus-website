@@ -8,6 +8,8 @@ use SilverStripe\ORM\DataObject;
 /**
  * Class \App\Team\TeamMember
  *
+ * @property string $Title
+ * @property string $Description
  * @property int $Importance
  * @property int $ImageID
  * @method \SilverStripe\Assets\Image Image()
@@ -76,7 +78,28 @@ class PressImage extends DataObject
     {
         $file = $this->Image();
         if ($file) {
-            return $file->getAbsoluteSize();
+            $fileSize = $file->getAbsoluteSize();
+            $fileSize = $fileSize / 1024;
+            $fileSize = round($fileSize, 2);
+            if ($fileSize >= 1024) {
+                $fileSize = $fileSize / 1024;
+                $fileSize = round($fileSize, 2);
+                return $fileSize . " MB";
+            } else {
+                return $fileSize . " KB";
+            }
+        }
+        return null;
+    }
+
+    public function getAspectRatio()
+    {
+        $file = $this->Image();
+        if ($file) {
+            $width = $file->getWidth();
+            $height = $file->getHeight();
+            $ratio = $width / $height;
+            return $ratio;
         }
         return null;
     }

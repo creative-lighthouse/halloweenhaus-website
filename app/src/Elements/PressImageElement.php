@@ -24,7 +24,8 @@ class PressImageElement extends BaseElement
         "Text" => "Text",
     ];
 
-    public function inlineEditable() {
+    public function inlineEditable()
+    {
         return true;
     }
 
