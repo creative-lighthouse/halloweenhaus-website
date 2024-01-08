@@ -9,20 +9,32 @@
                 <div class="pressimage_entry">
                     <div class="pressimage">
                         <div class="pressimage_image">
-                            <a href="$Image.AbsoluteUrl" target="_blank">
-                                <img src="$Image.URL" alt="$Image.Title" />
+                            <a class="pressimage_image_content" href="$Image.AbsoluteUrl" target="_blank">
+                                <img data-gallery="gallery" data-glightbox="$Title" data-caption="$Title" src="$Image.URL" alt="$Image.Title" />
                             </a>
                         </div>
                         <div class="pressimage_meta">
                             <h3>$Title</h3>
-                            <p>$Description</p>
-                            <p><b>Format:</b></p>
-                            <p>.{$FileExtension}</p>
-                            <p><b>Größe:</b></p>
-                            <p>$FileSize</p>
-                            <p><b>Maße:</b></p>
-                            <p>{$Image.Width} x {$Image.Height}px</p>
-                            <a href="$Image.AbsoluteUrl" download target="_blank" class="pressimage_download">Download</a>
+                            <% if $Description %>
+                                <p>$Description</p>
+                            <% end_if %>
+                            <% if $Copyright %>
+                                <p><b>Urheber:</b></p>
+                                <p>$Copyright</p>
+                            <% end_if %>
+                            <% if $FileExtension %>
+                                <p><b>Format:</b></p>
+                                <p>.{$FileExtension}</p>
+                            <% end_if %>
+                            <% if $FileSize %>
+                                <p><b>Größe:</b></p>
+                                <p>$FileSize</p>
+                            <% end_if %>
+                            <% if $Image %>
+                                <p><b>Auflösung:</b></p>
+                                <p>{$Image.Width} x {$Image.Height}px</p>
+                            <% end_if %>
+                            <a href="$Image.AbsoluteUrl" download="$Title" target="_blank" class="pressimage_download">Download</a>
                         </div>
 
                     </div>

@@ -10,6 +10,7 @@ use SilverStripe\ORM\DataObject;
  *
  * @property string $Title
  * @property string $Description
+ * @property string $Copyright
  * @property int $Importance
  * @property int $ImageID
  * @method \SilverStripe\Assets\Image Image()
@@ -19,6 +20,7 @@ class PressImage extends DataObject
     private static $db = [
         "Title" => "Varchar(255)",
         "Description" => "Text",
+        "Copyright" => "Varchar(255)",
         "Importance" => "Int",
     ];
 
@@ -34,12 +36,15 @@ class PressImage extends DataObject
         'Importance' => true,
     ];
 
-    private static $default_sort = "Importance ASC";
+    private static $default_sort = "Importance DESC";
 
     private static $field_labels = [
     ];
 
     private static $summary_fields = [
+        "Thumbnail" => "Bild",
+        "Title" => "Titel",
+        "Importance" => "Wichtigkeit",
     ];
 
     private static $searchable_fields = [
@@ -70,6 +75,15 @@ class PressImage extends DataObject
         $file = $this->Image();
         if ($file) {
             return $file->getExtension();
+        }
+        return null;
+    }
+
+    public function getThumbnail()
+    {
+        $file = $this->Image();
+        if ($file) {
+            return $file->Fit(100, 100);
         }
         return null;
     }

@@ -39,6 +39,6 @@ class PressImageElement extends BaseElement
 
     public function getPressImages()
     {
-        return PressImage::get()->sort("Importance ASC");
+        return PressImage::get();
     }
 }
