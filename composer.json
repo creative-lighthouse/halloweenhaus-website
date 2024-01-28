@@ -15,7 +15,8 @@
         "purplespider/silverstripe-basic-gallery-extension": "4",
         "silverstripe/linkfield": "3.x-dev",
         "wilr/silverstripe-googlesitemaps": "^3.0",
-        "dnadesign/silverstripe-elemental-userforms": "^4.1"
+        "dnadesign/silverstripe-elemental-userforms": "^4.1",
+        "undefinedoffset/sortablegridfield": "^2.2"
     },
     "repositories": {
         "silverstripe/linkfield": {
