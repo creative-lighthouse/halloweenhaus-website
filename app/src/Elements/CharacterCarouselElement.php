@@ -4,8 +4,6 @@ namespace App\Elements;
 
 use App\Team\Character;
 use SilverStripe\Assets\Image;
-use SilverStripe\LinkField\Models\Link;
-use SilverStripe\LinkField\Form\LinkField;
 use DNADesign\Elemental\Models\BaseElement;
 
 /**
@@ -26,14 +24,12 @@ class CharacterCarouselElement extends BaseElement
 
     private static $field_labels = [
         "Text" => "Text",
-        "Button" => "Button"
     ];
 
     private static $table_name = 'CharacterCarouselElement';
     private static $icon = 'font-icon-torsos-all';
 
     private static $has_one = [
-        "Button" => Link::class,
         "BackgroundImage" => Image::class,
     ];
 
@@ -49,8 +45,6 @@ class CharacterCarouselElement extends BaseElement
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->removeByName("ButtonID");
-        $fields->insertAfter('ColorVariant', LinkField::create('Button'));
         return $fields;
     }
 
