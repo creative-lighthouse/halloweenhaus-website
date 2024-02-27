@@ -1,5 +1,5 @@
 {
-    "name": "nlp/nlp-silverstripe",
+    "name": "sp-universe/halloweenhaus-website",
     "type": "silverstripe-recipe",
     "description": "The SilverStripe Framework Installer",
     "require": {
@@ -11,7 +11,6 @@
         "colymba/gridfield-bulk-editing-tools": "^4.0",
         "jonom/focuspoint": "^5.0",
         "silverstripe/login-forms": "^5.1",
-        "silverstripe/blog": "^4.1",
         "purplespider/silverstripe-basic-gallery-extension": "4",
         "silverstripe/linkfield": "3.x-dev",
         "wilr/silverstripe-googlesitemaps": "^3.0",
