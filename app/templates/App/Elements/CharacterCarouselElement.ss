@@ -1,4 +1,4 @@
-<div class="section section--charactercarousel" style="background-image: url($BackgroundImage.Url);">
+<div class="section section--charactercarousel" >
     <div class="section_content">
         <div class="character_holder" data-behaviour="characterSlider">
             <% loop $Characters %>
