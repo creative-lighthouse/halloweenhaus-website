@@ -54,7 +54,8 @@ class CharacterCarouselElement extends BaseElement
         return $fields;
     }
 
-    public function getCharacters(){
+    public function getCharacters()
+    {
         return Character::get();
     }
 }

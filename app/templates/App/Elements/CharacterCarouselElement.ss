@@ -13,12 +13,6 @@
                         <% if $Jointime %><p><b>Erster Auftritt:</b> $Jointime</p><% end_if %>
                         <% if $Age %><p><b>Alter:</b> $Age</p><% end_if %>
                         $Description
-                        <% if $Button %>
-                            <a href="$Button.Url" <% if $Button.OpenInNew %> target="_blank"<% end_if %> class="link--button hollow no_deco white">$Button.Title</a>
-                        <% end_if %>
-                        <% if $Button2 %>
-                            <a href="$Button2.Url" <% if $Button2.OpenInNew %> target="_blank"<% end_if %> class="link--button hollow no_deco white">$Button2.Title</a>
-                        <% end_if %>
                     </div>
                 </div>
             <% end_loop %>

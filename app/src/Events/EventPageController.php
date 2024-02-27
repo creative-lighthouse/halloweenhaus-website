@@ -17,7 +17,7 @@ use SilverStripe\Forms\RequiredFields;
 /**
  * Class \App\Team\TeamOverviewController
  *
- * @property \App\Events\EventPage dataRecord
+ * @property \App\Events\EventPage $dataRecord
  * @method \App\Events\EventPage data()
  * @mixin \App\Events\EventPage
  */

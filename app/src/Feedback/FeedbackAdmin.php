@@ -19,7 +19,7 @@ class FeedbackAdmin extends ModelAdmin
 
     private static $menu_title = "Feedback";
 
-    private static $menu_icon = "app/client/icons/feedback.svg";
+    private static $menu_icon = "app/client/icons/feedback_admin.svg";
 
     public function init()
     {

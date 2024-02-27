@@ -18,11 +18,7 @@ use SilverStripe\ORM\DataObject;
  * @property string $Description
  * @property int $Importance
  * @property int $ImageID
- * @property int $ButtonID
- * @property int $Button2ID
  * @method \SilverStripe\Assets\Image Image()
- * @method \SilverStripe\LinkField\Models\Link Button()
- * @method \SilverStripe\LinkField\Models\Link Button2()
  */
 class Character extends DataObject
 {
@@ -38,16 +34,10 @@ class Character extends DataObject
 
     private static $has_one = [
         "Image" => Image::class,
-        "Button" => Link::class,
-        "Button2" => Link::class,
     ];
 
     private static $owns = [
         "Image"
-    ];
-
-    private static $indexes = [
-        'Importance' => true,
     ];
 
     private static $default_sort = "Importance ASC";
@@ -55,12 +45,11 @@ class Character extends DataObject
     private static $field_labels = [
         "Title" => "Name",
         "Place" => "Herkunft",
-        "Jointime" => "Seit wann dabei",
+        "Jointime" => "Dabei seit",
         "Age" => "Alter",
         "Description" => "Beschreibung",
-        "Button" => "Button",
-        "Button2" => "Button 2",
-        "Importance" => "Wichtigkeit"
+        "Importance" => "Wichtigkeit",
+        "Image" => "Bild",
     ];
 
     private static $summary_fields = [
@@ -82,10 +71,6 @@ class Character extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->removeByName("ButtonID");
-        $fields->insertAfter('Description', LinkField::create('Button'));
-        $fields->removeByName("Button2ID");
-        $fields->insertAfter('Button', LinkField::create('Button2'));
         return $fields;
     }
 

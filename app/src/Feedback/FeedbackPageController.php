@@ -8,7 +8,7 @@ use SilverStripe\Control\HTTPRequest;
 /**
  * Class \App\Team\TeamOverviewController
  *
- * @property \App\Feedback\FeedbackPage dataRecord
+ * @property \App\Feedback\FeedbackPage $dataRecord
  * @method \App\Feedback\FeedbackPage data()
  * @mixin \App\Feedback\FeedbackPage
  */

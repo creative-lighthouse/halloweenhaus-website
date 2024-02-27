@@ -23,7 +23,7 @@ class TeamAdmin extends ModelAdmin
 
     private static $menu_title = "Team";
 
-    private static $menu_icon = "app/client/icons/team.svg";
+    private static $menu_icon = "app/client/icons/team_admin.svg";
 
     public function init()
     {

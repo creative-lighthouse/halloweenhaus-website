@@ -5,3 +5,7 @@
 /.idea
 /app/client/dist
 /node_modules
+
+.graphql-generated/
+
+public/_graphql/

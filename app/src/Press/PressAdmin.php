@@ -20,7 +20,7 @@ class PressAdmin extends ModelAdmin
 
     private static $menu_title = "Presse";
 
-    private static $menu_icon = "app/client/icons/press.svg";
+    private static $menu_icon = "app/client/icons/press_admin.svg";
 
     public function init()
     {

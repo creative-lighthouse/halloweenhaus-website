@@ -22,7 +22,7 @@ class EventAdmin extends ModelAdmin
 
     private static $menu_title = "Events";
 
-    private static $menu_icon = "app/client/icons/date.svg";
+    private static $menu_icon = "app/client/icons/events_admin.svg";
 
     public function init()
     {

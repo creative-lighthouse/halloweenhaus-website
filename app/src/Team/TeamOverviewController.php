@@ -6,7 +6,7 @@ use PageController;
 /**
  * Class \App\Team\TeamOverviewController
  *
- * @property \App\Team\TeamOverview dataRecord
+ * @property \App\Team\TeamOverview $dataRecord
  * @method \App\Team\TeamOverview data()
  * @mixin \App\Team\TeamOverview
  */
