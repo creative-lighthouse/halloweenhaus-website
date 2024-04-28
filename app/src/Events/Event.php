@@ -4,19 +4,18 @@ namespace App\Events;
 
 use App\Events\EventAdmin;
 use App\Events\Registration;
+use App\Events\EventTimeSlot;
+use Colymba\BulkManager\BulkManager;
 use SilverStripe\Assets\Image;
+use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\ORM\FieldType\DBDate;
-use SilverStripe\LinkField\Models\Link;
-use SilverStripe\LinkField\Form\LinkField;
-use SilverStripe\ORM\FieldType\DBDatetime;
 
 /**
  * Class \App\Team\TeamMember
  *
  * @property string $Title
- * @property string $ShortDescription
  * @property string $Place
+ * @property string $EventDate
  * @property string $StartTime
  * @property string $EndTime
  * @property string $Description
@@ -24,15 +23,16 @@ use SilverStripe\ORM\FieldType\DBDatetime;
  * @property string $InfoForAttendees
  * @property int $ImageID
  * @method \SilverStripe\Assets\Image Image()
+ * @method \SilverStripe\ORM\DataList|\App\Events\EventTimeSlot[] TimeSlots()
  */
 class Event extends DataObject
 {
     private static $db = [
         "Title" => "Varchar(255)",
-        "ShortDescription" => "HTMLText",
         "Place" => "Varchar(255)",
-        "StartTime" => DBDatetime::class,
-        "EndTime" => DBDatetime::class,
+        "EventDate" => "Date",
+        "StartTime" => "Time",
+        "EndTime" => "Time",
         "Description" => "HTMLText",
         "MaxAttendees" => "Int",
         "InfoForAttendees" => "HTMLText",
@@ -40,6 +40,10 @@ class Event extends DataObject
 
     private static $has_one = [
         "Image" => Image::class,
+    ];
+
+    private static $has_many = [
+        "TimeSlots" => EventTimeSlot::class,
     ];
 
     private static $owns = [
@@ -82,14 +86,8 @@ class Event extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        return $fields;
-    }
 
-    public function CMSEditLink()
-    {
-        $admin = EventAdmin::singleton();
-        $urlClass = str_replace('\\', '-', self::class);
-        return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/item/{$this->ID}/edit");
+        return $fields;
     }
 
     function InFuture()
@@ -139,5 +137,10 @@ class Event extends DataObject
             return $holderNew->AbsoluteLink("view/") . $this->ID;
         }
         return "/404";
+    }
+
+    public function getDateFormatted()
+    {
+        return date("d.m.y", strtotime($this->EventDate));
     }
 }

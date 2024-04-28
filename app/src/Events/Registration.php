@@ -5,6 +5,7 @@ namespace App\Events;
 use DateTime;
 use App\Events\Event;
 use App\Events\EventAdmin;
+use App\Events\EventTimeSlot;
 use SilverStripe\Assets\Image;
 use SilverStripe\View\SSViewer;
 use SilverStripe\ORM\DataObject;
@@ -22,7 +23,9 @@ use SilverStripe\LinkField\Form\LinkField;
  * @property string $Hash
  * @property bool $EmailSent
  * @property int $EventID
+ * @property int $TimeSlotID
  * @method \App\Events\Event Event()
+ * @method \App\Events\EventTimeSlot TimeSlot()
  */
 class Registration extends DataObject
 {
@@ -35,6 +38,7 @@ class Registration extends DataObject
 
     private static $has_one = [
         "Event" => Event::class,
+        "TimeSlot" => EventTimeSlot::class,
     ];
 
     private static $default_sort = "Created ASC";

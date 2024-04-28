@@ -10,9 +10,7 @@ use DNADesign\Elemental\Models\BaseElement;
  * Class \App\Elements\CharacterCarouselElement
  *
  * @property string $Text
- * @property int $ButtonID
  * @property int $BackgroundImageID
- * @method \SilverStripe\LinkField\Models\Link Button()
  * @method \SilverStripe\Assets\Image BackgroundImage()
  */
 class CharacterCarouselElement extends BaseElement

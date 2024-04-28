@@ -4,15 +4,16 @@ namespace App\Events;
 
 use App\Utilities\PdfHelper;
 use Nesk\Puphpeteer\Puppeteer;
-use SilverStripe\Control\Director;
+use SilverStripe\View\SSViewer;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\Control\Director;
+use Colymba\BulkManager\BulkManager;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Control\Email\Email;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\ORM\FieldType\DBDate;
-use SilverStripe\ORM\FieldType\DBBoolean;
 use SilverStripe\ORM\FieldType\DBField;
-use SilverStripe\View\SSViewer;
+use SilverStripe\ORM\FieldType\DBBoolean;
 
 /**
  * Class \App\Events\EmailNotification

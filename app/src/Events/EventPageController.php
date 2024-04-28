@@ -13,6 +13,7 @@ use SilverStripe\Forms\LiteralField;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\RequiredFields;
+use SilverStripe\ORM\GroupedList;
 
 /**
  * Class \App\Team\TeamOverviewController
@@ -78,6 +79,7 @@ class EventPageController extends PageController
 
         $fields = FieldList::create(
             HiddenField::create("EventID", "EventID", $id),
+            HiddenField::create("TimeSlotID", "TimeSlotID", $id),
             TextField::create("Title", "Vor- & Nachname"),
             TextField::create("Email", "E-Mail-Adresse"),
             LiteralField::create("DataPrivacyinfo", "Ich habe die <a href='impressum-and-datenschutz'>Datenschutzerklärung</a> gelesen und willige ein, dass meine Daten im Sinne der DSGVO verwendet werden."),
@@ -89,6 +91,9 @@ class EventPageController extends PageController
         );
 
         $required = RequiredFields::create(
+            "Title",
+            "EventID",
+            "TimeSlotID",
             "Title",
             "Email",
             "DataPrivacy"
@@ -152,7 +157,13 @@ class EventPageController extends PageController
 
     public function getEvents()
     {
-        return Event::get()->filter("StartTime:GreaterThan", date("Y-m-d H:i:s"))->sort("StartTime ASC");
+        return Event::get()->filter("EventDate:GreaterThan", date("Y-m-d H:i:s"))->sort("EventDate ASC, StartTime ASC");
+    }
+
+    public function getGroupedEvents()
+    {
+        $events = $this->getEvents();
+        return GroupedList::create($events);
     }
 
     public function unsubscribe(HTTPRequest $request)

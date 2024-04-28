@@ -1,4 +1,5 @@
 import GLightbox from "glightbox";
+import "./eventsNavigator";
 
 document.addEventListener("DOMContentLoaded", function (event) {
 
