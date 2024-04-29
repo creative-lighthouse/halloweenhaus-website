@@ -9,7 +9,9 @@
                     <div class="section_selectablelist">
                         <% loop $GroupedEvents.GroupedBy('EventDate') %>
                             <div class="date_card" data-behaviour="date" data-date="$Children.First.EventDate">
-                                <p class="date_card_date">$Children.First.DateFormatted</p>
+                                <p class="date_card_weekday">$Children.First.DateWeekday</p>
+                                <p class="date_card_day">$Children.First.DateDay</p>
+                                <p class="date_card_month">$Children.First.DateMonthTitle</p>
                             </div>
                         <% end_loop %>
                     </div>
@@ -21,7 +23,13 @@
                         <% loop $GroupedEvents.GroupedBy('EventDate') %>
                             <% loop $Children %>
                                 <div class="event_card" data-behaviour="event" data-date="$EventDate" data-eventID="$ID">
-                                    <p class="event_card_title">$Title</p>
+                                    <div class="event_card_image">
+                                        <% if $Image %><img src="$Image.URL" alt="$Image.Title"><% end_if %>
+                                    </div>
+                                    <div class="event_card_text">
+                                        <p class="event_card_title">$Title</p>
+                                        <p class="event_card_duration">Dauer: ca. $SlotDuration Minuten</p>
+                                    </div>
                                 </div>
                             <% end_loop %>
                         <% end_loop %>
@@ -29,7 +37,7 @@
                 </div>
 
                 <div class="events_navigator_step timeslots hidden" data-eventstep="3">
-                    <h2>3. Zeitslot wählen</h2>
+                    <h2>3. Startzeit wählen</h2>
                     <div class="section_selectablelist">
                         <% loop $GroupedEvents.GroupedBy('EventDate') %>
                             <% loop $Children %>

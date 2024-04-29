@@ -12,70 +12,231 @@
 
     .section_content{
         .events_navigator{
+            background-color: white;
+            border-radius: 20px;
+            color: black;
+            overflow: hidden;
+
             .events_navigator_step{
+                max-height: 700px;
+                transition: 0.2s ease-in-out;
 
                 .section_selectablelist{
                     display: flex;
-                    gap: 10px;
                     margin: 10px auto 20px;
                     justify-content: center;
                     align-items: center;
                 }
 
-                &.hidden{
-                    display: none;
-                }
                 &.selected{
                     background-color: $ColorSecondary;
                 }
 
                 &.dates{
+                    padding: 0 20px;
+
                     .date_card{
-                        border: 1px solid $ColorSecondary;
                         cursor: pointer;
-                        border-radius: 10px;
-                        padding: 10px 15px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        color: $ColorBlack;
+                        overflow: hidden;
+                        border-top: 1px solid rgb(216, 216, 216);
+                        border-bottom: 1px solid rgb(216, 216, 216);
+
+                        .date_card_weekday{
+                            font-size: 0.8em;
+                            margin: 0;
+                            width: 100%;
+                            text-align: center;
+                            font-weight: 700;
+                            padding: 5px 20px 3px 20px;
+                            background-color: rgb(240, 240, 240);
+                            border-bottom: 1px solid rgb(216, 216, 216);
+                        }
+
+                        .date_card_day{
+                            font-size: 1.5em;
+                            margin: 0;
+                            width: 100%;
+                            text-align: center;
+                            font-weight: 700;
+                            padding: 10px 20px 0 20px;
+                            color: $ColorSecondary;
+                        }
+
+                        .date_card_month{
+                            font-size: 0.8em;
+                            margin: 0;
+                            width: 100%;
+                            text-align: center;
+                            padding: 5px 15px 10px 15px;
+                            color: $ColorSecondary;
+                        }
 
                         &.hidden{
                             display: none;
                         }
+
                         &.selected{
-                            background-color: $ColorSecondary;
+                            .date_card_day, .date_card_month{
+                                background-color: $ColorSecondary;
+                                color: $ColorWhite;
+                            }
+                        }
+
+                        &:first-of-type{
+                            border-top-left-radius: 20px;
+                            border-bottom-left-radius: 20px;
+                            border-left: 1px solid rgb(216, 216, 216);
+                        }
+                        &:last-of-type{
+                            border-top-right-radius: 20px;
+                            border-bottom-right-radius: 20px;
+                            border-right: 1px solid rgb(216, 216, 216);
                         }
                     }
                 }
 
                 &.events{
-                    .event_card{
-                        border: 1px solid $ColorSecondary;
-                        border-radius: 10px;
-                        padding: 10px 15px;
-                        text-align: center;
+                    padding: 0 20px;
 
+                    .section_selectablelist{
+                        gap: 10px;
+                    }
+                    .event_card{
+                        border: 1px solid rgb(216, 216, 216);
+                        border-radius: 10px;
+                        text-align: center;
                         cursor: pointer;
+                        width: 50%;
+                        height: 200px;
+                        overflow: hidden;
+                        color: $ColorSecondary;
+                        transition: background-color 0.1s ease-in-out;
+
+                        .event_card_image{
+                            width: 100%;
+                            height: 40%;
+                            border-bottom-left-radius: 50%;
+                            overflow: hidden;
+                            background-color: rgb(216, 216, 216);
+                            transition: 0.3s ease-in-out;
+
+                            img{
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                            }
+                        }
+
+                        .event_card_text{
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            height: 60%;
+                            transition: 0.3s ease-in-out;
+
+                            .event_card_title{
+                                margin: 0;
+                            }
+
+                            .event_card_duration{
+                                font-size: 12px;
+                                margin: 0;
+                                color: darkgray;
+                            }
+                        }
 
                         &.hidden{
                             display: none;
                         }
                         &.selected{
+                            .event_card_image{
+                                height: 50%;
+                            }
+
+                            .event_card_text{
+                                height: 50%;
+                            }
                             background-color: $ColorSecondary;
+                            color: $ColorWhite;
                         }
                     }
                 }
 
                 &.timeslots{
+                    padding: 0 20px;
+
+                    .section_selectablelist{
+                        gap: 10px;
+                    }
                     .timeslot_card{
-                        border: 1px solid $ColorSecondary;
+                        border: 1px solid rgb(216, 216, 216);
                         cursor: pointer;
                         border-radius: 10px;
                         padding: 10px 15px;
+                        color: $ColorSecondary;
+
+                        .timeslot_card_time{
+                            margin: 0;
+                        }
 
                         &.hidden{
                             display: none;
                         }
                         &.selected{
                             background-color: $ColorSecondary;
+                            color: $ColorWhite;
                         }
+                    }
+                }
+
+                &.form{
+                    padding: 20px;
+                    background-color: rgb(216, 216, 216);
+
+                    a{
+                        color: $ColorSecondary;
+                        text-decoration: none;
+                        font-weight: 700;
+                    }
+
+                    .btn-toolbar{
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    input[type="submit"]{
+                        background-color: $ColorSecondary;
+                        color: $ColorWhite;
+                        border: none;
+                        border-radius: 10px;
+                        padding: 10px 20px;
+                        cursor: pointer;
+                        font-weight: 700;
+                        transition: background-color 0.1s ease-in-out;
+                        text-align: center;
+
+                        &:hover{
+                            background-color: $ColorSecondaryDark;
+                        }
+                    }
+                }
+
+                &.hidden{
+                    max-height: 0px;
+                    opacity: 0;
+
+                    .section_selectablelist{
+                        padding: 0px;
+                    }
+
+                    &.form{
+                        padding: 0px;
                     }
                 }
             }

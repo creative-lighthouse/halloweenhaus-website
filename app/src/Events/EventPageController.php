@@ -83,7 +83,7 @@ class EventPageController extends PageController
             TextField::create("Title", "Vor- & Nachname"),
             TextField::create("Email", "E-Mail-Adresse"),
             LiteralField::create("DataPrivacyinfo", "Ich habe die <a href='impressum-and-datenschutz'>Datenschutzerklärung</a> gelesen und willige ein, dass meine Daten im Sinne der DSGVO verwendet werden."),
-            CheckboxField::create("DataPrivacy", "Ich stimme zu"),
+            CheckboxField::create("DataPrivacy", "Datenschutzerklärung akzeptieren"),
         );
 
         $actions = FieldList::create(

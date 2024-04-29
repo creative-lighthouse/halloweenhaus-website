@@ -2,13 +2,14 @@
 
 namespace App\Events;
 
+use IntlDateFormatter;
 use App\Events\EventAdmin;
 use App\Events\Registration;
 use App\Events\EventTimeSlot;
-use Colymba\BulkManager\BulkManager;
 use SilverStripe\Assets\Image;
-use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\ORM\DataObject;
+use Colymba\BulkManager\BulkManager;
+use SilverStripe\Forms\GridField\GridField;
 
 /**
  * Class \App\Team\TeamMember
@@ -21,6 +22,7 @@ use SilverStripe\ORM\DataObject;
  * @property string $Description
  * @property int $MaxAttendees
  * @property string $InfoForAttendees
+ * @property int $SlotDuration
  * @property int $ImageID
  * @method \SilverStripe\Assets\Image Image()
  * @method \SilverStripe\ORM\DataList|\App\Events\EventTimeSlot[] TimeSlots()
@@ -36,6 +38,7 @@ class Event extends DataObject
         "Description" => "HTMLText",
         "MaxAttendees" => "Int",
         "InfoForAttendees" => "HTMLText",
+        "SlotDuration" => "Int",
     ];
 
     private static $has_one = [
@@ -64,6 +67,8 @@ class Event extends DataObject
         "Description" => "Beschreibung",
         "MaxAttendees" => "Maximale Teilnehmerzahl",
         "InfoForAttendees" => "Informationen für Teilnehmer",
+        "Image" => "Bild",
+        "SlotDuration" => "Dauer eines Slots (in Minuten)",
     ];
 
     private static $summary_fields = [
@@ -142,5 +147,29 @@ class Event extends DataObject
     public function getDateFormatted()
     {
         return date("d.m.y", strtotime($this->EventDate));
+    }
+
+    public function getDateWeekday()
+    {
+        $fmt = new IntlDateFormatter('de', IntlDateFormatter::FULL, IntlDateFormatter::NONE, null, null, "ccc");
+        $timestamp = strtotime($this->EventDate);
+
+        return $fmt->format($timestamp);
+    }
+
+    public function getDateDay()
+    {
+        $fmt = new IntlDateFormatter('de', IntlDateFormatter::FULL, IntlDateFormatter::NONE, null, null, "d");
+        $timestamp = strtotime($this->EventDate);
+
+        return $fmt->format($timestamp);
+    }
+
+    public function getDateMonthTitle()
+    {
+        $fmt = new IntlDateFormatter('de', IntlDateFormatter::FULL, IntlDateFormatter::NONE, null, null, "MMM");
+        $timestamp = strtotime($this->EventDate);
+
+        return $fmt->format($timestamp);
     }
 }
