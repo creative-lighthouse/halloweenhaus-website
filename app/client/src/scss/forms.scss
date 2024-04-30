@@ -9,7 +9,7 @@ form{
 
         .field{
             margin: 10px 0;
-            input[type="text"]{
+            input[type="text"], input[type="email"]{
                 width: 50%;
                 border-radius: 25px;
                 border: 1px solid $ColorSecondaryDark;

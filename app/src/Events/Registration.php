@@ -20,6 +20,7 @@ use SilverStripe\LinkField\Form\LinkField;
  *
  * @property string $Title
  * @property string $Email
+ * @property int $GroupSize
  * @property string $Hash
  * @property bool $EmailSent
  * @property int $EventID
@@ -32,6 +33,7 @@ class Registration extends DataObject
     private static $db = [
         "Title" => "Varchar(255)",
         "Email" => "Varchar(255)",
+        "GroupSize" => "Int",
         "Hash" => "Varchar(255)",
         "EmailSent" => "Boolean",
     ];
@@ -96,7 +98,7 @@ class Registration extends DataObject
         parent::onAfterWrite();
 
         if (!$this->EmailSent) {
-            $this->sendReceiveConfirmation();
+            //$this->sendReceiveConfirmation();
         }
     }
 

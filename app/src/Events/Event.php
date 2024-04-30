@@ -7,6 +7,7 @@ use App\Events\EventAdmin;
 use App\Events\Registration;
 use App\Events\EventTimeSlot;
 use SilverStripe\Assets\Image;
+use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataObject;
 use Colymba\BulkManager\BulkManager;
 use SilverStripe\Forms\GridField\GridField;
@@ -171,5 +172,17 @@ class Event extends DataObject
         $timestamp = strtotime($this->EventDate);
 
         return $fmt->format($timestamp);
+    }
+
+    public function FreeTimeSlots()
+    {
+        $timeslots = $this->TimeSlots();
+        $timeslotsWithSpace = new ArrayList();
+        foreach ($timeslots as $timeslot) {
+            if ($timeslot->getFreeSlotCount() > 0) {
+                $timeslotsWithSpace->push($timeslot);
+            }
+        }
+        return $timeslotsWithSpace;
     }
 }

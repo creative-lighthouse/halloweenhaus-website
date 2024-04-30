@@ -41,17 +41,36 @@
                     <div class="section_selectablelist">
                         <% loop $GroupedEvents.GroupedBy('EventDate') %>
                             <% loop $Children %>
-                                <% loop TimeSlots %>
-                                    <div class="timeslot_card" data-behaviour="timeslot" data-eventID="$Parent.ID">
-                                        <p class="timeslot_card_time">$SlotTimeFormatted</p>
-                                    </div>
-                                <% end_loop %>
+                                <% if $FreeTimeSlots.Count > 0 %>
+                                    <% loop $FreeTimeSlots %>
+                                        <div class="timeslot_card" data-behaviour="timeslot" data-slotId="$ID" data-slotsize="$getFreeSlotCount" data-eventID="$Parent.ID">
+                                            <p class="timeslot_card_time">$SlotTimeFormatted</p>
+                                            <p class="timeslot_card_capacity">$AttendeesFormatted Plätze</p>
+                                        </div>
+                                    <% end_loop %>
+                                <% else %>
+                                    <p class="timeslot_card timeslot_card--text" data-behaviour="timeslot" data-slotsize="0" data-eventID="$ID">Keine freien Zeitslots an diesem Tag verfügbar.</p>
+                                <% end_if %>
                             <% end_loop %>
                         <% end_loop %>
                     </div>
                 </div>
 
-                <div class="events_navigator_step form hidden" data-eventstep="4">
+                <div class="events_navigator_step groupsize hidden" data-eventstep="4">
+                    <h2>4. Gruppengröße wählen</h2>
+                    <div class="section_selectablelist">
+                        <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="1">1 Person</a>
+                        <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="2">2 Personen</a>
+                        <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="3">3 Personen</a>
+                        <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="4">4 Personen</a>
+                        <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="5">5 Personen</a>
+                        <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="6">6 Personen</a>
+                        <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="7">7 Personen</a>
+                    </div>
+                </div>
+
+                <div class="events_navigator_step form hidden" data-eventstep="5">
+                    <h2>5. Anmelden</h2>
                     $RegistrationForm
                 </div>
             </div>

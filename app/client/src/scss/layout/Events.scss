@@ -181,9 +181,25 @@
                         border-radius: 10px;
                         padding: 10px 15px;
                         color: $ColorSecondary;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
 
                         .timeslot_card_time{
+                            font-size: 18px;
+                            font-weight: 700;
                             margin: 0;
+                        }
+
+                        .timeslot_card_capacity{
+                            font-weight: 400;
+                            font-size: 12px;
+                            margin: 0;
+                        }
+
+                        &.timeslot_card--text{
+                            pointer-events: none;
                         }
 
                         &.hidden{
@@ -192,6 +208,35 @@
                         &.selected{
                             background-color: $ColorSecondary;
                             color: $ColorWhite;
+                        }
+                    }
+                }
+
+                &.groupsize{
+                    .section_selectablelist{
+                        gap: 10px;
+                    }
+
+                    .groupsize_button{
+                        border: 1px solid rgb(216, 216, 216);
+                        cursor: pointer;
+                        border-radius: 10px;
+                        padding: 10px 15px;
+                        color: $ColorSecondary;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+
+                        &.selected{
+                            background-color: $ColorSecondary;
+                            color: $ColorWhite;
+                        }
+
+                        &.hidden{
+                            filter: grayscale(100%);
+                            pointer-events: none;
+                            opacity: 0.3;
                         }
                     }
                 }
@@ -240,6 +285,14 @@
                         padding: 0px;
                     }
                 }
+            }
+        }
+
+        .event_text{
+            text-align: center;
+
+            .section_emoji{
+                max-height: 150px;
             }
         }
     }

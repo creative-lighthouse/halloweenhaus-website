@@ -65,12 +65,24 @@ class EventTimeSlot extends DataObject
 
     public function getRegistrationsCount()
     {
-        return Registration::get()->filter(["TimeSlotID" => $this->ID])->count();
+        $allRegistrations = Registration::get()->filter(["TimeSlotID" => $this->ID]);
+        $registrationCount = 0;
+        foreach ($allRegistrations as $registration) {
+            if ($registration->Event()->ID == $this->ParentID) {
+                $registrationCount += $registration->GroupSize;
+            }
+        }
+        return $registrationCount;
     }
 
     public function AttendeesFormatted()
     {
         return $this->getRegistrationsCount() . " / " . $this->MaxAttendees;
+    }
+
+    public function getFreeSlotCount()
+    {
+        return $this->MaxAttendees - $this->getRegistrationsCount();
     }
 
     public function getSlotTimeFormatted()

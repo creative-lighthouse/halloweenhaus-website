@@ -12,6 +12,8 @@ use SilverStripe\Forms\HiddenField;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\EmailField;
+use SilverStripe\Forms\NumericField;
 use SilverStripe\Forms\RequiredFields;
 use SilverStripe\ORM\GroupedList;
 
@@ -79,9 +81,10 @@ class EventPageController extends PageController
 
         $fields = FieldList::create(
             HiddenField::create("EventID", "EventID", $id),
-            HiddenField::create("TimeSlotID", "TimeSlotID", $id),
+            HiddenField::create("TimeSlotID", "TimeSlotID"),
+            HiddenField::create("GroupSize", "Gruppengröße"),
             TextField::create("Title", "Vor- & Nachname"),
-            TextField::create("Email", "E-Mail-Adresse"),
+            EmailField::create("Email", "E-Mail-Adresse"),
             LiteralField::create("DataPrivacyinfo", "Ich habe die <a href='impressum-and-datenschutz'>Datenschutzerklärung</a> gelesen und willige ein, dass meine Daten im Sinne der DSGVO verwendet werden."),
             CheckboxField::create("DataPrivacy", "Datenschutzerklärung akzeptieren"),
         );
@@ -94,6 +97,7 @@ class EventPageController extends PageController
             "Title",
             "EventID",
             "TimeSlotID",
+            "GroupSize",
             "Title",
             "Email",
             "DataPrivacy"
@@ -107,14 +111,25 @@ class EventPageController extends PageController
     public function completeregistration($data, $form)
     {
         $event = Event::get()->byId($data["EventID"]);
+        $timeslot = EventTimeSlot::get()->byId($data["TimeSlotID"]);
+        $groupsize = $data["GroupSize"];
 
-        $registrations = Registration::get()->filter("EventID", $event->ID);
+        $registrations = Registration::get()->filter("EventID", $event->ID)->filter("TimeSlotID", $timeslot->ID);
+        $timeslotRegistrationCount = 0;
+        foreach ($registrations as $registration) {
+            $timeslotRegistrationCount += $registration->GroupSize;
+        }
 
-        if ($registrations->count() >= $event->MaxAttendees) {
+        if ($timeslotRegistrationCount + $groupsize > $timeslot->MaxAttendees) {
             return $this->redirect($this->Link("registrationfull/$event->ID"));
         } else {
             $registration = Registration::create();
-            $form->saveInto($registration);
+            $registration->EventID = $event->ID;
+            $registration->TimeSlotID = $timeslot->ID;
+            $registration->GroupSize = $groupsize;
+            $registration->Title = $data["Title"];
+            $registration->Email = $data["Email"];
+            $registration->Hash = md5($data["Email"] . $event->ID . $timeslot->ID . $groupsize . date("Y-m-d H:i:s"));
 
             $registration->write();
 
