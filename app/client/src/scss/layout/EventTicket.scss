@@ -1,0 +1,94 @@
+body.ticket{
+    margin: 0;
+}
+
+.section.section--Ticket{
+    background-color: $ColorBlack;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: none;
+
+    .section_ticket{
+        background-color: $ColorBackground;
+        padding: 20px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: calc(100% - 40px);
+        height: calc(100% - 40px);
+        border-radius: 45px;
+        text-align: center;
+        max-width: $maxWidthContent;
+
+        .section_headline{
+            display: flex;
+            max-height: 70px;
+            flex-grow: 0;
+
+            svg {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                color: $ColorWhite;
+                animation: rainbow 75s infinite;
+
+                .eyes{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    transform-origin: 22px 17px;
+                    animation: leftright 40s infinite;
+                }
+
+                &.mobile{
+                    display: none;
+                    @include media("<desktop") {
+                        display: block;
+                    }
+                }
+
+                &.desktop{
+                    display: block;
+                    @include media("<desktop") {
+                        display: none;
+                    }
+                }
+
+                .menu--fixed &{
+                    &.mobile{
+                        display: none;
+                    }
+
+                    &.desktop{
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .section_data{
+        }
+
+        .section_scancode{
+            height: 50%;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            display: block;
+
+            img{
+                border-radius: 30px;
+                width: auto;
+                max-width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+}

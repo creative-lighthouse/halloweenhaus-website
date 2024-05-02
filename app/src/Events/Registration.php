@@ -5,15 +5,17 @@ namespace App\Events;
 use DateTime;
 use App\Events\Event;
 use App\Events\EventAdmin;
+use Endroid\QrCode\QrCode;
 use App\Events\EventTimeSlot;
-use SilverStripe\Assets\Image;
 use SilverStripe\View\SSViewer;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\View\ArrayData;
-use SilverStripe\ORM\FieldType\DBDate;
-use SilverStripe\LinkField\Models\Link;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Writer\PngWriter;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\RoundBlockSizeMode;
 use SilverStripe\SiteConfig\SiteConfig;
-use SilverStripe\LinkField\Form\LinkField;
+use Endroid\QrCode\ErrorCorrectionLevel;
 
 /**
  * Class \App\Team\TeamMember
@@ -151,5 +153,24 @@ class Registration extends DataObject
             return $holder->AbsoluteLink("unsubscribe/") . $this->Hash;
         }
         return "/404";
+    }
+
+    public function getQRCode()
+    {
+        $validateLink = EventAdminPage::get()->first()->AbsoluteLink("checkRegistration") . "/" . $this->Hash;
+
+        $qrCode = Builder::create()
+        ->writer(new PngWriter())
+        ->writerOptions([])
+        ->data($validateLink)
+        ->encoding(new Encoding('UTF-8'))
+        ->errorCorrectionLevel(ErrorCorrectionLevel::High)
+        ->size(300)
+        ->margin(10)
+        ->roundBlockSizeMode(RoundBlockSizeMode::Margin)
+        ->validateResult(false)
+        ->build();
+        header('Content-Type: ' . $qrCode->getMimeType());
+        return $qrCode->getDataUri();
     }
 }

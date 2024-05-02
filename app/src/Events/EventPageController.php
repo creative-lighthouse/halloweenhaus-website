@@ -29,7 +29,6 @@ class EventPageController extends PageController
 
     private static $allowed_actions = [
         "view",
-        "attendeeinfo",
         "register",
         "completeregistration",
         "RegistrationForm",
@@ -38,6 +37,7 @@ class EventPageController extends PageController
         "eventnotfound",
         "unsubscribe",
         "unsubscribesuccessful",
+        "ticket",
     ];
 
     public function view(HTTPRequest $request)
@@ -47,23 +47,6 @@ class EventPageController extends PageController
         return array(
             "Event" => $article,
         );
-    }
-
-    public function attendeeinfo(HTTPRequest $request)
-    {
-        $hash = $request->param("ID");
-        $registration = Registration::get()->filter(array("Hash" => $hash))->First();
-        $event = $registration->Event();
-
-        if (isset($hash) && isset($event)) {
-            if ($registration) {
-                return array(
-                    "Event" => $event,
-                    "Registration" => $registration,
-                );
-            }
-        }
-        user_error("Link unbekannt.");
     }
 
     public function register(HTTPRequest $request)
@@ -190,6 +173,24 @@ class EventPageController extends PageController
             if ($registration) {
                 $registration->delete();
                 return $this->redirect($this->Link("unsubscribesuccessful"));
+            }
+        }
+        return $this->redirect($this->Link("eventnotfound"));
+    }
+
+    public function ticket(HTTPRequest $request)
+    {
+        $hash = $request->param("ID");
+
+        if (isset($hash)) {
+            $registration = Registration::get()->filter(array("Hash" => $hash))->First();
+            if ($registration) {
+
+                //$qrcode = "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=http%3A%2F%2Fwww.google.com%2F&choe=UTF-8";
+
+                return array(
+                    "Registration" => $registration,
+                );
             }
         }
         return $this->redirect($this->Link("eventnotfound"));

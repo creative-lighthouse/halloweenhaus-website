@@ -15,7 +15,8 @@
         "silverstripe/linkfield": "3.x-dev",
         "wilr/silverstripe-googlesitemaps": "^3.0",
         "dnadesign/silverstripe-elemental-userforms": "^4.1",
-        "undefinedoffset/sortablegridfield": "^2.2"
+        "undefinedoffset/sortablegridfield": "^2.2",
+        "endroid/qrcode": "^5.0"
     },
     "repositories": {
         "silverstripe/linkfield": {

@@ -77,7 +77,7 @@ class EventTimeSlot extends DataObject
 
     public function AttendeesFormatted()
     {
-        return $this->getRegistrationsCount() . " / " . $this->MaxAttendees;
+        return $this->MaxAttendees - $this->getRegistrationsCount() . " Plätze frei";
     }
 
     public function getFreeSlotCount()

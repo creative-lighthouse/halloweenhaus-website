@@ -45,7 +45,7 @@
                                     <% loop $FreeTimeSlots %>
                                         <div class="timeslot_card" data-behaviour="timeslot" data-slotId="$ID" data-slotsize="$getFreeSlotCount" data-eventID="$Parent.ID">
                                             <p class="timeslot_card_time">$SlotTimeFormatted</p>
-                                            <p class="timeslot_card_capacity">$AttendeesFormatted Plätze</p>
+                                            <p class="timeslot_card_capacity">$AttendeesFormatted</p>
                                         </div>
                                     <% end_loop %>
                                 <% else %>
