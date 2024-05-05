@@ -96,9 +96,9 @@ class EmailNotification extends DataObject
         $email = Email::create('events@halloweenhaus-schmalenbeck.de', $this->Email, 'Deine Anmeldung');
         $email->html($this->Text);
         $email->text($this->Text);
-        if ($this->Attachment()) {
-            $email->addAttachment($this->Attachment());
-        }
+        //if ($this->Attachment()) {
+        //    $email->addAttachment($this->Attachment());
+        //}
         //$email->setHTMLTemplate('emails/EventEmail');
         //$email->setPlainTemplate('emails/EventEmailPlain');
         //$email->setSubject($this->Title);
