@@ -8,6 +8,7 @@ use SilverStripe\View\SSViewer;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Control\Director;
 use Colymba\BulkManager\BulkManager;
+use SilverStripe\Assets\File;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Control\Email\Email;
 use SilverStripe\Forms\DropdownField;
@@ -24,8 +25,10 @@ use SilverStripe\ORM\FieldType\DBBoolean;
  * @property string $Type
  * @property int $EventID
  * @property int $RegistrationID
+ * @property int $AttachmentID
  * @method \App\Events\Event Event()
  * @method \App\Events\Registration Registration()
+ * @method \SilverStripe\Assets\File Attachment()
  */
 class EmailNotification extends DataObject
 {
@@ -39,6 +42,7 @@ class EmailNotification extends DataObject
     private static $has_one = array(
         "Event" => Event::class,
         "Registration" => Registration::class,
+        "Attachment" => File::class,
     );
 
     private static $summary_fields = array(
@@ -86,12 +90,29 @@ class EmailNotification extends DataObject
     {
         parent::onAfterWrite();
 
-        if ($this->Email) {
+        $registration = $this->Registration();
+        $this->Email = strtolower($this->Email);
+
+        $email = Email::create('events@halloweenhaus-schmalenbeck.de', $this->Email, 'Deine Anmeldung');
+            $email->html($this->Text);
+            $email->text($this->Text);
+            $email->addAttachment($this->Attachment());
+            $email->setHTMLTemplate('Emails/EventEmail');
+            $email->setPlainTemplate('Emails/EventEmailPlain');
+            $email->setSubject($this->Title);
+            $email->setData([
+                "Registration" => $registration,
+                "Subject" => $this->Title,
+                "Text" => DBField::create_field('HTMLText', $this->Text)
+            ]);
+            $email->send();
+
+        /*if ($this->Email) {
             $registration = $this->Registration();
             $this->Email = strtolower($this->Email);
             $email = Email::create()
-                ->setHTMLTemplate('emails/EventEmail')
-                ->setPlainTemplate('emails/EventEmailPlain')
+                ->setHTMLTemplate('Emails/EventEmail')
+                ->setPlainTemplate('Emails/EventEmailPlain')
                 ->setData([
                     "Registration" => $registration,
                     "Subject" => $this->Title,
@@ -99,9 +120,10 @@ class EmailNotification extends DataObject
                 ])
                 ->setFrom("events@halloweenhaus-schmalenbeck.de", "Halloweenhaus Schmalenbeck")
                 ->setTo($this->Email)
+                ->addAttachment($this->Attachment())
                 ->setSubject(SSViewer::execute_string($this->Title, $this->Event()));
             $email->send();
-        }
+        }*/
     }
 
     function getDateFormatted()

@@ -13,6 +13,7 @@ use SilverStripe\View\ArrayData;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\Encoding\Encoding;
+use SilverStripe\Control\Email\Email;
 use Endroid\QrCode\RoundBlockSizeMode;
 use SilverStripe\SiteConfig\SiteConfig;
 use Endroid\QrCode\ErrorCorrectionLevel;
@@ -100,7 +101,7 @@ class Registration extends DataObject
         parent::onAfterWrite();
 
         if (!$this->EmailSent) {
-            //$this->sendReceiveConfirmation();
+            $this->sendReceiveConfirmation();
         }
     }
 
@@ -122,6 +123,7 @@ class Registration extends DataObject
         $emailConfirmation->Event = $this->Event;
         $emailConfirmation->Registration = $this;
         $emailConfirmation->write();
+
 
         $emailNotification = EmailNotification::create();
         $emailNotification->Title = "[HWHS] - " . $this->Event->Title . " - Neue Anmeldung - " . $this->Title;

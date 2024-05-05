@@ -7,15 +7,16 @@ use App\Events\Registration;
 use SilverStripe\Forms\Form;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
+use SilverStripe\ORM\GroupedList;
+use SilverStripe\Forms\EmailField;
 use SilverStripe\Forms\FormAction;
 use SilverStripe\Forms\HiddenField;
 use SilverStripe\Forms\LiteralField;
+use SilverStripe\Forms\NumericField;
+use SilverStripe\Control\Email\Email;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Forms\CheckboxField;
-use SilverStripe\Forms\EmailField;
-use SilverStripe\Forms\NumericField;
 use SilverStripe\Forms\RequiredFields;
-use SilverStripe\ORM\GroupedList;
 
 /**
  * Class \App\Team\TeamOverviewController
