@@ -112,11 +112,13 @@ class Registration extends DataObject
                     "Registration" => $this,
                     "Event" => $this->Event,
                     "Name" => $this->Title,
+                    "TimeSlot" => $this->TimeSlot
                 ]));
         $emailConfirmation->Text = SSViewer::execute_string(SiteConfig::current_site_config()->AckMessageContent, new ArrayData([
                     "Registration" => $this,
                     "Event" => $this->Event,
-                    "Name" => $this->Title
+                    "Name" => $this->Title,
+                    "TimeSlot" => $this->TimeSlot
                 ]));
         $emailConfirmation->Type = "AckMessage";
         $emailConfirmation->Email = $this->Email;
@@ -139,11 +141,11 @@ class Registration extends DataObject
         $this->write();
     }
 
-    public function getAttendeeLink()
+    public function getTicketLink()
     {
         $holder = EventPage::get()->sort("ID", "ASC")->First();
         if ($holder) {
-            return $holder->AbsoluteLink("attendeeinfo/") . $this->Hash;
+            return $holder->AbsoluteLink("ticket") . "/" . $this->Hash;
         }
         return "/404";
     }
@@ -152,7 +154,7 @@ class Registration extends DataObject
     {
         $holder = EventPage::get()->sort("ID", "ASC")->First();
         if ($holder) {
-            return $holder->AbsoluteLink("unsubscribe/") . $this->Hash;
+            return $holder->AbsoluteLink("unsubscribe") . "/" . $this->Hash;
         }
         return "/404";
     }
