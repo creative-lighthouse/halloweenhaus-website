@@ -99,14 +99,14 @@ class EmailNotification extends DataObject
         if ($this->Attachment()) {
             $email->addAttachment($this->Attachment());
         }
-        $email->setHTMLTemplate('Emails/EventEmail');
-        $email->setPlainTemplate('Emails/EventEmailPlain');
-        $email->setSubject($this->Title);
-        $email->setData([
-            "Registration" => $registration,
-            "Subject" => $this->Title,
-            "Text" => DBField::create_field('HTMLText', $this->Text)
-        ]);
+        //$email->setHTMLTemplate('emails/EventEmail');
+        //$email->setPlainTemplate('emails/EventEmailPlain');
+        //$email->setSubject($this->Title);
+        //$email->setData([
+        //    "Registration" => $registration,
+        //    "Subject" => $this->Title,
+        //    "Text" => DBField::create_field('HTMLText', $this->Text)
+        //]);
         $email->send();
 
         /*if ($this->Email) {
