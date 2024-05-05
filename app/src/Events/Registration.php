@@ -149,7 +149,7 @@ class Registration extends DataObject
             "TimeSlot" => $this->TimeSlot
         ]));
         $emailNotification->Type = "NewRegistration";
-        $emailNotification->Email = "steffen.kahl@halloweenhaus-schmalenbeck.de";
+        $emailNotification->Email = "events@halloweenhaus-schmalenbeck.de";
         $emailNotification->Event = $this->Event;
         $emailNotification->Registration = $this;
         $emailNotification->write();
