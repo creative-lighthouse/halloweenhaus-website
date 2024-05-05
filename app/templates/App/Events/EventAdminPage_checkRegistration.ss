@@ -70,7 +70,7 @@
             </div>
             <div class="section_buttons">
                 <a href="$Top.Link('cancel')/$Registration.Hash" class="button button--secondary">Entfernen</a>
-                <a href="$Top.Link('checkin')/$Registration.Hash" class="button button--primary">Check In!</a>
+                <a href="$Top.Link('checkIn')/$Registration.Hash" class="button button--primary">Check In!</a>
             </div>
         </div>
     </div>
