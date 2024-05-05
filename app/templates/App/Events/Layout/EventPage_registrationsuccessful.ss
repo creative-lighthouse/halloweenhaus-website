@@ -13,7 +13,6 @@
             <% else %>
                 <p>Wir freuen uns auf euch $Registration.GroupSize!</p>
             <% end_if %>
-            <img class="section_emoji" src="../_resources/app/client/images/sticker_happy.png">
         </div>
     </div>
 </div>

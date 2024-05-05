@@ -128,11 +128,20 @@ class Registration extends DataObject
 
 
         $emailNotification = EmailNotification::create();
-        $emailNotification->Title = "[HWHS] - " . $this->Event->Title . " - Neue Anmeldung - " . $this->Title;
-        $emailNotification->Text = "
-        Eine neue Anmeldung von " . $this->Title . " ist für das Event '" . $this->Event->Title . "' eingegangen.<br/>";
+        $emailNotification->Title = SSViewer::execute_string(SiteConfig::current_site_config()->NewRegisterMessageSubject, new ArrayData([
+            "Registration" => $this,
+            "Event" => $this->Event,
+            "Name" => $this->Title,
+            "TimeSlot" => $this->TimeSlot
+        ]));
+        $emailNotification->Text = SSViewer::execute_string(SiteConfig::current_site_config()->NewRegisterMessageContent, new ArrayData([
+            "Registration" => $this,
+            "Event" => $this->Event,
+            "Name" => $this->Title,
+            "TimeSlot" => $this->TimeSlot
+        ]));
         $emailNotification->Type = "NewRegistration";
-        $emailNotification->Email = "events@halloweenhaus-schmalenbeck.de";
+        $emailNotification->Email = "steffen.kahl@halloweenhaus-schmalenbeck.de";
         $emailNotification->Event = $this->Event;
         $emailNotification->Registration = $this;
         $emailNotification->write();

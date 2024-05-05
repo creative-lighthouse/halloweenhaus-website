@@ -29,6 +29,8 @@ class CustomSiteConfig extends DataExtension
         "BannerText" => "HTMLText",
         'AckMessageSubject' => 'Varchar(255)',
         'AckMessageContent' => 'HTMLText',
+        'NewRegisterMessageSubject' => 'Varchar(255)',
+        'NewRegisterMessageContent' => 'HTMLText',
     ];
 
     public function updateCMSFields(FieldList $fields)
