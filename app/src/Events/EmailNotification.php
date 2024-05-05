@@ -94,18 +94,20 @@ class EmailNotification extends DataObject
         $this->Email = strtolower($this->Email);
 
         $email = Email::create('events@halloweenhaus-schmalenbeck.de', $this->Email, 'Deine Anmeldung');
-            $email->html($this->Text);
-            $email->text($this->Text);
+        $email->html($this->Text);
+        $email->text($this->Text);
+        if ($this->Attachment()) {
             $email->addAttachment($this->Attachment());
-            $email->setHTMLTemplate('Emails/EventEmail');
-            $email->setPlainTemplate('Emails/EventEmailPlain');
-            $email->setSubject($this->Title);
-            $email->setData([
-                "Registration" => $registration,
-                "Subject" => $this->Title,
-                "Text" => DBField::create_field('HTMLText', $this->Text)
-            ]);
-            $email->send();
+        }
+        $email->setHTMLTemplate('Emails/EventEmail');
+        $email->setPlainTemplate('Emails/EventEmailPlain');
+        $email->setSubject($this->Title);
+        $email->setData([
+            "Registration" => $registration,
+            "Subject" => $this->Title,
+            "Text" => DBField::create_field('HTMLText', $this->Text)
+        ]);
+        $email->send();
 
         /*if ($this->Email) {
             $registration = $this->Registration();
