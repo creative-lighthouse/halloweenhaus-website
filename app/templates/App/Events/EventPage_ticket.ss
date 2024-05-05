@@ -64,5 +64,6 @@
                 <% end_if %>
             </div>
         </div>
+        <script src="$Mix("/js/main.js")"></script>
     </body>
 <% end_with %>

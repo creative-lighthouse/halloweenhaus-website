@@ -94,5 +94,80 @@
                 }
             }
         }
+
+        .section_qrcodescan{
+            height: 50%;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+
+
+            #qrcode-video{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                aspect-ratio: 1/1;
+            }
+
+            .scan-region-highlight{
+                position: absolute;
+                left: 25%;
+                top: 25%;
+                width: 50%;
+                aspect-ratio: 1/1;
+                transform: translate(-50%, -50%);
+            }
+
+            .logo{
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                svg {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    color: $ColorWhite;
+                    animation: rainbow 75s infinite;
+
+                    .eyes{
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        transform-origin: 22px 17px;
+                        animation: leftright 40s infinite;
+                    }
+
+                    &.mobile{
+                        display: none;
+                        @include media("<desktop") {
+                            display: block;
+                        }
+                    }
+
+                    &.desktop{
+                        display: block;
+                        @include media("<desktop") {
+                            display: none;
+                        }
+                    }
+
+                    .menu--fixed &{
+                        &.mobile{
+                            display: none;
+                        }
+
+                        &.desktop{
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
+
+
