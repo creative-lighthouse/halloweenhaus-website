@@ -29,16 +29,7 @@ class EventAdminPageController extends PageController
 {
 
     private static $allowed_actions = [
-        "view",
-        "register",
-        "completeregistration",
-        "RegistrationForm",
-        "registrationsuccessful",
-        "registrationfull",
-        "eventnotfound",
-        "unsubscribe",
-        "unsubscribesuccessful",
-        "ticket",
+        "checkRegistration",
     ];
 
     public function checkRegistration(HTTPRequest $request)
