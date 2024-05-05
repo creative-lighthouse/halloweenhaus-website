@@ -2,7 +2,9 @@
 namespace App\Feedback;
 
 use PageController;
+use App\Events\Event;
 use App\Feedback\FeedbackEntry;
+use SilverStripe\ORM\GroupedList;
 use SilverStripe\Control\HTTPRequest;
 
 /**
@@ -37,5 +39,12 @@ class FeedbackPageController extends PageController
     public function thanks()
     {
         return [];
+    }
+
+    public function getEventDates()
+    {
+        $currentYear = date("Y");
+        $eventsThisYear = Event::get()->filter("EventDate:GreaterThan", "{$currentYear}-01-01 00:00:00")->sort("EventDate ASC, StartTime ASC");
+        return GroupedList::create($eventsThisYear);
     }
 }

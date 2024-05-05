@@ -24,7 +24,7 @@
                             <% loop $Children %>
                                 <div class="event_card" data-behaviour="event" data-date="$EventDate" data-eventID="$ID">
                                     <div class="event_card_image">
-                                        <% if $Image %><img src="$Image.URL" alt="$Image.Title"><% end_if %>
+                                        <% if $Image %><img src="$Image.FocusFill(500, 200).URL" alt="$Image.Title"><% end_if %>
                                     </div>
                                     <div class="event_card_text">
                                         <p class="event_card_title">$Title</p>
@@ -74,6 +74,8 @@
                     $RegistrationForm
                 </div>
             </div>
+        <% else %>
+            <p>Es sind keine Veranstaltungen verfügbar.</p>
         <% end_if %>
     </div>
 </div>

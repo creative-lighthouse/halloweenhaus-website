@@ -5,6 +5,7 @@ use PageController;
 use App\Events\Event;
 use App\Events\Registration;
 use SilverStripe\Forms\Form;
+use App\Feedback\FeedbackPage;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\GroupedList;
@@ -196,5 +197,11 @@ class EventPageController extends PageController
             }
         }
         return $this->redirect($this->Link("eventnotfound"));
+    }
+
+    public function getFeedbackPageLink()
+    {
+        $feedbackPage = FeedbackPage::get()->first();
+        return $feedbackPage->Link();
     }
 }

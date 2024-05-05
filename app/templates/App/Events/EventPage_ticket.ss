@@ -39,18 +39,29 @@
                 <div class="section_headline">
                     <% include MovingLogo %>
                 </div>
-                <div class="section_data">
-                    <h1>Virtual Queue Ticket</h1>
-                    <h2>Name: $Title</h2>
-                    <h2>Gruppengröße: $GroupSize Personen</h2>
-                    <h2>Veranstaltung: $Event.Title</h2>
-                    <h2>Datum: $Event.DateFormatted</h2>
-                    <h3>Ort: $Event.Place</h3>
-                    <h3>Gebuchter Slot: $TimeSlot.SlotTimeFormatted</h3>
-                </div>
                 <div class="section_scancode">
                     <img src="$QRCode" alt="QR-Code">
                 </div>
+                <div class="section_data">
+                    <h2>$Title</h2>
+                    <h3>$GroupSize Personen</h3>
+                    <hr>
+                    <h2>$Event.Title</h2>
+                    <h3>$Event.DateFormatted | $TimeSlot.SlotTimeFormatted - $TimeSlot.SlotTimeEndFormatted</h3>
+                    <h4>Ort: $Event.Place</h4>
+                </div>
+                <% if $Status == "CheckedIn" %>
+                    <div class="section_status">
+                        <h2 class="status_title">Check-In erfolgreich</h2>
+                        <h3 class="status_subline">Vielen Dank für deinen Besuch!</h3>
+                        <a href="$Top.FeedbackPageLink" class="status_button">Feedback abgeben</a>
+                    </div>
+                <% else_if $Status == "Cancelled" %>
+                    <div class="section_status">
+                        <h2 class="status_title">Buchung deaktiviert</h2>
+                        <a href="$Top.FeedbackPageLink" class="status_button">Feedback abgeben</a>
+                    </div>
+                <% end_if %>
             </div>
         </div>
     </body>

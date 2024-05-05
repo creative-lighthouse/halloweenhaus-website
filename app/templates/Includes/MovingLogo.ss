@@ -1,7 +1,7 @@
 <svg
     class="desktop"
-    width="1400"
-    height="200"
+    width="100%"
+    height="auto"
     viewBox="0 0 370.41665 52.916666"
     version="1.1"
     id="svg5"

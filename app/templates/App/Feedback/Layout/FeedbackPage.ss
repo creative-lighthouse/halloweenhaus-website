@@ -6,16 +6,13 @@
             <div class="form-group">
                 <p>An welchem Tag warst/bist du da?</p>
                 <div class="switch">
-                    <input type="radio" name="day" id="day-1" value="1" required>
-                    <label for="day-1">
-                        <p class="weekday">MO</p>
-                        <p>30.10.</p>
-                    </label>
-                    <input type="radio" name="day" id="day-2" value="2">
-                    <label for="day-2">
-                        <p class="weekday">DI</p>
-                        <p>31.10.</p>
-                    </label>
+                    <% loop $EventDates.GroupedBy('EventDate') %>
+                        <input type="radio" name="day" id="day-$Children.First.ID" value="$Children.First.ID" required>
+                        <label for="day-$Children.First.ID">
+                            <p class="weekday">$Children.First.DateWeekday</p>
+                            <p>$Children.First.DateFormatted</p>
+                        </label>
+                    <% end_loop %>
                 </div>
             </div>
 
