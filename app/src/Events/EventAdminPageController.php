@@ -30,7 +30,7 @@ class EventAdminPageController extends PageController
 
     private static $allowed_actions = [
         "checkRegistration",
-        "checkin",
+        "checkIn",
         "cancel",
     ];
 
@@ -58,7 +58,7 @@ class EventAdminPageController extends PageController
         }
     }
 
-    public function checkin(HTTPRequest $request)
+    public function checkIn(HTTPRequest $request)
     {
         $currentUser = Security::getCurrentUser();
         $hash = $this->getRequest()->param("ID");
