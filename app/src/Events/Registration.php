@@ -7,6 +7,7 @@ use App\Events\Event;
 use App\Events\EventAdmin;
 use Endroid\QrCode\QrCode;
 use App\Events\EventTimeSlot;
+use SilverStripe\Forms\DropdownField;
 use SilverStripe\View\SSViewer;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\View\ArrayData;
@@ -26,6 +27,7 @@ use Endroid\QrCode\ErrorCorrectionLevel;
  * @property int $GroupSize
  * @property string $Hash
  * @property bool $EmailSent
+ * @property string $Status
  * @property int $EventID
  * @property int $TimeSlotID
  * @method \App\Events\Event Event()
@@ -39,6 +41,7 @@ class Registration extends DataObject
         "GroupSize" => "Int",
         "Hash" => "Varchar(255)",
         "EmailSent" => "Boolean",
+        "Status" => "Varchar(255)",
     ];
 
     private static $has_one = [
@@ -74,6 +77,11 @@ class Registration extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
+        $fields->addFieldToTab("Root.Main", new DropdownField("Status", "Status", [
+            "Registered" => "Registered",
+            "CheckedIn" => "CheckedIn",
+            "Cancelled" => "Cancelled",
+        ]));
         return $fields;
     }
 

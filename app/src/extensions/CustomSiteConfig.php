@@ -18,6 +18,8 @@ use SilverStripe\ORM\DataExtension;
  * @property string $BannerText
  * @property string $AckMessageSubject
  * @property string $AckMessageContent
+ * @property string $NewRegisterMessageSubject
+ * @property string $NewRegisterMessageContent
  */
 class CustomSiteConfig extends DataExtension
 {

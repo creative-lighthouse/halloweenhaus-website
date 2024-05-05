@@ -114,6 +114,7 @@ class EventPageController extends PageController
             $registration->Title = $data["Title"];
             $registration->Email = $data["Email"];
             $registration->Hash = md5($data["Email"] . $event->ID . $timeslot->ID . $groupsize . date("Y-m-d H:i:s"));
+            $registration->Status = "Registered";
 
             $registration->write();
 

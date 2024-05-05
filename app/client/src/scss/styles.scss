@@ -28,10 +28,11 @@
 @import "layout/HeroImageElement.scss";
 @import "layout/PressImageElement.scss";
 
-@import "layout/Events.scss";
 @import "layout/Feedback.scss";
 
-@import "layout/EventTicket.scss";
+@import "layout/Events/EventTicket.scss";
+@import "layout/Events/EventAdmin.scss";
+@import "layout/Events/Events.scss";
 
 html {
     background-color: $ColorBackground;
