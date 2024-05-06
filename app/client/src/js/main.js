@@ -1,6 +1,5 @@
 import GLightbox from "glightbox";
 import "./eventsNavigator";
-import "./qrscanner";
 
 document.addEventListener("DOMContentLoaded", function (event) {
 
