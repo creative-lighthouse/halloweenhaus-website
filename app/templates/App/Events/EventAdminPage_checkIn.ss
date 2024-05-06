@@ -35,7 +35,7 @@
 <body class="ticket">
     <div class="section section--EventsAdmin">
         <div class="section_content">
-            <h1>Eingecheckt!</h1>
+            <h1 class="section_message">Eingecheckt!</h1>
             <div class="section_buttons">
                 <a href="$Top.Link('cancel')/$Registration.Hash" class="button button--secondary">Doch Entfernen</a>
                 <a href="$Top.Link('')" class="button">Nächster Scan</a>
