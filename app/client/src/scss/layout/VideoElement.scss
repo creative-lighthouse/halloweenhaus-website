@@ -1,5 +1,10 @@
 .section.section--VideoElement{
     .section_content{
+        .section_title{
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
         .section_video{
             aspect-ratio: 16/9;
             margin: 0 auto;
