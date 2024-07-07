@@ -8,5 +8,5 @@
             <div>$Description</div>
             <a class="link--button event_registration" href="$RegistrationLink">Jetzt registrieren →</a>
         <% end_with %>
-</div>
+    </div>
 </div>

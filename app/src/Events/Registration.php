@@ -28,10 +28,13 @@ use Endroid\QrCode\ErrorCorrectionLevel;
  * @property string $Hash
  * @property bool $EmailSent
  * @property string $Status
+ * @property string $Type
  * @property int $EventID
  * @property int $TimeSlotID
+ * @property int $UsedCouponID
  * @method \App\Events\Event Event()
  * @method \App\Events\EventTimeSlot TimeSlot()
+ * @method \App\Events\EventCoupon UsedCoupon()
  */
 class Registration extends DataObject
 {
@@ -42,11 +45,13 @@ class Registration extends DataObject
         "Hash" => "Varchar(255)",
         "EmailSent" => "Boolean",
         "Status" => "Varchar(255)",
+        "Type" => "Varchar(255)",
     ];
 
     private static $has_one = [
         "Event" => Event::class,
         "TimeSlot" => EventTimeSlot::class,
+        "UsedCoupon" => EventCoupon::class,
     ];
 
     private static $default_sort = "Created ASC";
@@ -55,6 +60,9 @@ class Registration extends DataObject
         "Title" => "Name",
         "Email" => "E-Mail",
         "Event" => "Event",
+        "TimeSlot" => "Zeitslot",
+        "Created" => "Datum",
+        "Status" => "Status",
     ];
 
     private static $summary_fields = [
@@ -77,11 +85,18 @@ class Registration extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->addFieldToTab("Root.Main", new DropdownField("Status", "Status", [
-            "Registered" => "Registered",
-            "CheckedIn" => "CheckedIn",
-            "Cancelled" => "Cancelled",
-        ]));
+        $fields->addFieldsToTab(
+            "Root.Main",
+            array(
+            new DropdownField("Status", "Status", [
+                "Registered" => "Registered",
+                "Confirmed" => "Confirmed",
+                "CheckedIn" => "CheckedIn",
+                "Cancelled" => "Cancelled",
+            ]))
+        );
+        $fields->removeByName("Type");
+
         return $fields;
     }
 
@@ -115,47 +130,49 @@ class Registration extends DataObject
 
     public function sendReceiveConfirmation()
     {
-        $emailConfirmation = EmailNotification::create();
-        $emailConfirmation->Title = SSViewer::execute_string(SiteConfig::current_site_config()->AckMessageSubject, new ArrayData([
-                    "Registration" => $this,
-                    "Event" => $this->Event,
-                    "Name" => $this->Title,
-                    "TimeSlot" => $this->TimeSlot
-                ]));
-        $emailConfirmation->Text = SSViewer::execute_string(SiteConfig::current_site_config()->AckMessageContent, new ArrayData([
-                    "Registration" => $this,
-                    "Event" => $this->Event,
-                    "Name" => $this->Title,
-                    "TimeSlot" => $this->TimeSlot
-                ]));
-        $emailConfirmation->Type = "AckMessage";
-        $emailConfirmation->Email = $this->Email;
-        $emailConfirmation->Event = $this->Event;
-        $emailConfirmation->Registration = $this;
-        $emailConfirmation->write();
+        if ($this->Email != "test@test.de") {
+            $emailConfirmation = EmailNotification::create();
+            $emailConfirmation->Title = SSViewer::execute_string(SiteConfig::current_site_config()->AckMessageSubject, new ArrayData([
+                        "Registration" => $this,
+                        "Event" => $this->Event,
+                        "Name" => $this->Title,
+                        "TimeSlot" => $this->TimeSlot
+                    ]));
+            $emailConfirmation->Text = SSViewer::execute_string(SiteConfig::current_site_config()->AckMessageContent, new ArrayData([
+                        "Registration" => $this,
+                        "Event" => $this->Event,
+                        "Name" => $this->Title,
+                        "TimeSlot" => $this->TimeSlot
+                    ]));
+            $emailConfirmation->Type = "AckMessage";
+            $emailConfirmation->Email = $this->Email;
+            $emailConfirmation->Event = $this->Event;
+            $emailConfirmation->Registration = $this;
+            $emailConfirmation->write();
 
 
-        $emailNotification = EmailNotification::create();
-        $emailNotification->Title = SSViewer::execute_string(SiteConfig::current_site_config()->NewRegisterMessageSubject, new ArrayData([
-            "Registration" => $this,
-            "Event" => $this->Event,
-            "Name" => $this->Title,
-            "TimeSlot" => $this->TimeSlot
-        ]));
-        $emailNotification->Text = SSViewer::execute_string(SiteConfig::current_site_config()->NewRegisterMessageContent, new ArrayData([
-            "Registration" => $this,
-            "Event" => $this->Event,
-            "Name" => $this->Title,
-            "TimeSlot" => $this->TimeSlot
-        ]));
-        $emailNotification->Type = "NewRegistration";
-        $emailNotification->Email = "events@halloweenhaus-schmalenbeck.de";
-        $emailNotification->Event = $this->Event;
-        $emailNotification->Registration = $this;
-        $emailNotification->write();
+            $emailNotification = EmailNotification::create();
+            $emailNotification->Title = SSViewer::execute_string(SiteConfig::current_site_config()->NewRegisterMessageSubject, new ArrayData([
+                "Registration" => $this,
+                "Event" => $this->Event,
+                "Name" => $this->Title,
+                "TimeSlot" => $this->TimeSlot
+            ]));
+            $emailNotification->Text = SSViewer::execute_string(SiteConfig::current_site_config()->NewRegisterMessageContent, new ArrayData([
+                "Registration" => $this,
+                "Event" => $this->Event,
+                "Name" => $this->Title,
+                "TimeSlot" => $this->TimeSlot
+            ]));
+            $emailNotification->Type = "NewRegistration";
+            $emailNotification->Email = "events@halloweenhaus-schmalenbeck.de";
+            $emailNotification->Event = $this->Event;
+            $emailNotification->Registration = $this;
+            $emailNotification->write();
 
-        $this->EmailSent = true;
-        $this->write();
+            $this->EmailSent = true;
+            $this->write();
+        }
     }
 
     public function getTicketLink()

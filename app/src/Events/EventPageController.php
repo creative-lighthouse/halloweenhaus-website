@@ -42,6 +42,14 @@ class EventPageController extends PageController
         "ticket",
     ];
 
+    public function index(HTTPRequest $request)
+    {
+        return array
+        (
+            "UsesCoupon" => $request->getVar("coupon"),
+        );
+    }
+
     public function view(HTTPRequest $request)
     {
         $id = $this->getRequest()->param("ID");
@@ -68,6 +76,7 @@ class EventPageController extends PageController
             HiddenField::create("EventID", "EventID", $id),
             HiddenField::create("TimeSlotID", "TimeSlotID"),
             HiddenField::create("GroupSize", "Gruppengröße"),
+            HiddenField::create("Couponcode", "Couponcode"),
             TextField::create("Title", "Vor- & Nachname"),
             EmailField::create("Email", "E-Mail-Adresse"),
             LiteralField::create("DataPrivacyinfo", "Ich habe die <a href='impressum-and-datenschutz'>Datenschutzerklärung</a> gelesen und willige ein, dass meine Daten im Sinne der DSGVO verwendet werden."),

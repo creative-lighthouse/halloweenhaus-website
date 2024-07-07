@@ -33,7 +33,7 @@
         <meta name="theme-color" content="#151515">
         <link rel="stylesheet" href="$Mix("/css/styles.min.css")">
     </head>
-    <body class="ticket">
+<body class="ticket <% if $UsedCoupon %>$UsedCoupon.Type<% end_if %>">
         <div class="section section--Ticket">
             <div class="section_ticket">
                 <div class="section_headline">
@@ -43,6 +43,7 @@
                     <img src="$QRCode" alt="QR-Code">
                 </div>
                 <div class="section_data">
+                    <% if $UsedCoupon %><h1>$UsedCoupon.Type</h1><% end_if %>
                     <h2>$Title</h2>
                     <h3>$GroupSize Personen</h3>
                     <hr>

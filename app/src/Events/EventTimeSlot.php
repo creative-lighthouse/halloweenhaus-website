@@ -14,6 +14,7 @@ use SilverStripe\ORM\FieldType\DBDatetime;
  *
  * @property string $SlotTime
  * @property int $MaxAttendees
+ * @property int $MaxVIPs
  * @property int $ParentID
  * @method \App\Events\Event Parent()
  */
@@ -22,6 +23,7 @@ class EventTimeSlot extends DataObject
     private static $db = [
         "SlotTime" => "Time",
         "MaxAttendees" => "Int",
+        "MaxVIPs" => "Int",
     ];
 
     private static $has_one = [
@@ -37,6 +39,7 @@ class EventTimeSlot extends DataObject
     private static $field_labels = [
         "SlotTime" => "Startzeit",
         "MaxAttendees" => "Maximale Anzahl an Teilnehmern",
+        "MaxVIPs" => "Maximale Anzahl an VIPs",
     ];
 
     private static $summary_fields = [

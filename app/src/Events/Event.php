@@ -21,7 +21,6 @@ use SilverStripe\Forms\GridField\GridField;
  * @property string $StartTime
  * @property string $EndTime
  * @property string $Description
- * @property int $MaxAttendees
  * @property string $InfoForAttendees
  * @property int $SlotDuration
  * @property int $ImageID
@@ -37,7 +36,6 @@ class Event extends DataObject
         "StartTime" => "Time",
         "EndTime" => "Time",
         "Description" => "HTMLText",
-        "MaxAttendees" => "Int",
         "InfoForAttendees" => "HTMLText",
         "SlotDuration" => "Int",
     ];
@@ -184,5 +182,17 @@ class Event extends DataObject
             }
         }
         return $timeslotsWithSpace;
+    }
+
+    public function FullTimeSlots()
+    {
+        $timeslots = $this->TimeSlots();
+        $timeslotsWithoutSpace = new ArrayList();
+        foreach ($timeslots as $timeslot) {
+            if ($timeslot->getFreeSlotCount() <= 0) {
+                $timeslotsWithoutSpace->push($timeslot);
+            }
+        }
+        return $timeslotsWithoutSpace;
     }
 }

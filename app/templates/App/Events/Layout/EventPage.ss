@@ -4,6 +4,17 @@
 
         <% if $Events %>
             <div class="events_navigator" data-behaviour="eventsNavigator">
+
+                <% if $UsesCoupon %>
+                    <div class="events_navigator_step coupon" data-eventstep="couponcode">
+                        <h2>Du hast einen Couponcode von uns erhalten, mit dem dir weitere Möglichkeiten zur Buchung offen stehen.</h2>
+                        <h2>Bitte gib zuerst deinen Couponcode ein:</h2>
+                        <div class="section_selectablelist">
+                            <input type="text" class="coupon_input" data-behaviour="coupon-input" placeholder="Couponcode eingeben">
+                        </div>
+                    </div>
+                <% end_if %>
+
                 <div class="events_navigator_step dates hidden" data-eventstep="1">
                     <h2>1. Datum wählen</h2>
                     <div class="section_selectablelist">
@@ -46,6 +57,12 @@
                                         <div class="timeslot_card" data-behaviour="timeslot" data-slotId="$ID" data-slotsize="$getFreeSlotCount" data-eventID="$Parent.ID">
                                             <p class="timeslot_card_time">$SlotTimeFormatted</p>
                                             <p class="timeslot_card_capacity">$AttendeesFormatted</p>
+                                        </div>
+                                    <% end_loop %>
+                                    <% loop $FullTimeSlots %>
+                                        <div class="timeslot_card timeslot_card--full">
+                                            <p class="timeslot_card_time">$SlotTimeFormatted</p>
+                                            <p class="timeslot_card_capacity">Ausgebucht!</p>
                                         </div>
                                     <% end_loop %>
                                 <% else %>

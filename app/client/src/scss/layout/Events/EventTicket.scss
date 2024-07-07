@@ -1,5 +1,29 @@
 body.ticket{
     margin: 0;
+
+    &.VIP{
+        .section.section--Ticket{
+            .section_ticket{
+                background-color: #2b0063;
+            }
+        }
+    }
+
+    &.Press{
+        .section.section--Ticket{
+            .section_ticket{
+                background-color: #006363;
+            }
+        }
+    }
+
+    &.Staff{
+        .section.section--Ticket{
+            .section_ticket{
+                background-color: #635c00;
+            }
+        }
+    }
 }
 
 .section.section--Ticket{

@@ -175,6 +175,7 @@
                     .section_selectablelist{
                         gap: 10px;
                     }
+
                     .timeslot_card{
                         border: 1px solid rgb(216, 216, 216);
                         cursor: pointer;
@@ -200,6 +201,12 @@
 
                         &.timeslot_card--text{
                             pointer-events: none;
+                        }
+
+                        &.timeslot_card--full{
+                            filter: grayscale(100%);
+                            pointer-events: none;
+                            opacity: 0.5;
                         }
 
                         &.hidden{

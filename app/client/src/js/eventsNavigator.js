@@ -15,6 +15,8 @@ if(eventsNavigator != null){
     const eventStep4 = eventsNavigator.querySelector('[data-eventstep="4"]');
     const eventStep5 = eventsNavigator.querySelector('[data-eventstep="5"]');
 
+    const couponEventStep = eventsNavigator.querySelector('[data-eventstep="coupon"]');
+
     eventStep1.classList.remove('hidden');
 
     const dates = eventStep1.querySelectorAll('[data-behaviour="date"]');

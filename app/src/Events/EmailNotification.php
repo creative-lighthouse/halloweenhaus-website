@@ -93,39 +93,23 @@ class EmailNotification extends DataObject
         $registration = $this->Registration();
         $this->Email = strtolower($this->Email);
 
-        $email = Email::create('events@halloweenhaus-schmalenbeck.de', $this->Email, 'Deine Anmeldung');
-        $email->html($this->Text);
-        $email->text($this->Text);
-        //if ($this->Attachment()) {
-        //    $email->addAttachment($this->Attachment());
-        //}
-        $email->setHTMLTemplate('emails/EventEmail');
-        $email->setPlainTemplate('emails/EventEmailPlain');
-        $email->setSubject($this->Title);
-        $email->setData([
-            "Registration" => $registration,
-            "Subject" => $this->Title,
-            "Text" => DBField::create_field('HTMLText', $this->Text)
-        ]);
-        $email->send();
-
-        /*if ($this->Email) {
-            $registration = $this->Registration();
-            $this->Email = strtolower($this->Email);
-            $email = Email::create()
-                ->setHTMLTemplate('Emails/EventEmail')
-                ->setPlainTemplate('Emails/EventEmailPlain')
-                ->setData([
-                    "Registration" => $registration,
-                    "Subject" => $this->Title,
-                    "Text" => DBField::create_field('HTMLText', $this->Text)
-                ])
-                ->setFrom("events@halloweenhaus-schmalenbeck.de", "Halloweenhaus Schmalenbeck")
-                ->setTo($this->Email)
-                ->addAttachment($this->Attachment())
-                ->setSubject(SSViewer::execute_string($this->Title, $this->Event()));
+        if ($this->Email != "test@test.de") {
+            $email = Email::create('events@halloweenhaus-schmalenbeck.de', $this->Email, 'Deine Anmeldung');
+            $email->html($this->Text);
+            $email->text($this->Text);
+            //if ($this->Attachment()) {
+            //    $email->addAttachment($this->Attachment());
+            //}
+            $email->setHTMLTemplate('emails/EventEmail');
+            $email->setPlainTemplate('emails/EventEmailPlain');
+            $email->setSubject($this->Title);
+            $email->setData([
+                "Registration" => $registration,
+                "Subject" => $this->Title,
+                "Text" => DBField::create_field('HTMLText', $this->Text)
+            ]);
             $email->send();
-        }*/
+        }
     }
 
     function getDateFormatted()

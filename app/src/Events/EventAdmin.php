@@ -2,6 +2,7 @@
 namespace App\Events;
 
 use App\Events\Event;
+use App\Events\EventCoupon;
 use App\Events\Registration;
 use App\Events\EmailNotification;
 use SilverStripe\Admin\ModelAdmin;
@@ -18,6 +19,7 @@ class EventAdmin extends ModelAdmin
         Event::class,
         Registration::class,
         EmailNotification::class,
+        EventCoupon::class,
     );
 
     private static $url_segment = "events";
