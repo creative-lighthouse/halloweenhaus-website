@@ -31,9 +31,10 @@
 
         <meta name="msapplication-TileColor" content="#151515">
         <meta name="theme-color" content="#151515">
+        <meta http-equiv="refresh" content="10" />
         <link rel="stylesheet" href="$Mix("/css/styles.min.css")">
     </head>
-<body class="ticket <% if $UsedCoupon %>$UsedCoupon.Type<% end_if %>">
+    <body class="ticket <% if $UsedCoupon %>$UsedCoupon.Type<% end_if %>">
         <div class="section section--Ticket">
             <div class="section_ticket">
                 <div class="section_headline">

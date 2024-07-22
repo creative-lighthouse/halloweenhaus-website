@@ -40,6 +40,7 @@ class EventPageController extends PageController
         "unsubscribe",
         "unsubscribesuccessful",
         "ticket",
+        "checkcoupon",
     ];
 
     public function index(HTTPRequest $request)
@@ -66,6 +67,29 @@ class EventPageController extends PageController
         return array(
             "Event" => $article,
         );
+    }
+
+    public function checkCoupon(HTTPRequest $request)
+    {
+        $hash = $this->getRequest()->param("ID");
+
+        $json = array();
+        $json["Valid"] = false;
+        $json["Message"] = "Ungültiger Code";
+
+        $coupon = EventCoupon::get()->filter("Hash", $hash)->First();
+
+        if ($coupon) {
+            $json["Valid"] = true;
+            $json["Message"] = "Code gültig";
+            $json["Title"] = $coupon->Title;
+            $json["Type"] = $coupon->Type;
+            $json["Code"] = $coupon->Hash;
+            $json["Description"] = $coupon->Description;
+        }
+
+        $this->response->addHeader('Content-Type', 'application/json');
+        return json_encode($json);
     }
 
     public function RegistrationForm()
@@ -107,6 +131,15 @@ class EventPageController extends PageController
         $event = Event::get()->byId($data["EventID"]);
         $timeslot = EventTimeSlot::get()->byId($data["TimeSlotID"]);
         $groupsize = $data["GroupSize"];
+        $couponcode = $data["Couponcode"];
+        $coupon = null;
+
+        if ($couponcode) {
+            $coupon = EventCoupon::get()->filter("Hash", $couponcode)->First();
+            if (!$coupon) {
+                return $this->redirect($this->Link("registrationfull/$event->ID"));
+            }
+        }
 
         $registrations = Registration::get()->filter("EventID", $event->ID)->filter("TimeSlotID", $timeslot->ID);
         $timeslotRegistrationCount = 0;
@@ -123,6 +156,9 @@ class EventPageController extends PageController
             $registration->GroupSize = $groupsize;
             $registration->Title = $data["Title"];
             $registration->Email = $data["Email"];
+            if ($coupon) {
+                $registration->UsedCouponID = $coupon->ID;
+            }
             $registration->Hash = md5($data["Email"] . $event->ID . $timeslot->ID . $groupsize . date("Y-m-d H:i:s"));
             $registration->Status = "Registered";
 

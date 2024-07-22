@@ -10,8 +10,10 @@
                         <h2>Du hast einen Couponcode von uns erhalten, mit dem dir weitere Möglichkeiten zur Buchung offen stehen.</h2>
                         <h2>Bitte gib zuerst deinen Couponcode ein:</h2>
                         <div class="section_selectablelist">
-                            <input type="text" class="coupon_input" data-behaviour="coupon-input" placeholder="Couponcode eingeben">
+                            <input type="text" class="coupon_input" data-behaviour="coupon_input" placeholder="Couponcode eingeben">
+                            <button class="coupon_button" data-behaviour="coupon_button">Absenden</button>
                         </div>
+                        <p data-behaviour="coupon_message">Gib Coupon her digga!</p>
                     </div>
                 <% end_if %>
 
