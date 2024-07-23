@@ -16,6 +16,7 @@ use SilverStripe\ORM\DataObject;
  * @property string $PublishDate
  * @property bool $Explicit
  * @property string $Hash
+ * @property int $AudioLength
  * @property int $AudioID
  * @method \SilverStripe\Assets\File Audio()
  */
@@ -28,7 +29,8 @@ class PodcastEntry extends DataObject
         "Description" => "HTMLText",
         "PublishDate" => "Datetime",
         "Explicit" => "Boolean",
-        "Hash" => "Varchar(255)"
+        "Hash" => "Varchar(255)",
+        "AudioLength" => "Int",
     ];
 
     private static $has_one = [
@@ -42,7 +44,15 @@ class PodcastEntry extends DataObject
     private static $default_sort = "PublishDate DESC, Title ASC";
 
     private static $field_labels = [
-
+        "Title" => "Titel",
+        "Episode" => "Folge",
+        "Season" => "Staffel",
+        "Description" => "Beschreibung",
+        "PublishDate" => "Veröffentlichungsdatum",
+        "Explicit" => "Expliziter Inhalt",
+        "Hash" => "Hash",
+        "AudioLength" => "Länge (in Sekunden)",
+        "Audio" => "Audio-Datei"
     ];
 
     private static $summary_fields = [
@@ -79,5 +89,13 @@ class PodcastEntry extends DataObject
     public function ExplicitFormatted()
     {
         return $this->Explicit ? "true" : "false";
+    }
+
+    public function onBeforeWrite()
+    {
+        parent::onBeforeWrite();
+        if (!$this->Hash) {
+            $this->Hash = md5($this->Title . $this->Episode . $this->Season . $this->PublishDate);
+        }
     }
 }

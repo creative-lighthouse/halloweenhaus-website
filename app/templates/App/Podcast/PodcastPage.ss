@@ -14,9 +14,11 @@
     <description>$Description</description>
     <itunes:summary>$Description</itunes:summary>
     <itunes:type>episodic</itunes:type>
+    <itunes:new-feed-url>https://halloweenhaus-schmalenbeck.de/podcast/</itunes:new-feed-url>
     <itunes:image
       href="$CoverImage.AbsoluteLink"
     />
+    <itunes:complete>no</itunes:complete>
     <itunes:category text="Arts">
       <itunes:category text="Performing Arts"/>
     </itunes:category>
@@ -24,15 +26,17 @@
     <itunes:explicit>false</itunes:explicit>
     <% loop $Episodes %>
     <item>
+      <link>https://halloweenhaus-schmalenbeck.de/podcast/view/$ID</link>
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:episode>$Episode</itunes:episode>
       <itunes:season>$Season</itunes:season>
+      <itunes:duration>$AudioLength</itunes:duration>
       <title>$Title</title>
       <description>
         $Description
       </description>
       <enclosure
-        length="10"
+        length="$AudioLength"
         type="audio/$Audio.getExtension"
         url="$Audio.AbsoluteLink"
       />
