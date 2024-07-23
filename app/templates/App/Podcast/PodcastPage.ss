@@ -32,9 +32,8 @@
       <itunes:season>$Season</itunes:season>
       <itunes:duration>$AudioLength</itunes:duration>
       <title>$Title</title>
-      <description>
-        $Description
-      </description>
+      <itunes:summary>$Description</itunes:summary>
+      <description>$Description</description>
       <enclosure
         length="$AudioLength"
         type="audio/$Audio.getExtension"
