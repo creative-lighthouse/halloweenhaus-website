@@ -4,6 +4,7 @@ namespace App\Podcast;
 
 use Page;
 use SilverStripe\Assets\Image;
+use SilverStripe\AssetAdmin\Forms\UploadField;
 
 /**
  * Class \App\Podcast\PodcastPage
@@ -35,6 +36,7 @@ class PodcastPage extends Page
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
+        $fields->addFieldToTab("Root.Main", $coverImage = UploadField::create("CoverImage", "Cover Image"));
         return $fields;
     }
 }
