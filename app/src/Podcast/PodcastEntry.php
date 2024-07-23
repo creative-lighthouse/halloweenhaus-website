@@ -36,7 +36,6 @@ class PodcastEntry extends DataObject
     ];
 
     private static $owns = [
-        "Image",
         "Audio"
     ];
 
