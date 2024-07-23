@@ -6,6 +6,7 @@ use Page;
 use SilverStripe\Assets\Image;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\Forms\TextareaField;
 
 /**
  * Class \App\Podcast\PodcastPage
@@ -21,7 +22,7 @@ class PodcastPage extends Page
 
     private static $db = [
         "Title" => "Varchar(255)",
-        "Description" => "HTMLText",
+        "Description" => "Text",
     ];
 
     private static $has_one = [
@@ -38,7 +39,7 @@ class PodcastPage extends Page
     {
         $fields = parent::getCMSFields();
         $fields->addFieldToTab("Root.Main", $coverImage = UploadField::create("CoverImage", "Cover Image"));
-        $fields->addFieldToTab("Root.Main", $description = HTMLEditorField::create("Description", "Description"));
+        $fields->addFieldToTab("Root.Main", $description = TextareaField::create("Description", "Description"));
         return $fields;
     }
 }
