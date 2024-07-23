@@ -28,7 +28,7 @@
       </description>
       <enclosure
         length="10"
-        type="audio/wav"
+        type="audio/$Audio.getExtension"
         url="$Audio.AbsoluteLink"
       />
       <guid>$Hash</guid>
