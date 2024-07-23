@@ -16,6 +16,15 @@ class PodcastPageController extends PageController
     private static $allowed_actions = [
     ];
 
+    public function index()
+    {
+        //return as xml with header
+        $this->response->addHeader('Content-Type', 'application/xml');
+        return $this->customise([
+            'Episodes' => $this->getEpisodes()
+        ])->renderWith('App\Podcast\PodcastPage');
+    }
+
     public function getEpisodes()
     {
         return PodcastEntry::get()->sort("PublishDate", "DESC");
