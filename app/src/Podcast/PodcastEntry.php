@@ -26,7 +26,7 @@ class PodcastEntry extends DataObject
         "Title" => "Varchar(255)",
         "Episode" => "Int",
         "Season" => "Int",
-        "Description" => "HTMLText",
+        "Description" => "Text",
         "PublishDate" => "Datetime",
         "Explicit" => "Boolean",
         "Hash" => "Varchar(255)",
