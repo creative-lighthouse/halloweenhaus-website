@@ -33,6 +33,21 @@
     <meta name="msapplication-TileColor" content="#151515">
     <meta name="theme-color" content="#151515">
     <link rel="stylesheet" href="$Mix("/css/styles.min.css")">
+
+    <!-- Brevo Conversations {literal} -->
+    <script>
+        (function(d, w, c) {
+            w.BrevoConversationsID = '66acf90d70b00e41914b1125';
+            w[c] = w[c] || function() {
+                (w[c].q = w[c].q || []).push(arguments);
+            };
+            var s = d.createElement('script');
+            s.async = true;
+            s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
+            if (d.head) d.head.appendChild(s);
+        })(document, window, 'BrevoConversations');
+    </script>
+    <!-- /Brevo Conversations {/literal} -->
 </head>
 <body>
 <% include Header %>
