@@ -2,6 +2,8 @@
 
 namespace App\Events;
 
+use DateTime;
+use DateTimeZone;
 use IntlDateFormatter;
 use App\Events\EventAdmin;
 use App\Events\Registration;
@@ -184,9 +186,23 @@ class Event extends DataObject
         return $timeslotsWithSpace;
     }
 
+    public function FreeTimeSlotsInFuture()
+    {
+        $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
+        $timeslots = $this->TimeSlots()->filter("SlotTime:GreaterThanOrEqual", $now->format("Y-m-d H:i:s"));
+        $timeslotsWithSpace = new ArrayList();
+        foreach ($timeslots as $timeslot) {
+            if ($timeslot->getFreeSlotCount() > 0) {
+                $timeslotsWithSpace->push($timeslot);
+            }
+        }
+        return $timeslotsWithSpace;
+    }
+
     public function FullTimeSlots()
     {
-        $timeslots = $this->TimeSlots();
+        $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
+        $timeslots = $this->TimeSlots()->filter("SlotTime:GreaterThanOrEqual", $now->format("Y-m-d H:i:s"));
         $timeslotsWithoutSpace = new ArrayList();
         foreach ($timeslots as $timeslot) {
             if ($timeslot->getFreeSlotCount() <= 0) {

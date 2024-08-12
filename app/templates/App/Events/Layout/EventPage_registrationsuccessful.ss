@@ -3,16 +3,9 @@
         <div class="event_text">
             <h1>$Title</h1>
             <hr>
-            <h2>Anmeldung erfolgreich!</h2>
-            <h3>Hey $Registration.Title!</h3>
-            <h4>Du bist erfolgreich für <b>"$Event.Title"</b> am <b>$Event.DateFormatted</b> um <b>$Registration.TimeSlot.SlotTimeFormatted</b> angemeldet.</h4>
-            <p>Sei bitte mindestens 5 Minuten vor deinem gebuchten Slot vor Ort ($Event.Place), damit wir pünktlich starten können.
-            Wir senden dir außerdem eine Email mit einer Anmeldebestätigung und einem Code zum Vorzeigen vor dem Eingang.</p>
-            <% if $Registration.GroupSize == 1 %>
-                <p>Wir freuen uns auf dich!</p>
-            <% else %>
-                <p>Wir freuen uns auf euch $Registration.GroupSize!</p>
-            <% end_if %>
+            <h2>Nur noch ein Schritt, $Registration.Title!</h2>
+            <h4>Dein Platz für <b>"$Event.Title"</b> am <b>$Event.DateFormatted</b> um <b>$Registration.TimeSlot.SlotTimeFormatted</b> ist erfolgreich reserviert.</h4>
+            <p>Bitte bestätige die Reservierung über den Link in der Email, die wir dir soeben gesendet haben.</p>
         </div>
     </div>
 </div>

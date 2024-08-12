@@ -36,6 +36,8 @@ class EventPageController extends PageController
         "RegistrationForm",
         "registrationsuccessful",
         "registrationfull",
+        "registrationconfirm",
+        "couponinvalid",
         "eventnotfound",
         "unsubscribe",
         "unsubscribesuccessful",
@@ -103,6 +105,7 @@ class EventPageController extends PageController
             HiddenField::create("Couponcode", "Couponcode"),
             TextField::create("Title", "Vor- & Nachname"),
             EmailField::create("Email", "E-Mail-Adresse"),
+            NumericField::create("PLZ", "Postleitzahl (optional)"),
             LiteralField::create("DataPrivacyinfo", "Ich habe die <a href='impressum-and-datenschutz'>Datenschutzerklärung</a> gelesen und willige ein, dass meine Daten im Sinne der DSGVO verwendet werden."),
             CheckboxField::create("DataPrivacy", "Datenschutzerklärung akzeptieren"),
         );
@@ -131,13 +134,14 @@ class EventPageController extends PageController
         $event = Event::get()->byId($data["EventID"]);
         $timeslot = EventTimeSlot::get()->byId($data["TimeSlotID"]);
         $groupsize = $data["GroupSize"];
+        $zip = $data["PLZ"];
         $couponcode = $data["Couponcode"];
         $coupon = null;
 
         if ($couponcode) {
             $coupon = EventCoupon::get()->filter("Hash", $couponcode)->First();
             if (!$coupon) {
-                return $this->redirect($this->Link("registrationfull/$event->ID"));
+                return $this->redirect($this->Link("couponinvalid/$event->ID"));
             }
         }
 
@@ -154,6 +158,7 @@ class EventPageController extends PageController
             $registration->EventID = $event->ID;
             $registration->TimeSlotID = $timeslot->ID;
             $registration->GroupSize = $groupsize;
+            $registration->ZIP = $zip;
             $registration->Title = $data["Title"];
             $registration->Email = $data["Email"];
             if ($coupon) {
@@ -201,9 +206,30 @@ class EventPageController extends PageController
         }
     }
 
+    public function registrationconfirm(HTTPRequest $request)
+    {
+        $event_id = $request->param("ID");
+        $event = Event::get()->byId($event_id);
+        $hash = $request->param("OtherID");
+        if (isset($hash) && isset($event)) {
+            $registration = Registration::get()->filter(array(
+                "Hash"=> $hash,
+                "EventID" => $event->ID,
+                ))->First();
+            if ($registration) {
+                $registration->Status = "Confirmed";
+                $registration->write();
+                return array(
+                    "Event" => $event,
+                    "Registration" => $registration,
+                );
+            }
+        }
+    }
+
     public function getEvents()
     {
-        return Event::get()->filter("EventDate:GreaterThan", date("Y-m-d H:i:s"))->sort("EventDate ASC, StartTime ASC");
+        return Event::get()->filter("EventDate:GreaterThanOrEqual", date("Y-m-d H:i:s"))->sort("EventDate ASC, StartTime ASC");
     }
 
     public function getGroupedEvents()

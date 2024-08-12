@@ -15,7 +15,7 @@ class EventAdminPage extends Page
 {
     private static $table_name = 'EventAdminPage';
 
-    private static $icon = "app/client/icons/date.svg";
+    private static $icon = "app/client/icons/events_admin.svg";
 
     public function getCMSFields()
     {

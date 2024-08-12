@@ -7,14 +7,17 @@ use App\Events\Event;
 use App\Events\EventAdmin;
 use Endroid\QrCode\QrCode;
 use App\Events\EventTimeSlot;
-use SilverStripe\Forms\DropdownField;
+use SilverStripe\Assets\File;
+use SilverStripe\Assets\Image;
 use SilverStripe\View\SSViewer;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\View\ArrayData;
+use SilverStripe\Control\Director;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\Encoding\Encoding;
 use SilverStripe\Control\Email\Email;
+use SilverStripe\Forms\DropdownField;
 use Endroid\QrCode\RoundBlockSizeMode;
 use SilverStripe\SiteConfig\SiteConfig;
 use Endroid\QrCode\ErrorCorrectionLevel;
@@ -29,6 +32,7 @@ use Endroid\QrCode\ErrorCorrectionLevel;
  * @property bool $EmailSent
  * @property string $Status
  * @property string $Type
+ * @property int $ZIP
  * @property int $EventID
  * @property int $TimeSlotID
  * @property int $UsedCouponID
@@ -46,6 +50,7 @@ class Registration extends DataObject
         "EmailSent" => "Boolean",
         "Status" => "Varchar(255)",
         "Type" => "Varchar(255)",
+        "ZIP" => "Int",
     ];
 
     private static $has_one = [
@@ -54,7 +59,7 @@ class Registration extends DataObject
         "UsedCoupon" => EventCoupon::class,
     ];
 
-    private static $default_sort = "Created ASC";
+    private static $default_sort = "Status ASC, Created ASC";
 
     private static $field_labels = [
         "Title" => "Name",
@@ -63,9 +68,12 @@ class Registration extends DataObject
         "TimeSlot" => "Zeitslot",
         "Created" => "Datum",
         "Status" => "Status",
+        "GroupSize" => "Gruppengröße",
+        "ZIP" => "PLZ",
     ];
 
     private static $summary_fields = [
+        "StatusText" => "Status",
         "Title" => "Name",
         "Email" => "E-Mail",
         "Created" => "Datum",
@@ -131,6 +139,10 @@ class Registration extends DataObject
     public function sendReceiveConfirmation()
     {
         if ($this->Email != "test@test.de") {
+            $eventpage = EventPage::get()->first();
+            $confirmLink = $eventpage->AbsoluteLink("registrationconfirm/" . $this->EventID . "/" . $this->Hash);
+
+            //Send email to client
             $emailConfirmation = EmailNotification::create();
             $emailConfirmation->Title = SSViewer::execute_string(SiteConfig::current_site_config()->AckMessageSubject, new ArrayData([
                         "Registration" => $this,
@@ -142,7 +154,8 @@ class Registration extends DataObject
                         "Registration" => $this,
                         "Event" => $this->Event,
                         "Name" => $this->Title,
-                        "TimeSlot" => $this->TimeSlot
+                        "TimeSlot" => $this->TimeSlot,
+                        "ConfirmLink" => $confirmLink
                     ]));
             $emailConfirmation->Type = "AckMessage";
             $emailConfirmation->Email = $this->Email;
@@ -151,6 +164,7 @@ class Registration extends DataObject
             $emailConfirmation->write();
 
 
+            //Send email to admin
             $emailNotification = EmailNotification::create();
             $emailNotification->Title = SSViewer::execute_string(SiteConfig::current_site_config()->NewRegisterMessageSubject, new ArrayData([
                 "Registration" => $this,
@@ -210,5 +224,19 @@ class Registration extends DataObject
         ->build();
         header('Content-Type: ' . $qrCode->getMimeType());
         return $qrCode->getDataUri();
+    }
+
+    public function getStatusText()
+    {
+        switch ($this->Status) {
+            case "Registered":
+                return "Registriert";
+            case "Confirmed":
+                return "Bestätigt";
+            case "CheckedIn":
+                return "Eingecheckt";
+            case "Cancelled":
+                return "Gelöscht";
+        }
     }
 }

@@ -55,7 +55,7 @@
                         <% loop $GroupedEvents.GroupedBy('EventDate') %>
                             <% loop $Children %>
                                 <% if $FreeTimeSlots.Count > 0 %>
-                                    <% loop $FreeTimeSlots %>
+                                    <% loop $FreeTimeSlotsInFuture %>
                                         <div class="timeslot_card" data-behaviour="timeslot" data-slotId="$ID" data-slotsize="$getFreeSlotCount" data-eventID="$Parent.ID">
                                             <p class="timeslot_card_time">$SlotTimeFormatted</p>
                                             <p class="timeslot_card_capacity">$AttendeesFormatted</p>
@@ -84,7 +84,6 @@
                         <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="4">4 Personen</a>
                         <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="5">5 Personen</a>
                         <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="6">6 Personen</a>
-                        <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="7">7 Personen</a>
                     </div>
                 </div>
 

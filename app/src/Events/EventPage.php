@@ -25,7 +25,7 @@ class EventPage extends Page
         "HeaderImage"
     ];
 
-    private static $icon = "app/client/icons/date.svg";
+    private static $icon = "app/client/icons/events_admin.svg";
 
     public function getCMSFields()
     {
