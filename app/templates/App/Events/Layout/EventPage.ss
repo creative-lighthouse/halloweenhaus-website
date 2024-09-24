@@ -6,14 +6,14 @@
             <div class="events_navigator" data-behaviour="eventsNavigator">
 
                 <% if $UsesCoupon %>
-                    <div class="events_navigator_step coupon" data-eventstep="couponcode">
+                    <div class="events_navigator_step coupon" data-eventstep="coupon">
                         <h2>Du hast einen Couponcode von uns erhalten, mit dem dir weitere Möglichkeiten zur Buchung offen stehen.</h2>
                         <h2>Bitte gib zuerst deinen Couponcode ein:</h2>
                         <div class="section_selectablelist">
                             <input type="text" class="coupon_input" data-behaviour="coupon_input" placeholder="Couponcode eingeben">
                             <button class="coupon_button" data-behaviour="coupon_button">Absenden</button>
                         </div>
-                        <p data-behaviour="coupon_message">Gib Coupon her digga!</p>
+                        <p data-behaviour="coupon_message">Bitte gib deinen Couponcode ein</p>
                     </div>
                 <% end_if %>
 
@@ -83,7 +83,6 @@
                         <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="3">3 Personen</a>
                         <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="4">4 Personen</a>
                         <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="5">5 Personen</a>
-                        <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="6">6 Personen</a>
                     </div>
                 </div>
 

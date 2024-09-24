@@ -8,16 +8,18 @@ if(eventsNavigator != null){
     var choosenTimeslot = null;
     var selectedGroupsize = 0;
     var availableSlots = 0;
+    var usesCoupon = false;
 
+    const eventStepCoupon = eventsNavigator.querySelector('[data-eventstep="coupon"]');
     const eventStep1 = eventsNavigator.querySelector('[data-eventstep="1"]');
     const eventStep2 = eventsNavigator.querySelector('[data-eventstep="2"]');
     const eventStep3 = eventsNavigator.querySelector('[data-eventstep="3"]');
     const eventStep4 = eventsNavigator.querySelector('[data-eventstep="4"]');
     const eventStep5 = eventsNavigator.querySelector('[data-eventstep="5"]');
 
-    const couponEventStep = eventsNavigator.querySelector('[data-eventstep="coupon"]');
-
-    eventStep1.classList.remove('hidden');
+    const couponButton = eventsNavigator.querySelector('[data-behaviour="coupon_button"]');
+    const couponInput = eventsNavigator.querySelector('[data-behaviour="coupon_input"]');
+    const couponMessage = eventsNavigator.querySelector('[data-behaviour="coupon_message"]');
 
     const dates = eventStep1.querySelectorAll('[data-behaviour="date"]');
     const events = eventStep2.querySelectorAll('[data-behaviour="event"]');
@@ -27,6 +29,12 @@ if(eventsNavigator != null){
     const inputFieldEvent = eventStep5.querySelector('#Form_RegistrationForm_EventID');
     const inputFieldTimeslot = eventStep5.querySelector('#Form_RegistrationForm_TimeSlotID');
     const inputFieldGroupSize = eventStep5.querySelector('#Form_RegistrationForm_GroupSize');
+
+    if (eventStepCoupon) {
+        setupWithCoupon();
+    } else {
+        setupWithoutCoupon();
+    }
 
     dates.forEach(date => {
         date.addEventListener('click', () => {
@@ -171,4 +179,68 @@ if(eventsNavigator != null){
             });
         });
     });
+
+
+    function setupWithoutCoupon() {
+        eventStep1.classList.remove('hidden');
+        eventStep2.classList.add('hidden');
+        eventStep3.classList.add('hidden');
+        eventStep4.classList.add('hidden');
+        eventStep5.classList.add('hidden');
+        console.log('Setup without coupon');
+    }
+
+
+    function setupWithCoupon() {
+        eventStep1.classList.add('hidden');
+        eventStep2.classList.add('hidden');
+        eventStep3.classList.add('hidden');
+        eventStep4.classList.add('hidden');
+        eventStep5.classList.add('hidden');
+        console.log('Setup with coupon');
+        couponButton.addEventListener('click', () => {
+            checkCoupon();
+        });
+    }
+
+
+    function checkCoupon() {
+        console.log('Check coupon');
+        //Check if coupon is valid with ajax
+        //If valid, show eventStep1
+        //If invalid, show event
+
+        eventStepCoupon.classList.add('loading');
+
+        //fetch request to check coupon (with current domain + checkCoupon)
+        const currentadress = window.location.href;
+        const url = new URL(currentadress);
+        const path = url.pathname;
+        const checkCouponPath = path + '/checkCoupon' + "/" + couponInput.value;
+
+        fetch(checkCouponPath, {
+            method: 'POST',
+            body: JSON.stringify({
+                coupon: eventStepCoupon.querySelector('input').value
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.json())
+        .then(data => {
+            console.log(data);
+            eventStepCoupon.classList.remove('loading');
+
+            if (data.Valid) {
+                eventStep1.classList.remove('hidden');
+                couponMessage.innerHTML = "Coupon (" + data.Title + ") ist gültig!";
+                usesCoupon = true;
+            } else {
+                eventStepCoupon.classList.add('invalid');
+                couponMessage.innerHTML = data.Message;
+                usesCoupon = false;
+                setupWithCoupon();
+            }
+        });
+    }
 }

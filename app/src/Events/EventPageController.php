@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Events;
 
 use PageController;
@@ -47,8 +48,7 @@ class EventPageController extends PageController
 
     public function index(HTTPRequest $request)
     {
-        return array
-        (
+        return array(
             "UsesCoupon" => $request->getVar("coupon"),
         );
     }
@@ -213,9 +213,9 @@ class EventPageController extends PageController
         $hash = $request->param("OtherID");
         if (isset($hash) && isset($event)) {
             $registration = Registration::get()->filter(array(
-                "Hash"=> $hash,
+                "Hash" => $hash,
                 "EventID" => $event->ID,
-                ))->First();
+            ))->First();
             if ($registration) {
                 $registration->Status = "Confirmed";
                 $registration->write();
