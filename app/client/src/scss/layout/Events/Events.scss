@@ -16,6 +16,7 @@
             border-radius: 20px;
             color: black;
             overflow: hidden;
+            padding: 10px;
 
             .events_navigator_step{
                 max-height: 700px;
@@ -56,6 +57,10 @@
                             background-color: $ColorSecondaryDark;
                         }
                     }
+
+                    &.hidden{
+                        display: none;
+                    }
                 }
 
                 .coupon_message{
@@ -72,6 +77,20 @@
                     }
                 }
 
+                .coupon_reset{
+                    display: block;
+                    text-align: center;
+                    margin: 10px 0 0px 0;
+                    cursor: pointer;
+                    color: $ColorSecondary;
+                    font-weight: 700;
+                    font-size: 12px;
+
+                    &.hidden {
+                        display: none;
+                    }
+                }
+
                 .coupon_description{
                     text-align: center;
                     margin: 10px 0 20px 0;
@@ -83,6 +102,13 @@
                     justify-content: center;
                     align-items: center;
                     flex-wrap: wrap;
+                }
+
+                &.coupon{
+                    h3{
+                        text-align: center;
+                        margin: 10px 0;
+                    }
                 }
 
                 &.selected{
@@ -222,6 +248,10 @@
                             background-color: $ColorSecondary;
                             color: $ColorWhite;
                         }
+
+                        @include media("<desktop"){
+                            width: 100%;
+                        }
                     }
                 }
 
@@ -307,6 +337,8 @@
                 &.form{
                     padding: 20px;
                     background-color: rgb(216, 216, 216);
+                    border-radius: 10px;
+                    text-align: center;
 
                     a{
                         color: $ColorSecondary;

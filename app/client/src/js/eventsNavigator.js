@@ -21,6 +21,8 @@ if(eventsNavigator != null){
     const couponInput = eventsNavigator.querySelector('[data-behaviour="coupon_input"]');
     const couponMessage = eventsNavigator.querySelector('[data-behaviour="coupon_message"]');
     const couponDescription = eventsNavigator.querySelector('[data-behaviour="coupon_description"]');
+    const couponReset = eventsNavigator.querySelector('[data-behaviour="coupon_reset"]');
+    const couponForm = eventsNavigator.querySelector('[data-behaviour="coupon_form"]');
 
     const dates = eventStep1.querySelectorAll('[data-behaviour="date"]');
     const events = eventStep2.querySelectorAll('[data-behaviour="event"]');
@@ -185,6 +187,7 @@ if(eventsNavigator != null){
         coupontimeslots.forEach(ts => {
             ts.classList.add('hidden');
         });
+        couponReset.classList.add('hidden');
     }
 
 
@@ -202,6 +205,17 @@ if(eventsNavigator != null){
             if (event.key === "Enter") {
                 checkCoupon();
             }
+        });
+        couponReset.addEventListener('click', () => {
+            couponForm.classList.remove('hidden');
+            couponMessage.innerHTML = '';
+            couponDescription.innerHTML = '';
+            couponReset.classList.add('hidden');
+            couponMessage.classList.remove('valid');
+            couponMessage.classList.remove('invalid');
+            usesCoupon = false;
+            couponInput.value = '';
+            setupWithCoupon();
         });
         timeslots.forEach(ts => {
             ts.classList.add('hidden');
@@ -244,12 +258,14 @@ if(eventsNavigator != null){
 
             if (data.Valid) {
                 eventStep1.classList.remove('hidden');
-                couponMessage.innerHTML = "Coupon (" + data.Title + ") ist gültig!";
+                couponMessage.innerHTML = "Der Code " + data.Code + " (" + data.Title + ") ist gültig!";
                 usesCoupon = true;
                 inputFieldCouponcode.value = couponInput.value;
                 couponMessage.classList.add('valid');
                 couponMessage.classList.remove('invalid');
                 couponDescription.innerHTML = data.Description;
+                couponReset.classList.remove('hidden');
+                couponForm.classList.add('hidden');
             } else {
                 eventStepCoupon.classList.add('invalid');
                 couponMessage.innerHTML = data.Message;
@@ -257,6 +273,8 @@ if(eventsNavigator != null){
                 couponMessage.classList.add('invalid');
                 couponMessage.classList.remove('valid');
                 couponDescription.innerHTML = '';
+                couponReset.classList.add('hidden');
+                couponForm.classList.remove('hidden');
                 setupWithCoupon();
             }
         });

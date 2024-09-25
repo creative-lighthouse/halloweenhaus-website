@@ -7,11 +7,12 @@
 
                 <% if $UsesCoupon %>
                     <div class="events_navigator_step coupon" data-eventstep="coupon">
-                        <h2>Glückwunsch! Du hast einen Couponcode von uns erhalten, mit dem dir weitere Möglichkeiten zur Buchung offen stehen.</h2>
-                        <div class="section_couponform">
+                        <h3>Glückwunsch! Du hast einen Coupon von uns erhalten, mit dem dir weitere Möglichkeiten zur Buchung offen stehen.</h3>
+                        <div class="section_couponform" data-behaviour="coupon_form">
                             <input type="text" class="coupon_input" data-behaviour="coupon_input" placeholder="Couponcode eingeben">
-                            <button class="coupon_button" data-behaviour="coupon_button">Coupon Absenden</button>
+                            <button class="coupon_button" data-behaviour="coupon_button">Absenden</button>
                         </div>
+                        <a class="coupon_reset" data-behaviour="coupon_reset">X Coupon entfernen</a>
                         <p class="coupon_message" data-behaviour="coupon_message">Bitte gib deinen Couponcode ein</p>
                         <p class="coupon_description" data-behaviour="coupon_description"></p>
                     </div>
