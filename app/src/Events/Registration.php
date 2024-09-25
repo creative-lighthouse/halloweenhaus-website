@@ -29,7 +29,8 @@ use Endroid\QrCode\ErrorCorrectionLevel;
  * @property string $Email
  * @property int $GroupSize
  * @property string $Hash
- * @property bool $EmailSent
+ * @property bool $ConfirmEmailSent
+ * @property bool $TicketEmailSent
  * @property string $Status
  * @property string $Type
  * @property int $ZIP
@@ -47,7 +48,8 @@ class Registration extends DataObject
         "Email" => "Varchar(255)",
         "GroupSize" => "Int",
         "Hash" => "Varchar(255)",
-        "EmailSent" => "Boolean",
+        "ConfirmEmailSent" => "Boolean",
+        "TicketEmailSent" => "Boolean",
         "Status" => "Varchar(255)",
         "Type" => "Varchar(255)",
         "ZIP" => "Int",
@@ -186,7 +188,39 @@ class Registration extends DataObject
             $emailNotification->Registration = $this;
             $emailNotification->write();
 
-            $this->EmailSent = true;
+            $this->ConfirmEmailSent = true;
+            $this->write();
+        }
+    }
+
+    public function sendTicketEmail()
+    {
+        if ($this->Email != "test@test.de") {
+            $eventpage = EventPage::get()->first();
+            $confirmLink = $eventpage->AbsoluteLink("ticket/" . $this->Hash);
+
+            //Send email to client
+            $emailConfirmation = EmailNotification::create();
+            $emailConfirmation->Title = SSViewer::execute_string(SiteConfig::current_site_config()->TicketMessageSubject, new ArrayData([
+                "Registration" => $this,
+                "Event" => $this->Event,
+                "Name" => $this->Title,
+                "TimeSlot" => $this->TimeSlot
+            ]));
+            $emailConfirmation->Text = SSViewer::execute_string(SiteConfig::current_site_config()->TicketMessageContent, new ArrayData([
+                "Registration" => $this,
+                "Event" => $this->Event,
+                "Name" => $this->Title,
+                "TimeSlot" => $this->TimeSlot,
+                "TicketLink" => $confirmLink
+            ]));
+            $emailConfirmation->Type = "AckMessage";
+            $emailConfirmation->Email = $this->Email;
+            $emailConfirmation->Event = $this->Event;
+            $emailConfirmation->Registration = $this;
+            $emailConfirmation->write();
+
+            $this->TicketEmailSent = true;
             $this->write();
         }
     }

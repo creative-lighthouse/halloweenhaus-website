@@ -18,6 +18,8 @@ use SilverStripe\ORM\DataExtension;
  * @property string $BannerText
  * @property string $AckMessageSubject
  * @property string $AckMessageContent
+ * @property string $TicketMessageSubject
+ * @property string $TicketMessageContent
  * @property string $NewRegisterMessageSubject
  * @property string $NewRegisterMessageContent
  * @property bool $EmailsActive
@@ -32,6 +34,8 @@ class CustomSiteConfig extends DataExtension
         "BannerText" => "HTMLText",
         'AckMessageSubject' => 'Varchar(255)',
         'AckMessageContent' => 'HTMLText',
+        'TicketMessageSubject' => 'Varchar(255)',
+        'TicketMessageContent' => 'HTMLText',
         'NewRegisterMessageSubject' => 'Varchar(255)',
         'NewRegisterMessageContent' => 'HTMLText',
         'EmailsActive' => 'Boolean',
@@ -49,6 +53,8 @@ class CustomSiteConfig extends DataExtension
         $fields->addFieldToTab("Root.Main", new HTMLEditorField("BannerText", "Banner Text"));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('AckMessageSubject', 'Empfangsbestätigung Betreff'));
         $fields->addFieldToTab('Root.Event Emails', HTMLEditorField::create('AckMessageContent', 'Empfangsbestätigung Inhalt'));
+        $fields->addFieldToTab('Root.Event Emails', TextField::create('TicketMessageSubject', 'Ticket-Email Betreff'));
+        $fields->addFieldToTab('Root.Event Emails', HTMLEditorField::create('TicketMessageContent', 'Ticket-Email Inhalt'));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('NewRegisterMessageSubject', 'Neue Anmeldung Betreff'));
         $fields->addFieldToTab('Root.Event Emails', HTMLEditorField::create('NewRegisterMessageContent', 'Neue Anmeldung Inhalt'));
         $fields->addFieldToTab('Root.Event Emails', CheckboxField::create('EmailsActive', 'E-Mails aktiviert'));
