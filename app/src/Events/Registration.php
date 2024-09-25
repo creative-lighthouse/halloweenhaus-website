@@ -135,12 +135,12 @@ class Registration extends DataObject
     {
         parent::onAfterWrite();
 
-        //if (!$this->ConfirmEmailSent && SiteConfig::current_site_config()->EmailsActive) {
-        //    $this->sendReceiveConfirmation();
-        //}
-        //if ($this->Status == "Confirmed" && !$this->TicketEmailSent && SiteConfig::current_site_config()->EmailsActive) {
-        //    $this->sendTicketEmail();
-        //}
+        if (!$this->ConfirmEmailSent && SiteConfig::current_site_config()->EmailsActive) {
+            $this->sendReceiveConfirmation();
+        }
+        if ($this->Status == "Confirmed" && !$this->TicketEmailSent && SiteConfig::current_site_config()->EmailsActive) {
+            $this->sendTicketEmail();
+        }
     }
 
     public function sendReceiveConfirmation()
