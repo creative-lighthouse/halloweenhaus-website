@@ -80,7 +80,8 @@ class Registration extends DataObject
     ];
 
     private static $searchable_fields = [
-        "Title", "Email",
+        "Title",
+        "Email",
     ];
 
     private static $table_name = "Registration";
@@ -96,12 +97,13 @@ class Registration extends DataObject
         $fields->addFieldsToTab(
             "Root.Main",
             array(
-            new DropdownField("Status", "Status", [
-                "Registered" => "Registered",
-                "Confirmed" => "Confirmed",
-                "CheckedIn" => "CheckedIn",
-                "Cancelled" => "Cancelled",
-            ]))
+                new DropdownField("Status", "Status", [
+                    "Registered" => "Registered",
+                    "Confirmed" => "Confirmed",
+                    "CheckedIn" => "CheckedIn",
+                    "Cancelled" => "Cancelled",
+                ])
+            )
         );
         $fields->removeByName("Type");
 
@@ -131,7 +133,7 @@ class Registration extends DataObject
     {
         parent::onAfterWrite();
 
-        if (!$this->EmailSent) {
+        if (!$this->EmailSent && SiteConfig::current_site_config()->EmailsActive) {
             $this->sendReceiveConfirmation();
         }
     }
@@ -145,18 +147,18 @@ class Registration extends DataObject
             //Send email to client
             $emailConfirmation = EmailNotification::create();
             $emailConfirmation->Title = SSViewer::execute_string(SiteConfig::current_site_config()->AckMessageSubject, new ArrayData([
-                        "Registration" => $this,
-                        "Event" => $this->Event,
-                        "Name" => $this->Title,
-                        "TimeSlot" => $this->TimeSlot
-                    ]));
+                "Registration" => $this,
+                "Event" => $this->Event,
+                "Name" => $this->Title,
+                "TimeSlot" => $this->TimeSlot
+            ]));
             $emailConfirmation->Text = SSViewer::execute_string(SiteConfig::current_site_config()->AckMessageContent, new ArrayData([
-                        "Registration" => $this,
-                        "Event" => $this->Event,
-                        "Name" => $this->Title,
-                        "TimeSlot" => $this->TimeSlot,
-                        "ConfirmLink" => $confirmLink
-                    ]));
+                "Registration" => $this,
+                "Event" => $this->Event,
+                "Name" => $this->Title,
+                "TimeSlot" => $this->TimeSlot,
+                "ConfirmLink" => $confirmLink
+            ]));
             $emailConfirmation->Type = "AckMessage";
             $emailConfirmation->Email = $this->Email;
             $emailConfirmation->Event = $this->Event;
@@ -212,16 +214,16 @@ class Registration extends DataObject
         $validateLink = EventAdminPage::get()->first()->AbsoluteLink("checkRegistration") . "/" . $this->Hash;
 
         $qrCode = Builder::create()
-        ->writer(new PngWriter())
-        ->writerOptions([])
-        ->data($validateLink)
-        ->encoding(new Encoding('UTF-8'))
-        ->errorCorrectionLevel(ErrorCorrectionLevel::High)
-        ->size(300)
-        ->margin(10)
-        ->roundBlockSizeMode(RoundBlockSizeMode::Margin)
-        ->validateResult(false)
-        ->build();
+            ->writer(new PngWriter())
+            ->writerOptions([])
+            ->data($validateLink)
+            ->encoding(new Encoding('UTF-8'))
+            ->errorCorrectionLevel(ErrorCorrectionLevel::High)
+            ->size(300)
+            ->margin(10)
+            ->roundBlockSizeMode(RoundBlockSizeMode::Margin)
+            ->validateResult(false)
+            ->build();
         header('Content-Type: ' . $qrCode->getMimeType());
         return $qrCode->getDataUri();
     }

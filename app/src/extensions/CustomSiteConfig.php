@@ -20,6 +20,7 @@ use SilverStripe\ORM\DataExtension;
  * @property string $AckMessageContent
  * @property string $NewRegisterMessageSubject
  * @property string $NewRegisterMessageContent
+ * @property bool $EmailsActive
  */
 class CustomSiteConfig extends DataExtension
 {
@@ -33,6 +34,11 @@ class CustomSiteConfig extends DataExtension
         'AckMessageContent' => 'HTMLText',
         'NewRegisterMessageSubject' => 'Varchar(255)',
         'NewRegisterMessageContent' => 'HTMLText',
+        'EmailsActive' => 'Boolean',
+    ];
+
+    private static $defaults = [
+        'EmailsActive' => true,
     ];
 
     public function updateCMSFields(FieldList $fields)
@@ -45,5 +51,6 @@ class CustomSiteConfig extends DataExtension
         $fields->addFieldToTab('Root.Event Emails', HTMLEditorField::create('AckMessageContent', 'Empfangsbestätigung Inhalt'));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('NewRegisterMessageSubject', 'Neue Anmeldung Betreff'));
         $fields->addFieldToTab('Root.Event Emails', HTMLEditorField::create('NewRegisterMessageContent', 'Neue Anmeldung Inhalt'));
+        $fields->addFieldToTab('Root.Event Emails', CheckboxField::create('EmailsActive', 'E-Mails aktiviert'));
     }
 }

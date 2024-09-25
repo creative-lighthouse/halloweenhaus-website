@@ -18,6 +18,8 @@ use SilverStripe\ORM\FieldType\DBDatetime;
  * @property string $Description
  * @property string $Type
  * @property string $Hash
+ * @property int $UsedCount
+ * @property int $MaxUses
  */
 class EventCoupon extends DataObject
 {
@@ -26,6 +28,8 @@ class EventCoupon extends DataObject
         "Description" => "Text",
         "Type" => "Varchar(255)",
         "Hash" => "Varchar(255)",
+        "UsedCount" => "Int",
+        "MaxUses" => "Int",
     ];
 
     private static $belongs_many = [

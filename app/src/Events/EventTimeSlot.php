@@ -68,7 +68,19 @@ class EventTimeSlot extends DataObject
 
     public function getRegistrationsCount()
     {
-        $allRegistrations = Registration::get()->filter(["TimeSlotID" => $this->ID]);
+        $allRegistrations = Registration::get()->filter(["TimeSlotID" => $this->ID, "UsedCouponID" => 0]);
+        $registrationCount = 0;
+        foreach ($allRegistrations as $registration) {
+            if ($registration->Event()->ID == $this->ParentID) {
+                $registrationCount += $registration->GroupSize;
+            }
+        }
+        return $registrationCount;
+    }
+
+    public function getCouponRegistrationsCount()
+    {
+        $allRegistrations = Registration::get()->filter(["TimeSlotID" => $this->ID, "UsedCouponID:not" => 0]);
         $registrationCount = 0;
         foreach ($allRegistrations as $registration) {
             if ($registration->Event()->ID == $this->ParentID) {
@@ -83,9 +95,19 @@ class EventTimeSlot extends DataObject
         return $this->MaxAttendees - $this->getRegistrationsCount() . " Plätze frei";
     }
 
+    public function CouponAttendeesFormatted()
+    {
+        return $this->MaxVIPs - $this->getCouponRegistrationsCount() . " Plätze frei";
+    }
+
     public function getFreeSlotCount()
     {
         return $this->MaxAttendees - $this->getRegistrationsCount();
+    }
+
+    public function getFreeCouponSlotCount()
+    {
+        return $this->MaxVIPs - $this->getCouponRegistrationsCount();
     }
 
     public function getSlotTimeFormatted()

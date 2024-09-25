@@ -82,12 +82,21 @@ class EventPageController extends PageController
         $coupon = EventCoupon::get()->filter("Hash", $hash)->First();
 
         if ($coupon) {
-            $json["Valid"] = true;
-            $json["Message"] = "Code gültig";
-            $json["Title"] = $coupon->Title;
-            $json["Type"] = $coupon->Type;
-            $json["Code"] = $coupon->Hash;
-            $json["Description"] = $coupon->Description;
+            if ($coupon->MaxUses > 0 && $coupon->UsedCount >= $coupon->MaxUses) {
+                $json["Valid"] = false;
+                if ($coupon->MaxUses == 1) {
+                    $json["Message"] = "Dieser Code wurde bereits verwendet";
+                } else {
+                    $json["Message"] = "Dieser Code wurde bereits zu oft verwendet";
+                }
+            } else {
+                $json["Valid"] = true;
+                $json["Message"] = "Code gültig";
+                $json["Title"] = $coupon->Title;
+                $json["Type"] = $coupon->Type;
+                $json["Code"] = $coupon->Hash;
+                $json["Description"] = $coupon->Description;
+            }
         }
 
         $this->response->addHeader('Content-Type', 'application/json');
@@ -105,7 +114,7 @@ class EventPageController extends PageController
             HiddenField::create("Couponcode", "Couponcode"),
             TextField::create("Title", "Vor- & Nachname"),
             EmailField::create("Email", "E-Mail-Adresse"),
-            NumericField::create("PLZ", "Postleitzahl (optional)"),
+            NumericField::create("PLZ", "Postleitzahl (optional)")->setHTML5(true),
             LiteralField::create("DataPrivacyinfo", "Ich habe die <a href='impressum-and-datenschutz'>Datenschutzerklärung</a> gelesen und willige ein, dass meine Daten im Sinne der DSGVO verwendet werden."),
             CheckboxField::create("DataPrivacy", "Datenschutzerklärung akzeptieren"),
         );
@@ -166,6 +175,11 @@ class EventPageController extends PageController
             }
             $registration->Hash = md5($data["Email"] . $event->ID . $timeslot->ID . $groupsize . date("Y-m-d H:i:s"));
             $registration->Status = "Registered";
+
+            if ($coupon) {
+                $coupon->UsedCount++;
+                $coupon->write();
+            }
 
             $registration->write();
 

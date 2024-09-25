@@ -21,6 +21,62 @@
                 max-height: 700px;
                 transition: 0.2s ease-in-out;
 
+                .section_couponform{
+                    margin: 10px 0;
+                    display: flex;
+                    width: 100%;
+                    justify-content: center;
+                    align-items: center;
+
+                    label{
+                        font-weight: 700;
+                    }
+
+                    input{
+                        padding: 10px;
+                        border-radius: 10px 0 0 10px;
+                        border: 1px solid rgb(216, 216, 216);
+                        height: 100%;
+                        line-height: 18px;
+                    }
+
+                    button{
+                        padding: 10px 20px;
+                        border-radius: 0 10px 10px 0;
+                        border: none;
+                        background-color: $ColorSecondary;
+                        color: $ColorWhite;
+                        cursor: pointer;
+                        font-weight: 700;
+                        height: 100%;
+                        transition: background-color 0.1s ease-in-out;
+                        line-height: 18px;
+
+                        &:hover{
+                            background-color: $ColorSecondaryDark;
+                        }
+                    }
+                }
+
+                .coupon_message{
+                    text-align: center;
+                    margin: 10px 0 0px 0;
+                    opacity: 0.5;
+
+                    &.valid{
+                        color: green;
+                    }
+
+                    &.invalid{
+                        color: red;
+                    }
+                }
+
+                .coupon_description{
+                    text-align: center;
+                    margin: 10px 0 20px 0;
+                }
+
                 .section_selectablelist{
                     display: flex;
                     margin: 10px auto 20px;

@@ -7,13 +7,13 @@
 
                 <% if $UsesCoupon %>
                     <div class="events_navigator_step coupon" data-eventstep="coupon">
-                        <h2>Du hast einen Couponcode von uns erhalten, mit dem dir weitere Möglichkeiten zur Buchung offen stehen.</h2>
-                        <h2>Bitte gib zuerst deinen Couponcode ein:</h2>
-                        <div class="section_selectablelist">
+                        <h2>Glückwunsch! Du hast einen Couponcode von uns erhalten, mit dem dir weitere Möglichkeiten zur Buchung offen stehen.</h2>
+                        <div class="section_couponform">
                             <input type="text" class="coupon_input" data-behaviour="coupon_input" placeholder="Couponcode eingeben">
-                            <button class="coupon_button" data-behaviour="coupon_button">Absenden</button>
+                            <button class="coupon_button" data-behaviour="coupon_button">Coupon Absenden</button>
                         </div>
-                        <p data-behaviour="coupon_message">Bitte gib deinen Couponcode ein</p>
+                        <p class="coupon_message" data-behaviour="coupon_message">Bitte gib deinen Couponcode ein</p>
+                        <p class="coupon_description" data-behaviour="coupon_description"></p>
                     </div>
                 <% end_if %>
 
@@ -62,13 +62,30 @@
                                         </div>
                                     <% end_loop %>
                                     <% loop $FullTimeSlots %>
-                                        <div class="timeslot_card timeslot_card--full">
+                                        <div class="timeslot_card timeslot_card--full" data-behaviour="timeslot" data-slotId="$ID" data-slotsize="0" data-eventID="$Parent.ID">
                                             <p class="timeslot_card_time">$SlotTimeFormatted</p>
                                             <p class="timeslot_card_capacity">Ausgebucht!</p>
                                         </div>
                                     <% end_loop %>
                                 <% else %>
                                     <p class="timeslot_card timeslot_card--text" data-behaviour="timeslot" data-slotsize="0" data-eventID="$ID">Keine freien Zeitslots an diesem Tag verfügbar.</p>
+                                <% end_if %>
+
+                                <% if $FreeCouponTimeSlots.Count > 0 %>
+                                    <% loop $FreeCouponTimeSlotsInFuture %>
+                                        <div class="timeslot_card" data-behaviour="coupontimeslot" data-slotId="$ID" data-slotsize="$getFreeCouponSlotCount" data-eventID="$Parent.ID">
+                                            <p class="timeslot_card_time">$SlotTimeFormatted</p>
+                                            <p class="timeslot_card_capacity">$CouponAttendeesFormatted</p>
+                                        </div>
+                                    <% end_loop %>
+                                    <% loop $FullCouponTimeSlots %>
+                                        <div class="timeslot_card timeslot_card--full" data-behaviour="coupontimeslot" data-slotId="$ID" data-slotsize="0" data-eventID="$Parent.ID">
+                                            <p class="timeslot_card_time">$SlotTimeFormatted</p>
+                                            <p class="timeslot_card_capacity">Ausgebucht!</p>
+                                        </div>
+                                    <% end_loop %>
+                                <% else %>
+                                    <p class="timeslot_card timeslot_card--text" data-behaviour="coupontimeslot" data-slotsize="0" data-eventID="$ID">Keine freien Zeitslots an diesem Tag verfügbar.</p>
                                 <% end_if %>
                             <% end_loop %>
                         <% end_loop %>

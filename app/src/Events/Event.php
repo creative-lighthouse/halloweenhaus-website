@@ -79,7 +79,8 @@ class Event extends DataObject
     ];
 
     private static $searchable_fields = [
-        "Title", "Description",
+        "Title",
+        "Description",
     ];
 
     private static $table_name = "Event";
@@ -186,6 +187,18 @@ class Event extends DataObject
         return $timeslotsWithSpace;
     }
 
+    public function FreeCouponTimeSlots()
+    {
+        $timeslots = $this->TimeSlots();
+        $timeslotsWithSpace = new ArrayList();
+        foreach ($timeslots as $timeslot) {
+            if ($timeslot->getFreeSlotCount() > 0) {
+                $timeslotsWithSpace->push($timeslot);
+            }
+        }
+        return $timeslotsWithSpace;
+    }
+
     public function FreeTimeSlotsInFuture()
     {
         $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
@@ -199,6 +212,19 @@ class Event extends DataObject
         return $timeslotsWithSpace;
     }
 
+    public function FreeCouponTimeSlotsInFuture()
+    {
+        $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
+        $timeslots = $this->TimeSlots()->filter("SlotTime:GreaterThanOrEqual", $now->format("Y-m-d H:i:s"));
+        $timeslotsWithSpace = new ArrayList();
+        foreach ($timeslots as $timeslot) {
+            if ($timeslot->getFreeCouponSlotCount() > 0) {
+                $timeslotsWithSpace->push($timeslot);
+            }
+        }
+        return $timeslotsWithSpace;
+    }
+
     public function FullTimeSlots()
     {
         $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
@@ -206,6 +232,19 @@ class Event extends DataObject
         $timeslotsWithoutSpace = new ArrayList();
         foreach ($timeslots as $timeslot) {
             if ($timeslot->getFreeSlotCount() <= 0) {
+                $timeslotsWithoutSpace->push($timeslot);
+            }
+        }
+        return $timeslotsWithoutSpace;
+    }
+
+    public function FullCouponTimeSlots()
+    {
+        $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
+        $timeslots = $this->TimeSlots()->filter("SlotTime:GreaterThanOrEqual", $now->format("Y-m-d H:i:s"));
+        $timeslotsWithoutSpace = new ArrayList();
+        foreach ($timeslots as $timeslot) {
+            if ($timeslot->getFreeCouponSlotCount() <= 0) {
                 $timeslotsWithoutSpace->push($timeslot);
             }
         }

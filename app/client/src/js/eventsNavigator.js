@@ -20,17 +20,28 @@ if(eventsNavigator != null){
     const couponButton = eventsNavigator.querySelector('[data-behaviour="coupon_button"]');
     const couponInput = eventsNavigator.querySelector('[data-behaviour="coupon_input"]');
     const couponMessage = eventsNavigator.querySelector('[data-behaviour="coupon_message"]');
+    const couponDescription = eventsNavigator.querySelector('[data-behaviour="coupon_description"]');
 
     const dates = eventStep1.querySelectorAll('[data-behaviour="date"]');
     const events = eventStep2.querySelectorAll('[data-behaviour="event"]');
     const timeslots = eventStep3.querySelectorAll('[data-behaviour="timeslot"]');
+    const coupontimeslots = eventStep3.querySelectorAll('[data-behaviour="coupontimeslot"]');
     const groupsizes = eventStep4.querySelectorAll('[data-behaviour="groupsize-button"]');
 
     const inputFieldEvent = eventStep5.querySelector('#Form_RegistrationForm_EventID');
     const inputFieldTimeslot = eventStep5.querySelector('#Form_RegistrationForm_TimeSlotID');
     const inputFieldGroupSize = eventStep5.querySelector('#Form_RegistrationForm_GroupSize');
+    const inputFieldCouponcode = eventStep5.querySelector('#Form_RegistrationForm_Couponcode');
 
     if (eventStepCoupon) {
+        //Fill Coupon field with coupon from address
+        const currentadress = window.location.href;
+        const url = new URL(currentadress);
+        const coupon = url.searchParams.get('coupon');
+        if (coupon) {
+            couponInput.value = coupon;
+            checkCoupon();
+        }
         setupWithCoupon();
     } else {
         setupWithoutCoupon();
@@ -100,56 +111,38 @@ if(eventsNavigator != null){
                 }
             });
 
-            //Filter timeslots for selected event
-            timeslots.forEach(timeslot => {
-                timeslot.classList.remove('selected');
-                if(timeslot.getAttribute('data-eventID') == choosenEvent.getAttribute('data-eventID')){
-                    timeslot.classList.remove('hidden');
-                } else {
-                    timeslot.classList.add('hidden');
-                }
-            });
+            if (usesCoupon) {
+                //Filter timeslots for selected event
+                coupontimeslots.forEach(timeslot => {
+                    timeslot.classList.remove('selected');
+                    if (timeslot.getAttribute('data-eventID') == choosenEvent.getAttribute('data-eventID')) {
+                        timeslot.classList.remove('hidden');
+                    } else {
+                        timeslot.classList.add('hidden');
+                    }
+                });
+                timeslots.forEach(ts => {
+                    ts.classList.add('hidden');
+                });
+            } else {
+                //Filter timeslots for selected event
+                timeslots.forEach(timeslot => {
+                    timeslot.classList.remove('selected');
+                    if (timeslot.getAttribute('data-eventID') == choosenEvent.getAttribute('data-eventID')) {
+                        timeslot.classList.remove('hidden');
+                    } else {
+                        timeslot.classList.add('hidden');
+                    }
+                });
+                coupontimeslots.forEach(ts => {
+                    ts.classList.add('hidden');
+                });
+            }
 
             groupsizes.forEach(gs => {
                 gs.classList.remove('selected');
                 if(gs === selectedGroupsize){
                     gs.classList.add('selected');
-                }
-            });
-        });
-    });
-
-    timeslots.forEach(timeslot => {
-        timeslot.addEventListener('click', () => {
-            eventStep4.classList.remove('hidden');
-            eventStep5.classList.add('hidden');
-
-            choosenTimeslot = timeslot;
-            availableSlots = parseInt(choosenTimeslot.getAttribute('data-slotsize'));
-            inputFieldTimeslot.value = choosenTimeslot.getAttribute('data-slotId');
-            inputFieldGroupSize.max = availableSlots;
-
-            const y4 = eventStep4.getBoundingClientRect().top + window.scrollY;
-            setTimeout( () =>{
-                window.scrollTo({
-                    top: y4,
-                    behavior: 'smooth'
-                });
-            }, 200);
-
-
-            timeslots.forEach(ts => {
-                ts.classList.remove('selected');
-                if(ts === choosenTimeslot){
-                    ts.classList.add('selected');
-                }
-            });
-
-            groupsizes.forEach(gs => {
-                gs.classList.remove('hidden');
-                gs.classList.remove('selected');
-                if(parseInt(gs.getAttribute('data-groupsize')) > availableSlots){
-                    gs.classList.add('hidden');
                 }
             });
         });
@@ -188,6 +181,10 @@ if(eventsNavigator != null){
         eventStep4.classList.add('hidden');
         eventStep5.classList.add('hidden');
         console.log('Setup without coupon');
+        setupTimeslots();
+        coupontimeslots.forEach(ts => {
+            ts.classList.add('hidden');
+        });
     }
 
 
@@ -201,6 +198,15 @@ if(eventsNavigator != null){
         couponButton.addEventListener('click', () => {
             checkCoupon();
         });
+        couponInput.addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                checkCoupon();
+            }
+        });
+        timeslots.forEach(ts => {
+            ts.classList.add('hidden');
+        });
+        setupCouponTimeslots();
     }
 
 
@@ -209,6 +215,11 @@ if(eventsNavigator != null){
         //Check if coupon is valid with ajax
         //If valid, show eventStep1
         //If invalid, show event
+
+        if (couponInput.value == '') {
+            couponMessage.innerHTML = "Bitte geben Sie einen Coupon ein!";
+            return;
+        }
 
         eventStepCoupon.classList.add('loading');
 
@@ -235,12 +246,95 @@ if(eventsNavigator != null){
                 eventStep1.classList.remove('hidden');
                 couponMessage.innerHTML = "Coupon (" + data.Title + ") ist gültig!";
                 usesCoupon = true;
+                inputFieldCouponcode.value = couponInput.value;
+                couponMessage.classList.add('valid');
+                couponMessage.classList.remove('invalid');
+                couponDescription.innerHTML = data.Description;
             } else {
                 eventStepCoupon.classList.add('invalid');
                 couponMessage.innerHTML = data.Message;
                 usesCoupon = false;
+                couponMessage.classList.add('invalid');
+                couponMessage.classList.remove('valid');
+                couponDescription.innerHTML = '';
                 setupWithCoupon();
             }
+        });
+    }
+
+    function setupTimeslots(){
+        timeslots.forEach(timeslot => {
+            timeslot.addEventListener('click', () => {
+                eventStep4.classList.remove('hidden');
+                eventStep5.classList.add('hidden');
+
+                choosenTimeslot = timeslot;
+                availableSlots = parseInt(choosenTimeslot.getAttribute('data-slotsize'));
+                inputFieldTimeslot.value = choosenTimeslot.getAttribute('data-slotId');
+                inputFieldGroupSize.max = availableSlots;
+
+                const y4 = eventStep4.getBoundingClientRect().top + window.scrollY;
+                setTimeout( () =>{
+                    window.scrollTo({
+                        top: y4,
+                        behavior: 'smooth'
+                    });
+                }, 200);
+
+
+                timeslots.forEach(ts => {
+                    ts.classList.remove('selected');
+                    if(ts === choosenTimeslot){
+                        ts.classList.add('selected');
+                    }
+                });
+
+                groupsizes.forEach(gs => {
+                    gs.classList.remove('hidden');
+                    gs.classList.remove('selected');
+                    if(parseInt(gs.getAttribute('data-groupsize')) > availableSlots){
+                        gs.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    }
+
+    function setupCouponTimeslots(){
+        coupontimeslots.forEach(timeslot => {
+            timeslot.addEventListener('click', () => {
+                eventStep4.classList.remove('hidden');
+                eventStep5.classList.add('hidden');
+
+                choosenTimeslot = timeslot;
+                availableSlots = parseInt(choosenTimeslot.getAttribute('data-slotsize'));
+                inputFieldTimeslot.value = choosenTimeslot.getAttribute('data-slotId');
+                inputFieldGroupSize.max = availableSlots;
+
+                const y4 = eventStep4.getBoundingClientRect().top + window.scrollY;
+                setTimeout( () =>{
+                    window.scrollTo({
+                        top: y4,
+                        behavior: 'smooth'
+                    });
+                }, 200);
+
+
+                coupontimeslots.forEach(ts => {
+                    ts.classList.remove('selected');
+                    if(ts === choosenTimeslot){
+                        ts.classList.add('selected');
+                    }
+                });
+
+                groupsizes.forEach(gs => {
+                    gs.classList.remove('hidden');
+                    gs.classList.remove('selected');
+                    if(parseInt(gs.getAttribute('data-groupsize')) > availableSlots){
+                        gs.classList.add('hidden');
+                    }
+                });
+            });
         });
     }
 }
