@@ -187,7 +187,9 @@ if(eventsNavigator != null){
         coupontimeslots.forEach(ts => {
             ts.classList.add('hidden');
         });
-        couponReset.classList.add('hidden');
+        if (couponReset) {
+            couponReset.classList.add('hidden');
+        }
     }
 
 
