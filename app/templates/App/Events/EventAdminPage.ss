@@ -45,6 +45,22 @@
                         <% include MovingLogo %>
                     </div>
                 </div>
+                <div class="section_counter">
+                    <a class="counter_button">+</a>
+                    <a class="counter_button">-</a>
+                    <a class="counter_button">→</a>
+                </div>
+                <div class="section_numbers">
+                    <p class="numbers_entry">VQ: 0</p>
+                    <p class="numbers_entry">SQ: 0</p>
+                    <p class="numbers_entry">TT: 0</p>
+                </div>
+                <div class="section_popup">
+                    <a class="section_popup_close">X</a>
+                    <p>Test</p>
+                    <a class="section_popup_enter">Einlass</a>
+                    <a class="section_popup_delete">Löschen</a>
+                </div>
             </div>
         </div>
         <script type="module">
@@ -60,6 +76,11 @@
                     result => {
                         const decodedUrl = new URL(result);
                         console.log('decoded url:', decodedUrl);
+                        //Get last part of the URL
+                        const urlParts = decodedUrl.pathname.split('/');
+                        const lastPart = urlParts[urlParts.length - 1];
+                        console.log('last part:', lastPart);
+
                         if(decodedUrl.hostname === "localhost" || decodedUrl.hostname === 'halloweenhaus-schmalenbeck.de') {
                             window.location.href = result;
                         } else {

@@ -43,6 +43,7 @@ class EventPageController extends PageController
         "unsubscribe",
         "unsubscribesuccessful",
         "ticket",
+        "validateticket",
         "checkcoupon",
     ];
 
@@ -282,6 +283,39 @@ class EventPageController extends PageController
             }
         }
         return $this->redirect($this->Link("eventnotfound"));
+    }
+
+    public function validateticket(HTTPRequest $request)
+    {
+        $hash = $request->param("ID");
+        $json = array();
+        $json["Valid"] = false;
+        $json["Message"] = "Ungültiger Code";
+
+        if (isset($hash)) {
+            $registration = Registration::get()->filter(array("Hash" => $hash))->First();
+
+            //Return JSON from the data
+
+            if ($registration) {
+                //Check if Timeslot is now plus 10 minutes and minus 10 minutes
+                if (strtotime($registration->Event()->EventDate) - strtotime(date("Y-m-d H:i:s")) < 600 && strtotime($registration->Event()->EventDate) - strtotime(date("Y-m-d H:i:s")) > -600) {
+                    $json["Valid"] = true;
+                    $json["Message"] = "Ticket gültig";
+                    $json["Name"] = $registration->Title;
+                    $json["TimeSlot"] = $registration->TimeSlot()->Title;
+                    $json["Event"] = $registration->Event()->Title;
+                    $json["QRCode"] = $registration->getQRCode();
+                } else {
+                    $json["Valid"] = false;
+                    $json["Message"] = "Ticket nicht gültig";
+                    $json["TimeSlot"] = $registration->TimeSlot()->Title;
+                    $json["Event"] = $registration->Event()->Title;
+                }
+            }
+        }
+        $this->response->addHeader('Content-Type', 'application/json');
+        return json_encode($json);
     }
 
     public function getFeedbackPageLink()

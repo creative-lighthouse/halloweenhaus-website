@@ -171,6 +171,93 @@
         .section_message{
             padding-top: 40px;
         }
+
+        .section_counter{
+            position: absolute;
+            right: 0%;
+            background-color: $ColorBackground;
+            top: 40%;
+            bottom: 40%;
+            width: 15%;
+            border-radius: 10px 0 0 10px;
+            display: flex;
+            flex-direction: column;
+
+            .counter_button{
+                width: 100%;
+                height: calc(100%/3);
+                padding: 10px;
+                border: 2px solid $ColorBlack;
+                text-decoration: none;
+                font-size: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;margin: 0;
+            }
+        }
+
+        .section_numbers{
+            position: absolute;
+            top: 0%;
+            background-color: $ColorBackground;
+            left: 20%;
+            right: 20%;
+            height: 10%;
+            border-radius: 0 0 10px 10px;
+            display: flex;
+
+            .numbers_entry{
+                height: 100%;
+                width: calc(100%/3);
+                padding: 10px;
+                border: 2px solid $ColorBlack;
+                text-decoration: none;
+                font-size: 18px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+            }
+        }
+
+        .section_popup{
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            right: 10%;
+            bottom: 10%;
+            background-color: $ColorBackground;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            .section_popup_close{
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 10px;
+                background-color: gray;
+                color: $ColorWhite;
+                border-radius: 0 0 0 10px;
+            }
+
+            .section_popup_enter{
+                color: green;
+                border: 1px solid $ColorWhite;
+                border-radius: 10px;
+                padding: 10px;
+                width: 100%;
+            }
+
+            .section_popup_delete{
+                color: red;
+                border: 1px solid red;border-radius: 10px;
+                padding: 10px;
+                width: 100%;
+            }
+        }
     }
 }
 
