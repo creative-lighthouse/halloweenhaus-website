@@ -219,14 +219,18 @@ class Event extends DataObject
     public function FreeCouponTimeSlotsInFuture()
     {
         $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
-        $timeslots = $this->TimeSlots()->filter("SlotTime:GreaterThanOrEqual", $now->format("Y-m-d H:i:s"));
-        $timeslotsWithSpace = new ArrayList();
-        foreach ($timeslots as $timeslot) {
-            if ($timeslot->getFreeCouponSlotCount() > 0) {
-                $timeslotsWithSpace->push($timeslot);
+        if ($this->EventDate > $now->format("Y-m-d")) {
+            $timeslots = $this->TimeSlots();
+            $timeslotsWithSpace = new ArrayList();
+            foreach ($timeslots as $timeslot) {
+                if ($timeslot->getFreeCouponSlotCount() > 0) {
+                    $timeslotsWithSpace->push($timeslot);
+                }
             }
+            return $timeslotsWithSpace;
+        } else {
+            return $this->FreeCouponTimeSlots();
         }
-        return $timeslotsWithSpace;
     }
 
     public function FullTimeSlots()
