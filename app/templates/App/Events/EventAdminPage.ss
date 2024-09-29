@@ -135,15 +135,15 @@
         }
 
         //Check Code if it is valid
-        function checkCode($hash) {
-            console.log('Checking code:', $hash);
+        function checkCode(hash) {
+            console.log('Checking code:', hash);
             loading.style.display = 'flex';
 
-            if($hash === '') {
+            if(hash === '') {
                 loading.style.display = 'none';
                 return;
             }
-            fetch('/checkCode/' + $hash, {
+            fetch('/checkCode/' + hash, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -172,12 +172,12 @@
                     numbersTT.innerHTML = data.TT;
 
                     button_acceptTicket.onclick = function() {
-                        acceptTicket($hash);
+                        acceptTicket(hash);
                         popup.style.display = 'none';
                     };
 
                     button_declineTicket.onclick = function() {
-                        declineTicket($hash);
+                        declineTicket(hash);
                         popup.style.display = 'none';
                     };
                 }
@@ -188,8 +188,8 @@
         }
 
         //Calculate time difference between current time and ticket time
-        function calculateTimeDifference($time) {
-            const time = new Date($time);
+        function calculateTimeDifference(time) {
+            const time = new Date(time);
             const currentTime = new Date();
             const difference = time - currentTime;
 
@@ -204,14 +204,14 @@
         }
 
         //Accept Ticket
-        function acceptTicket($hash) {
-            fetch('/acceptTicket/' + $hash, {
+        function acceptTicket(hash) {
+            fetch('/acceptTicket/' + hash, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    hash: $hash
+                    hash: hash
                 }),
             })
             .then(response => response.json())
