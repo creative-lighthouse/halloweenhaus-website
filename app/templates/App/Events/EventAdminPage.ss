@@ -189,9 +189,9 @@
 
         //Calculate time difference between current time and ticket time
         function calculateTimeDifference(time) {
-            const time = new Date(time);
+            const timeasdate = new Date(time);
             const currentTime = new Date();
-            const difference = time - currentTime;
+            const difference = timeasdate - currentTime;
 
             const minutes = Math.floor(difference / 60000);
             const seconds = Math.floor((difference % 60000) / 1000);
