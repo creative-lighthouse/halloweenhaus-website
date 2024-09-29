@@ -123,7 +123,7 @@ class Registration extends DataObject
         $now = $now->format("Y-m-d H:i:s");
 
         if (!$this->Hash) {
-            $this->Hash = substr(md5($now . $this->Title . $this->Email), 0, 8);
+            $this->Hash = substr(md5(string: $now . $this->Title . $this->Email), 0, 8);
         }
     }
 
@@ -132,10 +132,10 @@ class Registration extends DataObject
         parent::onAfterWrite();
 
         if ($this->ConfirmEmailSent == null && SiteConfig::current_site_config()->EmailsActive) {
-            //$this->sendReceiveConfirmation();
+            $this->sendReceiveConfirmation();
         }
         if ($this->Status == "Confirmed" && $this->TicketEmailSent == null && SiteConfig::current_site_config()->EmailsActive) {
-            //$this->sendTicketEmail();
+            $this->sendTicketEmail();
         }
     }
 
@@ -187,8 +187,8 @@ class Registration extends DataObject
             $emailNotification->Registration = $this;
             $emailNotification->write();
 
-            $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
-            $this->ConfirmEmailSent = $now;
+            $now = date("Y-m-d H:i:s");
+            $this->ConfirmEmailSent = date("Y-m-d H:i:s", strtotime($now));
             $this->write();
         }
     }
@@ -220,8 +220,8 @@ class Registration extends DataObject
             $emailConfirmation->Registration = $this;
             $emailConfirmation->write();
 
-            $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
-            $this->TicketEmailSent = $now;
+            $now = date("Y-m-d H:i:s");
+            $this->TicketEmailSent = date("Y-m-d H:i:s", strtotime($now));
             $this->write();
         }
     }
