@@ -99,22 +99,167 @@
         var amount_vq = 0;
         var amount_tt = 0;
 
-        startScanner();
+        setup();
 
-        function startScanner() {
+        //Setup QR Scanner
+        function setup() {
             const qrScanner = new QrScanner(
                 qrVideo,
                 result => {
                     const decodedUrl = new URL(result);
-                    console.log('decoded url:', decodedUrl);
+                    console.log('Decoded URL:', decodedUrl);
+
                     if(decodedUrl.hostname === "localhost" || decodedUrl.hostname === 'halloweenhaus-schmalenbeck.de') {
-                        window.location.href = result;
+                        //Get last part of the URL
+                        const urlParts = decodedUrl.pathname.split('/');
+                        const lastPart = urlParts[urlParts.length - 1];
+                        checkCode(lastPart);
                     } else {
                         console.log('URL is not from this domain');
                     }
                 }
             );
             qrScanner.start();
+
+            decreaseSQButton.onclick = function () {
+                decreaseSQ();
+            }
+
+            increaseSQButton.onclick = function () {
+                increaseSQ();
+            }
+
+            enterShowButton.onclick = function () {
+                enterShow();
+            }
+        }
+
+        //Check Code if it is valid
+        function checkCode($hash) {
+            console.log('Checking code:', $hash);
+            loading.style.display = 'flex';
+
+            fetch('/checkCode/' + $hash, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    hash: $hash
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                loading.style.display = 'none';
+                popup.style.display = 'block';
+                if (data.Valid) {
+                    client_message.innerHTML = data.message;
+                    client_name.innerHTML = data.Name;
+                    client_event.innerHTML = data.Event;
+                    client_timeslot.innerHTML = data.TimeSlot;
+
+                    //update time difference each second
+                    setInterval(function() {
+                        client_timedifference.innerHTML = calculateTimeDifference(data.Time);
+                    }, 1000);
+
+                    numbersVQ.innerHTML = data.VQ;
+                    numbersSQ.innerHTML = data.SQ;
+                    numbersTT.innerHTML = data.TT;
+
+                    button_acceptTicket.onclick = function() {
+                        acceptTicket($hash);
+                        popup.style.display = 'none';
+                    };
+
+                    button_declineTicket.onclick = function() {
+                        declineTicket($hash);
+                        popup.style.display = 'none';
+                    };
+                }
+            })
+            .catch((error) => {
+                popup.style.display = 'none';
+            });
+        }
+
+        //Calculate time difference between current time and ticket time
+        function calculateTimeDifference($time) {
+            const time = new Date($time);
+            const currentTime = new Date();
+            const difference = time - currentTime;
+
+            const minutes = Math.floor(difference / 60000);
+            const seconds = Math.floor((difference % 60000) / 1000);
+
+            if(difference > 0) {
+                return '+' + minutes + ':' + seconds;
+            } else {
+                return '-' + minutes + ':' + seconds;
+            }
+        }
+
+        //Accept Ticket
+        function acceptTicket($hash) {
+            fetch('/acceptTicket/' + $hash, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    hash: $hash
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.Valid) {
+                    popup.style.display = 'none';
+                }
+            })
+            .catch((error) => {
+                popup.style.display = 'none';
+            });
+        }
+
+        //Increase Standby Queue Count
+        function increaseSQ() {
+            amount_sq++;
+            numbersSQ.innerHTML = amount_sq;
+        }
+
+        //Decrease Standby Queue Count
+        function decreaseSQ() {
+            if(amount_sq > 0) {
+                amount_sq--;
+                numbersSQ.innerHTML = amount_sq;
+            }
+        }
+
+        //Enter Show
+        function enterShow() {
+            fetch('/enterShow', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sq: amount_sq,
+                    vq: amount_vq,
+                    tt: amount_tt
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.Valid) {
+                    amount_sq = 0;
+                    numbersSQ.innerHTML = amount_sq;
+                }
+            })
+            .catch((error) => {
+                popup.style.display = 'none';
+            });
         }
     </script>
     <!--Admin Scanner Script End-->
