@@ -1,7 +1,6 @@
 <svg
     class="desktop"
     width="100%"
-    height="auto"
     viewBox="0 0 370.41665 52.916666"
     version="1.1"
     id="svg5"
@@ -24,7 +23,7 @@
     <svg
     class="mobile"
     width="550"
-    height="200"
+    length="200"
     viewBox="0 0 145.52083 52.916666"
     version="1.1"
     id="svg5"

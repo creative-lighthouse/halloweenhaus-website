@@ -39,58 +39,37 @@
                 <div class="section_qrcodescan">
                     <video id="qrcode-video"></video>
                     <div class="scan-region-highlight" style="position: absolute; pointer-events: none; transform: scaleX(-1);">
-                        <svg class="scan-region-highlight-svg" viewBox="0 0 238 238" preserveAspectRatio="none" style="position:absolute;width:100%;height:100%;left:0;top:0;fill:none;stroke:#e9b213;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"><path d="M31 2H10a8 8 0 0 0-8 8v21M207 2h21a8 8 0 0 1 8 8v21m0 176v21a8 8 0 0 1-8 8h-21m-176 0H10a8 8 0 0 1-8-8v-21"></path></svg><svg class="code-outline-highlight" preserveAspectRatio="none" style="display:none;width:100%;height:100%;fill:none;stroke:#e9b213;stroke-width:5;stroke-dasharray:25;stroke-linecap:round;stroke-linejoin:round"><polygon></polygon></svg>
+                        <svg class="scan-region-highlight-svg" viewBox="0 0 238 238" preserveAspectRatio="none" style="position:absolute;width:100%;left:0;top:0;fill:none;stroke:#e9b213;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"><path d="M31 2H10a8 8 0 0 0-8 8v21M207 2h21a8 8 0 0 1 8 8v21m0 176v21a8 8 0 0 1-8 8h-21m-176 0H10a8 8 0 0 1-8-8v-21"></path></svg><svg class="code-outline-highlight" preserveAspectRatio="none" style="display:none;width:100%;fill:none;stroke:#e9b213;stroke-width:5;stroke-dasharray:25;stroke-linecap:round;stroke-linejoin:round"><polygon></polygon></svg>
                     </div>
                     <div class="logo">
                         <% include MovingLogo %>
                     </div>
                 </div>
                 <div class="section_counter">
-                    <a class="counter_button">+</a>
-                    <a class="counter_button">-</a>
-                    <a class="counter_button">→</a>
+                    <a class="section_counter_button button_increaseSQ">+</a>
+                    <a class="section_counter_button button_decreaseSQ">-</a>
+                    <a class="section_counter_button button_enterShow">→</a>
                 </div>
                 <div class="section_numbers">
-                    <p class="numbers_entry">VQ: 0</p>
-                    <p class="numbers_entry">SQ: 0</p>
-                    <p class="numbers_entry">TT: 0</p>
+                    <p class="section_numbers_entry numbers_vq">VQ: 0</p>
+                    <p class="section_numbers_entry numbers_sq">SQ: 0</p>
+                    <p class="section_numbers_entry numbers_tt">TT: 0</p>
                 </div>
                 <div class="section_popup">
-                    <a class="section_popup_close">X</a>
-                    <p>Test</p>
-                    <a class="section_popup_enter">Einlass</a>
-                    <a class="section_popup_delete">Löschen</a>
+                    <a class="section_popup_text section_popup_close">X</a>
+                    <p class="section_popup_text section_popup_client_message">Message</p>
+                    <p class="section_popup_text section_popup_client_name">Name</p>
+                    <p class="section_popup_text section_popup_client_timeslot">Slot</p>
+                    <p class="section_popup_text section_popup_client_timedifference">Difference</p>
+                    <p class="section_popup_text section_popup_client_event">Event</p>
+                    <a class="section_popup_button button_acceptTicket">Einlass</a>
+                    <a class="section_popup_button button_deleteTicket">Löschen</a>
+                </div>
+                <div class="section_loading">
+                    <p>Loading...</p>
                 </div>
             </div>
         </div>
-        <script type="module">
-            import QrScanner from '../_resources/app/client/dist/qr-scanner.min.js';
-
-            const qrVideo = document.getElementById('qrcode-video');
-
-            if(qrVideo) {
-                console.log('QR Scanner is ready to use');
-                // To enforce the use of the new api with detailed scan results, call the constructor with an options object, see below.
-                const qrScanner = new QrScanner(
-                    qrVideo,
-                    result => {
-                        const decodedUrl = new URL(result);
-                        console.log('decoded url:', decodedUrl);
-                        //Get last part of the URL
-                        const urlParts = decodedUrl.pathname.split('/');
-                        const lastPart = urlParts[urlParts.length - 1];
-                        console.log('last part:', lastPart);
-
-                        if(decodedUrl.hostname === "localhost" || decodedUrl.hostname === 'halloweenhaus-schmalenbeck.de') {
-                            window.location.href = result;
-                        } else {
-                            console.log('URL is not from this domain');
-                        }
-                    }
-                );
-                qrScanner.start();
-            }
-        </script>
     <% end_if %>
     <script src="$Mix("/js/main.js")"></script>
 </body>

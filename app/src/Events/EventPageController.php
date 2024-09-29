@@ -304,7 +304,9 @@ class EventPageController extends PageController
                     $json["Message"] = "Ticket gültig";
                     $json["Name"] = $registration->Title;
                     $json["TimeSlot"] = $registration->TimeSlot()->Title;
+                    $json["SlotTime"] = $registration->TimeSlot()->SlotTime;
                     $json["Event"] = $registration->Event()->Title;
+                    $json["GroupSize"] = $registration->GroupSize;
                     $json["QRCode"] = $registration->getQRCode();
                 } else {
                     $json["Valid"] = false;

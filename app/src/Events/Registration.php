@@ -48,8 +48,8 @@ class Registration extends DataObject
         "Email" => "Varchar(255)",
         "GroupSize" => "Int",
         "Hash" => "Varchar(255)",
-        "ConfirmEmailSent" => "Boolean",
-        "TicketEmailSent" => "Boolean",
+        "ConfirmEmailSent" => "DateTime",
+        "TicketEmailSent" => "DateTime",
         "Status" => "Varchar(255)",
         "Type" => "Varchar(255)",
         "ZIP" => "Int",
@@ -135,10 +135,10 @@ class Registration extends DataObject
     {
         parent::onAfterWrite();
 
-        if (!$this->ConfirmEmailSent && SiteConfig::current_site_config()->EmailsActive) {
+        if ($this->ConfirmEmailSent == null && SiteConfig::current_site_config()->EmailsActive) {
             $this->sendReceiveConfirmation();
         }
-        if ($this->Status == "Confirmed" && !$this->TicketEmailSent && SiteConfig::current_site_config()->EmailsActive) {
+        if ($this->Status == "Confirmed" && $this->TicketEmailSent == null && SiteConfig::current_site_config()->EmailsActive) {
             $this->sendTicketEmail();
         }
     }
@@ -186,12 +186,12 @@ class Registration extends DataObject
                 "TimeSlot" => $this->TimeSlot
             ]));
             $emailNotification->Type = "NewRegistration";
-            $emailNotification->Email = "events@halloweenhaus-schmalenbeck.de";
+            $emailNotification->Email = "steffen@halloweenhaus-schmalenbeck.de"; //TODO: Change to admin email
             $emailNotification->Event = $this->Event;
             $emailNotification->Registration = $this;
             $emailNotification->write();
 
-            $this->ConfirmEmailSent = true;
+            $this->ConfirmEmailSent = new DateTime("now");
             $this->write();
         }
     }
@@ -223,7 +223,8 @@ class Registration extends DataObject
             $emailConfirmation->Registration = $this;
             $emailConfirmation->write();
 
-            $this->TicketEmailSent = true;
+            //set email sent to current date and time
+            $this->TicketEmailSent = new DateTime("now");
             $this->write();
         }
     }

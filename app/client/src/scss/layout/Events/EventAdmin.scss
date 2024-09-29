@@ -232,6 +232,7 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
+            display: none;
 
             .section_popup_close{
                 position: absolute;
@@ -256,6 +257,28 @@
                 border: 1px solid red;border-radius: 10px;
                 padding: 10px;
                 width: 100%;
+            }
+        }
+
+        .section_loading{
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            right: 15%;
+            bottom: 15%;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+
+            .loading{
+                width: 100px;
+                height: 100px;
+                border: 10px solid $ColorBackground;
+                border-top: 10px solid $ColorBlack;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
             }
         }
     }
