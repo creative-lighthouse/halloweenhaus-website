@@ -143,7 +143,7 @@
                 loading.style.display = 'none';
                 return;
             }
-            fetch('/checkCode/' + hash, {
+            fetch('./checkCode/' + hash, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -205,7 +205,7 @@
 
         //Accept Ticket
         function acceptTicket(hash) {
-            fetch('/acceptTicket/' + hash, {
+            fetch('./acceptTicket/' + hash, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -242,7 +242,7 @@
 
         //Enter Show
         function enterShow() {
-            fetch('/enterShow', {
+            fetch('./enterShow', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
