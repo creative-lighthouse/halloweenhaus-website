@@ -43,7 +43,7 @@ namespace {
             if ($registration) {
                 $data['Valid'] = true;
                 $data['Message'] = "Code ist gültig.";
-                $data['Name'] = $registration->Name;
+                $data['Name'] = $registration->Title;
                 $data['TimeSlot'] = $registration->TimeSlot()->SlotTime;
                 $data['Event'] = $registration->Event()->Title;
                 $data['GroupSize'] = $registration->GroupSize;
