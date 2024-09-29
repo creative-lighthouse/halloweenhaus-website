@@ -239,11 +239,6 @@ class EventPageController extends PageController
             "EventID" => $event_id,
         ))->First();
 
-        echo Registration::get()->filter(array(
-            "Hash" => $hash,
-            "EventID" => $event_id,
-        ))->sql();
-
         if ($registration) {
             $registration->Status = "Confirmed";
             $registration->write();
