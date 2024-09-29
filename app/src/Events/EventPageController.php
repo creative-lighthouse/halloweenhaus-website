@@ -223,22 +223,36 @@ class EventPageController extends PageController
 
     public function registrationconfirm(HTTPRequest $request)
     {
-        $event_id = $request->param("ID");
+        $event_id = $_GET["event"];
         $event = Event::get()->byId($event_id);
-        $hash = $request->param("OtherID");
-        if (isset($hash) && isset($event)) {
-            $registration = Registration::get()->filter(array(
-                "Hash" => $hash,
-                "EventID" => $event->ID,
-            ))->First();
-            if ($registration) {
-                $registration->Status = "Confirmed";
-                $registration->write();
-                return array(
-                    "Event" => $event,
-                    "Registration" => $registration,
-                );
-            }
+        $hash = $_GET["hash"];
+
+        if (!isset($hash)) {
+            return user_error("Unbekannter Hash");
+        }
+        if (!isset($event)) {
+            return user_error("Unbekanntes Event");
+        }
+
+        $registration = Registration::get()->filter(array(
+            "Hash" => $hash,
+            "EventID" => $event_id,
+        ))->First();
+
+        echo Registration::get()->filter(array(
+            "Hash" => $hash,
+            "EventID" => $event_id,
+        ))->sql();
+
+        if ($registration) {
+            $registration->Status = "Confirmed";
+            $registration->write();
+            return array(
+                "Event" => $event,
+                "Registration" => $registration,
+            );
+        } else {
+            user_error("Hash passt zu keiner Registrierung");
         }
     }
 

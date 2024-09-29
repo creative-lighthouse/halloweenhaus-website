@@ -143,7 +143,7 @@ class Registration extends DataObject
     {
         if ($this->Email != "test@test.de") {
             $eventpage = EventPage::get()->first();
-            $confirmLink = $eventpage->AbsoluteLink("registrationconfirm/" . $this->EventID . "/" . $this->Hash);
+            $confirmLink = $eventpage->AbsoluteLink("registrationconfirm?event=" . $this->EventID . "&hash=" . $this->Hash);
 
             //Send email to client
             $emailConfirmation = EmailNotification::create();
