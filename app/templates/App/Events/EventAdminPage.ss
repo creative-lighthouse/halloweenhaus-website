@@ -73,6 +73,26 @@
     <% end_if %>
     <script type="module">
         import QrScanner from '../_resources/app/client/dist/qr-scanner.min.js';
+
+        const qrVideo = document.getElementById('qrcode-video');
+
+        if(qrVideo) {
+            console.log('QR Scanner is ready to use');
+            // To enforce the use of the new api with detailed scan results, call the constructor with an options object, see below.
+            const qrScanner = new QrScanner(
+                qrVideo,
+                result => {
+                    const decodedUrl = new URL(result);
+                    console.log('decoded url:', decodedUrl);
+                    if(decodedUrl.hostname === "localhost" || decodedUrl.hostname === 'halloweenhaus-schmalenbeck.de') {
+                        window.location.href = result;
+                    } else {
+                        console.log('URL is not from this domain');
+                    }
+                }
+            );
+            qrScanner.start();
+        }
     </script>
     <script src="$Mix("/js/main.js")"></script>
 </body>
