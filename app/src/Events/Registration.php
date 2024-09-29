@@ -6,18 +6,13 @@ use DateTime;
 use DateTimeZone;
 use App\Events\Event;
 use App\Events\EventAdmin;
-use Endroid\QrCode\QrCode;
 use App\Events\EventTimeSlot;
-use SilverStripe\Assets\File;
-use SilverStripe\Assets\Image;
 use SilverStripe\View\SSViewer;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\View\ArrayData;
-use SilverStripe\Control\Director;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\Encoding\Encoding;
-use SilverStripe\Control\Email\Email;
 use SilverStripe\Forms\DropdownField;
 use Endroid\QrCode\RoundBlockSizeMode;
 use SilverStripe\SiteConfig\SiteConfig;
@@ -49,8 +44,8 @@ class Registration extends DataObject
         "Email" => "Varchar(255)",
         "GroupSize" => "Int",
         "Hash" => "Varchar(255)",
-        "ConfirmEmailSent" => "DateTime",
-        "TicketEmailSent" => "DateTime",
+        "ConfirmEmailSent" => "Datetime",
+        "TicketEmailSent" => "Datetime",
         "Status" => "Varchar(255)",
         "Type" => "Varchar(255)",
         "ZIP" => "Int",
