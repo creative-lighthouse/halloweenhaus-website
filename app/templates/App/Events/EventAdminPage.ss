@@ -99,9 +99,7 @@
         var amount_vq = 0;
         var amount_tt = 0;
 
-        onMount(() => {
-            setup();
-        });
+        setup();
 
         //Setup QR Scanner
         function setup() {
