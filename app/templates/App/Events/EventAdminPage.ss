@@ -143,7 +143,7 @@
                 loading.style.display = 'none';
                 return;
             }
-            fetch('./checkCode/' + hash, {
+            fetch('/api/checkCode/' + hash, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -157,7 +157,7 @@
                 loading.style.display = 'none';
                 popup.style.display = 'block';
                 if (data.Valid) {
-                    client_message.innerHTML = data.message;
+                    client_message.innerHTML = data.Message;
                     client_name.innerHTML = data.Name;
                     client_event.innerHTML = data.Event;
                     client_timeslot.innerHTML = data.TimeSlot;
@@ -166,10 +166,6 @@
                     setInterval(function() {
                         client_timedifference.innerHTML = calculateTimeDifference(data.Time);
                     }, 1000);
-
-                    numbersVQ.innerHTML = data.VQ;
-                    numbersSQ.innerHTML = data.SQ;
-                    numbersTT.innerHTML = data.TT;
 
                     button_acceptTicket.onclick = function() {
                         acceptTicket(hash);
@@ -205,7 +201,7 @@
 
         //Accept Ticket
         function acceptTicket(hash) {
-            fetch('./acceptTicket/' + hash, {
+            fetch('/api/acceptTicket/' + hash, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -242,7 +238,7 @@
 
         //Enter Show
         function enterShow() {
-            fetch('./enterShow', {
+            fetch('/api/enterShow', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
