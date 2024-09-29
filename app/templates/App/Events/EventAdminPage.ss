@@ -71,5 +71,8 @@
             </div>
         </div>
     <% end_if %>
+    <script type="module">
+        import QrScanner from '../_resources/app/client/dist/qr-scanner.min.js';
+    </script>
     <script src="$Mix("/js/main.js")"></script>
 </body>
