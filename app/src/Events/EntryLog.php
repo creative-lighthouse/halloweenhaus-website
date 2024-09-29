@@ -7,21 +7,21 @@ use SilverStripe\ORM\DataObject;
 class EntryLog extends DataObject
 {
     private static $db = [
-        "Time" => "Time",
+        "EntryTime" => "Datetime",
         "SQ" => "Int",
         "VQ" => "Int",
     ];
 
-    private static $default_sort = "Time ASC";
+    private static $default_sort = "EntryTime ASC";
 
     private static $field_labels = [
-        "Time" => "Eintrittszeit",
+        "EntryTime" => "Eintrittszeit",
         "SQ" => "Standby Queue Gäste",
         "VQ" => "Virtual Queue Gäste",
     ];
 
     private static $summary_fields = [
-        "Time" => "Eintrittszeit",
+        "EntryTime" => "Eintrittszeit",
         "SQ" => "Standby Queue Gäste",
         "VQ" => "Virtual Queue Gäste",
         "TotalGuests" => "Gesamtanzahl",
