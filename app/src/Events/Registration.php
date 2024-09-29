@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use DateTime;
+use DateTimeZone;
 use App\Events\Event;
 use App\Events\EventAdmin;
 use Endroid\QrCode\QrCode;
@@ -191,7 +192,8 @@ class Registration extends DataObject
             $emailNotification->Registration = $this;
             $emailNotification->write();
 
-            $this->ConfirmEmailSent = new DateTime("now");
+            $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
+            $this->ConfirmEmailSent = $now;
             $this->write();
         }
     }
@@ -223,8 +225,8 @@ class Registration extends DataObject
             $emailConfirmation->Registration = $this;
             $emailConfirmation->write();
 
-            //set email sent to current date and time
-            $this->TicketEmailSent = new DateTime("now");
+            $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
+            $this->TicketEmailSent = $now;
             $this->write();
         }
     }
