@@ -139,6 +139,10 @@
             console.log('Checking code:', $hash);
             loading.style.display = 'flex';
 
+            if($hash === '') {
+                loading.style.display = 'none';
+                return;
+            }
             fetch('/checkCode/' + $hash, {
                 method: 'POST',
                 headers: {
