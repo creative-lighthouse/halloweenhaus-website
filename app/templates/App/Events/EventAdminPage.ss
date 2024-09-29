@@ -79,7 +79,6 @@
         import QrScanner from '../_resources/app/client/dist/qr-scanner.min.js';
 
         const qrVideo = document.getElementById('qrcode-video');
-        const qrVideo = document.getElementById('qrcode-video');
         const popup = document.querySelector('.section_popup');
         const loading = document.querySelector('.section_loading');
         const decreaseSQButton = document.querySelector('.button_decreaseSQ');
