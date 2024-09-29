@@ -71,14 +71,38 @@
             </div>
         </div>
     <% end_if %>
+
+
+
+    <!--Admin Scanner Script-->
     <script type="module">
         import QrScanner from '../_resources/app/client/dist/qr-scanner.min.js';
 
         const qrVideo = document.getElementById('qrcode-video');
+        const qrVideo = document.getElementById('qrcode-video');
+        const popup = document.querySelector('.section_popup');
+        const loading = document.querySelector('.section_loading');
+        const decreaseSQButton = document.querySelector('.button_decreaseSQ');
+        const increaseSQButton = document.querySelector('.button_increaseSQ');
+        const enterShowButton = document.querySelector('.button_enterShow');
+        const numbersVQ = document.querySelector('.numbers_vq');
+        const numbersSQ = document.querySelector('.numbers_sq');
+        const numbersTT = document.querySelector('.numbers_tt');
+        const client_message = document.querySelector('.section_popup_client_message');
+        const client_name = document.querySelector('.section_popup_client_name');
+        const client_timeslot = document.querySelector('.section_popup_client_timeslot');
+        const client_timedifference = document.querySelector('.section_popup_client_timedifference');
+        const client_event = document.querySelector('.section_popup_client_event');
+        const button_acceptTicket = document.querySelector('.button_acceptTicket');
+        const button_declineTicket = document.querySelector('.button_deleteTicket');
 
-        if(qrVideo) {
-            console.log('QR Scanner is ready to use');
-            // To enforce the use of the new api with detailed scan results, call the constructor with an options object, see below.
+        var amount_sq = 0;
+        var amount_vq = 0;
+        var amount_tt = 0;
+
+        startScanner();
+
+        function startScanner() {
             const qrScanner = new QrScanner(
                 qrVideo,
                 result => {
@@ -94,5 +118,8 @@
             qrScanner.start();
         }
     </script>
+    <!--Admin Scanner Script End-->
+
+
     <script src="$Mix("/js/main.js")"></script>
 </body>
