@@ -17,9 +17,9 @@ namespace {
     use Symbiote\MemberProfiles\Pages\MemberProfilePage;
 
     /**
-     * Class \Page
-     *
-     */
+ * Class \Page
+ *
+ */
     class ApiPage extends SiteTree
     {
         private static $db = [];

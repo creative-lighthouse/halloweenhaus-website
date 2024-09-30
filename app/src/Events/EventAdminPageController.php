@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Events;
 
 use PageController;
@@ -49,28 +50,6 @@ class EventAdminPageController extends PageController
                     "Registration" => $registration,
                     "Event" => $event,
                     "TimeSlot" => $timeslot,
-                );
-            } else {
-                return $this->redirect($eventPage->Link("ticket") . "/" . $registration->Hash);
-            }
-        } else {
-            return $this->redirect($eventPage->Link("eventnotfound"));
-        }
-    }
-
-    public function checkIn(HTTPRequest $request)
-    {
-        $currentUser = Security::getCurrentUser();
-        $hash = $this->getRequest()->param("ID");
-        $registration = Registration::get()->filter("Hash", $hash)->first();
-        $eventPage = EventPage::get()->first();
-
-        if ($registration) {
-            if ($currentUser) {
-                $registration->Status = "CheckedIn";
-                $registration->write();
-                return array(
-                    "Registration" => $registration,
                 );
             } else {
                 return $this->redirect($eventPage->Link("ticket") . "/" . $registration->Hash);

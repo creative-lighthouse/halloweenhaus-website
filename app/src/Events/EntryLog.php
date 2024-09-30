@@ -4,6 +4,13 @@ namespace App\Events;
 
 use SilverStripe\ORM\DataObject;
 
+/**
+ * Class \App\Events\EntryLog
+ *
+ * @property string $EntryTime
+ * @property int $SQ
+ * @property int $VQ
+ */
 class EntryLog extends DataObject
 {
     private static $db = [
@@ -12,18 +19,18 @@ class EntryLog extends DataObject
         "VQ" => "Int",
     ];
 
-    private static $default_sort = "EntryTime ASC";
+    private static $default_sort = "EntryTime DESC";
 
     private static $field_labels = [
         "EntryTime" => "Eintrittszeit",
-        "SQ" => "Standby Queue Gäste",
         "VQ" => "Virtual Queue Gäste",
+        "SQ" => "Standby Queue Gäste",
     ];
 
     private static $summary_fields = [
         "EntryTime" => "Eintrittszeit",
-        "SQ" => "Standby Queue Gäste",
         "VQ" => "Virtual Queue Gäste",
+        "SQ" => "Standby Queue Gäste",
         "TotalGuests" => "Gesamtanzahl",
     ];
 

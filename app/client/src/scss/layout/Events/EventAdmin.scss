@@ -14,87 +14,6 @@
         justify-content: space-between;
         align-items: center;
 
-        .section_title{
-            padding: 10px 15px;
-            display: block;
-
-            .section_title_ticketcheck{
-                font-size: 2em;
-                color: $ColorWhite;
-                margin: 0;
-                margin-top: 40px;
-                background-color: $ColorBackground;
-                padding: 10px 15px;
-                border-radius: 20px;
-
-                &.valid{
-                    background-color: green;
-                }
-
-                &.invalid{
-                    background-color: red;
-                }
-            }
-        }
-
-        .section_data{
-            background-color: $ColorBackground;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .section_data_tile{
-                border-left: 2px solid $ColorBlack;
-
-                &:first-of-type{
-                    border-left: 2px solid transparent;
-                }
-
-                .tile_value{
-                    width: 100%;
-                    padding: 20px;
-                    display: block;
-                    font-size: 1.1em;
-                    border-bottom: 2px solid $ColorBlack;
-                    margin: 0;
-                }
-
-                .tile_title{
-                    width: 100%;
-                    padding: 10px 15px;
-                    display: block;
-                    font-size: 0.7em;
-                    margin: 0;
-                }
-            }
-        }
-
-        .section_buttons{
-            width: 100vw;
-            display: flex;
-            justify-content: stretch;
-            align-items: stretch;
-
-            .button{
-                width: 50%;
-                padding: 50px 20px;
-                background-color: $ColorBackground;
-                border: 2px solid $ColorBlack;
-                text-decoration: none;
-                font-size: 1.5em;
-
-                &.button--primary{
-                    background-color: darkgreen;
-                }
-
-                &.button--secondary{
-                    opacity: 0.5;
-                    background-color: darkred;
-                }
-            }
-        }
-
         .section_qrcodescan{
             height: 50%;
             overflow: hidden;
@@ -116,83 +35,120 @@
                 position: absolute;
                 left: 25%;
                 top: 25%;
+                right: 25%;
+                bottom: 25%;
                 width: 50%;
+                height: 50%;
+                max-width: 200px;
+                max-height: 200px;
                 aspect-ratio: 1/1;
-                transform: translate(-50%, -50%);
+                padding: 30%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
-            .logo{
+            .section_bottombar{
                 position: fixed;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                svg {
-                    width: 100%;
+                bottom: 0px;
+                left: 0;
+                right: 0;
+                display: flex;
+                height: 70px;
+                background-color: $ColorBackground;
+                justify-content: center;
+                align-items: center;
+
+                .clock{
+                    width: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 20px;
+                }
+
+                .logo {
                     height: 100%;
-                    object-fit: contain;
-                    color: $ColorWhite;
-                    animation: rainbow 75s infinite;
+                    width: 50%;
+                    padding: 5px;
 
-                    .eyes{
-                        position: absolute;
-                        left: 0;
-                        top: 0;
-                        transform-origin: 22px 17px;
-                        animation: leftright 40s infinite;
-                    }
+                    svg {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        color: $ColorWhite;
+                        animation: rainbow 75s infinite;
 
-                    &.mobile{
-                        display: none;
-                        @include media("<desktop") {
-                            display: block;
+                        .eyes {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            transform-origin: 22px 17px;
+                            animation: leftright 40s infinite;
                         }
-                    }
 
-                    &.desktop{
-                        display: block;
-                        @include media("<desktop") {
+                        &.mobile {
                             display: none;
-                        }
-                    }
 
-                    .menu--fixed &{
-                        &.mobile{
-                            display: none;
+                            @include media("<desktop") {
+                                display: block;
+                            }
                         }
 
-                        &.desktop{
+                        &.desktop {
                             display: block;
+
+                            @include media("<desktop") {
+                                display: none;
+                            }
+                        }
+
+                        .menu--fixed & {
+                            &.mobile {
+                                display: none;
+                            }
+
+                            &.desktop {
+                                display: block;
+                            }
                         }
                     }
                 }
             }
         }
 
-        .section_message{
-            padding-top: 40px;
-        }
-
         .section_counter{
             position: absolute;
-            right: 0%;
-            background-color: $ColorBackground;
-            top: 40%;
-            bottom: 40%;
-            width: 15%;
+            right: 2%;
+            top: 0;
+            bottom: 0;
+            width: 12%;
+            height: 100%;
             border-radius: 10px 0 0 10px;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2%;
 
-            .counter_button{
+            .section_counter_button{
                 width: 100%;
-                height: calc(100%/3);
                 padding: 10px;
                 border: 2px solid $ColorBlack;
+                background-color: $ColorBackground;
                 text-decoration: none;
-                font-size: 30px;
+                font-size: 20px;
                 display: flex;
                 justify-content: center;
                 align-items: center;margin: 0;
+                aspect-ratio: 1/1;
+                border-radius: 50%;
+
+                .button_icon{
+                    width: 75%;
+                    height: 75%;
+                    object-fit: contain;
+                }
             }
         }
 
@@ -200,13 +156,13 @@
             position: absolute;
             top: 0%;
             background-color: $ColorBackground;
-            left: 20%;
-            right: 20%;
-            height: 10%;
+            left: 0;
+            right: 0;
+            height: 70px;
             border-radius: 0 0 10px 10px;
             display: flex;
 
-            .numbers_entry{
+            .section_numbers_entry{
                 height: 100%;
                 width: calc(100%/3);
                 padding: 10px;
@@ -217,6 +173,13 @@
                 justify-content: center;
                 align-items: center;
                 margin: 0;
+                gap: 10px;
+
+                .numbers_icon{
+                    height: 100%;
+                    aspect-ratio: 1/1;
+                    object-fit: contain;
+                }
             }
         }
 
@@ -233,6 +196,10 @@
             align-items: center;
             gap: 10px;
             display: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px 5px $ColorWhite;
+            padding: 10px;
 
             .section_popup_close{
                 position: absolute;
@@ -244,20 +211,55 @@
                 border-radius: 0 0 0 10px;
             }
 
-            .section_popup_enter{
-                color: green;
-                border: 1px solid $ColorWhite;
-                border-radius: 10px;
+            .section_popup_client_message{
                 padding: 10px;
+                border-bottom: 1px solid $ColorBlack;
                 width: 100%;
+                text-align: center;
+                margin-top: 0;
+
+                &.valid{
+                    background-color: green;
+                }
+
+                &.problematic {
+                    background-color: orange;
+                }
+
+                &.invalid{
+                    background-color: red;
+                }
             }
 
-            .section_popup_delete{
-                color: red;
-                border: 1px solid red;border-radius: 10px;
+            .section_popup_buttons{
+                display: flex;
+                justify-content: stretch;
+                align-items: center;
+                gap: 10px;
                 padding: 10px;
-                width: 100%;
+
+                .section_popup_button{
+                    width: 50%;
+                    height: 50px;
+                    border-radius: 10px;
+                    padding: 10px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    &.button_checkinGuest {
+                        color: $ColorWhite;
+                        background-color: green;
+                    }
+
+                    &.button_deleteTicket {
+                        color: red;
+                        border: 1px solid red;
+                    }
+                }
             }
+
+
         }
 
         .section_loading{

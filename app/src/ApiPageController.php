@@ -2,6 +2,8 @@
 
 namespace {
 
+    use App\Events\Event;
+
     use App\Events\EntryLog;
     use App\Events\Registration;
     use SilverStripe\Assets\Image;
@@ -31,10 +33,17 @@ namespace {
     {
         private static $allowed_actions = [
             "checkCode",
+            "checkIn",
             "enterShow",
             "acceptTicket",
             "acceptTicket",
         ];
+
+        public function index(HTTPRequest $request)
+        {
+            $this->response->addHeader('Content-Type', 'application/json');
+            return json_encode(["message" => "API is running."]);
+        }
 
         public function checkCode(HTTPRequest $request)
         {
@@ -42,11 +51,33 @@ namespace {
 
             if ($registration) {
                 $data['Valid'] = true;
-                $data['Message'] = "Code ist gültig.";
                 $data['Name'] = $registration->Title;
-                $data['TimeSlot'] = $registration->TimeSlot()->SlotTime;
+                $timeslotTime = $registration->TimeSlot()->SlotTime;
+                $eventdate = $registration->Event()->EventDate;
+                //combine date and time into one string
+                $data['TimeSlot'] = date("d.m.Y H:i", strtotime($eventdate . " " . $timeslotTime));
                 $data['Event'] = $registration->Event()->Title;
+                $data['EventID'] = $registration->EventID;
                 $data['GroupSize'] = $registration->GroupSize;
+
+                switch ($registration->Status) {
+                    case "Registered":
+                        $data['Message'] = "Ticket wurde nicht bestätigt.";
+                        $data['Status'] = "Registered";
+                        break;
+                    case "CheckedIn":
+                        $data['Message'] = "Ticket wurde bereits eingecheckt.";
+                        $data['Status'] = "CheckedIn";
+                        break;
+                    case "Cancelled":
+                        $data['Message'] = "Ticket wurde storniert.";
+                        $data['Status'] = "Cancelled";
+                        break;
+                    default:
+                        $data['Message'] = "Code ist gültig.";
+                        $data['Status'] = "Confirmed";
+                        break;
+                }
             } else {
                 $data['Valid'] = false;
                 $data['Message'] = "Code ist ungültig.";
@@ -85,10 +116,56 @@ namespace {
             $entryLog = new EntryLog();
             $entryLog->SQ = $sq;
             $entryLog->VQ = $vq;
-            $entryLog->TT = $tt;
+            $entryLog->EntryTime = date("Y-m-d H:i:s");
             $entryLog->write();
 
             $data['Valid'] = true;
+
+            $this->response->addHeader('Content-Type', 'application/json');
+            return json_encode($data);
+        }
+
+        public function checkIn(HTTPRequest $request)
+        {
+            $currentUser = Security::getCurrentUser();
+
+            $event_id = $_GET["event"];
+            $event = Event::get()->byId($event_id);
+            $hash = $_GET["hash"];
+
+            $data['Hash'] = $hash;
+            $data['Event'] = $event_id;
+
+            if (!isset($hash) || !isset($event)) {
+                $data['Valid'] = true;
+                $data['Message'] = "Ungültiges Event oder Hash";
+                $data['GroupSize'] = 0;
+            } else {
+                $registration = Registration::get()->filter(array(
+                    "Hash" => $hash,
+                    "EventID" => $event_id,
+                ))->First();
+
+                if ($registration) {
+                    if ($currentUser) {
+                        $registration->Status = "CheckedIn";
+                        $registration->write();
+
+                        $data['Valid'] = true;
+                        $data['Message'] = "Gast wurde eingecheckt.";
+                        $data['GroupSize'] = $registration->GroupSize;
+                    } else {
+                        $data['Valid'] = false;
+                        $data['Message'] = "Nicht eingeloggt!";
+                        $data['GroupSize'] = 0;
+                    }
+                } else {
+                    $data['Valid'] = false;
+                    $data['Message'] = "Ein Fehler ist aufgetreten.";
+                    $data['Hash'] = $hash;
+                    $data['GroupSize'] = 0;
+                }
+            }
 
             $this->response->addHeader('Content-Type', 'application/json');
             return json_encode($data);

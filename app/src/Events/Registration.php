@@ -25,8 +25,8 @@ use Endroid\QrCode\ErrorCorrectionLevel;
  * @property string $Email
  * @property int $GroupSize
  * @property string $Hash
- * @property bool $ConfirmEmailSent
- * @property bool $TicketEmailSent
+ * @property string $ConfirmEmailSent
+ * @property string $TicketEmailSent
  * @property string $Status
  * @property string $Type
  * @property int $ZIP
