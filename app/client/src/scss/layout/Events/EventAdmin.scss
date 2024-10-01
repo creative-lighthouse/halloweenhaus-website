@@ -119,20 +119,19 @@
 
         .section_counter{
             position: absolute;
-            right: 2%;
-            top: 25%;
-            bottom: 0;
+            right: 20px;
+            top: 0;
+            bottom: 90px;
             width: 12%;
-            height: 75%;
             border-radius: 10px 0 0 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
             gap: 2%;
 
             .section_counter_button{
-                width: 100%;
+                width: 70px;
                 padding: 10px;
                 border: 2px solid $ColorBlack;
                 background-color: $ColorBackground;
@@ -176,9 +175,14 @@
                 gap: 10px;
 
                 .numbers_icon{
+                    width: 40px;
                     height: 100%;
                     aspect-ratio: 1/1;
                     object-fit: contain;
+                }
+
+                p{
+                    width: 40px;
                 }
             }
         }
@@ -201,6 +205,10 @@
             box-shadow: 0 0 10px 5px $ColorWhite;
             padding: 10px;
 
+            hr{
+                opacity: 0.2;
+            }
+
             .section_popup_close{
                 position: absolute;
                 top: 0;
@@ -217,6 +225,7 @@
                 width: 100%;
                 text-align: center;
                 margin-top: 0;
+                font-weight: bold;
 
                 &.valid{
                     background-color: green;
@@ -231,12 +240,36 @@
                 }
             }
 
+            .section_people_helper{
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                position: absolute;
+                bottom: 70px;
+                opacity: 0.5;
+                left: 0;
+                right: 0;
+                gap: 10px;
+                width: 100%;
+                padding: 0 20px;
+
+                .section_people_helper_person{
+                    aspect-ratio: 1/1;
+                    max-height: 50px;
+                    min-width: 0;
+                }
+            }
+
             .section_popup_buttons{
                 display: flex;
                 justify-content: stretch;
                 align-items: center;
                 gap: 10px;
                 padding: 10px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
 
                 .section_popup_button{
                     width: 50%;

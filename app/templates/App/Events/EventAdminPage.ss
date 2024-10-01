@@ -84,6 +84,8 @@
                     <p class="section_popup_text section_popup_client_timeslot"></p>
                     <hr>
                     <p class="section_popup_text section_popup_client_timedifference"></p>
+                    <div class="section_people_helper">
+                    </div>
                     <div class="section_popup_buttons">
                         <a class="section_popup_button button_deleteTicket">Löschen</a>
                         <a class="section_popup_button button_checkinGuest">Einlass</a>
@@ -121,6 +123,8 @@
         const button_closePopup = document.querySelector('.section_popup_close');
         const popup_buttons = document.querySelector('.section_popup_buttons');
         const clock_text = document.querySelector('.clock_text');
+
+        const peoplehelper = document.querySelector('.section_people_helper');
 
         let timeDifferenceInterval = null;
 
@@ -184,14 +188,16 @@
             }
 
             enterShowButton.onclick = function () {
+                if(amount_tt == 0) {
+                    return;
+                }
+                navigator.vibrate(2000);
                 enterShow();
             }
 
             button_closePopup.onclick = function() {
                 closePopup();
             }
-
-
 
             //update clock every 10 Seconds
             setInterval(function() {
@@ -203,6 +209,7 @@
         function checkCode(hash) {
             console.log('Checking code:', hash);
             loading.style.display = 'flex';
+            navigator.vibrate(1000);
 
             if(hash === '') {
                 loading.style.display = 'none';
@@ -246,6 +253,17 @@
                     client_event.innerHTML = data.Event;
                     client_timeslot.innerHTML = data.TimeSlot;
 
+                    //First clear people helper
+                    peoplehelper.innerHTML = '';
+
+                    //Add people to people helper
+                    for(var i = 0; i < data.GroupSize; i++) {
+                        const person = document.createElement('img');
+                        person.src = '../_resources/app/client/icons/event_admin/icon_person.svg';
+                        person.classList.add('section_people_helper_person');
+                        peoplehelper.appendChild(person);
+                    }
+
                     //update time difference each second
                     timeDifferenceInterval = setInterval(function() {
                         if(popup_active) {
@@ -259,7 +277,7 @@
                     };
 
                     button_declineTicket.onclick = function() {
-                        declineTicket(data.eventid, hash);
+                        cancelTicket(data.EventID, hash);
                         closePopup();
                     };
                 } else {
@@ -347,6 +365,30 @@
                     popup.style.display = 'none';
                     amount_vq += data.GroupSize;
                     updateNumbers();
+                }
+            })
+            .catch((error) => {
+                popup.style.display = 'none';
+            });
+        }
+
+        //Accept Ticket
+        function cancelTicket(eventid, hash) {
+            fetch('./api/cancelTicket?event=' + eventid + '&hash=' + hash, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    hash: hash,
+                    eventid: eventid
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.Valid) {
+                    popup.style.display = 'none';
                 }
             })
             .catch((error) => {

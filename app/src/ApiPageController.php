@@ -23,12 +23,12 @@ namespace {
     use SilverStripe\ORM\Queries\SQLSelect;
 
     /**
-     * Class \PageController
-     *
-     * @property \ApiPage $dataRecord
-     * @method \ApiPage data()
-     * @mixin \ApiPage
-     */
+ * Class \PageController
+ *
+ * @property \ApiPage $dataRecord
+ * @method \ApiPage data()
+ * @mixin \ApiPage
+ */
     class ApiPageController extends ContentController
     {
         private static $allowed_actions = [
@@ -36,7 +36,7 @@ namespace {
             "checkIn",
             "enterShow",
             "acceptTicket",
-            "acceptTicket",
+            "cancelTicket",
         ];
 
         public function index(HTTPRequest $request)
@@ -99,6 +99,39 @@ namespace {
             } else {
                 $data['Valid'] = false;
                 $data['Message'] = "Code ist ungültig.";
+            }
+
+            $this->response->addHeader('Content-Type', 'application/json');
+            return json_encode($data);
+        }
+
+        public function cancelTicket(HTTPRequest $request)
+        {
+            $currentUser = Security::getCurrentUser();
+
+            $event_id = $_GET["event"];
+            $event = Event::get()->byId($event_id);
+            $hash = $_GET["hash"];
+
+            $data['Hash'] = $hash;
+            $data['Event'] = $event_id;
+
+            if (!isset($hash) || !isset($event)) {
+                $data['Valid'] = true;
+                $data['Message'] = "Ungültiges Event oder Hash";
+                $data['GroupSize'] = 0;
+            } else {
+                $registration = Registration::get()->filter(array(
+                    "Hash" => $hash,
+                    "EventID" => $event_id,
+                ))->First();
+            }
+
+            if ($registration) {
+                $registration->Status = "Cancelled";
+                $registration->write();
+                $data['Valid'] = true;
+                $data['Message'] = "Ticket wurde gecancelt.";
             }
 
             $this->response->addHeader('Content-Type', 'application/json');
