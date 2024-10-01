@@ -35,49 +35,13 @@ class EventAdminPageController extends PageController
         "cancel",
     ];
 
-    public function checkRegistration(HTTPRequest $request)
+    public function index(HTTPRequest $request)
     {
-        $currentUser = Security::getCurrentUser();
-        $hash = $this->getRequest()->param("ID");
-        $registration = Registration::get()->filter("Hash", $hash)->first();
-        $eventPage = EventPage::get()->first();
-
-        if ($registration) {
-            if ($currentUser) {
-                $timeslot = $registration->TimeSlot();
-                $event = $registration->Event();
-                return array(
-                    "Registration" => $registration,
-                    "Event" => $event,
-                    "TimeSlot" => $timeslot,
-                );
-            } else {
-                return $this->redirect($eventPage->Link("ticket") . "/" . $registration->Hash);
-            }
+        $currentuser = Security::getCurrentUser();
+        if (!$currentuser) {
+            return $this->redirect("Security/login");
         } else {
-            return $this->redirect($eventPage->Link("eventnotfound"));
-        }
-    }
-
-    public function cancel(HTTPRequest $request)
-    {
-        $currentUser = Security::getCurrentUser();
-        $hash = $this->getRequest()->param("ID");
-        $registration = Registration::get()->filter("Hash", $hash)->first();
-        $eventPage = EventPage::get()->first();
-
-        if ($registration) {
-            if ($currentUser) {
-                $registration->Status = "Cancelled";
-                $registration->write();
-                return array(
-                    "Registration" => $registration,
-                );
-            } else {
-                return $this->redirect($eventPage->Link("ticket") . "/" . $registration->Hash);
-            }
-        } else {
-            return $this->redirect($eventPage->Link("eventnotfound"));
+            return $this->renderWith(["App/Events/EventAdminPage", "Page"]);
         }
     }
 }
