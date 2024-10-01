@@ -162,6 +162,8 @@
                         return;
                     }
 
+                    navigator.vibrate(1200);
+
                     //For testing
                     const urlParts = decodedUrl.pathname.split('/');
                     const lastPart = urlParts[urlParts.length - 1];
@@ -191,7 +193,7 @@
                 if(amount_tt == 0) {
                     return;
                 }
-                navigator.vibrate(2000);
+                navigator.vibrate(1800);
                 enterShow();
             }
 
@@ -209,7 +211,6 @@
         function checkCode(hash) {
             console.log('Checking code:', hash);
             loading.style.display = 'flex';
-            navigator.vibrate(1000);
 
             if(hash === '') {
                 loading.style.display = 'none';
