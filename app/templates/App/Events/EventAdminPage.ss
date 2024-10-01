@@ -162,7 +162,7 @@
                         return;
                     }
 
-                    navigator.vibrate(1200);
+                    navigator.vibrate(200);
 
                     //For testing
                     const urlParts = decodedUrl.pathname.split('/');
@@ -193,7 +193,7 @@
                 if(amount_tt == 0) {
                     return;
                 }
-                navigator.vibrate(1800);
+                navigator.vibrate(1000);
                 enterShow();
             }
 
