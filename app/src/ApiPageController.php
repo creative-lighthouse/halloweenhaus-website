@@ -2,6 +2,12 @@
 
 namespace {
 
+    use SilverStripe\Assets\File;
+    use SilverStripe\Assets\Upload;
+    use SilverStripe\AssetAdmin\Controller\AssetAdmin;
+
+    use App\ImageBooth\BoothImage;
+
     use App\Events\Event;
 
     use App\Events\EntryLog;
@@ -23,12 +29,12 @@ namespace {
     use SilverStripe\ORM\Queries\SQLSelect;
 
     /**
- * Class \PageController
- *
- * @property \ApiPage $dataRecord
- * @method \ApiPage data()
- * @mixin \ApiPage
- */
+     * Class \PageController
+     *
+     * @property \ApiPage $dataRecord
+     * @method \ApiPage data()
+     * @mixin \ApiPage
+     */
     class ApiPageController extends ContentController
     {
         private static $allowed_actions = [
@@ -37,6 +43,7 @@ namespace {
             "enterShow",
             "acceptTicket",
             "cancelTicket",
+            "addImageFromBooth",
         ];
 
         public function index(HTTPRequest $request)
@@ -202,6 +209,40 @@ namespace {
 
             $this->response->addHeader('Content-Type', 'application/json');
             return json_encode($data);
+        }
+
+        //Get Image from base64 string in API call and save to database
+        public function addImageFromBooth(HTTPRequest $request)
+        {
+            $data = json_decode($request->getBody(), true);
+            if (!isset($data['image'])) {
+                $this->response->addHeader('Content-Type', 'application/json');
+                return json_encode(["message" => "No image data found."]);
+            }
+            $image = $data['image'];
+            $uploadedFile = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $image));
+
+            $image = Image::create();
+            $image->setFromLocalFile($uploadedFile, 'image.png');
+            $image->write();
+
+
+
+            $file = File::create();
+            $upload = Upload::create();
+            $upload->loadIntoFile($image, $file, '/Submission attachments');
+
+            $file->write();
+
+
+            $boothImage = new BoothImage();
+            $boothImage->ImageID = $upload->getFile()->ID;
+            $boothImage->write();
+
+            AssetAdmin::singleton()->generateThumbnails($file);
+
+            $this->response->addHeader('Content-Type', 'application/json');
+            return json_encode(["message" => "Image saved."]);
         }
     }
 }
