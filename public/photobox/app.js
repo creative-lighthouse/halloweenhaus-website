@@ -18,9 +18,13 @@ let currentStream = null;
 let currentDeviceId = null;
 let videoDevices = [];
 
+const imagesize = 1000;
+
 const overlays = [
     "overlay1.png",
     "overlay2.png",
+    "overlay3.png",
+    "overlay4.png",
 ];
 
 countdownEl.style.opacity = 0;
@@ -29,33 +33,33 @@ canvas.style.display = 'none';
 
 // Access the available devices
 navigator.mediaDevices.enumerateDevices().then(devices => {
-  videoDevices = devices.filter(device => device.kind === 'videoinput');
-  if (videoDevices.length > 0) {
-    currentDeviceId = videoDevices[0].deviceId;
-    startCamera(currentDeviceId);
-  }
+    videoDevices = devices.filter(device => device.kind === 'videoinput');
+    if (videoDevices.length > 0) {
+        currentDeviceId = videoDevices[0].deviceId;
+        startCamera(currentDeviceId);
+    }
 }).catch(err => {
-  console.error("Error accessing devices: ", err);
+    console.error("Error accessing devices: ", err);
 });
 
 // Function to start the camera stream
 function startCamera(deviceId) {
-  if (currentStream) {
-    currentStream.getTracks().forEach(track => track.stop());
-  }
-
-  navigator.mediaDevices.getUserMedia({
-    video: {
-      deviceId: { exact: deviceId },
-      width: 1000,
-      height: 1000
+    if (currentStream) {
+        currentStream.getTracks().forEach(track => track.stop());
     }
-  }).then(stream => {
-    currentStream = stream;
-    video.srcObject = stream;
-  }).catch(err => {
-    console.error("Error starting camera: ", err);
-  });
+
+    navigator.mediaDevices.getUserMedia({
+        video: {
+        deviceId: { exact: deviceId },
+        width: imagesize,
+        height: imagesize
+        }
+    }).then(stream => {
+        currentStream = stream;
+        video.srcObject = stream;
+    }).catch(err => {
+        console.error("Error starting camera: ", err);
+    });
 }
 
 // Capture the image from the video stream after a countdown
@@ -94,11 +98,11 @@ function captureImage()
     const cropY = (videoHeight - squareSize) / 2;
 
     // Clear the canvas and set it to square size
-    canvas.width = squareSize;
-    canvas.height = squareSize;
+    canvas.width = imagesize;
+    canvas.height = imagesize;
 
     // Draw the square region from the video onto the canvas
-    context.drawImage(video, cropX, cropY, squareSize, squareSize, 0, 0, canvas.width, canvas.height);
+    context.drawImage(video, cropX, cropY, squareSize, squareSize, 0, 0, imagesize, imagesize);
 
     // Apply the overlay if available
     if (currentOverlay) {

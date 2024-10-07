@@ -2,24 +2,29 @@
 
 namespace App\ImageBooth;
 
+use SilverStripe\Assets\File;
 use SilverStripe\Assets\Image;
+use SilverStripe\Assets\Upload;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\AssetAdmin\Controller\AssetAdmin;
 
 /**
  * Class \App\Podcast\PodcastEntry
  *
  * @property bool $isVisible
+ * @property string $Base64Image
  * @property int $ImageID
- * @method \SilverStripe\Assets\Image Image()
+ * @method \SilverStripe\Assets\File Image()
  */
 class BoothImage extends DataObject
 {
     private static $db = [
         "isVisible" => "Boolean",
+        "Base64Image" => "Text"
     ];
 
     private static $has_one = [
-        "Image" => Image::class
+        "Image" => File::class
     ];
 
     private static $owns = [
@@ -30,7 +35,7 @@ class BoothImage extends DataObject
 
     private static $field_labels = [
         "isVisible" => "Sichtbar in Gallerie",
-        "Image" => "Bild"
+        "Base64Image" => "Bild-Code"
     ];
 
     private static $summary_fields = [
@@ -59,6 +64,16 @@ class BoothImage extends DataObject
 
     public function getThumbnail()
     {
-        return $this->Image()->ScaleWidth(60);
+        //create Thumbnail from Base64Image
+        $image = Image::create();
+
+        $image->setFromString($this->Base64Image, "thumbnail.jpg");
+
+        return $image->CMSThumbnail();
+    }
+
+    public function getFormattedCreationDate()
+    {
+        return date("d.m.Y H:i", strtotime($this->Created));
     }
 }

@@ -4,6 +4,8 @@ namespace App\ImageBooth;
 
 use App\ImageBooth\BoothImage;
 use SilverStripe\Admin\ModelAdmin;
+use Colymba\BulkManager\BulkManager;
+use SilverStripe\Forms\GridField\GridFieldConfig;
 
 /**
  * Class \App\Podcast\PodcastAdmin
@@ -25,5 +27,14 @@ class ImageBoothAdmin extends ModelAdmin
     public function init()
     {
         parent::init();
+    }
+
+    protected function getGridFieldConfig(): GridFieldConfig
+    {
+        $config = parent::getGridFieldConfig();
+
+        $config->addComponent(new BulkManager(), 'GridFieldEditButton');
+
+        return $config;
     }
 }

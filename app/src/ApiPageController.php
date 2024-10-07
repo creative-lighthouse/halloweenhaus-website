@@ -29,12 +29,12 @@ namespace {
     use SilverStripe\ORM\Queries\SQLSelect;
 
     /**
-     * Class \PageController
-     *
-     * @property \ApiPage $dataRecord
-     * @method \ApiPage data()
-     * @mixin \ApiPage
-     */
+ * Class \PageController
+ *
+ * @property \ApiPage $dataRecord
+ * @method \ApiPage data()
+ * @mixin \ApiPage
+ */
     class ApiPageController extends ContentController
     {
         private static $allowed_actions = [
@@ -219,27 +219,11 @@ namespace {
                 $this->response->addHeader('Content-Type', 'application/json');
                 return json_encode(["message" => "No image data found."]);
             }
-            $image = $data['image'];
-            $uploadedFile = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $image));
-
-            $image = Image::create();
-            $image->setFromLocalFile($uploadedFile, 'image.png');
-            $image->write();
-
-
-
-            $file = File::create();
-            $upload = Upload::create();
-            $upload->loadIntoFile($image, $file, '/Submission attachments');
-
-            $file->write();
-
 
             $boothImage = new BoothImage();
-            $boothImage->ImageID = $upload->getFile()->ID;
+            $boothImage->Base64Image = $data['image'];
+            $boothImage->isVisible = true;
             $boothImage->write();
-
-            AssetAdmin::singleton()->generateThumbnails($file);
 
             $this->response->addHeader('Content-Type', 'application/json');
             return json_encode(["message" => "Image saved."]);
