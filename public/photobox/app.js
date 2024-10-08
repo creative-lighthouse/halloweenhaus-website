@@ -12,7 +12,16 @@ const context = canvas.getContext('2d');
 const controls = document.getElementById('controls');
 const videoContainer = document.getElementById('videoContainer');
 const afterCaptureControls = document.getElementById('afterCaptureControls');
+const restartButton = document.getElementById('restart_button');
+let countdownInterval = null;
 
+const qrcodeHolder = document.getElementById('qrcode_holder');
+const qrcodeImage = document.getElementById('qrcode_image');
+var qrcodeText = "";
+
+let currentState = 'camera'; // camera, preview, saving
+
+let allOverlayButtons = null;
 let currentOverlay = null;
 let currentStream = null;
 let currentDeviceId = null;
@@ -28,22 +37,33 @@ const overlays = [
 ];
 
 countdownEl.style.opacity = 0;
-afterCaptureControls.style.display = 'none';
-canvas.style.display = 'none';
+afterCaptureControls.classList.add("hidden");
+canvas.classList.add("hidden");
 
-// Access the available devices
-navigator.mediaDevices.enumerateDevices().then(devices => {
-    videoDevices = devices.filter(device => device.kind === 'videoinput');
-    if (videoDevices.length > 0) {
-        currentDeviceId = videoDevices[0].deviceId;
-        startCamera(currentDeviceId);
-    }
-}).catch(err => {
-    console.error("Error accessing devices: ", err);
-});
+// Call the loadOverlays function to create overlay buttons
+loadOverlays();
+
+//Initialize the first camera to find
+initilizeCamera();
+
+changeState('camera');
+
+function initilizeCamera() {
+    // Access the available devices
+    navigator.mediaDevices.enumerateDevices().then(devices => {
+        videoDevices = devices.filter(device => device.kind === 'videoinput');
+        if (videoDevices.length > 0) {
+            currentDeviceId = videoDevices[0].deviceId;
+            startCamera(currentDeviceId);
+        }
+    }).catch(err => {
+        console.error("Error accessing devices: ", err);
+    });
+}
 
 // Function to start the camera stream
 function startCamera(deviceId) {
+
     if (currentStream) {
         currentStream.getTracks().forEach(track => track.stop());
     }
@@ -68,19 +88,13 @@ captureBtn.addEventListener('click', () => {
     countdownEl.textContent = countdown;
     countdownEl.style.opacity = 1;
 
-    const countdownInterval = setInterval(() => {
+    countdownInterval = setInterval(() => {
         countdown--;
         if (countdown > 0) {
             countdownEl.textContent = countdown;
             countdownEl.style.opacity = 1;
         } else {
-            clearInterval(countdownInterval);
-            countdownEl.textContent = '';
-            countdownEl.style.opacity = 0;
-            controls.style.display = 'none';
-            afterCaptureControls.style.display = 'flex';
-            videoContainer.style.display = 'none';
-            canvas.style.display = 'block';
+            changeState('preview');
             captureImage();
         }
     }, 1000);
@@ -125,7 +139,10 @@ function loadOverlays() {
 
             // Show the overlay on the video feed
             overlayPreview.src = currentOverlay;
-            overlayPreview.style.display = 'block';
+            overlayPreview.classList.remove('hidden');
+
+            allOverlayButtons.forEach(button => button.classList.remove('selected'));
+            btn.classList.add('selected');
         });
 
         //Set the overlay as an image on the button
@@ -134,11 +151,9 @@ function loadOverlays() {
         btn.appendChild(img);
 
         overlayButtons.appendChild(btn);
+        allOverlayButtons = document.querySelectorAll('.overlay-btn');
     });
 }
-
-// Call the loadOverlays function to create overlay buttons
-loadOverlays();
 
 // Apply the overlay to the final captured image
 function applyOverlay(overlaySrc) {
@@ -149,44 +164,78 @@ function applyOverlay(overlaySrc) {
   };
 }
 
-// Toggle between cameras
-/*toggleCameraBtn.addEventListener('click', () => {
-  const currentIndex = videoDevices.findIndex(device => device.deviceId === currentDeviceId);
-  const nextIndex = (currentIndex + 1) % videoDevices.length;
-  currentDeviceId = videoDevices[nextIndex].deviceId;
-  startCamera(currentDeviceId);
-});*/
-
 // Save the image
 saveBtn.addEventListener('click', () => {
     const imageDataURL = canvas.toDataURL('image/png');
     // Send this data URL to the server to save in the database
     console.log(imageDataURL); // For testing
 
-    resetCamera();
-
     const bodyData = JSON.stringify({ image: imageDataURL });
+    afterCaptureControls.classList.add("hidden");
 
     // Example: Sending the image to a server
     fetch('../api/addImageFromBooth', {
         method: 'POST',
         body: bodyData,
         headers: { 'Content-Type': 'application/json' }
-    }).then(response => response.json())
-        .then(
-            data => console.log('Image saved:', data))
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Image saved:', data);
+            qrcodeText = data.qrlink;
+            changeState('saving');
+        })
     .catch(error => console.error('Error saving image:', error));
 });
 
 dismissBtn.addEventListener('click', () => {
-    resetCamera();
+    changeState('camera');
 });
 
-function resetCamera() {
-    canvas.style.display = 'none';
-    afterCaptureControls.style.display = 'none';
-    controls.style.display = 'flex';
-    videoContainer.style.display = 'block';
-    const allOverlayButtons = document.querySelectorAll('.overlay-btn');
-    allOverlayButtons.forEach(button => button.classList.add('notused'));
+restartButton.addEventListener('click', () => {
+    changeState('camera');
+});
+
+function changeState(newstate) {
+    switch (newstate) {
+        case 'camera':
+            currentState = 'camera';
+            controls.classList.remove("hidden");
+            afterCaptureControls.classList.add("hidden");
+            videoContainer.classList.remove("hidden");
+            canvas.classList.add("hidden");
+            qrcodeHolder.classList.add("hidden");
+
+            allOverlayButtons = document.querySelectorAll('.overlay-btn');
+            allOverlayButtons.forEach(button => button.classList.add('notused'));
+            break;
+        case 'preview':
+            currentState = 'preview';
+            controls.classList.add('hidden');
+            afterCaptureControls.classList.remove("hidden")
+            videoContainer.classList.add("hidden");
+            canvas.classList.remove("hidden");
+            qrcodeHolder.classList.add("hidden");
+
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+            countdownEl.textContent = '';
+            countdownEl.style.opacity = 0;
+            break;
+        case 'saving':
+            currentState = 'saving';
+            controls.classList.add("hidden");
+            afterCaptureControls.classList.add("hidden");
+            videoContainer.classList.add("hidden");
+            canvas.classList.remove("hidden");
+            qrcodeHolder.classList.remove("hidden");
+
+            if(qrcodeText != "") {
+                qrcodeImage.src = qrcodeText;
+            }
+            break;
+        default:
+            console.error('Invalid state');
+    }
 }

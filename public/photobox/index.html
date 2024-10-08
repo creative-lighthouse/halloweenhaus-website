@@ -9,30 +9,41 @@
 </head>
 
 <body>
-    <div id="controls" class="controls">
-        <button id="captureBtn" class="captureBtn">Bild aufnehmen</button>
-        <div id="overlayButtons"></div> <!-- Overlay buttons will be generated here -->
-        <!--<button id="toggleCameraBtn">Toggle Camera</button>-->
-    </div>
-    <div id="afterCaptureControls" class="afterCaptureControls">
-        <button id="dismissBtn">Bild löschen</button>
-        <button id="saveBtn">Bild speichern</button>
-        <p id="saveNotice">
-            Mit einem Klick auf "Bild speichern" erlaubst du uns (Halloweenhaus Schmalenbeck), dass wir dieses Bild auf 
-            unserer Website veröffentlichen und ggf. für unsere Öffentlichkeitsarbeit verwenden dürfen. Die Bilder werden 
-            nach Speicherung zusammen mit anderen Bildern dieser Fotobox in einer Galerie auf der Website abrufbar sein.
-            Solltest du diesen Bedingungen nicht zustimmen wollen, kannst du dein Bild hier vom Bildschirm für deinen 
-            persönlichen Gebrauch abfotografieren und auf "Bild löschen" klicken.
-        </p>
-    </div>
-    <div id="countdown"></div>
+    <div class="section--camera">
+        <div class="video_plate">
+            <div id="videoContainer">
+                <video id="video" autoplay></video>
+                <img id="overlayPreview" class="overlay" alt="Overlay Preview">
+            </div>
 
-    <div id="videoContainer">
-        <video id="video" autoplay></video>
-        <img id="overlayPreview" class="overlay" alt="Overlay Preview">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="control_plate">
+            <div id="controls" class="controls">
+                <button id="captureBtn" class="captureBtn">Bild aufnehmen</button>
+                <div id="overlayButtons"></div> <!-- Overlay buttons will be generated here -->
+                <!--<button id="toggleCameraBtn">Toggle Camera</button>-->
+            </div>
+            <div id="afterCaptureControls" class="afterCaptureControls">
+                <button id="dismissBtn">Bild löschen</button>
+                <button id="saveBtn">Bild speichern</button>
+                <p id="saveNotice">
+                    Mit einem Klick auf "Bild speichern" erlaubst du uns (Halloweenhaus Schmalenbeck), dass wir dieses Bild auf
+                    unserer Website veröffentlichen und ggf. für unsere Öffentlichkeitsarbeit verwenden dürfen. Die Bilder
+                    werden
+                    nach Speicherung zusammen mit anderen Bildern dieser Fotobox in einer Galerie auf der Website abrufbar sein.
+                    Solltest du diesen Bedingungen nicht zustimmen wollen, kannst du dein Bild hier vom Bildschirm für deinen
+                    persönlichen Gebrauch abfotografieren und auf "Bild löschen" klicken.
+                </p>
+            </div>
+            <div id="countdown"></div>
+            <div id="qrcode_holder">
+                <img id="qrcode_image" src="" alt="QR-Code">
+                <p>Lade dein Bild über den QR-Code herunter oder finde es später online auf unserer Website unter "Fotobox-Galerie"</p>
+                <a id="restart_button">Von vorne starten</a>
+            </div>
+        </div>
     </div>
-
-    <canvas id="canvas"></canvas>
 </body>
 <script src="app.js"></script>
 

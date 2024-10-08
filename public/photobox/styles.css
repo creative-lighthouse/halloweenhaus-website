@@ -1,3 +1,41 @@
+/* Define fonts */
+/* afacad-flux-200 - latin */
+@font-face {
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Afacad Flux';
+    font-style: normal;
+    font-weight: 200;
+    src: url('./fonts/afacad-flux-v1-latin-200.woff2') format('woff2');
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* afacad-flux-regular - latin */
+@font-face {
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Afacad Flux';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/afacad-flux-v1-latin-regular.woff2') format('woff2');
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* afacad-flux-700 - latin */
+@font-face {
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Afacad Flux';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./fonts/afacad-flux-v1-latin-700.woff2') format('woff2');
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+
+
+
+/* Other stylings */
 html,
 body {
     margin: 0;
@@ -6,6 +44,37 @@ body {
     width: 100%;
     overflow: hidden;
     background-color: black;
+    font-family: 'Afacad Flux', sans-serif;
+    color: white;
+}
+
+.section--camera{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.video_plate{
+    height: 85%;
+    position: relative;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+}
+
+.control_plate{
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+a, p, h1, h2, h3, h4, h5, h6, button, input, label, span, div {
+    font-family: 'Afacad Flux', sans-serif;
+    color: white;
 }
 
 #video,
@@ -15,7 +84,7 @@ body {
     /* Ensures the video is cropped to fit square */
     /*width: 640px;*/
     height: 100%;
-    width: 100vh;
+    width: 100%;
     aspect-ratio: 1/1;
     z-index: 0;
     position: absolute;
@@ -27,11 +96,18 @@ body {
 }
 
 #canvas{
-    height: calc(100% - 150px);
-    width: calc(100vh - 150px);
+    height: 100%;
+    width: 100%;
     border: 15px solid white;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-    transform: translateX(-50%) rotate(-5deg) scale(0.9);
+    transform: translateX(-50%) rotate(-5deg) scaleX(0.9) scaleY(0.9);
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+}
+
+#canvas.hidden {
+    opacity: 0;
+    transform: translateX(-50%) rotate(-5deg) scaleX(-0.9) scaleY(0.9);
 }
 
 .overlay {
@@ -46,8 +122,10 @@ body {
     /* Ensure square */
     pointer-events: none;
     /* Allow interactions with buttons */
-    display: none;
+    opacity: 1;
 }
+
+
 
 #videoContainer {
     position: relative;
@@ -59,8 +137,15 @@ body {
     /* Square height */
     aspect-ratio: 1/1;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scaleX(-1) ;
     position: absolute;
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+}
+
+#videoContainer.hidden{
+    opacity: 0;
+    transform: translateX(-50%) scaleX(1);
 }
 
 #countdown {
@@ -68,12 +153,25 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2rem;
-    color: red;
-    z-index: 40;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
+    transition: 0.3s ease-in-out;font-size: 4rem;
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    opacity: 1;
+}
+
+#countdown.hidden{
+    opacity: 0;
 }
 
 .controls {
@@ -87,6 +185,8 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
     text-align: center;
     z-index: 100;
+    opacity: 1;
+    transition: 0.3s ease-in-out;
 }
 
 .overlay-btn {
@@ -111,6 +211,12 @@ body {
     animation: bounce 2s ease infinite;
 }
 
+.overlay-btn.selected {
+    transform: translateY(-10%);
+    background-color: gray;
+    color: black;
+}
+
 .captureBtn{
     position: absolute;
     left: 50%;
@@ -126,23 +232,6 @@ body {
     padding: 10px 20px;
 }
 
-#countdown {
-    font-size: 4rem;
-    color: white;
-    text-align: center;
-    margin-top: 20px;
-    aspect-ratio: 1/1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
-}
-
 .afterCaptureControls{
     position: absolute;
     bottom: 20px;
@@ -153,6 +242,12 @@ body {
     padding: 10px;
     z-index: 10;
     gap: 20px;
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+}
+
+.afterCaptureControls.hidden {
+    opacity: 0;
 }
 
 #saveBtn, #dismissBtn{
@@ -183,33 +278,88 @@ body {
     font-size: 12px;
 }
 
+#qrcode_holder {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    bottom: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    width: 300px;
+    min-height: 300px;
+    padding: 50px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    flex-direction: column;
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+
+    img {
+        width: 100%;
+        height: calc(100% - 100px);
+        object-fit: contain;
+    }
+
+    p {
+        color: white;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    #restart_button {
+        background-color: #390083;
+        padding: 10px 20px;
+        cursor: pointer;
+        color: white;
+        border-radius: 20px;
+    }
+}
+
+#qrcode_holder.hidden {
+    opacity: 0;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
 /*jumping animation for overlay buttons*/
 @keyframes bounce {
+    0% {
+        transform: translateY(-5%);
+    }
+
     70% {
-        transform: translateY(0%);
+        transform: translateY(-5%);
     }
 
     80% {
-        transform: translateY(-15%);
+        transform: translateY(-25%);
     }
 
     90% {
-        transform: translateY(0%);
+        transform: translateY(-5%);
     }
 
     95% {
-        transform: translateY(-7%);
+        transform: translateY(-11%);
     }
 
     97% {
-        transform: translateY(0%);
+        transform: translateY(-5%);
     }
 
     99% {
-        transform: translateY(-3%);
+        transform: translateY(-7%);
     }
 
     100% {
-        transform: translateY(0);
+        transform: translateY(-5);
     }
 }

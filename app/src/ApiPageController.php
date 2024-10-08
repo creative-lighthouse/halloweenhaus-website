@@ -2,6 +2,14 @@
 
 namespace {
 
+    use Endroid\QrCode\Builder\Builder;
+    use Endroid\QrCode\Writer\PngWriter;
+    use Endroid\QrCode\Encoding\Encoding;
+    use Endroid\QrCode\RoundBlockSizeMode;
+    use Endroid\QrCode\ErrorCorrectionLevel;
+
+    use App\ImageBooth\PhotoboxGalleryPage;
+
     use SilverStripe\Assets\File;
     use SilverStripe\Assets\Upload;
     use SilverStripe\AssetAdmin\Controller\AssetAdmin;
@@ -29,12 +37,12 @@ namespace {
     use SilverStripe\ORM\Queries\SQLSelect;
 
     /**
- * Class \PageController
- *
- * @property \ApiPage $dataRecord
- * @method \ApiPage data()
- * @mixin \ApiPage
- */
+     * Class \PageController
+     *
+     * @property \ApiPage $dataRecord
+     * @method \ApiPage data()
+     * @mixin \ApiPage
+     */
     class ApiPageController extends ContentController
     {
         private static $allowed_actions = [
@@ -220,13 +228,41 @@ namespace {
                 return json_encode(["message" => "No image data found."]);
             }
 
+            $photogallery = PhotoboxGalleryPage::get()->first();
+
             $boothImage = new BoothImage();
             $boothImage->Base64Image = $data['image'];
             $boothImage->isVisible = true;
             $boothImage->write();
+            $returndata["message"] = "Image saved.";
+            $returndata["id"] = $boothImage->ID;
+
+            if ($photogallery) {
+                $returndata["detaillink"] = $photogallery->AbsoluteLink("foto") . "/" . $boothImage->ID;
+                $returndata["qrlink"] = $this->createQRCode($photogallery->AbsoluteLink("foto") . "/" . $boothImage->ID);
+            }
+
 
             $this->response->addHeader('Content-Type', 'application/json');
-            return json_encode(["message" => "Image saved."]);
+            return json_encode($returndata);
+        }
+
+        public function createQRCode(String $link)
+        {
+            $qrCode = Builder::create()
+                ->writer(new PngWriter())
+                ->writerOptions([])
+                ->data($link)
+                ->encoding(new Encoding('UTF-8'))
+                ->errorCorrectionLevel(ErrorCorrectionLevel::High)
+                ->size(300)
+                ->margin(10)
+                ->roundBlockSizeMode(RoundBlockSizeMode::Margin)
+                ->validateResult(false)
+                ->build();
+            header('Content-Type: ' . $qrCode->getMimeType());
+
+            return $qrCode->getDataUri();
         }
     }
 }

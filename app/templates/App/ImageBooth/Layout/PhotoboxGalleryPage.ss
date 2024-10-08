@@ -7,9 +7,9 @@
                     <p>Foto Nr. $ID | $FormattedCreationDate</p>
                     <a download href="$Base64Image" target="_blank" class="photobox_download">Download</a>
                 </div>
-                <div class="photobox_image_content">
+                <a class="photobox_image_content" href="$Top.Link('/foto')/$ID">
                     <img src="$Base64Image" alt="$Created" />
-                </div>
+                </a>
             </div>
         <% end_loop %>
     </div>
