@@ -7,7 +7,7 @@
                 <p>An welchem Tag warst/bist du da?</p>
                 <div class="switch">
                     <% loop $EventDates.GroupedBy('EventDate') %>
-                        <input type="radio" name="day" id="day-$Children.First.ID" value="$Children.First.ID" required>
+                        <input type="radio" name="day" id="day-$Children.First.ID" value="$Children.First.EventDate" required>
                         <label for="day-$Children.First.ID">
                             <p class="weekday">$Children.First.DateWeekday</p>
                             <p>$Children.First.DateFormatted</p>
@@ -51,7 +51,7 @@
 
             <div class="form-group">
                 <label for="PLZ">Wie lautet deine Postleitzahl (optional)?</label>
-                <input type="text" class="form-control" id="plz" name="plz">
+                <input type="text" class="form-control" id="plz" name="plz" maxlength="5" pattern="[0-9]*" inputmode="numeric">
             </div>
 
             <div class="form-group">

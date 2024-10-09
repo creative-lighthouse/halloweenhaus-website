@@ -3,12 +3,13 @@
 namespace App\Feedback;
 
 use App\Feedback\FeedbackAdmin;
+use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\DataObject;
 
 /**
  * Class \App\Team\TeamSocial
  *
- * @property int $Day
+ * @property string $Day
  * @property float $Stars
  * @property string $Comment
  * @property string $PLZ
@@ -16,10 +17,10 @@ use SilverStripe\ORM\DataObject;
 class FeedbackEntry extends DataObject
 {
     private static $db = [
-        "Day" => "Int",
+        "Day" => "Date",
         "Stars" => "Double",
         "Comment" => "Text",
-        "PLZ"=> "Varchar(255)",
+        "PLZ" => "Varchar(5)",
     ];
 
     private static $default_sort = "Day ASC, Created DESC";
@@ -32,8 +33,8 @@ class FeedbackEntry extends DataObject
     ];
 
     private static $summary_fields = [
-        "Created" => "Erstellt",
-        "Day" => "Tag",
+        "FormattedCreationDate" => "Erstellt",
+        "FormattedVisitDate" => "Besuchstag",
         "Stars" => "Sterne",
         "PLZ" => "PLZ",
     ];
@@ -48,6 +49,7 @@ class FeedbackEntry extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
+        $fields->addFieldToTab("Root.Main", LiteralField::create("Created", "<p>Erstellt: " . $this->getFormattedCreationDate() . "</p>"));
         return $fields;
     }
 
@@ -58,5 +60,15 @@ class FeedbackEntry extends DataObject
         $admin = FeedbackAdmin::singleton();
         $urlClass = str_replace('\\', '-', self::class);
         return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/item/{$this->ID}/edit");
+    }
+
+    public function getFormattedCreationDate()
+    {
+        return $this->dbObject("Created")->Format("dd.MM.YYYY HH:mm:ss");
+    }
+
+    public function getFormattedVisitDate()
+    {
+        return $this->dbObject("Day")->Format("dd.MM.YYYY");
     }
 }
