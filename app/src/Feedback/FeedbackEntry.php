@@ -23,7 +23,7 @@ class FeedbackEntry extends DataObject
         "PLZ" => "Varchar(5)",
     ];
 
-    private static $default_sort = "Day ASC, Created DESC";
+    private static $default_sort = "Created DESC, Day DESC";
 
     private static $field_labels = [
         "Day" => "Tag",
@@ -37,6 +37,7 @@ class FeedbackEntry extends DataObject
         "FormattedVisitDate" => "Besuchstag",
         "Stars" => "Sterne",
         "PLZ" => "PLZ",
+        "ShortSummary" => "Kommentar",
     ];
 
     private static $table_name = "FeedbackEntry";
@@ -70,5 +71,10 @@ class FeedbackEntry extends DataObject
     public function getFormattedVisitDate()
     {
         return $this->dbObject("Day")->Format("dd.MM.YYYY");
+    }
+
+    public function getShortSummary()
+    {
+        return $this->Comment ? substr($this->Comment, 0, 20) . "..." : "";
     }
 }
