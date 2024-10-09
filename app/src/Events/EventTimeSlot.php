@@ -24,6 +24,7 @@ class EventTimeSlot extends DataObject
         "SlotTime" => "Time",
         "MaxAttendees" => "Int",
         "MaxVIPs" => "Int",
+        "Active" => "Boolean",
     ];
 
     private static $has_one = [
@@ -40,16 +41,21 @@ class EventTimeSlot extends DataObject
         "SlotTime" => "Startzeit",
         "MaxAttendees" => "Maximale Anzahl an Teilnehmern",
         "MaxVIPs" => "Maximale Anzahl an VIPs",
+        "Active" => "Aktiv",
     ];
 
     private static $summary_fields = [
         "SlotTime" => "Startzeit",
         "AttendeesFormatted" => "Teilnehmer",
+        "CouponAttendeesFormatted" => "VIPs",
+        "Active" => "Aktiv",
     ];
 
     private static $searchable_fields = [
         "SlotTime",
         "MaxAttendees",
+        "MaxVIPs",
+        "Active",
     ];
 
     private static $table_name = "EventTimeSlot";

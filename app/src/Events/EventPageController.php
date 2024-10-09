@@ -253,7 +253,10 @@ class EventPageController extends PageController
 
     public function getEvents()
     {
-        return Event::get()->filter("EventDate:GreaterThanOrEqual", date("Y-m-d H:i:s"))->sort("EventDate ASC, StartTime ASC");
+        return Event::get()->filter(array(
+            "EventDate:GreaterThanOrEqual" => date("Y-m-d H:i:s"),
+            "Active" => true,
+        ))->sort("EventDate ASC, StartTime ASC");
     }
 
     public function getGroupedEvents()
