@@ -15,6 +15,7 @@ use SilverStripe\ORM\FieldType\DBDatetime;
  * @property string $SlotTime
  * @property int $MaxAttendees
  * @property int $MaxVIPs
+ * @property bool $Active
  * @property int $ParentID
  * @method \App\Events\Event Parent()
  */

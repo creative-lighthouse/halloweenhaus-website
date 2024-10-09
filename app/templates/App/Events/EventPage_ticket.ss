@@ -40,7 +40,7 @@
                 <div class="section_headline">
                     <% include MovingLogo %>
                 </div>
-                <div class="section_scancode">
+                <div class="section_scancode" data-behaviour="scancode">
                     <img src="$QRCode" alt="QR-Code">
                 </div>
                 <div class="section_data">
@@ -53,15 +53,19 @@
                     <h4>Ort: $Event.Place</h4>
                 </div>
                 <% if $Status == "CheckedIn" %>
-                    <div class="section_status">
-                        <h2 class="status_title">Check-In erfolgreich</h2>
-                        <h3 class="status_subline">Vielen Dank für deinen Besuch!</h3>
-                        <a href="$Top.FeedbackPageLink" class="status_button">Feedback abgeben</a>
+                    <div class="section_status_wrap">
+                        <div class="section_status" data-behaviour="sectionStatus">
+                            <h2 class="status_title">Check-In erfolgreich</h2>
+                            <h3 class="status_subline">Vielen Dank für deinen Besuch!</h3>
+                            <a href="$Top.FeedbackPageLink" class="status_button">Feedback abgeben</a>
+                        </div>
                     </div>
                 <% else_if $Status == "Cancelled" %>
-                    <div class="section_status">
-                        <h2 class="status_title">Buchung deaktiviert</h2>
-                        <a href="$Top.FeedbackPageLink" class="status_button">Feedback abgeben</a>
+                    <div class="section_status_wrap">
+                        <div class="section_status" data-behaviour="sectionStatus">
+                            <h2 class="status_title">Buchung deaktiviert</h2>
+                            <a href="$Top.FeedbackPageLink" class="status_button">Feedback abgeben</a>
+                        </div>
                     </div>
                 <% end_if %>
                 <div class="section_gear">
@@ -75,9 +79,14 @@
         <script src="$Mix("/js/main.js")"></script>
         <script>
             function autoRefresh() {
-                window.location = window.location.href;
+                const OutOfWay = document.querySelector('.outofway');
+                if(!OutOfWay) {
+                    window.location = window.location.href;
+                } else {
+                    console.log('Out of way active');
+                }
             }
-            setInterval('autoRefresh()', 5000);
+            setInterval('autoRefresh()', 10000);
         </script>
     </body>
 <% end_with %>

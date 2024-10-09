@@ -313,6 +313,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
             ticketCheck.classList.add("invalid");
         }
     }
+
+    const scanCode = document.querySelector('[data-behaviour="scancode"]');
+        const sectionStatus = document.querySelector('[data-behaviour="sectionStatus"]');
+
+    if (scanCode != null) {
+
+        scanCode.addEventListener('click', () => {
+            scanCode.classList.add("highlighted");
+            sectionStatus.classList.add("outofway");
+            setTimeout(() => {
+                scanCode.classList.remove("highlighted");
+                sectionStatus.classList.remove("outofway");
+            }, 5000);
+        });
+    }
 });
 
 function parallax() {

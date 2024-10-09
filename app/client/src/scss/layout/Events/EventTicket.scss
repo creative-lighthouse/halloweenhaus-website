@@ -110,6 +110,12 @@ body.ticket{
             display: block;
             margin: 10px 0px;
             position: relative;
+            transition: 0.3s ease-in-out;
+
+            &.highlighted{
+                z-index: 10;
+                opacity: 0.7;
+            }
 
             img{
                 width: auto;
@@ -121,38 +127,56 @@ body.ticket{
             }
         }
 
-        .section_status{
+        .section_status_wrap{
             position: fixed;
             bottom: 0;
             left: 0;
             background-color: rgba(0, 0, 0, 0.7);
             width: 100vw;
             height: 100vh;
-            padding: 10px 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
+            z-index: 5;
+            backdrop-filter: blur(5px);
+            pointer-events: none;
 
-            .status_title, .status_subline{
-                background-color: $ColorBackground;
-                width: 50%;
-                padding: 20px;
-            }
+            .section_status{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                padding: 10px 0;
+                transition: 0.3s ease-in-out;
 
-            .status_button{
-                background-color: $ColorSecondary;
-                width: 50%;
-                padding: 20px;
-                border-top: 2px solid $ColorBlack;
-                cursor: pointer;
-                transition: background-color 0.3s;
-                text-decoration: none;
-                text-transform: uppercase;
+                .status_title, .status_subline{
+                    background-color: $ColorBackground;
+                    width: 100%;
+                    padding: 20px;
+                    pointer-events: all;
+                }
 
-                &:hover{
-                    background-color: $ColorBlack;
-                    color: $ColorWhite;
+                .status_button{
+                    background-color: $ColorSecondary;
+                    width: 100%;
+                    padding: 20px;
+                    border-top: 2px solid $ColorBlack;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    animation: wiggle 5s infinite;
+                    pointer-events: all;
+
+                    &:hover{
+                        background-color: $ColorBlack;
+                        color: $ColorWhite;
+                    }
+                }
+
+                &.outofway{
+                    transform: translateY(100%) translateX(-50%);
                 }
             }
         }
@@ -199,5 +223,23 @@ body.ticket{
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+    5% {
+        transform: rotate(5deg);
+    }
+    10% {
+        transform: rotate(0deg);
+    }
+    15% {
+        transform: rotate(-5deg);
+    }
+    20% {
+        transform: rotate(0deg);
     }
 }
