@@ -36,20 +36,22 @@ body.ticket{
     justify-content: center;
     align-items: center;
     max-width: none;
+    height: 100vh;
 
     .section_ticket{
         background-color: $ColorBackground;
         padding: 20px;
         width: 100%;
-        min-height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: calc(100% - 40px);
-        height: calc(100% - 40px);
+        height: calc(100% - 80px);
         border-radius: 45px;
         text-align: center;
         max-width: $maxWidthContent;
+        overflow: hidden;
+        position: relative;
 
         .section_headline{
             display: flex;
@@ -99,20 +101,23 @@ body.ticket{
         }
 
         .section_data{
+            padding-bottom: 40px;
         }
 
         .section_scancode{
             height: 50%;
-            overflow: hidden;
             aspect-ratio: 1/1;
             display: block;
             margin: 10px 0px;
+            position: relative;
 
             img{
                 width: auto;
                 max-width: 100%;
                 height: 100%;
                 object-fit: contain;
+                position: relative;
+                z-index: 1;
             }
         }
 
@@ -151,5 +156,48 @@ body.ticket{
                 }
             }
         }
+
+        .section_gear{
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 100px;
+            height: 100px;
+            z-index: 2;
+
+            animation: rotate 10s infinite linear;
+
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .section_gear2 {
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            z-index: 2;
+
+            animation: rotate 10s infinite linear;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }

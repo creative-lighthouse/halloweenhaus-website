@@ -44,6 +44,7 @@ html {
 
 body{
     margin-top: 100px;
+    min-height: 100vh;
 
     .menu--fixed &{
         margin-top: 50px;

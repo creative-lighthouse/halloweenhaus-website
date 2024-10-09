@@ -1,5 +1,6 @@
 .section.section--events{
     margin-top: 130px;
+    min-height: 80%;
 
     h1{
         text-align: center;
@@ -8,6 +9,87 @@
     h2{
         text-align: center;
         margin: 10px 0 0 0;
+    }
+
+    b{
+        font-weight: 900;
+        color: $ColorSecondaryLight;
+    }
+
+    &.unsubscribe{
+        .section_content{
+            text-align: center;
+        }
+
+        .section_emoji{
+            animation: cry 2s infinite;
+        }
+    }
+
+    &.registrationsuccessful{
+        margin: 130px auto;
+
+        h1, h2{
+            margin: 20px 0;
+        }
+
+        h2{
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            transform: rotate(-3deg);
+            display: inline-block;
+            width: auto;
+            margin-bottom: 30px;
+        }
+
+
+        p{
+            margin: 10px 0;
+        }
+    }
+
+    &.registrationconfirm {
+        margin: 130px auto;
+
+        h1,
+        h2 {
+            margin: 20px 0;
+        }
+
+        h2 {
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            transform: rotate(-3deg);
+            display: inline-block;
+            width: auto;
+            margin-bottom: 30px;
+        }
+
+
+        p {
+            margin: 10px 0;
+        }
+
+        .ticket_button{
+            background-color: $ColorSecondary;
+            color: $ColorWhite;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.1s ease-in-out;
+            text-align: center;
+            margin: 20px 0;
+            text-decoration: none;
+            display: inline-block;
+
+            &:hover{
+                background-color: $ColorSecondaryDark;
+            }
+        }
     }
 
     .section_content{
@@ -410,5 +492,17 @@
                 max-height: 150px;
             }
         }
+    }
+}
+
+@keyframes cry {
+    0% {
+        transform: translateY(0) scaleY(1);
+    }
+    50% {
+        transform: translateY(-10px) scaleY(0.98);
+    }
+    100% {
+        transform: translateY(0) scaleY(1);
     }
 }

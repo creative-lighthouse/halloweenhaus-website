@@ -11,6 +11,7 @@ $ColorPrimary: #00ff00;
 $ColorPrimaryDark: darken($ColorPrimary,30%);
 $ColorSecondary: #390083;
 $ColorSecondaryDark: darken($ColorSecondary, 50%);
+$ColorSecondaryLight: lighten($ColorSecondary, 50%);
 
 $ColorBlack: #000000;
 $ColorWhite: #FFF;

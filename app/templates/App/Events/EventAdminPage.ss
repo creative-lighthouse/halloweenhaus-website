@@ -38,7 +38,7 @@
             <div class="section_content">
                 <div class="section_qrcodescan">
                     <video id="qrcode-video"></video>
-                    <div class="scan-region-highlight" style="position: absolute; pointer-events: none; transform: scaleX(-1);">
+                    <div class="scan-region-highlight" style="position: absolute; pointer-events: none;">
                         <svg class="scan-region-highlight-svg" viewBox="0 0 238 238" preserveAspectRatio="none" style="position:absolute;width:100%;left:0;top:0;fill:none;stroke:#e9b213;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"><path d="M31 2H10a8 8 0 0 0-8 8v21M207 2h21a8 8 0 0 1 8 8v21m0 176v21a8 8 0 0 1-8 8h-21m-176 0H10a8 8 0 0 1-8-8v-21"></path></svg><svg class="code-outline-highlight" preserveAspectRatio="none" style="display:none;width:100%;fill:none;stroke:#e9b213;stroke-width:5;stroke-dasharray:25;stroke-linecap:round;stroke-linejoin:round"><polygon></polygon></svg>
                     </div>
                     <div class="section_bottombar">
@@ -51,14 +51,14 @@
                     </div>
                 </div>
                 <div class="section_counter">
+                    <a class="section_counter_button button_enterShow">
+                        <img class="button_icon" src="../_resources/app/client/icons/event_admin/icon_enter.svg"/>
+                    </a>
                     <a class="section_counter_button button_increaseSQ">
                         <img class="button_icon" src="../_resources/app/client/icons/event_admin/icon_increase.svg"/>
                     </a>
                     <a class="section_counter_button button_decreaseSQ">
                         <img class="button_icon" src="../_resources/app/client/icons/event_admin/icon_decrease.svg"/>
-                    </a>
-                    <a class="section_counter_button button_enterShow">
-                        <img class="button_icon" src="../_resources/app/client/icons/event_admin/icon_enter.svg"/>
                     </a>
                 </div>
                 <div class="section_numbers">

@@ -1,4 +1,4 @@
-<div class="section section--events">
+<div class="section section--events unsubscribe">
     <div class="section_content">
         <h1>$Title</h1>
 

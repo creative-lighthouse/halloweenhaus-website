@@ -37,12 +37,12 @@ namespace {
     use SilverStripe\ORM\Queries\SQLSelect;
 
     /**
-     * Class \PageController
-     *
-     * @property \ApiPage $dataRecord
-     * @method \ApiPage data()
-     * @mixin \ApiPage
-     */
+ * Class \PageController
+ *
+ * @property \ApiPage $dataRecord
+ * @method \ApiPage data()
+ * @mixin \ApiPage
+ */
     class ApiPageController extends ContentController
     {
         private static $allowed_actions = [
@@ -89,9 +89,14 @@ namespace {
                         $data['Status'] = "Cancelled";
                         break;
                     default:
-                        $data['Message'] = "Code ist gültig.";
-                        $data['Status'] = "Confirmed";
-                        break;
+                        //if day is today and timeslot is not more than 20 minutes in the past or future
+                        if (date("Y-m-d", strtotime($eventdate)) == date("Y-m-d") && strtotime($timeslotTime) > strtotime("-20 minutes") && strtotime($timeslotTime) < strtotime("+20 minutes")) {
+                            $data['Message'] = "Ticket ist gültig.";
+                            $data['Status'] = "Confirmed";
+                        } else {
+                            $data['Message'] = "Ticket ist aktuell nicht gültig.";
+                            $data['Status'] = "Registered";
+                        }
                 }
             } else {
                 $data['Valid'] = false;

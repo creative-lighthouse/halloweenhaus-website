@@ -64,6 +64,12 @@
                         <a href="$Top.FeedbackPageLink" class="status_button">Feedback abgeben</a>
                     </div>
                 <% end_if %>
+                <div class="section_gear">
+                    <img src="./_resources/app/client/images/Zahnrad.png" alt="Gear">
+                </div>
+                <div class="section_gear2">
+                    <img src="./_resources/app/client/images/Zahnrad.png" alt="Gear">
+                </div>
             </div>
         </div>
         <script src="$Mix("/js/main.js")"></script>
