@@ -305,10 +305,12 @@
 
             //Calculate difference and output in human readable format (X days, X hours, X seconds) and add - or + depending on the difference
             const difference = ticketTime - currentTime;
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            console.log('Difference:', difference);
+            const differenceAbs = Math.abs(difference);
+            const days = Math.floor(differenceAbs / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((differenceAbs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((differenceAbs % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((differenceAbs % (1000 * 60)) / 1000);
 
             var returnedString = "";
             if(difference < 0) {
@@ -317,32 +319,57 @@
                 returnedString += 'Gültig in: ';
             }
 
-            if(days > 0) {
+            if(days != 0) {
+                if(difference < 0) {
+                    returnedString += "-";
+                }
                 if(days == 1) {
                     returnedString += days + ' Tag, ';
                 } else {
                     returnedString += days + ' Tage, ';
                 }
             }
-            if(hours > 0) {
+            if(hours != 0) {
+                if(difference < 0) {
+                    returnedString += "-";
+                }
                 if (hours == 1) {
                     returnedString += hours + ' Stunde, ';
                 } else {
                     returnedString += hours + ' Stunden, ';
                 }
             }
-            if(minutes > 0) {
+            if(minutes != 0) {
+                if(difference < 0) {
+                    returnedString += "-";
+                }
                 if(minutes == 1) {
                     returnedString += minutes + ' Minute ';
                 } else {
                     returnedString += minutes + ' Minuten ';
                 }
             }
-            if(seconds == 1) {
-                returnedString += 'und ' + seconds + ' Sekunde.';
+            if(days == 0 && hours == 0 && minutes == 0) {
+                if(difference < 0) {
+                    returnedString += "-";
+                }
+                if(seconds == 1) {
+                    returnedString += seconds + ' Sekunde.';
+                } else {
+                    returnedString += seconds + ' Sekunden.';
+                }
             } else {
-                returnedString += 'und ' + seconds + ' Sekunden.';
+                returnedString += 'und ';
+                if(difference < 0) {
+                    returnedString += "-";
+                }
+                if(seconds == 1) {
+                    returnedString += seconds + ' Sekunde.';
+                } else {
+                    returnedString += seconds + ' Sekunden.';
+                }
             }
+
 
             return returnedString;
         }

@@ -56,7 +56,7 @@
                     <div class="section_status_wrap">
                         <div class="section_status" data-behaviour="sectionStatus">
                             <h2 class="status_title">Check-In erfolgreich</h2>
-                            <h3 class="status_subline">Vielen Dank für deinen Besuch!</h3>
+                            <h3 class="status_subline">Vielen Dank für deinen Besuch</h3>
                             <a href="$Top.FeedbackPageLink" class="status_button">Feedback abgeben</a>
                         </div>
                     </div>
