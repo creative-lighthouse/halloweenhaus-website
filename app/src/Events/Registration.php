@@ -29,7 +29,7 @@ use Endroid\QrCode\ErrorCorrectionLevel;
  * @property string $TicketEmailSent
  * @property string $Status
  * @property string $Type
- * @property int $ZIP
+ * @property string $ZIP
  * @property int $EventID
  * @property int $TimeSlotID
  * @property int $UsedCouponID

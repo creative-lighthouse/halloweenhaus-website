@@ -13,6 +13,7 @@ use SilverStripe\AssetAdmin\Controller\AssetAdmin;
  * Class \App\Podcast\PodcastEntry
  *
  * @property bool $isVisible
+ * @property string $HashID
  * @property int $ImageID
  * @method \SilverStripe\Assets\File Image()
  */
