@@ -58,7 +58,7 @@ class Event extends DataObject
         "Registrations" => Registration::class,
     ];
 
-    private static $default_sort = "StartTime ASC";
+    private static $default_sort = "EventDate ASC, StartTime ASC";
 
     private static $field_labels = [
         "Title" => "Name",
