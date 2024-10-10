@@ -4,10 +4,10 @@
         <% loop $BoothImages %>
             <div class="photobox_image">
                 <div class="photobox_image_meta">
-                    <p>Foto Nr. $ID | $FormattedCreationDate</p>
+                    <p>Foto $HashID | $FormattedCreationDate</p>
                     <a download href="$Image.Url" target="_blank" class="photobox_download">Download</a>
                 </div>
-                <a class="photobox_image_content" href="$Top.Link('/foto')/$ID">
+                <a class="photobox_image_content" href="$Top.Link('/foto')/$HashID">
                     $Image.Fill(400, 400)
                 </a>
             </div>

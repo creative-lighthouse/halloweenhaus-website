@@ -2,6 +2,7 @@
 
 namespace App\ImageBooth;
 
+use DateTime;
 use SilverStripe\Assets\File;
 use SilverStripe\Assets\Image;
 use SilverStripe\Assets\Upload;
@@ -18,7 +19,8 @@ use SilverStripe\AssetAdmin\Controller\AssetAdmin;
 class BoothImage extends DataObject
 {
     private static $db = [
-        "isVisible" => "Boolean"
+        "isVisible" => "Boolean",
+        "HashID" => "Varchar(5)"
     ];
 
     private static $has_one = [
@@ -58,6 +60,13 @@ class BoothImage extends DataObject
     public function onBeforeWrite()
     {
         parent::onBeforeWrite();
+
+        $now = new DateTime();
+        $now = $now->format("Y-m-d H:i:s");
+
+        if (!$this->HashID) {
+            $this->HashID = substr(md5(string: $now . $this->ID), 0, 5);
+        }
     }
 
     public function getThumbnail()
