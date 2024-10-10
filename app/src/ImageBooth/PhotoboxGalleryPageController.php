@@ -34,7 +34,7 @@ class PhotoboxGalleryPageController extends PageController
     public function foto(HTTPRequest $request)
     {
         $id = $request->param("ID");
-        $boothImage = BoothImage::get()->filter("HashID", $id);
+        $boothImage = BoothImage::get()->filter("HashID", $id)->first();
 
         return array(
             "BoothImage" => $boothImage,
