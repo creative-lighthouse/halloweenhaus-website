@@ -115,7 +115,7 @@ class EventPageController extends PageController
             HiddenField::create("Couponcode", "Couponcode"),
             TextField::create("Title", "Vor- & Nachname"),
             EmailField::create("Email", "E-Mail-Adresse"),
-            NumericField::create("PLZ", "Postleitzahl (optional)")->setHTML5(true),
+            NumericField::create("PLZ", "Postleitzahl (optional)")->setHTML5(true)->setMaxLength(5),
             LiteralField::create("DataPrivacyinfo", "Ich habe die <a href='impressum-and-datenschutz'>Datenschutzerklärung</a> gelesen und willige ein, dass meine Daten im Sinne der DSGVO verwendet werden."),
             CheckboxField::create("DataPrivacy", "Datenschutzerklärung akzeptieren"),
         );
