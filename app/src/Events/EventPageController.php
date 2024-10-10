@@ -149,9 +149,14 @@ class EventPageController extends PageController
         $coupon = null;
 
         $registrations = Registration::get()->filter("EventID", $event->ID)->filter("TimeSlotID", $timeslot->ID);
+        $vipRegistrations = Registration::get()->filter("EventID", $event->ID)->filter("TimeSlotID", $timeslot->ID)->filter("UsedCouponID:not", 0);
         $timeslotRegistrationCount = 0;
+        $timeslotVIPRegistrationCount = 0;
         foreach ($registrations as $registration) {
             $timeslotRegistrationCount += $registration->GroupSize;
+        }
+        foreach ($vipRegistrations as $registration) {
+            $timeslotVIPRegistrationCount += $registration->GroupSize;
         }
 
         if ($couponcode) {
@@ -160,7 +165,7 @@ class EventPageController extends PageController
                 return $this->redirect($this->Link("couponinvalid/$event->ID"));
             }
 
-            if ($timeslotRegistrationCount + $groupsize > $timeslot->MaxVIPs) {
+            if ($timeslotVIPRegistrationCount + $groupsize > $timeslot->MaxVIPs) {
                 return $this->redirect($this->Link("registrationfull/$event->ID"));
             } else {
                 $registration = Registration::create();
