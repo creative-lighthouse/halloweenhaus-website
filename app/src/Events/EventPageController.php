@@ -196,10 +196,7 @@ class EventPageController extends PageController
             }
         } else {
             if (($timeslotRegistrationCount + $groupsize) > $timeslot->MaxAttendees) {
-                echo ("RegistrationCount:" . $timeslotRegistrationCount);
-                echo ("GroupSize:" . $groupsize);
-                echo ("MaxAttendees:" . $timeslot->MaxAttendees);
-                //return $this->redirect($this->Link("registrationfull/$event->ID/$timeslot->ID"));
+                return $this->redirect($this->Link("registrationfull/$event->ID/$timeslot->ID"));
             } else {
                 $registration = Registration::create();
                 $registration->EventID = $event->ID;
