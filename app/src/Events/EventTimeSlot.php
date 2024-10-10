@@ -99,12 +99,28 @@ class EventTimeSlot extends DataObject
 
     public function AttendeesFormatted()
     {
-        return $this->MaxAttendees - $this->getRegistrationsCount() . " Plätze frei";
+        $places = $this->MaxAttendees - $this->getRegistrationsCount();
+        switch ($places) {
+            case 0:
+                return "Ausgebucht";
+            case 1:
+                return "1 Platz frei";
+            default:
+                return $places . " Plätze frei";
+        }
     }
 
     public function CouponAttendeesFormatted()
     {
-        return $this->MaxVIPs - $this->getCouponRegistrationsCount() . " Plätze frei";
+        $places = $this->MaxVIPs - $this->getCouponRegistrationsCount();
+        switch ($places) {
+            case 0:
+                return "Ausgebucht";
+            case 1:
+                return "1 Platz frei";
+            default:
+                return $places . " Plätze frei";
+        }
     }
 
     public function getFreeSlotCount()

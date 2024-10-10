@@ -63,8 +63,8 @@ class Event extends DataObject
     private static $field_labels = [
         "Title" => "Name",
         "Place" => "Ort",
+        "DateFormatted" => "Datum",
         "StartTime" => "Startzeit",
-        "EndTime" => "Endzeit",
         "Description" => "Beschreibung",
         "MaxAttendees" => "Maximale Teilnehmerzahl",
         "InfoForAttendees" => "Informationen für Teilnehmer",
@@ -75,6 +75,7 @@ class Event extends DataObject
     private static $summary_fields = [
         "Title" => "Name",
         "StartTime" => "Startzeit",
+        "DateFormatted" => "Datum",
         "RegistrationsFormatted" => "Anmeldungen",
     ];
 
@@ -177,7 +178,11 @@ class Event extends DataObject
 
     public function FreeTimeSlots()
     {
-        $timeslots = $this->TimeSlots()->filter("Active", true);
+        $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
+        $timeslots = $this->TimeSlots()->filter([
+            "SlotTime:GreaterThanOrEqual" => $now->format("H:i:s"),
+            "Active" => true
+        ]);
         $timeslotsWithSpace = new ArrayList();
         foreach ($timeslots as $timeslot) {
             if ($timeslot->getFreeSlotCount() > 0) {
@@ -189,10 +194,14 @@ class Event extends DataObject
 
     public function FreeCouponTimeSlots()
     {
-        $timeslots = $this->TimeSlots()->filter("Active", true);
+        $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
+        $timeslots = $this->TimeSlots()->filter([
+            "SlotTime:GreaterThanOrEqual" => $now->format("H:i:s"),
+            "Active" => true,
+        ]);
         $timeslotsWithSpace = new ArrayList();
         foreach ($timeslots as $timeslot) {
-            if ($timeslot->getFreeSlotCount() > 0) {
+            if ($timeslot->getFreeCouponSlotCount() > 0) {
                 $timeslotsWithSpace->push($timeslot);
             }
         }
@@ -203,7 +212,9 @@ class Event extends DataObject
     {
         $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
         if ($this->EventDate > $now->format("Y-m-d")) {
-            $timeslots = $this->TimeSlots()->filter("Active", true);
+            $timeslots = $this->TimeSlots()->filter([
+                "Active" => true
+            ]);
             $timeslotsWithSpace = new ArrayList();
             foreach ($timeslots as $timeslot) {
                 if ($timeslot->getFreeSlotCount() > 0) {
@@ -220,7 +231,9 @@ class Event extends DataObject
     {
         $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
         if ($this->EventDate > $now->format("Y-m-d")) {
-            $timeslots = $this->TimeSlots()->filter("Active", true);
+            $timeslots = $this->TimeSlots()->filter([
+                "Active" => true
+            ]);
             $timeslotsWithSpace = new ArrayList();
             foreach ($timeslots as $timeslot) {
                 if ($timeslot->getFreeCouponSlotCount() > 0) {
@@ -236,10 +249,9 @@ class Event extends DataObject
     public function FullTimeSlots()
     {
         $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
-        $timeslots = $this->TimeSlots()->filter(array(
-            "SlotTime:GreaterThanOrEqual" => $now->format("Y-m-d H:i:s"),
+        $timeslots = $this->TimeSlots()->filter([
             "Active" => true
-        ));
+        ]);
         $timeslotsWithoutSpace = new ArrayList();
         foreach ($timeslots as $timeslot) {
             if ($timeslot->getFreeSlotCount() <= 0) {
@@ -253,7 +265,6 @@ class Event extends DataObject
     {
         $now = new DateTime("", new DateTimeZone("Europe/Berlin"));
         $timeslots = $this->TimeSlots()->filter(array(
-            "SlotTime:GreaterThanOrEqual" => $now->format("Y-m-d H:i:s"),
             "Active" => true
         ));
         $timeslotsWithoutSpace = new ArrayList();

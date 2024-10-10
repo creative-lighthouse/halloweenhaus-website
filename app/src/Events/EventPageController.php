@@ -147,7 +147,10 @@ class EventPageController extends PageController
         $zip = $data["PLZ"];
         $couponcode = $data["Couponcode"];
 
-        $registrations = Registration::get()->filter("EventID", $event->ID)->filter("TimeSlotID", $timeslot->ID);
+        $registrations = Registration::get()->filter([
+            "EventID" => $event->ID,
+            "TimeSlotID" => $timeslot->ID,
+        ]);
         $timeslotRegistrationCount = 0;
         foreach ($registrations as $registration) {
             $timeslotRegistrationCount += $registration->GroupSize;
@@ -170,7 +173,7 @@ class EventPageController extends PageController
             }
 
             if (($timeslotVIPRegistrationCount + $groupsize) > $timeslot->MaxVIPs) {
-                return $this->redirect($this->Link("registrationfull/$event->ID"));
+                return $this->redirect($this->Link("registrationfull/$event->ID/$timeslot->ID"));
             } else {
                 $registration = Registration::create();
                 $registration->EventID = $event->ID;
@@ -191,8 +194,11 @@ class EventPageController extends PageController
                 return $this->redirect($this->Link("registrationsuccessful/$event->ID/$registration->Hash"));
             }
         } else {
-            if ($timeslotRegistrationCount + $groupsize > $timeslot->MaxAttendees) {
-                return $this->redirect($this->Link("registrationfull/$event->ID"));
+            if (($timeslotRegistrationCount + $groupsize) > $timeslot->MaxAttendees) {
+                echo ("RegistrationCount:" . $timeslotRegistrationCount);
+                echo ("GroupSize:" . $groupsize);
+                echo ("MaxAttendees:" . $timeslot->MaxAttendees);
+                //return $this->redirect($this->Link("registrationfull/$event->ID/$timeslot->ID"));
             } else {
                 $registration = Registration::create();
                 $registration->EventID = $event->ID;
@@ -232,11 +238,14 @@ class EventPageController extends PageController
     public function registrationfull(HTTPRequest $request)
     {
         $event_id = $request->param("ID");
+        $timeslot_id = $request->param("OtherID");
         $event = Event::get()->byId($event_id);
+        $timeslot = EventTimeSlot::get()->byId($timeslot_id);
 
-        if (isset($event)) {
+        if (isset($event) && isset($timeslot)) {
             return array(
                 "Event" => $event,
+                "TimeSlot" => $timeslot,
             );
         } else {
             $this->redirect($this->Link("eventnotfound"));

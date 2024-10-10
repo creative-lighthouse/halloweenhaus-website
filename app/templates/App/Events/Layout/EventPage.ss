@@ -55,7 +55,7 @@
                     <div class="section_selectablelist">
                         <% loop $GroupedEvents.GroupedBy('EventDate') %>
                             <% loop $Children %>
-                                <% if $FreeTimeSlots.Count > 0 %>
+                                <% if $FreeTimeSlotsInFuture.Count > 0 %>
                                     <% loop $FreeTimeSlotsInFuture %>
                                         <div class="timeslot_card" data-behaviour="timeslot" data-slotId="$ID" data-slotsize="$getFreeSlotCount" data-eventID="$Parent.ID">
                                             <p class="timeslot_card_time">$SlotTimeFormatted</p>
@@ -72,7 +72,7 @@
                                     <p class="timeslot_card timeslot_card--text" data-behaviour="timeslot" data-slotsize="0" data-eventID="$ID">Keine freien Zeitslots an diesem Tag verfügbar.</p>
                                 <% end_if %>
 
-                                <% if $FreeCouponTimeSlots.Count > 0 %>
+                                <% if $FreeCouponTimeSlotsInFuture.Count > 0 %>
                                     <% loop $FreeCouponTimeSlotsInFuture %>
                                         <div class="timeslot_card" data-behaviour="coupontimeslot" data-slotId="$ID" data-slotsize="$getFreeCouponSlotCount" data-eventID="$Parent.ID">
                                             <p class="timeslot_card_time">$SlotTimeFormatted</p>
