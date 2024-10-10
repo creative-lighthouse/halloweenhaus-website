@@ -12,15 +12,13 @@ use SilverStripe\AssetAdmin\Controller\AssetAdmin;
  * Class \App\Podcast\PodcastEntry
  *
  * @property bool $isVisible
- * @property string $Base64Image
  * @property int $ImageID
  * @method \SilverStripe\Assets\File Image()
  */
 class BoothImage extends DataObject
 {
     private static $db = [
-        "isVisible" => "Boolean",
-        "Base64Image" => "Text"
+        "isVisible" => "Boolean"
     ];
 
     private static $has_one = [
@@ -40,8 +38,8 @@ class BoothImage extends DataObject
 
     private static $summary_fields = [
         "Thumbnail" => "Thumbnail",
-        "isVisible" => "Sichtbar in Gallerie",
-        "Created" => "Erstellt am"
+        "FormattedIsVisible" => "Sichtbar",
+        "FormattedCreationDate" => "Erstellt am"
     ];
 
     private static $table_name = "BoothImage";
@@ -64,16 +62,16 @@ class BoothImage extends DataObject
 
     public function getThumbnail()
     {
-        //create Thumbnail from Base64Image
-        $image = Image::create();
-
-        $image->setFromString($this->Base64Image, "thumbnail.jpg");
-
-        return $image->CMSThumbnail();
+        return $this->Image()->CMSThumbnail();
     }
 
     public function getFormattedCreationDate()
     {
-        return date("d.m.Y H:i", strtotime($this->Created));
+        return $this->dbObject("Created")->Format("dd.MM.YYYY HH:mm:ss");
+    }
+
+    public function getFormattedIsVisible()
+    {
+        return $this->isVisible ? "Ja" : "Nein";
     }
 }

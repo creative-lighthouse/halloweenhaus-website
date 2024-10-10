@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "97c4437344ed6c0e69f0f4678940ca87",
+    "content-hash": "fab1640b96a304c928f2f0c1eec843ac",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2662,6 +2662,55 @@
                 "source": "https://github.com/ralouphie/getallheaders/tree/develop"
             },
             "time": "2019-03-08T08:55:37+00:00"
+        },
+        {
+            "name": "ryanpotter/silverstripe-cms-theme",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Rhym/silverstripe-cms-theme.git",
+                "reference": "5f5308759fe9bee78f48f1dfc5f49fc41cc31713"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Rhym/silverstripe-cms-theme/zipball/5f5308759fe9bee78f48f1dfc5f49fc41cc31713",
+                "reference": "5f5308759fe9bee78f48f1dfc5f49fc41cc31713",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/admin": "^1.0 || ^2.0",
+                "silverstripe/framework": "^4.0 || ^5.0",
+                "silverstripe/siteconfig": "^4.0 || ^5.0"
+            },
+            "default-branch": true,
+            "type": "silverstripe-vendormodule",
+            "extra": {
+                "installer-name": "silverstripe-cms-theme",
+                "expose": [
+                    "dist"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ryan Potter",
+                    "homepage": "http://ryanpotter.co.nz/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CMS Theme",
+            "keywords": [
+                "silverstripe",
+                "theme"
+            ],
+            "support": {
+                "issues": "https://github.com/Rhym/silverstripe-cms-theme/issues",
+                "source": "https://github.com/Rhym/silverstripe-cms-theme/tree/master"
+            },
+            "time": "2024-01-17T06:42:05+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -6778,5 +6827,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.6.0"
 }

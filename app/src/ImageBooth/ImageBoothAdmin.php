@@ -22,7 +22,7 @@ class ImageBoothAdmin extends ModelAdmin
 
     private static $menu_title = "Fotobox";
 
-    private static $menu_icon = "app/client/icons/podcast_admin.svg";
+    private static $menu_icon = "app/client/icons/imagebooth_admin.svg";
 
     public function init()
     {

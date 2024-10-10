@@ -51,4 +51,51 @@ class EntryLog extends DataObject
     {
         return $this->SQ + $this->VQ;
     }
+
+    public function getDay()
+    {
+        return date("d.m.Y", strtotime($this->EntryTime));
+    }
+
+    public function getTotalGuestCountOnSameDay()
+    {
+        $entryTime = date("Y-m-d", strtotime($this->EntryTime));
+        $entryLogs = EntryLog::get()->filter([
+            "EntryTime:GreaterThanOrEqual" => date("Y-m-d H:i:s", strtotime("midnight", strtotime($entryTime))),
+            "EntryTime:LessThanOrEqual" => date("Y-m-d H:i:s", strtotime("tomorrow", strtotime($entryTime))),
+        ]);
+        $totalGuestCount = 0;
+        foreach ($entryLogs as $entryLog) {
+            $totalGuestCount += $entryLog->getTotalGuests();
+        }
+        return $totalGuestCount;
+    }
+
+    public function getVQGuestCountOnSameDay()
+    {
+        $entryTime = date("Y-m-d", strtotime($this->EntryTime));
+        $entryLogs = EntryLog::get()->filter([
+            "EntryTime:GreaterThanOrEqual" => date("Y-m-d H:i:s", strtotime("midnight", strtotime($entryTime))),
+            "EntryTime:LessThanOrEqual" => date("Y-m-d H:i:s", strtotime("tomorrow", strtotime($entryTime))),
+        ]);
+        $vqGuestCount = 0;
+        foreach ($entryLogs as $entryLog) {
+            $vqGuestCount += $entryLog->VQ;
+        }
+        return $vqGuestCount;
+    }
+
+    public function getSQGuestCountOnSameDay()
+    {
+        $entryTime = date("Y-m-d", strtotime($this->EntryTime));
+        $entryLogs = EntryLog::get()->filter([
+            "EntryTime:GreaterThanOrEqual" => date("Y-m-d H:i:s", strtotime("midnight", strtotime($entryTime))),
+            "EntryTime:LessThanOrEqual" => date("Y-m-d H:i:s", strtotime("tomorrow", strtotime($entryTime))),
+        ]);
+        $sqGuestCount = 0;
+        foreach ($entryLogs as $entryLog) {
+            $sqGuestCount += $entryLog->SQ;
+        }
+        return $sqGuestCount;
+    }
 }

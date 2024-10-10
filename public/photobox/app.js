@@ -167,13 +167,31 @@ function applyOverlay(overlaySrc) {
 // Save the image
 saveBtn.addEventListener('click', () => {
     const imageDataURL = canvas.toDataURL('image/png');
-    // Send this data URL to the server to save in the database
-    console.log(imageDataURL); // For testing
 
     const bodyData = JSON.stringify({ image: imageDataURL });
     afterCaptureControls.classList.add("hidden");
 
-    // Example: Sending the image to a server
+    const form = new FormData();
+    const now = new Date().toISOString().replace(/[-T:.Z]/g, '');
+
+    form.append("action_submit", "Submit");
+    canvas.toBlob((blob) => {
+        if (blob) {
+            form.append('Image', blob, `${now}.jpg`);
+            fetch('../api/BoothImageEntryForm', {
+                method: 'POST',
+                body: form,
+            }).then(response => response.json())
+            .then(data => {
+                console.log('Image saved:', data);
+                qrcodeText = data.qrlink;
+                changeState('saving');
+            })
+            .catch(error => console.error('Error saving image:', error));
+        }
+    }, 'image/jpeg');
+
+    /* Example: Sending the image to a server
     fetch('../api/addImageFromBooth', {
         method: 'POST',
         body: bodyData,
@@ -186,6 +204,7 @@ saveBtn.addEventListener('click', () => {
             changeState('saving');
         })
     .catch(error => console.error('Error saving image:', error));
+    */
 });
 
 dismissBtn.addEventListener('click', () => {

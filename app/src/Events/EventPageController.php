@@ -148,43 +148,56 @@ class EventPageController extends PageController
         $couponcode = $data["Couponcode"];
         $coupon = null;
 
-        if ($couponcode) {
-            $coupon = EventCoupon::get()->filter("Hash", $couponcode)->First();
-            if (!$coupon) {
-                return $this->redirect($this->Link("couponinvalid/$event->ID"));
-            }
-        }
-
         $registrations = Registration::get()->filter("EventID", $event->ID)->filter("TimeSlotID", $timeslot->ID);
         $timeslotRegistrationCount = 0;
         foreach ($registrations as $registration) {
             $timeslotRegistrationCount += $registration->GroupSize;
         }
 
-        if ($timeslotRegistrationCount + $groupsize > $timeslot->MaxAttendees) {
-            return $this->redirect($this->Link("registrationfull/$event->ID"));
-        } else {
-            $registration = Registration::create();
-            $registration->EventID = $event->ID;
-            $registration->TimeSlotID = $timeslot->ID;
-            $registration->GroupSize = $groupsize;
-            $registration->ZIP = $zip;
-            $registration->Title = $data["Title"];
-            $registration->Email = $data["Email"];
-            if ($coupon) {
-                $registration->UsedCouponID = $coupon->ID;
+        if ($couponcode) {
+            $coupon = EventCoupon::get()->filter("Hash", $couponcode)->First();
+            if (!$coupon) {
+                return $this->redirect($this->Link("couponinvalid/$event->ID"));
             }
-            $registration->Hash = md5($data["Email"] . $event->ID . $timeslot->ID . $groupsize . date("Y-m-d H:i:s"));
-            $registration->Status = "Registered";
 
-            if ($coupon) {
+            if ($timeslotRegistrationCount + $groupsize > $timeslot->MaxVIPs) {
+                return $this->redirect($this->Link("registrationfull/$event->ID"));
+            } else {
+                $registration = Registration::create();
+                $registration->EventID = $event->ID;
+                $registration->TimeSlotID = $timeslot->ID;
+                $registration->GroupSize = $groupsize;
+                $registration->ZIP = $zip;
+                $registration->Title = $data["Title"];
+                $registration->Email = $data["Email"];
+                $registration->UsedCouponID = $coupon->ID;
+                $registration->Hash = md5($data["Email"] . $event->ID . $timeslot->ID . $groupsize . date("Y-m-d H:i:s"));
+                $registration->Status = "Registered";
+
                 $coupon->UsedCount++;
                 $coupon->write();
+
+                $registration->write();
+
+                return $this->redirect($this->Link("registrationsuccessful/$event->ID/$registration->Hash"));
             }
+        } else {
+            if ($timeslotRegistrationCount + $groupsize > $timeslot->MaxAttendees) {
+                return $this->redirect($this->Link("registrationfull/$event->ID"));
+            } else {
+                $registration = Registration::create();
+                $registration->EventID = $event->ID;
+                $registration->TimeSlotID = $timeslot->ID;
+                $registration->GroupSize = $groupsize;
+                $registration->ZIP = $zip;
+                $registration->Title = $data["Title"];
+                $registration->Email = $data["Email"];
+                $registration->Hash = md5($data["Email"] . $event->ID . $timeslot->ID . $groupsize . date("Y-m-d H:i:s"));
+                $registration->Status = "Registered";
+                $registration->write();
 
-            $registration->write();
-
-            return $this->redirect($this->Link("registrationsuccessful/$event->ID/$registration->Hash"));
+                return $this->redirect($this->Link("registrationsuccessful/$event->ID/$registration->Hash"));
+            }
         }
     }
 

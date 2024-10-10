@@ -2,6 +2,12 @@
 
 namespace {
 
+    use SilverStripe\Forms\Form;
+    use SilverStripe\Forms\FieldList;
+    use SilverStripe\Forms\FileField;
+    use SilverStripe\Forms\TextField;
+    use SilverStripe\Forms\FormAction;
+
     use Endroid\QrCode\Builder\Builder;
     use Endroid\QrCode\Writer\PngWriter;
     use Endroid\QrCode\Encoding\Encoding;
@@ -9,32 +15,13 @@ namespace {
     use Endroid\QrCode\ErrorCorrectionLevel;
 
     use App\ImageBooth\PhotoboxGalleryPage;
-
-    use SilverStripe\Assets\File;
-    use SilverStripe\Assets\Upload;
-    use SilverStripe\AssetAdmin\Controller\AssetAdmin;
-
     use App\ImageBooth\BoothImage;
-
     use App\Events\Event;
-
     use App\Events\EntryLog;
     use App\Events\Registration;
-    use SilverStripe\Assets\Image;
-
-    use App\ExperienceDatabase\Experience;
-    use App\ExperienceDatabase\ExperienceData;
-    use App\ExperienceDatabase\ExperienceLocation;
-    use App\ExperienceDatabase\LogEntry;
-    use App\Overview\LocationPage;
-    use App\Ratings\Rating;
-    use SilverStripe\Security\Member;
     use SilverStripe\Control\HTTPRequest;
-    use SilverStripe\Core\Injector\Injector;
-    use SilverStripe\Security\IdentityStore;
     use SilverStripe\Security\Security;
     use SilverStripe\CMS\Controllers\ContentController;
-    use SilverStripe\ORM\Queries\SQLSelect;
 
     /**
  * Class \PageController
@@ -52,6 +39,8 @@ namespace {
             "acceptTicket",
             "cancelTicket",
             "addImageFromBooth",
+            "BoothImageEntryForm",
+            "submitBoothImage",
         ];
 
         public function index(HTTPRequest $request)
@@ -268,6 +257,39 @@ namespace {
             header('Content-Type: ' . $qrCode->getMimeType());
 
             return $qrCode->getDataUri();
+        }
+
+        public function BoothImageEntryForm()
+        {
+            $fields = FieldList::create([
+                //            TextField::create('Name'),
+                //            EmailField::create('Email'),
+                TextField::create('Hash'),
+                FileField::create('Image')->setFolderName('BoothImages'),
+            ]);
+            $actions = FieldList::create([
+                FormAction::create('submit', 'Submit'),
+            ]);
+            return Form::create($this, 'BoothImageEntryForm', $fields, $actions)
+                ->disableSecurityToken();
+        }
+
+        public function submit($data, $form)
+        {
+            $entry = new BoothImage();
+            $form->saveInto($entry);
+            $entry->isVisible = true;
+            $entry->write();
+
+            $photogallery = PhotoboxGalleryPage::get()->first();
+            if ($photogallery) {
+                $returndata["detaillink"] = $photogallery->AbsoluteLink("foto") . "/" . $entry->ID;
+                $returndata["qrlink"] = $this->createQRCode($photogallery->AbsoluteLink("foto") . "/" . $entry->ID);
+            }
+
+
+            $this->response->addHeader('Content-Type', 'application/json');
+            return json_encode($returndata);
         }
     }
 }

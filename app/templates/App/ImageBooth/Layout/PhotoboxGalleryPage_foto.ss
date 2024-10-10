@@ -3,8 +3,8 @@
         <h1>Foto Nr. $ID</h1>
         <h3>$FormattedCreationDate</h3>
         <div class="photobox_image">
-            <img src="$Base64Image" alt="$Created" />
+            $Image.Fill(1000, 1000)
         </div>
-        <a download href="$Base64Image" target="_blank" class="photobox_download">Download</a>
+        <a download href="$Image.Url" target="_blank" class="photobox_download">Download</a>
     </div>
 <% end_with %>
