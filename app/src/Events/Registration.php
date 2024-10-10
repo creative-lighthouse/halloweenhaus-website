@@ -48,7 +48,7 @@ class Registration extends DataObject
         "TicketEmailSent" => "Datetime",
         "Status" => "Varchar(255)",
         "Type" => "Varchar(255)",
-        "ZIP" => "Int",
+        "ZIP" => "Varchar(5)",
     ];
 
     private static $has_one = [

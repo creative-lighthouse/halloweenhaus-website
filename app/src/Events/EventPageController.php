@@ -150,6 +150,7 @@ class EventPageController extends PageController
         $registrations = Registration::get()->filter([
             "EventID" => $event->ID,
             "TimeSlotID" => $timeslot->ID,
+            "UsedCouponID" => 0,
         ]);
         $timeslotRegistrationCount = 0;
         foreach ($registrations as $registration) {
