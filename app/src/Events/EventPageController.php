@@ -146,15 +146,19 @@ class EventPageController extends PageController
         $groupsize = $data["GroupSize"];
         $zip = $data["PLZ"];
         $couponcode = $data["Couponcode"];
-        $coupon = null;
 
         $registrations = Registration::get()->filter("EventID", $event->ID)->filter("TimeSlotID", $timeslot->ID);
-        $vipRegistrations = Registration::get()->filter("EventID", $event->ID)->filter("TimeSlotID", $timeslot->ID)->filter("UsedCouponID:not", 0);
         $timeslotRegistrationCount = 0;
-        $timeslotVIPRegistrationCount = 0;
         foreach ($registrations as $registration) {
             $timeslotRegistrationCount += $registration->GroupSize;
         }
+
+        $vipRegistrations = Registration::get()->filter([
+            "EventID" => $event->ID,
+            "TimeSlotID" => $timeslot->ID,
+            "UsedCouponID:not" => 0,
+        ]);
+        $timeslotVIPRegistrationCount = 0;
         foreach ($vipRegistrations as $registration) {
             $timeslotVIPRegistrationCount += $registration->GroupSize;
         }
@@ -165,7 +169,7 @@ class EventPageController extends PageController
                 return $this->redirect($this->Link("couponinvalid/$event->ID"));
             }
 
-            if ($timeslotVIPRegistrationCount + $groupsize > $timeslot->MaxVIPs) {
+            if (($timeslotVIPRegistrationCount + $groupsize) > $timeslot->MaxVIPs) {
                 return $this->redirect($this->Link("registrationfull/$event->ID"));
             } else {
                 $registration = Registration::create();
