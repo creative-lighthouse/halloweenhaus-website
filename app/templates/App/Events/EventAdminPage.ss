@@ -266,11 +266,15 @@
                     }
 
                     //update time difference each second
+                    if(timeDifferenceInterval != null) {
+                        clearInterval(timeDifferenceInterval);
+                    }
                     timeDifferenceInterval = setInterval(function() {
                         if(popup_active) {
                             client_timedifference.innerHTML = calculateTimeDifference(data.TimeSlot);
                         }
                     }, 1000);
+                    console.log("TimeDifferenceInterval: ", timeDifferenceInterval);
 
                     button_checkinGuest.onclick = function() {
                         checkinGuest(data.EventID, hash);
