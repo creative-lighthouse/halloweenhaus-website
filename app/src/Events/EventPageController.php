@@ -45,6 +45,7 @@ class EventPageController extends PageController
         "ticket",
         "validateticket",
         "checkcoupon",
+        "error"
     ];
 
     public function index(HTTPRequest $request)
@@ -270,6 +271,9 @@ class EventPageController extends PageController
         ))->First();
 
         if ($registration) {
+            if ($registration->Status != "Registered") {
+                return $this->redirect($this->Link("error") . "?error=Diese Registrierung wurde bereits bestätigt!");
+            }
             $registration->Status = "Confirmed";
             $registration->write();
             return array(
@@ -277,8 +281,16 @@ class EventPageController extends PageController
                 "Registration" => $registration,
             );
         } else {
-            user_error("Hash passt zu keiner Registrierung");
+            return $this->redirect($this->Link("error") . "?error=Hash passt zu keiner Registrierung");
         }
+    }
+
+    public function error(HTTPRequest $request)
+    {
+        $errormessage = $_GET["error"];
+        return [
+            "ErrorMessage" => $errormessage
+        ];
     }
 
     public function getEvents()
