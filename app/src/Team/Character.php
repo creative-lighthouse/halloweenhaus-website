@@ -29,7 +29,8 @@ class Character extends DataObject
         "Bodysize" => "Varchar(255)",
         "Age" => "Varchar(255)",
         "Description" => "HTMLText",
-        "Importance" => "Int"
+        "Importance" => "Int",
+        "InCarousel" => "Boolean"
     ];
 
     private static $has_one = [
@@ -58,7 +59,8 @@ class Character extends DataObject
     ];
 
     private static $searchable_fields = [
-        "Title", "Description",
+        "Title",
+        "Description",
     ];
 
     private static $table_name = "Characters";

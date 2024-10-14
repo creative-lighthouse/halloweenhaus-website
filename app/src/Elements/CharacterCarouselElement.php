@@ -48,6 +48,6 @@ class CharacterCarouselElement extends BaseElement
 
     public function getCharacters()
     {
-        return Character::get();
+        return Character::get()->Filter("InCarousel", true);
     }
 }
