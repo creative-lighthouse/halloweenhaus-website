@@ -182,7 +182,7 @@ class Registration extends DataObject
                 "TimeSlot" => $this->TimeSlot
             ]));
             $emailNotification->Type = "NewRegistration";
-            $emailNotification->Email = "steffen@halloweenhaus-schmalenbeck.de"; //TODO: Change to admin email
+            $emailNotification->Email = SiteConfig::current_site_config()->EventAdminEmail;
             $emailNotification->Event = $this->Event;
             $emailNotification->Registration = $this;
             $emailNotification->write();

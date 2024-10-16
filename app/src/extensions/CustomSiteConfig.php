@@ -39,6 +39,7 @@ class CustomSiteConfig extends DataExtension
         'NewRegisterMessageSubject' => 'Varchar(255)',
         'NewRegisterMessageContent' => 'HTMLText',
         'EmailsActive' => 'Boolean',
+        'EventAdminEmail' => 'Varchar(255)',
     ];
 
     private static $defaults = [
@@ -51,12 +52,13 @@ class CustomSiteConfig extends DataExtension
         $fields->addFieldToTab("Root.Main", new TextField("PlaceText", "Place Text"));
         $fields->addFieldToTab("Root.Main", new CheckboxField("ShowBanner", "Show Banner"));
         $fields->addFieldToTab("Root.Main", new HTMLEditorField("BannerText", "Banner Text"));
+        $fields->addFieldToTab('Root.Event Emails', CheckboxField::create('EmailsActive', 'E-Mails aktiviert'));
+        $fields->addFieldToTab('Root.Event Emails', CheckboxField::create('EventAdminEmail', 'Event Admin Emailadresse'));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('AckMessageSubject', 'Empfangsbestätigung Betreff'));
         $fields->addFieldToTab('Root.Event Emails', HTMLEditorField::create('AckMessageContent', 'Empfangsbestätigung Inhalt'));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('TicketMessageSubject', 'Ticket-Email Betreff'));
         $fields->addFieldToTab('Root.Event Emails', HTMLEditorField::create('TicketMessageContent', 'Ticket-Email Inhalt'));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('NewRegisterMessageSubject', 'Neue Anmeldung Betreff'));
         $fields->addFieldToTab('Root.Event Emails', HTMLEditorField::create('NewRegisterMessageContent', 'Neue Anmeldung Inhalt'));
-        $fields->addFieldToTab('Root.Event Emails', CheckboxField::create('EmailsActive', 'E-Mails aktiviert'));
     }
 }
