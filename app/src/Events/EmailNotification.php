@@ -2,19 +2,11 @@
 
 namespace App\Events;
 
-use App\Utilities\PdfHelper;
-use Nesk\Puphpeteer\Puppeteer;
-use SilverStripe\View\SSViewer;
-use SilverStripe\ORM\DataObject;
-use SilverStripe\Control\Director;
-use Colymba\BulkManager\BulkManager;
 use SilverStripe\Assets\File;
-use SilverStripe\Forms\LiteralField;
+use SilverStripe\ORM\DataObject;
 use SilverStripe\Control\Email\Email;
-use SilverStripe\Forms\DropdownField;
-use SilverStripe\ORM\FieldType\DBDate;
 use SilverStripe\ORM\FieldType\DBField;
-use SilverStripe\ORM\FieldType\DBBoolean;
+use SilverStripe\SiteConfig\SiteConfig;
 
 /**
  * Class \App\Events\EmailNotification
@@ -94,7 +86,7 @@ class EmailNotification extends DataObject
         $this->Email = strtolower($this->Email);
 
         if ($this->Email != "test@test.de") {
-            $email = Email::create('events@halloweenhaus-schmalenbeck.de', $this->Email, 'Deine Anmeldung');
+            $email = Email::create(SiteConfig::current_site_config()->EventAdminEmail, $this->Email, 'Deine Anmeldung');
             $email->html($this->Text);
             $email->text($this->Text);
             //if ($this->Attachment()) {
