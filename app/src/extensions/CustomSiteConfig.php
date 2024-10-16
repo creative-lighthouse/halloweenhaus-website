@@ -53,7 +53,7 @@ class CustomSiteConfig extends DataExtension
         $fields->addFieldToTab("Root.Main", new CheckboxField("ShowBanner", "Show Banner"));
         $fields->addFieldToTab("Root.Main", new HTMLEditorField("BannerText", "Banner Text"));
         $fields->addFieldToTab('Root.Event Emails', CheckboxField::create('EmailsActive', 'E-Mails aktiviert'));
-        $fields->addFieldToTab('Root.Event Emails', CheckboxField::create('EventAdminEmail', 'Event Admin Emailadresse'));
+        $fields->addFieldToTab('Root.Event Emails', TextField::create('EventAdminEmail', 'Event Admin Emailadresse'));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('AckMessageSubject', 'Empfangsbestätigung Betreff'));
         $fields->addFieldToTab('Root.Event Emails', HTMLEditorField::create('AckMessageContent', 'Empfangsbestätigung Inhalt'));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('TicketMessageSubject', 'Ticket-Email Betreff'));
