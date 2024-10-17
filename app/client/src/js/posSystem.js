@@ -43,19 +43,33 @@ if (products != null) {
 
 function addToCart(productid) {
     const product = productdata.find((product) => product.id === productid);
-    if (cartdata[productid] === undefined) {
-        cartdata[productid] = 1;
+    const index = cartdata.findIndex((entry) => entry.id === productid);
+
+    if (index >= 0) {
+        cartdata[index].amount++;
     } else {
-        cartdata[productid] += 1;
+        cartdata.push({
+            id: productid,
+            name: product.name,
+            price: product.price,
+            imageurl: product.imageurl,
+            amount: 1
+        });
     }
+
     renderCart();
 }
 
 function removeFromCart(productid) {
-    if (cartdata[productid] === 1) {
-        delete cartdata[productid];
+    const product = productdata.find((product) => product.id === productid);
+    const index = cartdata.findIndex((entry) => entry.id === productid);
+    if (index >= 0) {
+        cartdata[index].amount--;
+        if (cartdata[index].amount <= 0) {
+            cartdata.splice(index, 1);
+        }
     } else {
-        cartdata[productid] -= 1;
+        console.error('Product not found in cart');
     }
     renderCart();
 }
@@ -66,26 +80,26 @@ function renderCart() {
     totalPriceTag.textContent = totalPrice + ' €';
 
     if (cartdata.length > 0) {
-        console.log("Cart: ", cartdata);
-        cartdata.forEach(entry => {
-            entryproduct = productdata[entry];
-            entryamount = cartdata[entry];
-            entrytotalprice = entryproduct.price * entryamount;
-            //create new node for entry
-            entryobject = document.createElement("div");
-            entryobject.classList.add('product_list_entry');
-            entryobject.innerHTML = `
+        cart.innerHTML = '';
+        cartdata.forEach((entry) => {
+            const product = productdata.find((product) => product.id === entry.id);
+            const productElement = document.createElement('div');
+            const entrytotalprice = parseFloat(entry.price) * entry.amount;
+            productElement.classList.add('product_list_entry');
+            productElement.innerHTML = `
                 <div class="product_list_entry_image">
-                    <img src="${entryproduct.imageurl}" alt="${entryproduct.name}">
+                    <img src="${product.imageurl}" alt="${product.name}">
                 </div>
                 <div class="product_list_entry_content">
-                    <h3>${entryproduct.name}</h3>
-                    <p>${entryproduct.price} * ${entryamount}</p>
+                    <h3>${entry.name}</h3>
+                    <p>${entry.price} * ${entry.amount}</p>
                     <p>= ${entrytotalprice}</p>
                 </div>
             `;
-            cart.appendChild(entryobject);
-            totalPrice += entrytotalprice;
+            cart.appendChild(productElement);
+
+            totalPrice += parseFloat(entry.price) * entry.amount;
+            totalPriceTag.textContent = totalPrice + ' €';
         });
     } else {
         clearCart();
