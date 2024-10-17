@@ -2,6 +2,9 @@
 
 namespace {
 
+    use App\POS\Sale;
+    use App\POS\ProductSale;
+
     use SilverStripe\Forms\Form;
     use SilverStripe\Forms\FieldList;
     use SilverStripe\Forms\FileField;
@@ -24,12 +27,12 @@ namespace {
     use SilverStripe\CMS\Controllers\ContentController;
 
     /**
- * Class \PageController
- *
- * @property \ApiPage $dataRecord
- * @method \ApiPage data()
- * @mixin \ApiPage
- */
+     * Class \PageController
+     *
+     * @property \ApiPage $dataRecord
+     * @method \ApiPage data()
+     * @mixin \ApiPage
+     */
     class ApiPageController extends ContentController
     {
         private static $allowed_actions = [
@@ -42,6 +45,7 @@ namespace {
             "BoothImageEntryForm",
             "submitBoothImage",
             "statistics",
+            "addPOSSale",
         ];
 
         public function index(HTTPRequest $request)
@@ -449,6 +453,48 @@ namespace {
             $data['RegistrationsPerDay'] = $days;
 
             return json_encode($data);
+        }
+
+        public function addPOSSale(HTTPRequest $request)
+        {
+            $currentUser = Security::getCurrentUser();
+
+            if ($currentUser) {
+
+                if ($request->getBody() == null) {
+                    $this->response->addHeader('Content-Type', 'application/json');
+                    return json_encode(["message" => "No data found."]);
+                }
+
+                //Get data from request body
+                $entereddata = json_decode($request->getBody(), true);
+                $products = $entereddata['products'];
+                $total = $entereddata['total'];
+
+                $sale = new Sale();
+                $sale->SaleTime = date("Y-m-d H:i:s");
+                $sale->write();
+
+                foreach ($products as $product) {
+                    $productSale = new ProductSale();
+                    $productSale->ProductID = $product['id'];
+                    $productSale->Amount = $product['amount'];
+                    $productSale->SellingPrice = $product['price'];
+                    $productSale->ParentID = $sale->ID;
+                    $productSale->write();
+                }
+
+                $sale->TotalPrice = $total;
+                $sale->write();
+
+                $data['Valid'] = true;
+
+                $this->response->addHeader('Content-Type', 'application/json');
+                return json_encode($data);
+            } else {
+                $this->response->addHeader('Content-Type', 'application/json');
+                return json_encode(["message" => "Not logged in."]);
+            }
         }
     }
 }
