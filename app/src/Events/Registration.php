@@ -57,7 +57,7 @@ class Registration extends DataObject
         "UsedCoupon" => EventCoupon::class,
     ];
 
-    private static $default_sort = "Status ASC, Created ASC";
+    private static $default_sort = "Status ASC, Created DESC";
 
     private static $field_labels = [
         "Title" => "Name",

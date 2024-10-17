@@ -23,6 +23,7 @@ use SilverStripe\ORM\DataExtension;
  * @property string $NewRegisterMessageSubject
  * @property string $NewRegisterMessageContent
  * @property bool $EmailsActive
+ * @property string $EventAdminEmail
  */
 class CustomSiteConfig extends DataExtension
 {

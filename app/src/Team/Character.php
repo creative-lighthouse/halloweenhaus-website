@@ -17,6 +17,7 @@ use SilverStripe\ORM\DataObject;
  * @property string $Age
  * @property string $Description
  * @property int $Importance
+ * @property bool $InCarousel
  * @property int $ImageID
  * @method \SilverStripe\Assets\Image Image()
  */

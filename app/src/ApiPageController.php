@@ -41,6 +41,7 @@ namespace {
             "addImageFromBooth",
             "BoothImageEntryForm",
             "submitBoothImage",
+            "statistics",
         ];
 
         public function index(HTTPRequest $request)
@@ -290,6 +291,164 @@ namespace {
 
             $this->response->addHeader('Content-Type', 'application/json');
             return json_encode($returndata);
+        }
+
+
+
+        //STATISTICS API
+        public function statistics(HTTPRequest $request)
+        {
+            $this->response->addHeader('Content-Type', 'application/json');
+            if (!isset($_GET["type"])) {
+                return json_encode(["message" => "No valid type given."]);
+            }
+            $type = $_GET["type"];
+
+            switch ($type) {
+                case "GuestsThisYear":
+                    return $this->getStat_GuestsThisYear();
+                    break;
+                case "GuestsPerDay":
+                    return $this->getStat_GuestsPerDay();
+                    break;
+                case "VQRegistrationsPerDay":
+                    return $this->getStat_VQRegistrationsPerDay();
+                    break;
+                case "VQGuestsThisYear":
+                    return $this->getStat_VQGuestsThisYear();
+                    break;
+                case "VQGuestsPerDay":
+                    return $this->getStat_VQGuestsPerDay();
+                    break;
+                default:
+                    return json_encode(["message" => "No valid type given."]);
+            }
+        }
+
+        public function getStat_GuestsThisYear()
+        {
+            //Get all entry logs
+            $entryLogs = EntryLog::get()->filter(array(
+                "EntryTime:GreaterThanOrEqual" => date("Y-01-01"),
+                "EntryTime:LessThanOrEqual" => date("Y-12-31"),
+            ));
+
+            //Calculate People by groupsize of registrations
+            $data['GuestsThisYear'] = [
+                'VQ' => 0,
+                'SQ' => 0,
+                'TT' => 0,
+            ];
+            foreach ($entryLogs as $entryLog) {
+                $entryLogVQ = $entryLog->VQ;
+                $entryLogSQ = $entryLog->SQ;
+                $entryLogTT = $entryLog->getTotalGuests();
+                $data['GuestsThisYear']['VQ'] += $entryLogVQ;
+                $data['GuestsThisYear']['SQ'] += $entryLogSQ;
+                $data['GuestsThisYear']['TT'] += $entryLogTT;
+            }
+
+            return json_encode($data);
+        }
+
+        public function getStat_GuestsPerDay()
+        {
+            //Get all entry logs
+            $entryLogs = EntryLog::get()->filter(array(
+                "EntryTime:GreaterThanOrEqual" => date("Y-01-01"),
+                "EntryTime:LessThanOrEqual" => date("Y-12-31"),
+            ));
+
+            //Split the entry logs into days
+            $days = [];
+
+            foreach ($entryLogs as $entryLog) {
+                $day = date("Y-m-d", strtotime($entryLog->EntryTime));
+                if (!isset($days[$day])) {
+                    $days[$day] = [
+                        'VQ' => $entryLog->VQ,
+                        'SQ' => $entryLog->SQ,
+                        'TT' => $entryLog->getTotalGuests(),
+                    ];
+                } else {
+                    $days[$day]['VQ'] += $entryLog->VQ;
+                    $days[$day]['SQ'] += $entryLog->SQ;
+                    $days[$day]['TT'] += $entryLog->getTotalGuests();
+                }
+            }
+
+            $data['GuestsPerDay'] = $days;
+
+            return json_encode($data);
+        }
+
+        public function getStat_VQGuestsThisYear()
+        {
+            //Get all registrations for this year
+            $registrations = Registration::get()->filter(array(
+                "Event.EventDate:GreaterThanOrEqual" => date("Y-01-01"),
+                "Event.EventDate:LessThanOrEqual" => date("Y-12-31"),
+                "Status" => "CheckedIn",
+            ));
+
+            //Calculate People by groupsize of registrations
+            $data['GuestsThisYear'] = 0;
+            foreach ($registrations as $registration) {
+                $data['GuestsThisYear'] += $registration->GroupSize;
+            }
+
+            return json_encode($data);
+        }
+
+        public function getStat_VQGuestsPerDay()
+        {
+            //Get all registrations for this year
+            $registrations = Registration::get()->filter(array(
+                "Event.EventDate:GreaterThanOrEqual" => date("Y-01-01"),
+                "Event.EventDate:LessThanOrEqual" => date("Y-12-31"),
+                "Status" => "CheckedIn",
+            ));
+
+            //Split the registrations into days
+            $days = [];
+
+            foreach ($registrations as $registration) {
+                $day = date("Y-m-d", strtotime($registration->Event()->EventDate));
+                if (!isset($days[$day])) {
+                    $days[$day] = $registration->GroupSize;
+                } else {
+                    $days[$day] += $registration->GroupSize;
+                }
+            }
+
+            $data['GuestsPerDay'] = $days;
+
+            return json_encode($data);
+        }
+
+        public function getStat_VQRegistrationsPerDay()
+        {
+            //Get all registrations for this year
+            $registrations = Registration::get()->filter(array(
+                "Event.EventDate:GreaterThanOrEqual" => date("Y-01-01"),
+                "Event.EventDate:LessThanOrEqual" => date("Y-12-31"),
+            ));
+
+            //Split the registrations into days
+            $days = [];
+
+            foreach ($registrations as $registration) {
+                $day = date("Y-m-d", strtotime($registration->Created));
+                if (!isset($days[$day])) {
+                    $days[$day] = 1;
+                } else {
+                    $days[$day] += 1;
+                }
+            }
+
+            $data['RegistrationsPerDay'] = $days;
+
+            return json_encode($data);
         }
     }
 }
