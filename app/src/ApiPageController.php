@@ -315,6 +315,12 @@ namespace {
                 case "GuestsPerDay":
                     return $this->getStat_GuestsPerDay();
                     break;
+                case "GuestsPerHour":
+                    return $this->getStat_GuestsPerHour();
+                    break;
+                case "RegistrationsPerHour":
+                    return $this->getStat_RegistrationsPerHour();
+                    break;
                 case "VQRegistrationsPerDay":
                     return $this->getStat_VQRegistrationsPerDay();
                     break;
@@ -381,7 +387,63 @@ namespace {
                 }
             }
 
-            $data['GuestsPerDay'] = $days;
+            $data = $days;
+
+            return json_encode($data);
+        }
+
+        public function getStat_RegistrationsPerHour()
+        {
+            //Get all registrations for this year
+            $registrations = Registration::get()->filter(array(
+                "Event.EventDate:GreaterThanOrEqual" => date("Y-01-01"),
+                "Event.EventDate:LessThanOrEqual" => date("Y-12-31"),
+            ))->sort("Created");
+
+            //Split the registrations into hours
+            $hours = [];
+
+            foreach ($registrations as $registration) {
+                $hour = date("Y-m-d H:00", strtotime($registration->Created));
+                if (!isset($hours[$hour])) {
+                    $hours[$hour] = $registration->GroupSize;
+                } else {
+                    $hours[$hour] += $registration->GroupSize;
+                }
+            }
+
+            $data = $hours;
+
+            return json_encode($data);
+        }
+
+        public function getStat_GuestsPerHour()
+        {
+            //Get all entry logs
+            $entryLogs = EntryLog::get()->filter(array(
+                "EntryTime:GreaterThanOrEqual" => date("Y-01-01"),
+                "EntryTime:LessThanOrEqual" => date("Y-12-31"),
+            ))->sort("EntryTime");
+
+            //Split the entry logs into hours
+            $hours = [];
+
+            foreach ($entryLogs as $entryLog) {
+                $hour = date("Y-m-d H:00", strtotime($entryLog->EntryTime));
+                if (!isset($hours[$hour])) {
+                    $hours[$hour] = [
+                        'VQ' => $entryLog->VQ,
+                        'SQ' => $entryLog->SQ,
+                        'TT' => $entryLog->getTotalGuests(),
+                    ];
+                } else {
+                    $hours[$hour]['VQ'] += $entryLog->VQ;
+                    $hours[$hour]['SQ'] += $entryLog->SQ;
+                    $hours[$hour]['TT'] += $entryLog->getTotalGuests();
+                }
+            }
+
+            $data = $hours;
 
             return json_encode($data);
         }

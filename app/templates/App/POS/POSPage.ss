@@ -51,7 +51,7 @@
                 <% loop $Products %>
                     <div class="product_entry" data-behaviour="pos_product" data-productid="$ID" data-name="$Title" data-price="$Price" data-imageurl="$Image.Url">
                         <div class="product_entry_image">
-                            $Image.FocusFill(200,200)
+                            $Image.FocusFill(300,300)
                         </div>
                         <h2 class="product_entry_title">$Title</h2>
                         <p class="product_entry_price">$FormattedPrice</p>
@@ -68,56 +68,6 @@
                     <h2>Warenkorb</h2>
                 </div>
                 <div class="product_list" data-behaviour="pos_cart">
-                    <div class="product_list_entry">
-                        <div class="product_list_entry_image">
-                            $Products.First.Image.FocusFill(200,200)
-                        </div>
-                        <div class="product_list_entry_content">
-                            <h3>Produktname</h3>
-                            <p>0,00€ * 0</p>
-                            <p>= 0,00€</p>
-                        </div>
-                    </div>
-                    <div class="product_list_entry">
-                        <div class="product_list_entry_image">
-                            $Products.First.Image.FocusFill(200,200)
-                        </div>
-                        <div class="product_list_entry_content">
-                            <h3>Produktname</h3>
-                            <p>0,00€ * 0</p>
-                            <p>= 0,00€</p>
-                        </div>
-                    </div>
-                    <div class="product_list_entry">
-                        <div class="product_list_entry_image">
-                            $Products.First.Image.FocusFill(200,200)
-                        </div>
-                        <div class="product_list_entry_content">
-                            <h3>Produktname</h3>
-                            <p>0,00€ * 0</p>
-                            <p>= 0,00€</p>
-                        </div>
-                    </div>
-                    <div class="product_list_entry">
-                        <div class="product_list_entry_image">
-                            $Products.First.Image.FocusFill(200,200)
-                        </div>
-                        <div class="product_list_entry_content">
-                            <h3>Produktname</h3>
-                            <p>0,00€ * 0</p>
-                            <p>= 0,00€</p>
-                        </div>
-                    </div>
-                    <div class="product_list_entry">
-                        <div class="product_list_entry_image">
-                            $Products.First.Image.FocusFill(200,200)
-                        </div>
-                        <div class="product_list_entry_content">
-                            <h3>Produktname</h3>
-                            <p>0,00€ * 0</p>
-                            <p>= 0,00€</p>
-                        </div>
-                    </div>
                     <div class="product_list_entry">
                         <div class="product_list_entry_image">
                             $Products.First.Image.FocusFill(200,200)
