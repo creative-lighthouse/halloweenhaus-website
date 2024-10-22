@@ -14,6 +14,9 @@
                             <h4>$Year</h4>
                             </a>
                             <a class="list_item_content_title no_deco" href="" data-behaviour="list-toggle">
+                                <div class="list_item_title_triangle" data-behaviour="list-toggle">
+                                    <svg xmlns="http://www.w3.org/2000/svg"><path d="M12 15.5l-6.5-6.5 1.5-1.5 5 5 5-5 1.5 1.5z"></path></svg>
+                                </div>
                                 <h3>$Title</h3>
                             </a>
                             <div class="list_item_content_text">
