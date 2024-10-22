@@ -55,6 +55,7 @@ body {
     align-items: center;
     height: 100vh;
     width: 100vw;
+    position: relative;
 }
 
 .video_plate{
@@ -189,16 +190,30 @@ a, p, h1, h2, h3, h4, h5, h6, button, input, label, span, div {
     transition: 0.3s ease-in-out;
 }
 
-.overlay-btn {
+.overlayBtns{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.overlayBtn {
     margin: 5px;
     height: 100px;
-    background-color: black;
-    color: white;
+    width: 100px;
+    background-color: white;
+    color: black;
     border: none;
-    border-radius: 5px;
-    font-size: 1.5rem;
+    border-radius: 50%;
+    font-size: 50px;
     cursor: pointer;
     padding: 10px;
+    display: block;
 
     img{
         width: 100%;
@@ -207,21 +222,19 @@ a, p, h1, h2, h3, h4, h5, h6, button, input, label, span, div {
     }
 }
 
-.overlay-btn.notused{
-    animation: bounce 2s ease infinite;
+.overlayBtn.btn--prev{
+    left: 25%;
 }
 
-.overlay-btn.selected {
-    transform: translateY(-10%);
-    background-color: gray;
-    color: black;
+.overlayBtn.btn--next{
+    right: 25%;
 }
 
 .captureBtn{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 10px;
+    bottom: 40px;
     background-color: white;
     color: black;
     border: none;

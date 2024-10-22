@@ -21,8 +21,6 @@
         <div class="control_plate">
             <div id="controls" class="controls">
                 <button id="captureBtn" class="captureBtn">Bild aufnehmen</button>
-                <div id="overlayButtons"></div> <!-- Overlay buttons will be generated here -->
-                <!--<button id="toggleCameraBtn">Toggle Camera</button>-->
             </div>
             <div id="afterCaptureControls" class="afterCaptureControls">
                 <button id="dismissBtn">Bild löschen</button>
@@ -43,6 +41,10 @@
                 <a id="restart_button">Von vorne starten</a>
             </div>
         </div>
+    </div>
+    <div class="overlayBtns">
+        <button id="previousOverlayBtn" class="overlayBtn btn--previous">←</button>
+        <button id="nextOverlayBtn" class="overlayBtn btn--next">→</button>
     </div>
 </body>
 <script src="app.js"></script>

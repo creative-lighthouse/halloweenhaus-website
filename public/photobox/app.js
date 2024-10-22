@@ -5,7 +5,6 @@ const saveBtn = document.getElementById('saveBtn');
 const dismissBtn = document.getElementById('dismissBtn');
 const toggleCameraBtn = document.getElementById('toggleCameraBtn');
 const overlayPreview = document.getElementById('overlayPreview');
-const overlayButtons = document.getElementById('overlayButtons');
 const countdownEl = document.getElementById('countdown');
 const context = canvas.getContext('2d');
 
@@ -20,9 +19,10 @@ const qrcodeImage = document.getElementById('qrcode_image');
 var qrcodeText = "";
 
 let currentState = 'camera'; // camera, preview, saving
+let currentOverlayID = 0;
+const nextOverlayBtn = document.getElementById('nextOverlayBtn');
+const previousOverlayBtn = document.getElementById('previousOverlayBtn');
 
-let allOverlayButtons = null;
-let currentOverlay = null;
 let currentStream = null;
 let currentDeviceId = null;
 let videoDevices = [];
@@ -30,23 +30,28 @@ let videoDevices = [];
 const imagesize = 1000;
 
 const overlays = [
-    "overlay1.png",
-    "overlay2.png",
-    "overlay3.png",
-    "overlay4.png",
+    "filters/overlay1.png",
+    "filters/overlay2.png",
+    "filters/overlay3.png",
+    "filters/overlay4.png",
 ];
+
+
+let currentOverlay = overlays[currentOverlayID];
 
 countdownEl.style.opacity = 0;
 afterCaptureControls.classList.add("hidden");
 canvas.classList.add("hidden");
 
-// Call the loadOverlays function to create overlay buttons
-loadOverlays();
-
 //Initialize the first camera to find
 initilizeCamera();
 
 changeState('camera');
+
+renderOverlay();
+
+nextOverlayBtn.addEventListener('click', nextOverlay);
+previousOverlayBtn.addEventListener('click', previousOverlay);
 
 function initilizeCamera() {
     // Access the available devices
@@ -121,38 +126,9 @@ function captureImage()
     // Apply the overlay if available
     if (currentOverlay) {
         applyOverlay(currentOverlay);
+    } else {
+        applyOverlay(overlays[0]);
     }
-}
-
-// Function to load overlays dynamically
-function loadOverlays() {
-    const overlayFolder = 'filters'; // Folder where overlays are stored
-
-    overlays.forEach((overlay, index) => {
-        const btn = document.createElement('button');
-        btn.classList.add('overlay-btn');
-        btn.classList.add('notused');
-        btn.setAttribute('data-overlay', `${overlayFolder}/${overlay}`);
-        btn.addEventListener('click', () => {
-            currentOverlay = btn.getAttribute('data-overlay');
-            btn.classList.remove('notused');
-
-            // Show the overlay on the video feed
-            overlayPreview.src = currentOverlay;
-            overlayPreview.classList.remove('hidden');
-
-            allOverlayButtons.forEach(button => button.classList.remove('selected'));
-            btn.classList.add('selected');
-        });
-
-        //Set the overlay as an image on the button
-        const img = document.createElement('img');
-        img.src = `${overlayFolder}/${overlay}`;
-        btn.appendChild(img);
-
-        overlayButtons.appendChild(btn);
-        allOverlayButtons = document.querySelectorAll('.overlay-btn');
-    });
 }
 
 // Apply the overlay to the final captured image
@@ -190,21 +166,6 @@ saveBtn.addEventListener('click', () => {
             .catch(error => console.error('Error saving image:', error));
         }
     }, 'image/jpeg');
-
-    /* Example: Sending the image to a server
-    fetch('../api/addImageFromBooth', {
-        method: 'POST',
-        body: bodyData,
-        headers: { 'Content-Type': 'application/json' }
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Image saved:', data);
-            qrcodeText = data.qrlink;
-            changeState('saving');
-        })
-    .catch(error => console.error('Error saving image:', error));
-    */
 });
 
 dismissBtn.addEventListener('click', () => {
@@ -224,9 +185,6 @@ function changeState(newstate) {
             videoContainer.classList.remove("hidden");
             canvas.classList.add("hidden");
             qrcodeHolder.classList.add("hidden");
-
-            allOverlayButtons = document.querySelectorAll('.overlay-btn');
-            allOverlayButtons.forEach(button => button.classList.add('notused'));
             break;
         case 'preview':
             currentState = 'preview';
@@ -257,4 +215,32 @@ function changeState(newstate) {
         default:
             console.error('Invalid state');
     }
+}
+
+function renderOverlay() {
+    if (currentOverlayID >= overlays.length) {
+        currentOverlayID = 0;
+    } else if(currentOverlayID < 0) {
+        currentOverlayID = overlays.length - 1;
+    }
+
+    currentOverlay = overlays[currentOverlayID];
+    overlayPreview.src = currentOverlay;
+    overlayPreview.classList.remove('hidden');
+
+    const overlayImage = new Image();
+    overlayImage.src = currentOverlay;
+    overlayImage.onload = () => {
+        context.drawImage(overlayImage, 0, 0, canvas.width, canvas.height);
+    };
+}
+
+function nextOverlay() {
+    currentOverlayID++;
+    renderOverlay();
+}
+
+function previousOverlay() {
+    currentOverlayID--;
+    renderOverlay();
 }
