@@ -27,12 +27,12 @@ namespace {
     use SilverStripe\CMS\Controllers\ContentController;
 
     /**
-     * Class \PageController
-     *
-     * @property \ApiPage $dataRecord
-     * @method \ApiPage data()
-     * @mixin \ApiPage
-     */
+ * Class \PageController
+ *
+ * @property \ApiPage $dataRecord
+ * @method \ApiPage data()
+ * @mixin \ApiPage
+ */
     class ApiPageController extends ContentController
     {
         private static $allowed_actions = [

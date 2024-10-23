@@ -6,12 +6,12 @@ namespace App\POS {
     use SilverStripe\CMS\Controllers\ContentController;
 
     /**
-     * Class \PageController
-     *
-     * @property \App\POS\POSPage $dataRecord
-     * @method \App\POS\POSPage data()
-     * @mixin \App\POS\POSPage
-     */
+ * Class \PageController
+ *
+ * @property \App\POS\POSPage $dataRecord
+ * @method \App\POS\POSPage data()
+ * @mixin \App\POS\POSPage
+ */
     class POSPageController extends ContentController
     {
         private static $allowed_actions = [];

@@ -4,6 +4,7 @@ namespace App\POS;
 
 use SilverStripe\Assets\Image;
 use App\Feedback\FeedbackAdmin;
+use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\DataObject;
 
 /**
@@ -11,6 +12,7 @@ use SilverStripe\ORM\DataObject;
  *
  * @property string $Title
  * @property float $Price
+ * @property float $BuyPrice
  * @property int $ImageID
  * @method \SilverStripe\Assets\Image Image()
  */
@@ -19,6 +21,7 @@ class Product extends DataObject
     private static $db = [
         "Title" => "Varchar(255)",
         "Price" => "Double",
+        "BuyPrice" => "Double",
     ];
 
     private static $has_one = [
@@ -56,6 +59,7 @@ class Product extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
+        $fields->addFieldToTab("Root.Main", LiteralField::create("Profit", "<h2>Profit: " . $this->getProfitSoFar() . " €</h2>"));
         return $fields;
     }
 
@@ -73,5 +77,18 @@ class Product extends DataObject
         } else {
             return "Spendenbasis";
         }
+    }
+
+    public function getProfitSoFar()
+    {
+        $profitBeforeBuying = 0;
+        $productsSelled = 0;
+        foreach (ProductSale::get()->Filter("ProductID", $this->ID) as $sale) {
+            //add profit from sale
+            $profitBeforeBuying += $sale->getTotalPrice;
+            $productsSelled += $sale->Amount;
+        }
+        $profit = $profitBeforeBuying - ($this->BuyPrice * $productsSelled);
+        return $profit;
     }
 }

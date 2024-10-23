@@ -18,9 +18,12 @@ const formatterTime = new Intl.DateTimeFormat('de', optionsTime);
 const optionsDate = { month: 'numeric', day: 'numeric' };
 const formatterDate = new Intl.DateTimeFormat('de', optionsDate);
 
+//Check if statPage exists
 if (statPage) {
     console.log('Statistics Page');
     renderStatistics();
+    //update statistics every 5 minutes
+    setInterval(updateStatistics, 3000);
 }
 
 function renderStatistics() {
@@ -287,6 +290,3 @@ function updateStatistics() {
     getRegistrationsPerHour();
     getGuestsPerHour();
 }
-
-//update statistics every 5 minutes
-setInterval(updateStatistics, 3000);

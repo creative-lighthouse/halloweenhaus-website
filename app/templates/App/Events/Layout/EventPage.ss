@@ -69,7 +69,13 @@
                                         </div>
                                     <% end_loop %>
                                 <% else %>
-                                    <p class="timeslot_card timeslot_card--text" data-behaviour="timeslot" data-slotsize="0" data-eventID="$ID">Keine freien Zeitslots an diesem Tag verfügbar.</p>
+                                    <p class="timeslot_card timeslot_card--text" data-behaviour="timeslot" data-slotsize="0" data-eventID="$ID"><strong>An diesem Tag sind keine freien Zeitslots mehr verfügbar</strong><br>Komme gerne trotzdem vorbei und stelle dich in die reguläre Warteschlange oder versuche es später erneut. Es melden sich immer mal wieder auch Leute ab oder wir schalten neue Plätze frei.</p>
+                                    <% loop $FullTimeSlots %>
+                                        <div class="timeslot_card timeslot_card--full" data-behaviour="timeslot" data-slotId="$ID" data-slotsize="0" data-eventID="$Parent.ID">
+                                            <p class="timeslot_card_time">$SlotTimeFormatted</p>
+                                            <p class="timeslot_card_capacity">Ausgebucht!</p>
+                                        </div>
+                                    <% end_loop %>
                                 <% end_if %>
 
                                 <% if $FreeCouponTimeSlotsInFuture.Count > 0 %>
