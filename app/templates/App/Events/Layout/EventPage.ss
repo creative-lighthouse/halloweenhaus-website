@@ -102,7 +102,7 @@
                         <h1 class="text-center">Hinweis zu den Zeitslots der Halloween Shows</h1>
                         <p class="text-center">Sollte kein passender Zeitslot verfügbar sein, <strong>versuche es bitte später erneut oder komm einfach vorbei</strong> und stelle dich in die reguläre Warteschlange.</p>
                         <p class="text-center">Die <strong>Zeitslots für die Halloween Shows</strong> sind aufgrund der hohen Nachfrage limitiert. Es melden sich immer mal wieder auch Leute ab oder wir schalten neue Plätze frei.</p>
-                        <p class="text-center">Sollte deine Gruppe <strong>größer als 5 Personen,</strong> aber unter 10 Personen sein, buche gerne zwei aufeinander folgende Zeitslots und gebt am Eingang Bescheid. Ihr könnt dann auch gemeinsam die Show genießen.</p>
+                        <p class="text-center">Sollte deine Gruppe <strong>größer als 5 Personen,</strong> aber unter 10 Personen sein, buche gerne zwei aufeinander folgende Zeitslots und gib am Eingang Bescheid. Ihr könnt dann auch gemeinsam die Show genießen.</p>
                         <p class="text-center">Die <strong>Behind the Scenes Touren</strong> haben keine reguläre Warteschlange und sind auf die angegebenen Plätze limitiert. Es können sich aber auch Personen abmelden und dadurch wieder Plätze frei werden.</p>
                         <button class="timeslot_dialog_button" onclick="timeslot_dialog.close()">Schließen</button>
                     </dialog>
