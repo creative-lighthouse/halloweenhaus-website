@@ -65,7 +65,7 @@
                                     <% loop $FullTimeSlots %>
                                         <div class="timeslot_card timeslot_card--full" data-behaviour="timeslot" data-slotId="$ID" data-slotsize="0" data-eventID="$Parent.ID">
                                             <p class="timeslot_card_time">$SlotTimeFormatted</p>
-                                            <p class="timeslot_card_capacity">Ausgebucht!</p>
+                                            <p class="timeslot_card_capacity">Ausgebucht</p>
                                         </div>
                                     <% end_loop %>
                                 <% else %>
