@@ -69,7 +69,7 @@
                                         </div>
                                     <% end_loop %>
                                 <% else %>
-                                    <p class="timeslot_card timeslot_card--text" data-behaviour="timeslot" data-slotsize="0" data-eventID="$ID">An diesem Tag sind leider keine freien Zeitslots mehr verfügbar</p>
+                                    <p class="timeslot_card timeslot_card--text" data-behaviour="timeslot" data-slotsize="0" data-eventID="$ID">Aktuell sind leider keine freien Zeitslots mehr verfügbar. Besuche uns dennoch gerne über die reguläre Warteschlange.</p>
                                     <% loop $FullTimeSlots %>
                                         <div class="timeslot_card timeslot_card--full" data-behaviour="timeslot" data-slotId="$ID" data-slotsize="0" data-eventID="$Parent.ID">
                                             <p class="timeslot_card_time">$SlotTimeFormatted</p>
@@ -92,7 +92,7 @@
                                         </div>
                                     <% end_loop %>
                                 <% else %>
-                                    <p class="timeslot_card timeslot_card--text" data-behaviour="coupontimeslot" data-slotsize="0" data-eventID="$ID">Keine freien Zeitslots an diesem Tag verfügbar.</p>
+                                    <p class="timeslot_card timeslot_card--text" data-behaviour="coupontimeslot" data-slotsize="0" data-eventID="$ID">Aktuell sind leider keine freien Zeitslots mehr verfügbar. Besuche uns dennoch gerne über die reguläre Warteschlange.</p>
                                 <% end_if %>
                             <% end_loop %>
                         <% end_loop %>
