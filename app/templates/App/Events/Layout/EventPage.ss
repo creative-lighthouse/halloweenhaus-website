@@ -69,7 +69,7 @@
                                         </div>
                                     <% end_loop %>
                                 <% else %>
-                                    <p class="timeslot_card timeslot_card--text" data-behaviour="timeslot" data-slotsize="0" data-eventID="$ID"><strong>An diesem Tag sind keine freien Zeitslots mehr verfügbar</strong><br>Komme gerne trotzdem vorbei und stelle dich in die reguläre Warteschlange oder versuche es später erneut. Es melden sich immer mal wieder auch Leute ab oder wir schalten neue Plätze frei.</p>
+                                    <p class="timeslot_card timeslot_card--text" data-behaviour="timeslot" data-slotsize="0" data-eventID="$ID">An diesem Tag sind leider keine freien Zeitslots mehr verfügbar</p>
                                     <% loop $FullTimeSlots %>
                                         <div class="timeslot_card timeslot_card--full" data-behaviour="timeslot" data-slotId="$ID" data-slotsize="0" data-eventID="$Parent.ID">
                                             <p class="timeslot_card_time">$SlotTimeFormatted</p>
@@ -97,10 +97,15 @@
                             <% end_loop %>
                         <% end_loop %>
                     </div>
-                    <p class="text-center"><strong>Hinweis zu den Zeitslots der Halloween Shows</strong>: Sollte kein passender Zeitslot verfügbar sein, versuche es bitte später erneut oder komm einfach vorbei und stelle dich in die reguläre Warteschlange.</p>
-                    <p class="text-center">Die Zeitslots für die Halloween Shows sind aufgrund der hohen Nachfrage limitiert. Es melden sich immer mal wieder auch Leute ab oder wir schalten neue Plätze frei.</p>
-                    <p class="text-center">Sollte deine Gruppe größer als 5 Personen aber unter 10 Personen sein, buche gerne zwei aufeinander folgende Zeitslots und gebt am Eingang Bescheid. Ihr könnt dann auch gemeinsam die Show genießen.</p>
-                    <p class="text-center">Die Behind the Scenes Touren haben keine reguläre Warteschlange und sind auf die angegebenen Plätze limitiert. Es können sich aber auch Personen abmelden und dadurch wieder Plätze frei werden.</p>
+                    <button class="timeslot_dialog_button" onclick="timeslot_dialog.showModal()">Passt kein Zeitslot? Klicke hier!</button>
+                    <dialog class="timeslot_dialog" id="timeslot_dialog">
+                        <h1 class="text-center">Hinweis zu den Zeitslots der Halloween Shows</h1>
+                        <p class="text-center">Sollte kein passender Zeitslot verfügbar sein, <strong>versuche es bitte später erneut oder komm einfach vorbei</strong> und stelle dich in die reguläre Warteschlange.</p>
+                        <p class="text-center">Die <strong>Zeitslots für die Halloween Shows</strong> sind aufgrund der hohen Nachfrage limitiert. Es melden sich immer mal wieder auch Leute ab oder wir schalten neue Plätze frei.</p>
+                        <p class="text-center">Sollte deine Gruppe <strong>größer als 5 Personen</strong> aber unter 10 Personen sein, buche gerne zwei aufeinander folgende Zeitslots und gebt am Eingang Bescheid. Ihr könnt dann auch gemeinsam die Show genießen.</p>
+                        <p class="text-center">Die <strong>Behind the Scenes Touren</strong> haben keine reguläre Warteschlange und sind auf die angegebenen Plätze limitiert. Es können sich aber auch Personen abmelden und dadurch wieder Plätze frei werden.</p>
+                        <button class="timeslot_dialog_button" onclick="timeslot_dialog.close()">Schließen</button>
+                    </dialog>
                 </div>
 
                 <div class="events_navigator_step groupsize hidden" data-eventstep="4">
