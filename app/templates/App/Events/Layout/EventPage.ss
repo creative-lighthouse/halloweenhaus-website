@@ -52,7 +52,7 @@
 
                 <div class="events_navigator_step timeslots hidden" data-eventstep="3">
                     <h2>3. Startzeit wählen</h2>
-                    <p class="text-center">Sollte kein passender Zeitslot verfügbar sein, versuche es bitte später erneut oder komm einfach vorbei und stelle dich in die reguläre Warteschlange.</p>
+                    <p class="text-center">Hinweis zu den Shows: Sollte kein passender Zeitslot verfügbar sein, versuche es bitte später erneut oder komm einfach vorbei und stelle dich in die reguläre Warteschlange. Die Behind the Scenes Touren haben keine reguläre Warteschlange.</p>
                     <div class="section_selectablelist">
                         <% loop $GroupedEvents.GroupedBy('EventDate') %>
                             <% loop $Children %>
