@@ -6,6 +6,7 @@ const stat_totalGuests = document.querySelector('[data-behaviour="stat_totalthis
 const stat_GuestsPerDayHolder = document.querySelector('[data-behaviour="stat_guestsperday"]');
 const stat_SalesPerDayHolder = document.querySelector('[data-behaviour="stat_salesperday"]');
 const stat_ProfitsPerDayHolder = document.querySelector('[data-behaviour="stat_profitsperday"]');
+const stat_RegistrationsPerDayHolder = document.querySelector('[data-behaviour="stat_registrationsperday"]');
 const stat_GuestsPerHourHolder = document.querySelector('[data-behaviour="stat_guestsperhour"]');
 const stat_RegistrationsPerHourHolder = document.querySelector('[data-behaviour="stat_registrationsperhour"]');
 const stat_SalesPerHourHolder = document.querySelector('[data-behaviour="stat_salesperhour"]');
@@ -14,6 +15,7 @@ const stat_SalesPerHourHolder = document.querySelector('[data-behaviour="stat_sa
 const stat_GuestsPerDay = [];
 const stat_SalesPerDay = [];
 const stat_ProfitsPerDay = [];
+const stat_RegistrationsPerDay = [];
 
 //Hourly Stats
 const stat_GuestsPerHour = [];
@@ -34,6 +36,7 @@ var salesPerHourLoaded = false;
 var guestsPerDayLoaded = false;
 var salesPerDayLoaded = false;
 var profitsPerDayLoaded = false;
+var registrationsPerDayLoaded = false;
 
 //Check if statPage exists
 if (statPage) {
@@ -91,6 +94,53 @@ function getGuestsPerDay() {
                 stat_GuestsPerDayHolder.innerHTML += `
                     <div class="statistics_entry">
                         <p class="entry_value">${day.guests}</p>
+                        <p class="entry_title">${day.formattedDate}</p>
+                    </div>
+                `;
+            });
+
+            renderDailyGraph();
+        });
+}
+
+function getRegistrationsPerDay() {
+    stat_RegistrationsPerDay.length = 0;
+    fetch('./api/statistics?type=RegistrationsPerDay')
+        .then(response => response.json())
+        .then(data => {
+            //Get array of days from data
+            const days = Object.keys(data);
+
+            //Get array of guests per day from data
+            const registrations = Object.values(data);
+
+            //Create array of objects with day and guests
+            days.forEach((day, index) => {
+                stat_RegistrationsPerDay.push({
+                    day: day,
+                    registrations: registrations[index],
+                    formattedDate: formatterDate.format(new Date(day)),
+                    formattedTime: formatterTime.format(new Date(day))
+                });
+            });
+
+            //sort by date
+            stat_RegistrationsPerDay.sort((a, b) => {
+                return new Date(a.day) - new Date(b.day);
+            });
+
+            registrationsPerDayLoaded = true;
+
+            //Render guests per day
+            stat_RegistrationsPerDayHolder.innerHTML = '';
+            stat_RegistrationsPerDay.forEach(day => {
+                if (day.registrations === 0) {
+                    return;
+                }
+
+                stat_RegistrationsPerDayHolder.innerHTML += `
+                    <div class="statistics_entry">
+                        <p class="entry_value">${day.registrations}</p>
                         <p class="entry_title">${day.formattedDate}</p>
                     </div>
                 `;
@@ -386,7 +436,7 @@ function renderHourlyGraph()
 
 function renderDailyGraph()
 {
-    if (!guestsPerDayLoaded || !salesPerDayLoaded) {
+    if (!guestsPerDayLoaded || !salesPerDayLoaded || !profitsPerDayLoaded || !registrationsPerDayLoaded) {
         return;
     }
 
@@ -457,6 +507,7 @@ function buildDailyData()
     var guestsPerDayArray = stat_GuestsPerDay.map(row => { return { x: row.day, y: row.guests } });
     var salesPerDayArray = stat_SalesPerDay.map(row => { return { x: row.day, y: row.sales } });
     var profitsPerDayArray = stat_ProfitsPerDay.map(row => { return { x: row.day, y: row.profits } });
+    var registrationsPerDayArray = stat_RegistrationsPerDay.map(row => { return { x: row.day, y: row.registrations } });
 
     var guestsPerDayData = {
         type: 'bar',
@@ -473,8 +524,13 @@ function buildDailyData()
         label: 'Einnahmen pro Tag',
         data: profitsPerDayArray
     }
+    var registrationsPerDayData = {
+        type: 'line',
+        label: 'Registrierungen pro Tag',
+        data: registrationsPerDayArray
+    }
 
-    return [guestsPerDayData, salesPerDayData, profitsPerDayData];
+    return [guestsPerDayData, salesPerDayData, profitsPerDayData, registrationsPerDayData];
 }
 
 function updateStatistics() {
@@ -485,4 +541,5 @@ function updateStatistics() {
     getGuestsPerHour();
     getSalesPerHour();
     getProfitsPerDay();
+    getRegistrationsPerDay();
 }

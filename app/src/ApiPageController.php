@@ -323,6 +323,9 @@ namespace {
                 case "ProfitsPerDay":
                     return $this->getStat_ProfitsPerDay();
                     break;
+                case "RegistrationsPerDay":
+                    return $this->getStat_RegistrationsPerDay();
+                    break;
                 case "GuestsPerHour":
                     return $this->getStat_GuestsPerHour();
                     break;
@@ -395,6 +398,34 @@ namespace {
                     $days[$day]['VQ'] += $entryLog->VQ;
                     $days[$day]['SQ'] += $entryLog->SQ;
                     $days[$day]['TT'] += $entryLog->getTotalGuests();
+                }
+            }
+
+            //Sort the array by date
+            ksort($days);
+
+            $data = $days;
+
+            return json_encode($data);
+        }
+
+        public function getStat_RegistrationsPerDay()
+        {
+            //Get all entry logs
+            $registrations = Registration::get()->filter(array(
+                "Event.EventDate:GreaterThanOrEqual" => date("Y-01-01"),
+                "Event.EventDate:LessThanOrEqual" => date("Y-12-31"),
+            ));
+
+            //Split the entry logs into days
+            $days = [];
+
+            foreach ($registrations as $registration) {
+                $day = date("Y-m-d", strtotime($registration->Created));
+                if (!isset($days[$day])) {
+                    $days[$day] = $registration->GroupSize;
+                } else {
+                    $days[$day] += $registration->GroupSize;
                 }
             }
 

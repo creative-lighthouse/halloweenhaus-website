@@ -35,6 +35,14 @@
             </div>
         </div>
 
+        <h3>Registrierungen pro Tag</h3>
+        <div class="statistics_row" data-behaviour="stat_registrationsperday">
+            <div class="statistics_entry">
+                <p class="entry_value">???€</p>
+                <p class="entry_title">??.??.</p>
+            </div>
+        </div>
+
         <div class="statistics_row">
             <div class="statistics_entry">
                 <canvas id="dailyCharts"></canvas>
