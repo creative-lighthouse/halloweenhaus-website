@@ -15,6 +15,7 @@ class POSAdmin extends ModelAdmin
     private static $managed_models = array(
         Product::class,
         Sale::class,
+        DonationCount::class,
     );
 
     private static $url_segment = "pos";

@@ -4,11 +4,21 @@ import 'chartjs-adapter-moment';
 const statPage = document.querySelector('.statistics-page');
 const stat_totalGuests = document.querySelector('[data-behaviour="stat_totalthisyear"]');
 const stat_GuestsPerDayHolder = document.querySelector('[data-behaviour="stat_guestsperday"]');
+const stat_SalesPerDayHolder = document.querySelector('[data-behaviour="stat_salesperday"]');
+const stat_ProfitsPerDayHolder = document.querySelector('[data-behaviour="stat_profitsperday"]');
 const stat_GuestsPerHourHolder = document.querySelector('[data-behaviour="stat_guestsperhour"]');
 const stat_RegistrationsPerHourHolder = document.querySelector('[data-behaviour="stat_registrationsperhour"]');
+const stat_SalesPerHourHolder = document.querySelector('[data-behaviour="stat_salesperhour"]');
+
+//Daily Stats
 const stat_GuestsPerDay = [];
+const stat_SalesPerDay = [];
+const stat_ProfitsPerDay = [];
+
+//Hourly Stats
 const stat_GuestsPerHour = [];
 const stat_RegistrationsPerHour = [];
+const stat_SalesPerHour = [];
 
 let dailyChart = null;
 let hourlyChart = null;
@@ -18,19 +28,19 @@ const formatterTime = new Intl.DateTimeFormat('de', optionsTime);
 const optionsDate = { month: 'numeric', day: 'numeric' };
 const formatterDate = new Intl.DateTimeFormat('de', optionsDate);
 
+var registrationsPerHourLoaded = false;
+var guestsPerHourLoaded = false;
+var salesPerHourLoaded = false;
+var guestsPerDayLoaded = false;
+var salesPerDayLoaded = false;
+var profitsPerDayLoaded = false;
+
 //Check if statPage exists
 if (statPage) {
     console.log('Statistics Page');
-    renderStatistics();
+    updateStatistics();
     //update statistics every 5 minutes
-    setInterval(updateStatistics, 3000);
-}
-
-function renderStatistics() {
-    getTotalGuestsThisYear();
-    getGuestsPerDay();
-    getRegistrationsPerHour();
-    getGuestsPerHour();
+    setInterval(updateStatistics, 30000);
 }
 
 function getTotalGuestsThisYear() {
@@ -64,8 +74,131 @@ function getGuestsPerDay() {
                 });
             });
 
+            //sort by date
+            stat_GuestsPerDay.sort((a, b) => {
+                return new Date(a.day) - new Date(b.day);
+            });
+
+            guestsPerDayLoaded = true;
+
             //Render guests per day
-            renderGuestsPerDay();
+            stat_GuestsPerDayHolder.innerHTML = '';
+            stat_GuestsPerDay.forEach(day => {
+                if (day.guests === 0) {
+                    return;
+                }
+
+                stat_GuestsPerDayHolder.innerHTML += `
+                    <div class="statistics_entry">
+                        <p class="entry_value">${day.guests}</p>
+                        <p class="entry_title">${day.formattedDate}</p>
+                    </div>
+                `;
+            });
+
+            renderDailyGraph();
+        });
+}
+
+function getProfitsPerDay() {
+    stat_ProfitsPerDay.length = 0;
+    fetch('./api/statistics?type=ProfitsPerDay')
+        .then(response => response.json())
+        .then(data => {
+
+            //Get array of days from data
+            const days = Object.keys(data);
+
+            //Get array of guests per day from data
+            const profits = Object.values(data);
+
+            //Create array of objects with day and guests
+            days.forEach((day, index) => {
+                stat_ProfitsPerDay.push({
+                    day: day,
+                    profits: profits[index],
+                    formattedDate: formatterDate.format(new Date(day)),
+                    formattedTime: formatterTime.format(new Date(day))
+                });
+            });
+
+            //sort by date
+            stat_ProfitsPerDay.sort((a, b) => {
+                return new Date(a.day) - new Date(b.day);
+            });
+
+            profitsPerDayLoaded = true;
+
+            //Render guests per day
+            stat_ProfitsPerDayHolder.innerHTML = '';
+            stat_ProfitsPerDay.forEach(day => {
+                if (day.profits === 0) {
+                    stat_ProfitsPerDayHolder.innerHTML += `
+                        <div class="statistics_entry">
+                            <p class="entry_value">Nur Spenden</p>
+                            <p class="entry_title">${day.formattedDate}</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                stat_ProfitsPerDayHolder.innerHTML += `
+                    <div class="statistics_entry">
+                        <p class="entry_value">${day.profits} €</p>
+                        <p class="entry_title">${day.formattedDate}</p>
+                    </div>
+                `;
+            });
+
+            renderDailyGraph();
+        });
+}
+
+function getSalesPerDay() {
+    stat_SalesPerDay.length = 0;
+    fetch('./api/statistics?type=SalesPerDay')
+        .then(response => response.json())
+        .then(data => {
+
+            //Get array of days from data
+            const days = Object.keys(data);
+
+            //Get array of guests per day from data
+            const sales = Object.values(data);
+
+            //Create array of objects with day and guests
+            days.forEach((day, index) => {
+                stat_SalesPerDay.push({
+                    day: day,
+                    sales: sales[index],
+                    formattedDate: formatterDate.format(new Date(day)),
+                    formattedTime: formatterTime.format(new Date(day))
+                });
+            });
+
+            //sort by date
+            stat_SalesPerDay.sort((a, b) => {
+                return new Date(a.day) - new Date(b.day);
+            });
+
+            salesPerDayLoaded = true;
+
+            //Render sales per day
+            stat_SalesPerDayHolder.innerHTML = '';
+            stat_SalesPerDay.forEach(day => {
+                if (day.sales === 0) {
+                    return;
+                }
+
+                stat_SalesPerDayHolder.innerHTML += `
+                    <div class="statistics_entry">
+                        <p class="entry_value">${day.sales}</p>
+                        <p class="entry_title">${day.formattedDate}</p>
+                    </div>
+                `;
+            });
+
+            renderDailyGraph();
         });
 }
 
@@ -83,38 +216,88 @@ function getGuestsPerHour() {
 
             //Create array of objects with day and guests
             hours.forEach((hour, index) => {
+                const totalGuests = guests[index].TT;
                 stat_GuestsPerHour.push({
                     hour: hour,
-                    guests: guests[index].TT,
+                    guests: totalGuests,
                     formattedTime: formatterTime.format(new Date(hour)),
-                    formattedDate: formatterDate.format(new Date(hour))
+                    formattedDate: formatterDate.format(new Date(hour)),
+                    simpleDateTime: new Date(hour)
                 });
             });
-
-            //fill missing hours with 0 guests
-            const firstHour = new Date(stat_GuestsPerHour[0].hour);
-            const lastHour = new Date(stat_GuestsPerHour[stat_GuestsPerHour.length - 1].hour);
-            const currentHour = new Date(firstHour);
-            while (currentHour < lastHour) {
-                const currentHourString = currentHour.toISOString();
-                if (!stat_GuestsPerHour.find(entry => entry.hour === currentHourString)) {
-                    stat_GuestsPerHour.push({
-                        hour: currentHourString,
-                        guests: 0,
-                        formattedTime: formatterTime.format(new Date(currentHourString)),
-                        formattedDate: formatterDate.format(new Date(currentHourString))
-                    });
-                }
-                currentHour.setHours(currentHour.getHours() + 1);
-            }
 
             stat_GuestsPerHour.sort((a, b) => {
                 return new Date(a.hour) - new Date(b.hour);
             });
 
+            guestsPerHourLoaded = true;
 
             //Render guests per day
-            renderGuestsPerHour();
+            stat_GuestsPerHourHolder.innerHTML = '';
+            stat_GuestsPerHour.forEach(entry => {
+                if (entry.guests === 0) {
+                    return;
+                }
+
+                stat_GuestsPerHourHolder.innerHTML += `
+                    <div class="statistics_entry">
+                        <p class="entry_value">${entry.guests}</p>
+                        <p class="entry_title">${entry.formattedDate}</p>
+                        <p class="entry_title">${entry.formattedTime}:00</p>
+                    </div>
+                `;
+            });
+
+            renderHourlyGraph();
+        });
+}
+
+function getSalesPerHour() {
+    stat_SalesPerHour.length = 0;
+    fetch('./api/statistics?type=SalesPerHour')
+        .then(response => response.json())
+        .then(data => {
+
+            //Get array of days from data
+            const hours = Object.keys(data);
+
+            //Get array of guests per day from data
+            const sales = Object.values(data);
+
+            //Create array of objects with day and guests
+            hours.forEach((hour, index) => {
+                stat_SalesPerHour.push({
+                    hour: hour,
+                    sales: sales[index],
+                    formattedTime: formatterTime.format(new Date(hour)),
+                    formattedDate: formatterDate.format(new Date(hour)),
+                    simpleDateTime: new Date(hour)
+                });
+            });
+
+            stat_SalesPerHour.sort((a, b) => {
+                return new Date(a.hour) - new Date(b.hour);
+            });
+
+            salesPerHourLoaded = true;
+
+            //Render sales per hour
+            stat_SalesPerHourHolder.innerHTML = '';
+            stat_SalesPerHour.forEach(entry => {
+                if (entry.sales === 0) {
+                    return;
+                }
+
+                stat_SalesPerHourHolder.innerHTML += `
+                    <div class="statistics_entry">
+                        <p class="entry_value">${entry.sales}</p>
+                        <p class="entry_title">${entry.formattedDate}</p>
+                        <p class="entry_title">${entry.formattedTime}</p>
+                    </div>
+                `;
+            });
+
+            renderHourlyGraph();
         });
 }
 
@@ -137,156 +320,169 @@ function getRegistrationsPerHour() {
                     hour: hour,
                     registrations: registrations[index],
                     formattedTime: formatterTime.format(new Date(hour)),
-                    formattedDate: formatterDate.format(new Date(hour))
+                    formattedDate: formatterDate.format(new Date(hour)),
+                    simpleDateTime: new Date(hour)
                 });
             });
-
-            //fill missing hours with 0 guests
-            const firstHour = new Date(stat_RegistrationsPerHour[0].hour);
-            const lastHour = new Date(stat_RegistrationsPerHour[stat_RegistrationsPerHour.length - 1].hour);
-            const currentHour = new Date(firstHour);
-            while (currentHour < lastHour) {
-                const currentHourString = currentHour.toISOString();
-                if (!stat_RegistrationsPerHour.find(entry => entry.hour === currentHourString)) {
-                    stat_RegistrationsPerHour.push({
-                        hour: currentHourString,
-                        registrations: 0,
-                        formattedTime: formatterTime.format(new Date(currentHourString)),
-                        formattedDate: formatterDate.format(new Date(currentHourString))
-                    });
-                }
-                currentHour.setHours(currentHour.getHours() + 1);
-            }
 
             stat_RegistrationsPerHour.sort((a, b) => {
                 return new Date(a.hour) - new Date(b.hour);
             });
 
+            registrationsPerHourLoaded = true;
+
             //Render guests per day
-            renderRegistrationsPerHour();
+            stat_RegistrationsPerHourHolder.innerHTML = '';
+            stat_RegistrationsPerHour.forEach(entry => {
+                if (entry.registrations === 0) {
+                    return;
+                }
+
+                stat_RegistrationsPerHourHolder.innerHTML += `
+                    <div class="statistics_entry">
+                        <p class="entry_value">${entry.registrations}</p>
+                        <p class="entry_title">${entry.formattedDate}</p>
+                        <p class="entry_title">${entry.formattedTime}</p>
+                    </div>
+                `;
+            });
+
+            renderHourlyGraph();
         });
 }
 
-function renderGuestsPerDay() {
-    stat_GuestsPerDayHolder.innerHTML = '';
-    stat_GuestsPerDay.forEach(day => {
-        if (day.guests === 0) {
-            return;
-        }
+///GRAPHS
+function renderHourlyGraph()
+{
+    if (!registrationsPerHourLoaded || !guestsPerHourLoaded || !salesPerHourLoaded) {
+        return;
+    }
 
-        stat_GuestsPerDayHolder.innerHTML += `
-            <div class="statistics_entry">
-                <p class="entry_value">${day.guests}</p>
-                <p class="entry_title">${day.formattedDate}</p>
-            </div>
-        `;
-    });
+    if (hourlyChart != null) {
+        hourlyChart.data.datasets = buildHourlyData();
+        hourlyChart.update();
+    } else {
+        //create simple arrays for chart.js with only simpleDateTime and guests/registrations
+        hourlyChart = new Chart(
+            document.getElementById('hourlyCharts'),
+            {
+                type: 'line',
+                data: { datasets: buildHourlyData() },
+                options: {
+                    scales: {
+                        xAxes: {
+                            type: 'time',
+                            time: {
+                                unit: 'hour',
+                                displayFormats: { hour: 'hh:00' },
+                            }
+                        }
+                    }
+                },
+            }
+        );
+    }
+}
+
+function renderDailyGraph()
+{
+    if (!guestsPerDayLoaded || !salesPerDayLoaded) {
+        return;
+    }
 
     if (dailyChart != null) {
+        dailyChart.data.datasets = buildDailyData();
         dailyChart.update();
     } else {
         dailyChart = new Chart(
             document.getElementById('dailyCharts'),
             {
                 type: 'bar',
-                data: {
-                    labels: stat_GuestsPerDay.map(row => row.day),
-                    datasets: [
-                        {
-                            label: 'Guests per day',
-                            data: stat_GuestsPerDay.map(row => row.guests)
+                data: { datasets: buildDailyData() },
+                options: {
+                    scales: {
+                        xAxes: {
+                            type: 'time',
+                            time: {
+                                unit: 'day',
+                                displayFormats: { day: 'DD.MM.' }
+                            }
                         }
-                    ]
-                }
+                    }
+                },
             }
         );
     }
 }
 
-function renderRegistrationsPerHour() {
-    stat_RegistrationsPerHourHolder.innerHTML = '';
-    stat_RegistrationsPerHour.forEach(entry => {
-        if (entry.registrations === 0) {
-            return;
-        }
-
-        stat_RegistrationsPerHourHolder.innerHTML += `
-            <div class="statistics_entry">
-                <p class="entry_value">${entry.registrations}</p>
-                <p class="entry_title">${entry.formattedDate}</p>
-                <p class="entry_title">${entry.formattedTime}</p>
-            </div>
-        `;
-    });
-
-    renderHourlyGraph();
-}
-
-function renderGuestsPerHour() {
-    stat_GuestsPerHourHolder.innerHTML = '';
-    stat_GuestsPerHour.forEach(entry => {
-        if (entry.guests === 0) {
-            return;
-        }
-
-        stat_GuestsPerHourHolder.innerHTML += `
-            <div class="statistics_entry">
-                <p class="entry_value">${entry.guests}</p>
-                <p class="entry_title">${entry.formattedDate}</p>
-                <p class="entry_title">${entry.formattedTime}:00</p>
-            </div>
-        `;
-    });
-
-    renderHourlyGraph();
-}
-
-function renderHourlyGraph()
+///BUILD DATA FOR GRAPHS
+function buildHourlyData()
 {
-    if(stat_GuestsPerHour.length > 0 && stat_RegistrationsPerHour.length > 0)
-    {
-        if (hourlyChart != null) {
-            hourlyChart.update();
-        } else {
-            hourlyChart = new Chart(
-                document.getElementById('hourlyCharts'),
-                {
-                    type: 'line',
-                    data: {
-                        labels: stat_GuestsPerHour.map(row => row.hour),
-                        datasets: [
-                            {
-                                label: 'Guests per hour',
-                                data: stat_GuestsPerHour.map(row => row.guests)
-                            }, {
-                                label: 'Registrations per hour',
-                                data: stat_RegistrationsPerHour.map(row => row.registrations)
-                            }
-                        ]
-                    },
-                    options: {
-                        scales: {
-                            x: {
-                                min: stat_GuestsPerHour[0].hour,
-                                max: stat_RegistrationsPerHour[stat_RegistrationsPerHour.length - 1].hour,
-                                type: 'time',
-                                time: {
-                                    displayFormats: {
-                                        hour: 'DD.MM hh:mm'
-                                    }
-                                },
-                            }
-                        }
-                    },
-                }
-            );
-        }
+    if (stat_GuestsPerHour.length > 0) {
+        var guestsPerHourArray = stat_GuestsPerHour.map(row => { return { x: row.simpleDateTime, y: row.guests } });
+    } else {
+        var guestsPerHourArray = [];
     }
+
+    if(stat_RegistrationsPerHour.length > 0) {
+        var registrationsPerHourArray = stat_RegistrationsPerHour.map(row => { return { x: row.simpleDateTime, y: row.registrations } });
+    } else {
+        var registrationsPerHourArray = [];
+    }
+
+    if(stat_SalesPerHour.length > 0) {
+        var salesPerHourArray = stat_SalesPerHour.map(row => { return { x: row.simpleDateTime, y: row.sales } });
+    } else {
+        var salesPerHourArray = [];
+    }
+
+    var guestsPerHourData = {
+        label: 'Gäste pro Stunde',
+        data: guestsPerHourArray
+    }
+    var registrationsPerHourData = {
+        label: 'Registrierungen pro Stunde',
+        data: registrationsPerHourArray
+    }
+    var salesPerHourData = {
+        label: 'Verkäufe pro Stunde',
+        data: salesPerHourArray
+    }
+
+    return [guestsPerHourData, registrationsPerHourData, salesPerHourData];
+}
+
+function buildDailyData()
+{
+    var guestsPerDayArray = stat_GuestsPerDay.map(row => { return { x: row.day, y: row.guests } });
+    var salesPerDayArray = stat_SalesPerDay.map(row => { return { x: row.day, y: row.sales } });
+    var profitsPerDayArray = stat_ProfitsPerDay.map(row => { return { x: row.day, y: row.profits } });
+
+    var guestsPerDayData = {
+        type: 'bar',
+        label: 'Gäste pro Tag',
+        data: guestsPerDayArray
+    }
+    var salesPerDayData = {
+        type: 'bar',
+        label: 'Verkäufe pro Tag',
+        data: salesPerDayArray
+    }
+    var profitsPerDayData = {
+        type: 'line',
+        label: 'Einnahmen pro Tag',
+        data: profitsPerDayArray
+    }
+
+    return [guestsPerDayData, salesPerDayData, profitsPerDayData];
 }
 
 function updateStatistics() {
     getTotalGuestsThisYear();
     getGuestsPerDay();
+    getSalesPerDay();
     getRegistrationsPerHour();
     getGuestsPerHour();
+    getSalesPerHour();
+    getProfitsPerDay();
 }

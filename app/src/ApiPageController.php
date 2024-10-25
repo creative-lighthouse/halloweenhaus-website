@@ -2,6 +2,8 @@
 
 namespace {
 
+    use App\POS\DonationCount;
+
     use App\POS\Sale;
     use App\POS\ProductSale;
 
@@ -27,12 +29,12 @@ namespace {
     use SilverStripe\CMS\Controllers\ContentController;
 
     /**
- * Class \PageController
- *
- * @property \ApiPage $dataRecord
- * @method \ApiPage data()
- * @mixin \ApiPage
- */
+     * Class \PageController
+     *
+     * @property \ApiPage $dataRecord
+     * @method \ApiPage data()
+     * @mixin \ApiPage
+     */
     class ApiPageController extends ContentController
     {
         private static $allowed_actions = [
@@ -315,11 +317,20 @@ namespace {
                 case "GuestsPerDay":
                     return $this->getStat_GuestsPerDay();
                     break;
+                case "SalesPerDay":
+                    return $this->getStat_SalesPerDay();
+                    break;
+                case "ProfitsPerDay":
+                    return $this->getStat_ProfitsPerDay();
+                    break;
                 case "GuestsPerHour":
                     return $this->getStat_GuestsPerHour();
                     break;
                 case "RegistrationsPerHour":
                     return $this->getStat_RegistrationsPerHour();
+                    break;
+                case "SalesPerHour":
+                    return $this->getStat_SalesPerHour();
                     break;
                 case "VQRegistrationsPerDay":
                     return $this->getStat_VQRegistrationsPerDay();
@@ -387,6 +398,87 @@ namespace {
                 }
             }
 
+            //Sort the array by date
+            ksort($days);
+
+            $data = $days;
+
+            return json_encode($data);
+        }
+
+        public function getStat_SalesPerDay()
+        {
+            //Get all entry logs
+            $sales = Sale::get()->filter(array(
+                "SaleTime:GreaterThanOrEqual" => date("Y-01-01"),
+                "SaleTime:LessThanOrEqual" => date("Y-12-31"),
+            ));
+
+            //Split the entry logs into days
+            $days = [];
+
+            foreach ($sales as $sale) {
+                $productamount = 0;
+                foreach ($sale->ProductSales() as $productSale) {
+                    $productamount += $productSale->Amount;
+                }
+                $day = date("Y-m-d", strtotime($sale->SaleTime));
+                if (!isset($days[$day])) {
+                    $days[$day] = $productamount;
+                } else {
+                    $days[$day] += $productamount;
+                }
+            }
+
+            //Sort the array by date
+            ksort($days);
+
+            $data = $days;
+
+            return json_encode($data);
+        }
+
+        public function getStat_ProfitsPerDay()
+        {
+            //Get all entry logs
+            $sales = Sale::get()->filter(array(
+                "SaleTime:GreaterThanOrEqual" => date("Y-01-01"),
+                "SaleTime:LessThanOrEqual" => date("Y-12-31"),
+            ));
+
+            $donationCounts = DonationCount::get()->filter(array(
+                "CountDateTime:GreaterThanOrEqual" => date("Y-01-01"),
+                "CountDateTime:LessThanOrEqual" => date("Y-12-31"),
+            ));
+
+            //Split the entry logs into days
+            $days = [];
+
+            foreach ($sales as $sale) {
+                $profit = 0;
+                foreach ($sale->ProductSales() as $productSale) {
+                    $profit += $productSale->Amount * ($productSale->SellingPrice - $productSale->Product()->BuyPrice);
+                }
+                $day = date("Y-m-d", strtotime($sale->SaleTime));
+                if (!isset($days[$day])) {
+                    $days[$day] = $profit;
+                } else {
+                    $days[$day] += $profit;
+                }
+            }
+
+            foreach ($donationCounts as $donationCount) {
+                $day = date("Y-m-d", strtotime($donationCount->CountDateTime));
+                if (!isset($days[$day])) {
+                    $days[$day] = $donationCount->Amount;
+                } else {
+                    $days[$day] += $donationCount->Amount;
+                }
+            }
+
+            //Sort the array by date
+            ksort($days);
+
             $data = $days;
 
             return json_encode($data);
@@ -440,6 +532,35 @@ namespace {
                     $hours[$hour]['VQ'] += $entryLog->VQ;
                     $hours[$hour]['SQ'] += $entryLog->SQ;
                     $hours[$hour]['TT'] += $entryLog->getTotalGuests();
+                }
+            }
+
+            $data = $hours;
+
+            return json_encode($data);
+        }
+
+        public function getStat_SalesPerHour()
+        {
+            //Get all entry logs
+            $sales = Sale::get()->filter(array(
+                "SaleTime:GreaterThanOrEqual" => date("Y-01-01"),
+                "SaleTime:LessThanOrEqual" => date("Y-12-31"),
+            ))->sort("SaleTime");
+
+            //Split the entry logs into hours
+            $hours = [];
+
+            foreach ($sales as $sale) {
+                $productamount = 0;
+                foreach ($sale->ProductSales() as $productSale) {
+                    $productamount += $productSale->Amount;
+                }
+                $hour = date("Y-m-d H:00", strtotime($sale->SaleTime));
+                if (!isset($hours[$hour])) {
+                    $hours[$hour] = $productamount;
+                } else {
+                    $hours[$hour] += $productamount;
                 }
             }
 
@@ -522,7 +643,6 @@ namespace {
             $currentUser = Security::getCurrentUser();
 
             if ($currentUser) {
-
                 if ($request->getBody() == null) {
                     $this->response->addHeader('Content-Type', 'application/json');
                     return json_encode(["message" => "No data found."]);

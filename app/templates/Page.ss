@@ -49,10 +49,10 @@
     </script>
     <!-- /Brevo Conversations {/literal} -->
 </head>
-<body>
-<% include Header %>
-$Layout
-<script src="$Mix("/js/main.js")"></script>
-<% include Footer %>
-</body>
+    <body>
+        <% include Header %>
+        $Layout
+        <script src="$Mix("/js/main.js")"></script>
+        <% include Footer %>
+    </body>
 </html>
