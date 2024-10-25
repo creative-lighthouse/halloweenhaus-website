@@ -25,9 +25,9 @@ class StatisticsPageController extends PageController
     public function index(HTTPRequest $request)
     {
         $currentUser = Security::getCurrentUser();
-        if (!$currentUser) {
+        /*if (!$currentUser) {
             return $this->redirect("/login");
-        }
+        }*/
         return array(
             'TotalGuestCountThisYear' => $this->getTotalGuestCountThisYear(),
             'VQGuestCountThisYear' => $this->getVQGuestCountThisYear(),
