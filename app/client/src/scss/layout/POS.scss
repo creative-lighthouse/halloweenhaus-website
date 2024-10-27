@@ -43,7 +43,7 @@
     padding: 0;
     margin: 0;
     width: 100vw;
-    height: 100vh;
+    height: 98vh;
     display: block;
     max-width: unset;
     flex-shrink: 1;
@@ -87,6 +87,7 @@
             min-height: 100%;
             justify-content: flex-start;
             align-items: flex-start;
+            overflow-y: scroll;
 
             .product_entry{
                 display: flex;
