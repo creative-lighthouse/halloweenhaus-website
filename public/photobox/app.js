@@ -182,6 +182,7 @@ restartButton.addEventListener('click', () => {
 });
 
 function changeState(newstate) {
+    console.log('Changing state to', newstate);
     switch (newstate) {
         case 'camera':
             currentState = 'camera';
@@ -190,6 +191,8 @@ function changeState(newstate) {
             videoContainer.classList.remove("hidden");
             canvas.classList.add("hidden");
             qrcodeHolder.classList.add("hidden");
+            nextOverlayBtn.disabled = false;
+            previousOverlayBtn.disabled = false;
             break;
         case 'preview':
             currentState = 'preview';
@@ -198,6 +201,8 @@ function changeState(newstate) {
             videoContainer.classList.add("hidden");
             canvas.classList.remove("hidden");
             qrcodeHolder.classList.add("hidden");
+            nextOverlayBtn.disabled = true;
+            previousOverlayBtn.disabled = true;
 
             if (countdownInterval) {
                 clearInterval(countdownInterval);
@@ -212,6 +217,8 @@ function changeState(newstate) {
             videoContainer.classList.add("hidden");
             canvas.classList.remove("hidden");
             qrcodeHolder.classList.remove("hidden");
+            nextOverlayBtn.disabled = true;
+            previousOverlayBtn.disabled = true;
 
             if(qrcodeText != "") {
                 qrcodeImage.src = qrcodeText;

@@ -222,6 +222,11 @@ a, p, h1, h2, h3, h4, h5, h6, button, input, label, span, div {
     }
 }
 
+.overlayBtn:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
 .overlayBtn.btn--prev{
     left: 25%;
 }
