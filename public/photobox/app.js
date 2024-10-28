@@ -36,6 +36,7 @@ const overlays = [
     "filters/overlay2.png",
     "filters/overlay3.png",
     "filters/overlay4.png",
+    "filters/overlay5.png",
 ];
 
 
