@@ -376,3 +376,29 @@ a, p, h1, h2, h3, h4, h5, h6, button, input, label, span, div {
         transform: translateY(-5);
     }
 }
+
+#loading{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    width: 300px;
+    min-height: 300px;
+    padding: 50px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    flex-direction: column;
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+    font-size: 20px;
+}
+
+#loading.hidden{
+    opacity: 0;
+}

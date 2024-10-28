@@ -6,6 +6,8 @@ const dismissBtn = document.getElementById('dismissBtn');
 const toggleCameraBtn = document.getElementById('toggleCameraBtn');
 const overlayPreview = document.getElementById('overlayPreview');
 const countdownEl = document.getElementById('countdown');
+const loadingEl = document.getElementById('loading');
+loadingEl.classList.add("hidden");
 const context = canvas.getContext('2d');
 
 const controls = document.getElementById('controls');
@@ -143,6 +145,7 @@ function applyOverlay(overlaySrc) {
 // Save the image
 saveBtn.addEventListener('click', () => {
     const imageDataURL = canvas.toDataURL('image/png');
+    loadingEl.classList.remove("hidden");
 
     const bodyData = JSON.stringify({ image: imageDataURL });
     afterCaptureControls.classList.add("hidden");
@@ -162,6 +165,7 @@ saveBtn.addEventListener('click', () => {
                 console.log('Image saved:', data);
                 qrcodeText = data.qrlink;
                 changeState('saving');
+                loadingEl.classList.add("hidden");
             })
             .catch(error => console.error('Error saving image:', error));
         }
