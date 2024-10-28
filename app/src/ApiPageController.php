@@ -237,10 +237,11 @@ namespace {
             $boothImage->write();
             $returndata["message"] = "Image saved.";
             $returndata["id"] = $boothImage->ID;
+            $returndata["hash"] = $boothImage->HashID;
 
             if ($photogallery) {
-                $returndata["detaillink"] = $photogallery->AbsoluteLink("foto") . "/" . $boothImage->ID;
-                $returndata["qrlink"] = $this->createQRCode($photogallery->AbsoluteLink("foto") . "/" . $boothImage->ID);
+                $returndata["detaillink"] = $photogallery->AbsoluteLink("foto") . "/" . $boothImage->HashID;
+                $returndata["qrlink"] = $this->createQRCode($photogallery->AbsoluteLink("foto") . "/" . $boothImage->HashID);
             }
 
 
@@ -290,8 +291,8 @@ namespace {
 
             $photogallery = PhotoboxGalleryPage::get()->first();
             if ($photogallery) {
-                $returndata["detaillink"] = $photogallery->AbsoluteLink("foto") . "/" . $entry->ID;
-                $returndata["qrlink"] = $this->createQRCode($photogallery->AbsoluteLink("foto") . "/" . $entry->ID);
+                $returndata["detaillink"] = $photogallery->AbsoluteLink("foto") . "/" . $entry->HashID;
+                $returndata["qrlink"] = $this->createQRCode($photogallery->AbsoluteLink("foto") . "/" . $entry->HashID);
             }
 
 
