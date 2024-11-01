@@ -422,8 +422,8 @@ function renderHourlyGraph()
                     scales: {
                         xAxes: {
                             type: 'time',
-                            min: stat_GuestsPerHour[0].simpleDateTime,
-                            max: stat_GuestsPerHour[stat_GuestsPerHour.length - 1].simpleDateTime,
+                            min: stat_SalesPerHour[0].simpleDateTime,
+                            max: stat_SalesPerHour[stat_SalesPerHour.length - 1].simpleDateTime,
                             time: {
                                 unit: 'hour',
                                 displayFormats: { hour: 'hh:00' },
