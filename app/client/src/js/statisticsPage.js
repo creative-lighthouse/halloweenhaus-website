@@ -326,7 +326,7 @@ function getSalesPerHour() {
             });
 
             //Add 0 sales for every hour that has no sales
-            const hoursInDay = 24;
+            /* const hoursInDay = 24;
             for (let i = 0; i < hoursInDay; i++) {
                 const hour = i.toString().padStart(2, '0');
                 const hourExists = stat_SalesPerHour.some(entry => entry.hour === hour);
@@ -339,7 +339,7 @@ function getSalesPerHour() {
                         simpleDateTime: new Date(hour)
                     });
                 }
-            }
+            } */
 
             stat_SalesPerHour.sort((a, b) => {
                 return new Date(a.hour) - new Date(b.hour);
