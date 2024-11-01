@@ -422,6 +422,8 @@ function renderHourlyGraph()
                     scales: {
                         xAxes: {
                             type: 'time',
+                            min: stat_GuestsPerHour[0].day,
+                            max: stat_GuestsPerHour[stat_GuestsPerHour.length - 1].day,
                             time: {
                                 unit: 'hour',
                                 displayFormats: { hour: 'hh:00' },
@@ -453,6 +455,8 @@ function renderDailyGraph()
                     scales: {
                         xAxes: {
                             type: 'time',
+                            min: stat_GuestsPerDay[0].day,
+                            max: stat_GuestsPerDay[stat_GuestsPerDay.length - 1].day,
                             time: {
                                 unit: 'day',
                                 displayFormats: { day: 'DD.MM.' }
