@@ -325,26 +325,6 @@ function getSalesPerHour() {
                 });
             });
 
-            //Add 0 sales for every hour that has no sales in the same format as the other entries
-            const firstHour = new Date(stat_SalesPerHour[0].hour);
-            const lastHour = new Date(stat_SalesPerHour[stat_SalesPerHour.length - 1].hour);
-
-            for (let i = firstHour; i <= lastHour; i.setHours(i.getHours() + 1)) {
-                const formattedHour = formatterTime.format(i);
-                const formattedDate = formatterDate.format(i);
-                const hour = i.toISOString();
-
-                if (stat_SalesPerHour.find(entry => entry.hour === hour) === undefined) {
-                    stat_SalesPerHour.push({
-                        hour: hour,
-                        sales: 0,
-                        formattedTime: formattedHour,
-                        formattedDate: formattedDate,
-                        simpleDateTime: i
-                    });
-                }
-            }
-
             stat_SalesPerHour.sort((a, b) => {
                 return new Date(a.hour) - new Date(b.hour);
             });
