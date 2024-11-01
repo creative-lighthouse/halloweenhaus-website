@@ -325,6 +325,22 @@ function getSalesPerHour() {
                 });
             });
 
+            //Add 0 sales for every hour that has no sales
+            const hoursInDay = 24;
+            for (let i = 0; i < hoursInDay; i++) {
+                const hour = i.toString().padStart(2, '0');
+                const hourExists = stat_SalesPerHour.some(entry => entry.hour === hour);
+                if (!hourExists) {
+                    stat_SalesPerHour.push({
+                        hour: hour,
+                        sales: 0,
+                        formattedTime: hour + ':00',
+                        formattedDate: formatterDate.format(new Date(hour)),
+                        simpleDateTime: new Date(hour)
+                    });
+                }
+            }
+
             stat_SalesPerHour.sort((a, b) => {
                 return new Date(a.hour) - new Date(b.hour);
             });
