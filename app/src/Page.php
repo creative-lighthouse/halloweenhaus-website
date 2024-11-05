@@ -64,5 +64,11 @@ namespace {
             }
             return false;
         }
+
+        public function visibleInMenu($urlSegment)
+        {
+            $page = Page::get()->filter('URLSegment', $urlSegment)->first();
+            return $page ? $page->ShowInMenus : false;
+        }
     }
 }

@@ -10,7 +10,9 @@
             </div>
             <div class="nav_mainmenu">
                 <a href="faq" class="nav_link faq">FAQ</a>
-                <a href="termine" class="link--button hollow nav_link virtualqueue">Termine</a>
+                <% if visibleInMenu('termine') %>
+                    <a href="termine" class="link--button hollow nav_link virtualqueue">Termine</a>
+                <% end_if %>
             </div>
             <div class="nav_secondarymenu">
                 <% loop $Menu(1) %>
