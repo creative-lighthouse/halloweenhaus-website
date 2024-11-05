@@ -10,15 +10,15 @@
             </div>
             <div class="nav_mainmenu">
                 <a href="faq" class="nav_link faq">FAQ</a>
-                <% if visibleInMenu('termine') %>
-                    <a href="termine" class="link--button hollow nav_link virtualqueue">Termine</a>
+                <% if $EventsPage.ShowInMenus %>
+                    <a href="termine" class="link--button hollow nav_link virtualqueue">$EventsPage.Title</a>
                 <% end_if %>
             </div>
             <div class="nav_secondarymenu">
                 <% loop $Menu(1) %>
-                <% if $MenuPosition != "footer" %>
-                <a href="$Link" class="nav_link<% if $LinkOrSection == "section" %> nav_link--active<% end_if %>">$MenuTitle</a>
-                <% end_if %>
+                    <% if $MenuPosition != "footer" %>
+                        <a href="$Link" class="nav_link<% if $LinkOrSection == "section" %> nav_link--active<% end_if %>">$MenuTitle</a>
+                    <% end_if %>
                 <% end_loop %>
             </div>
             <div class="nav_button" data-behaviour="toggle-menu">

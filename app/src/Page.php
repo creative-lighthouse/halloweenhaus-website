@@ -2,17 +2,18 @@
 
 namespace {
 
+    use App\Events\EventPage;
     use SilverStripe\CMS\Model\SiteTree;
     use SilverStripe\Forms\DropdownField;
 
     /**
- * Class \Page
- *
- * @property string $MenuPosition
- * @property int $ElementalAreaID
- * @method \DNADesign\Elemental\Models\ElementalArea ElementalArea()
- * @mixin \DNADesign\Elemental\Extensions\ElementalPageExtension
- */
+     * Class \Page
+     *
+     * @property string $MenuPosition
+     * @property int $ElementalAreaID
+     * @method \DNADesign\Elemental\Models\ElementalArea ElementalArea()
+     * @mixin \DNADesign\Elemental\Extensions\ElementalPageExtension
+     */
     class Page extends SiteTree
     {
         private static $db = [
@@ -56,7 +57,7 @@ namespace {
             return $interval->days;
         }
 
-        public function getNearHalloween()
+        public function GetNearHalloween()
         {
             $remaining = $this->daysTillHalloween();
             if ($remaining < 1) {
@@ -65,7 +66,12 @@ namespace {
             return false;
         }
 
-        public function visibleInMenu($urlSegment)
+        public function getEventsPage()
+        {
+            return EventPage::get()->first();
+        }
+
+        public function IsVisibleInMenu($urlSegment)
         {
             $page = Page::get()->filter('URLSegment', $urlSegment)->first();
             return $page ? $page->ShowInMenus : false;
