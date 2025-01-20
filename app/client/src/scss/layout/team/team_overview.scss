@@ -1,5 +1,12 @@
 .section.section--team_overview{
     .section_content{
+
+        text-align: center;
+        .teammember_title{
+            padding-top: 30px;
+            padding-bottom: 20px;          
+        }
+
         .teammember_list{
             padding: 20px 0;
             display: grid;

@@ -10,6 +10,7 @@
             text-align: left;
             padding: 10px;
             margin: -10px;
+            margin-bottom: 20px;
             &::before{
                 content:"";
                 display: inline-block;
@@ -30,6 +31,12 @@
                 width: 100%;
                 height: 100%;
             }
+            @include media("<medium") {
+                width: 60%;
+            }
+            @include media("<smartphone") {
+                width: 80%;
+            }
         }
 
         .teammember_name{
@@ -41,11 +48,13 @@
         .teammember_profession{
             font-weight: 200;
             margin: 5px;
+            text-align: center;
         }
 
         .teammember_time{
             font-weight: 200;
             margin: 5px;
+            margin-bottom: 20px;
         }
 
         .teammember_description{

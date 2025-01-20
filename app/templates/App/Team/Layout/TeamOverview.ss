@@ -40,7 +40,7 @@
                 <% loop $TeamMembers.Sort("Importance", DESC).Filter("Status", "formerly") %>
                     <div class="teammember_item">
                         <% if $Description %>
-                            <a class="teammember_texts no_deco" href="$Top.Link('view')/$FormattedName">
+                            <a class="teammember_texts no_deco" href="$Top.Link('view')/$ID-FormattedName">
                                 <div class="teammember_item_image">
                                     $Image.FocusFill(400,400)
                                 </div>
