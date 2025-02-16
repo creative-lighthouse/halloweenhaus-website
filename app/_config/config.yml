@@ -1,11 +1,11 @@
 SilverStripe\MimeValidator\MimeUploadValidator:
   MimeTypes:
     svg:
-      - 'image/svg+xml'
-      - 'image/svg'
+      - "image/svg+xml"
+      - "image/svg"
 
 SilverStripe\Assets\File:
-    allowed_extensions:
+  allowed_extensions:
     - svg
 
 App\Team\TeamMember:
@@ -32,3 +32,10 @@ App\Elements\TimelineItem:
 Silverstripe\SiteConfig\SiteConfig:
   extensions:
     - App\CustomSiteConfig
+
+App\FleaMarket\FleaMarketProduct:
+  extensions:
+    - PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
+  gallery-title: Galerie
+  gallery-cms-tab: Galerie
+  content-cms-tab: Top Content

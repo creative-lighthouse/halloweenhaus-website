@@ -1,4 +1,5 @@
 import GLightbox from "glightbox";
+import Swiper, {EffectCoverflow, Pagination} from 'swiper';
 import "./eventsNavigator";
 import "./posSystem";
 import "./statisticsPage";
@@ -148,6 +149,28 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         displaySlider();
     }
+
+    // init default Swipers:
+    const sliders = document.querySelectorAll('.swiper');
+
+    sliders.forEach(function (slider) {
+        const autoSwiper = slider.classList.contains('swiper--auto');
+        const swiper = new Swiper(slider, {
+            effect: 'slide',
+            direction: 'horizontal',
+            loop: true,
+
+            autoplay: autoSwiper ? {
+                delay: 5000,
+            } : false,
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    });
 
     /**
      * Our JavaScript function, which calculates the days, hours,

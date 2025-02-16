@@ -1,5 +1,6 @@
 @import "include-media";
 @import "~glightbox/dist/css/glightbox.css";
+@import 'swiper/swiper-bundle.css';
 
 @import "variables";
 @import "fonts";
@@ -39,6 +40,8 @@
 
 @import "layout/POS.scss";
 @import "layout/StatisticsPage.scss";
+
+@import "layout/FleaMarket.scss";
 
 html {
     background-color: $ColorBackground;
