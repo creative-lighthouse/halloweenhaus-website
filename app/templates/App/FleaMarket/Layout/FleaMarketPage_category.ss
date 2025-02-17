@@ -2,6 +2,14 @@
     <div class="section_content">
         <a class="backbutton" href="$Link">← Zurück zur Übersicht</a>
         <h1>Flohmarkt</h1>
+        <div class="fleamarket_categories">
+            <p><b>Kategorien:</b></p>
+            <% loop $Categories %>
+                <a href="$Link" class="fleamarket_category">
+                    $Title
+                </a>
+            <% end_loop %>
+        </div>
         <% with $Category %>
             <h2>Kategorie: $Title</h2>
             $Description

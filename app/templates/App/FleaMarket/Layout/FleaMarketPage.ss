@@ -1,13 +1,16 @@
 <div class="section section--fleamarket">
     <div class="section_content">
+        <a class="backbutton"></a>
         <h1>Flohmarkt</h1>
         $Text
         <div class="fleamarket_categories">
             <p><b>Kategorien:</b></p>
             <% loop $Categories %>
-                <a href="$Link" class="fleamarket_category">
-                    $Title
-                </a>
+                <% if $Products.Count > 0 %>
+                    <a href="$Link" class="fleamarket_category">
+                        $Title
+                    </a>
+                <% end_if %>
             <% end_loop %>
         </div>
         <div class="fleamarket_items">
@@ -23,7 +26,7 @@
                     </div>
                     <div class="fleamarket_item_text">
                         <h2>$Title</h2>
-                        <p>$FormattedPrice</p>
+                        <p>$FormattedPrice <% if $NegotiablePrice %>VB<% end_if %></p>
                     </div>
                 </a>
             <% end_loop %>

@@ -87,10 +87,12 @@
 
         .backbutton{
             display: inline-block;
-            margin-top: 30px;
+            padding-top: 30px;
             text-align: center;
             text-decoration: none;
             opacity: 0.8;
+            height: 25px;
+            line-height: 1;
 
             &:hover{
                 opacity: 1;
@@ -103,6 +105,42 @@
 
             &::after{
                 color: $ColorWhite;
+            }
+        }
+
+        .productgallery{
+            .productgallery_slider{
+                .swiper-slide{
+                    .productimage{
+                        aspect-ratio: 16/10;
+                        display: block;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
+
+        .productinfo{
+            margin: 20px 0;
+            border-spacing: 0px;
+
+            tbody{
+                tr{
+                    td{
+                        padding: 5px 10px;
+                        border-top: 1px solid $ColorWhite;
+                        border-bottom: 1px solid $ColorWhite;
+
+                        &:first-child{
+                            font-weight: bold;
+                            padding-left: 0px;
+                        }
+                    }
+                }
             }
         }
     }

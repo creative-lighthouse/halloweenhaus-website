@@ -54,7 +54,8 @@ class FleaMarketPageController extends ContentController
 
     public function getProducts()
     {
-        return FleaMarketProduct::get();
+        //Filter Products by visibility
+        return FleaMarketProduct::get()->filter("Visible", true);
     }
 
     public function getCategories()

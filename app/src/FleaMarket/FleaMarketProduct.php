@@ -15,6 +15,8 @@ use SilverStripe\Forms\CheckboxSetField;
  * @property string $Description
  * @property float $Price
  * @property int $Stock
+ * @property bool $NegotiablePrice
+ * @property bool $Visible
  * @method \SilverStripe\ORM\DataList|\PurpleSpider\BasicGalleryExtension\PhotoGalleryImage[] PhotoGalleryImages()
  * @method \SilverStripe\ORM\ManyManyList|\App\FleaMarket\FleaMarketProductCategory[] Categories()
  * @mixin \PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
@@ -27,6 +29,8 @@ class FleaMarketProduct extends DataObject
         "Description" => "HTMLText",
         "Price" => "Double",
         "Stock" => "Int",
+        "NegotiablePrice" => "Boolean",
+        "Visible" => "Boolean",
     ];
 
     private static $many_many = [
@@ -41,6 +45,8 @@ class FleaMarketProduct extends DataObject
         "Description" => "Beschreibung",
         "Price" => "Preis",
         "Stock" => "Lagerbestand",
+        "NegotiablePrice" => "Preis verhandelbar",
+        "Visible" => "Sichtbar",
     ];
 
     private static $summary_fields = [
@@ -65,6 +71,11 @@ class FleaMarketProduct extends DataObject
     private static $plural_name = "Produkte";
 
     private static $url_segment = "product";
+
+    private static $defaults = [
+        "NegotiablePrice" => true,
+        "Visible" => true,
+    ];
 
     public function onBeforeWrite()
     {

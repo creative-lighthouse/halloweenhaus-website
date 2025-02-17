@@ -1,5 +1,5 @@
 import GLightbox from "glightbox";
-import Swiper, {EffectCoverflow, Pagination} from 'swiper';
+import Swiper from 'swiper/bundle';
 import "./eventsNavigator";
 import "./posSystem";
 import "./statisticsPage";
