@@ -6,7 +6,7 @@
         <div class="fleamarket_categories">
             <p><b>Kategorien:</b></p>
             <% loop $Categories %>
-                <% if $Products.Count > 0 %>
+                <% if $Items.Count > 0 %>
                     <a href="$Link" class="fleamarket_category">
                         $Title
                     </a>
