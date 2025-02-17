@@ -8,7 +8,7 @@
                     <% loop PhotoGalleryImages %>
                         <div class="swiper-slide">
                             <a data-gallery="gallery" data-glightbox="description: $Title" data-caption="$Title" class="productimage" data-noloadingscreen="true" href="$Image.URL">
-                                $Image.FocusFill(1000,400)
+                                $Image.FocusFill(1200,500)
                             </a>
                         </div>
                     <% end_loop %>
