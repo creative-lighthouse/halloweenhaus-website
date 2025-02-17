@@ -62,7 +62,7 @@ class FleaMarketProductCategory extends DataObject
 
     public function getItems()
     {
-        return $this->Products();
+        return $this->Products()->filter("Visible", true);
     }
 
     public function Link()
