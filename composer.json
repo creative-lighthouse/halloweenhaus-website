@@ -17,12 +17,13 @@
         "dnadesign/silverstripe-elemental-userforms": "^4.1",
         "undefinedoffset/sortablegridfield": "^2.2",
         "endroid/qrcode": "^5.0",
-        "ryanpotter/silverstripe-cms-theme": "dev-master"
+        "ryanpotter/silverstripe-cms-theme": "dev-master",
+        "atwx/silverstripe-vitehelper": "^0.3.0"
     },
     "repositories": {
         "silverstripe/linkfield": {
-          "type": "git",
-          "url": "https://github.com/silverstripe/silverstripe-linkfield.git"
+            "type": "git",
+            "url": "https://github.com/silverstripe/silverstripe-linkfield.git"
         }
     },
     "require-dev": {
@@ -65,7 +66,8 @@
         "allow-plugins": {
             "composer/installers": true,
             "silverstripe/recipe-plugin": true,
-            "silverstripe/vendor-plugin": true
+            "silverstripe/vendor-plugin": true,
+            "php-http/discovery": true
         }
     }
 }
