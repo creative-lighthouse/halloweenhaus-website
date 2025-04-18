@@ -17,6 +17,7 @@
                 <div class="swiper-button-next"></div>
             </div>
             <h1>$Title</h1>
+            $Description
             <table class="productinfo">
                 <tr>
                     <td>Code:</td>
@@ -30,8 +31,49 @@
                     <td>Kategorien:</td>
                     <td>$CategoriesList</td>
                 </tr>
+                <% if $Size %>
+                    <tr>
+                        <td>Größe:</td>
+                        <td>$Size</td>
+                    </tr>
+                <% end_if %>
+                <% if $Material %>
+                    <tr>
+                        <td>Material:</td>
+                        <td>$Material</td>
+                    </tr>
+                <% end_if %>
+                <% if $Color %>
+                    <tr>
+                        <td>Farbe:</td>
+                        <td>$Color</td>
+                    </tr>
+                <% end_if %>
+                <% if $Brand %>
+                    <tr>
+                        <td>Marke:</td>
+                        <td>$Brand</td>
+                    </tr>
+                <% end_if %>
+                <% if $Model %>
+                    <tr>
+                        <td>Modell:</td>
+                        <td>$Model</td>
+                    </tr>
+                <% end_if %>
+                <% if $Condition %>
+                    <tr>
+                        <td>Zustand:</td>
+                        <td>$Condition</td>
+                    </tr>
+                <% end_if %>
+                <% if $Weight %>
+                    <tr>
+                        <td>Gewicht:</td>
+                        <td>$Weight</td>
+                    </tr>
+                <% end_if %>
             </table>
-            $Description
         </div>
     </div>
 <% end_with %>

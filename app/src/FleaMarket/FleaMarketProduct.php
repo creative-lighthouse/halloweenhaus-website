@@ -17,6 +17,12 @@ use SilverStripe\Forms\CheckboxSetField;
  * @property int $Stock
  * @property bool $NegotiablePrice
  * @property bool $Visible
+ * @property string $Size
+ * @property string $Material
+ * @property string $Color
+ * @property string $Brand
+ * @property string $Condition
+ * @property string $Weight
  * @method \SilverStripe\ORM\DataList|\PurpleSpider\BasicGalleryExtension\PhotoGalleryImage[] PhotoGalleryImages()
  * @method \SilverStripe\ORM\ManyManyList|\App\FleaMarket\FleaMarketProductCategory[] Categories()
  * @mixin \PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
@@ -31,6 +37,12 @@ class FleaMarketProduct extends DataObject
         "Stock" => "Int",
         "NegotiablePrice" => "Boolean",
         "Visible" => "Boolean",
+        "Size" => "Varchar(255)",
+        "Material" => "Varchar(255)",
+        "Color" => "Varchar(255)",
+        "Brand" => "Varchar(255)",
+        "Condition" => "Varchar(255)",
+        "Weight" => "Varchar(255)",
     ];
 
     private static $many_many = [
@@ -47,6 +59,14 @@ class FleaMarketProduct extends DataObject
         "Stock" => "Lagerbestand",
         "NegotiablePrice" => "Preis verhandelbar",
         "Visible" => "Sichtbar",
+        "Size" => "Größe (optional)",
+        "Material" => "Material (optional)",
+        "Color" => "Farbe (optional)",
+        "Brand" => "Marke (optional)",
+        "Model" => "Modell (optional)",
+        "Condition" => "Zustand (optional)",
+        "Categories" => "Kategorien",
+        "Weight" => "Gewicht (optional)",
     ];
 
     private static $summary_fields = [
