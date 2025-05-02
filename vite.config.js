@@ -29,6 +29,11 @@ export default defineConfig(({command}) => {
     css: {
         devSourcemap: true,
     },
-    plugins: []
+    plugins: [],
+    server: {
+        host: '0.0.0.0',
+        port: 5173,
+        origin: `${process.env.DDEV_PRIMARY_URL.replace(/:\d+$/, "")}:5173`,
+    },
   }
 })
