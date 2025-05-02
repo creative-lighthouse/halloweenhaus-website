@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
     <% base_tag %>
@@ -7,10 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="utf-8">
     <title>$Title - $SiteConfig.Title</title>
+    $ViteClient.RAW
+    <link rel="stylesheet" href="$Vite('app/client/src/scss/main.scss')">
+
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-    <link rel="manifest" href="../site.webmanifest">
     <link rel="mask-icon" href="../mask_icon.svg" color="#ffffff">
 
     <meta property="og:title" content="$Title - $SiteConfig.Title" />
@@ -30,29 +32,16 @@
     <meta property="og:locale" content="de_DE" />
     <meta name="twitter:card" content="summary_large_image">
 
+
+    <link rel="manifest" href="site.webmanifest">
+
     <meta name="msapplication-TileColor" content="#151515">
     <meta name="theme-color" content="#151515">
-    <link rel="stylesheet" href="$Mix("/css/styles.min.css")">
-
-    <!-- Brevo Conversations {literal} -->
-    <script>
-        (function(d, w, c) {
-            w.BrevoConversationsID = '66acf90d70b00e41914b1125';
-            w[c] = w[c] || function() {
-                (w[c].q = w[c].q || []).push(arguments);
-            };
-            var s = d.createElement('script');
-            s.async = true;
-            s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
-            if (d.head) d.head.appendChild(s);
-        })(document, window, 'BrevoConversations');
-    </script>
-    <!-- /Brevo Conversations {/literal} -->
 </head>
     <body>
         <% include Header %>
         $Layout
-        <script src="$Mix("/js/main.js")"></script>
+        <script type="module" src="$Vite('app/client/src/js/main.js')"></script>
         <% include Footer %>
     </body>
 </html>
