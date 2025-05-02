@@ -4,11 +4,12 @@ import {defineConfig} from 'vite'
 export default defineConfig(({command}) => {
   return {
     server: {
-      host: '0.0.0.0',
-      port: 5173,
+        host: '0.0.0.0',
+        port: 5173,
+        origin: `${process.env.DDEV_PRIMARY_URL.replace(/:\d+$/, "")}:5173`,
     },
     alias: {
-      alias: [{find: '@', replacement: './app/client/src'}],
+        alias: [{find: '@', replacement: './app/client/src'}],
     },
     // base: (command === 'build') ? '/_resources/app/client/dist/' : '/', // TODO: .env variable, only on build
     base: './',
@@ -30,10 +31,5 @@ export default defineConfig(({command}) => {
         devSourcemap: true,
     },
     plugins: [],
-    server: {
-        host: '0.0.0.0',
-        port: 5173,
-        origin: `${process.env.DDEV_PRIMARY_URL.replace(/:\d+$/, "")}:5173`,
-    },
   }
 })
