@@ -18,7 +18,9 @@
         "undefinedoffset/sortablegridfield": "^2.2",
         "endroid/qrcode": "^5.0",
         "ryanpotter/silverstripe-cms-theme": "dev-master",
-        "atwx/silverstripe-vitehelper": "^0.1"
+        "atwx/silverstripe-vitehelper": "^0.1",
+        "webbuilders-group/silverstripe-siteconfig-error-pages": "^2.1",
+        "plastyk/dashboard": "^4.0"
     },
     "require-dev": {
         "silverleague/ideannotator": "^3.5",

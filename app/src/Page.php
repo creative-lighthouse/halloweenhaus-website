@@ -14,6 +14,7 @@ namespace {
  * @property int $ElementalAreaID
  * @method ElementalArea ElementalArea()
  * @mixin ElementalPageExtension
+ * @mixin DashboardSearchResultExtension
  */
 class Page extends SiteTree
     {

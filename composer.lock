@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "35746839ff8b585b4df08698252d64e3",
+    "content-hash": "ea571633ee23d24503020a75b18e703e",
     "packages": [
         {
             "name": "atwx/silverstripe-vitehelper",
@@ -2223,6 +2223,69 @@
                 "source": "https://github.com/oscarotero/html-parser/tree/v0.1.8"
             },
             "time": "2023-11-29T20:28:41+00:00"
+        },
+        {
+            "name": "plastyk/dashboard",
+            "version": "4.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/plastyk/silverstripe-dashboard.git",
+                "reference": "c40d76453a256322f8cd21837c15a9bf693286f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/plastyk/silverstripe-dashboard/zipball/c40d76453a256322f8cd21837c15a9bf693286f0",
+                "reference": "c40d76453a256322f8cd21837c15a9bf693286f0",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/framework": "^5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "*"
+            },
+            "type": "silverstripe-vendormodule",
+            "extra": {
+                "expose": [
+                    "css",
+                    "javascript"
+                ],
+                "installer-name": "dashboard"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Plastyk\\Dashboard\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "3dgoo",
+                    "email": "michael@3dgoo.com"
+                },
+                {
+                    "name": "Turnerj",
+                    "email": "git@turnerj.com"
+                },
+                {
+                    "name": "Plastyk Studios",
+                    "email": "howdy@plastyk.com.au"
+                }
+            ],
+            "description": "An extendable dashboard for Silverstripe",
+            "keywords": [
+                "dashboard",
+                "silverstripe"
+            ],
+            "support": {
+                "issues": "https://github.com/plastyk/silverstripe-dashboard/issues",
+                "source": "https://github.com/plastyk/silverstripe-dashboard/tree/4.0.2"
+            },
+            "time": "2025-02-12T12:17:00+00:00"
         },
         {
             "name": "psr/cache",
@@ -6584,6 +6647,121 @@
                 "source": "https://github.com/UndefinedOffset/SortableGridField/tree/2.2.0"
             },
             "time": "2023-05-08T13:51:31+00:00"
+        },
+        {
+            "name": "webbuilders-group/silverstripe-gridfield-deleted-items",
+            "version": "2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webbuilders-group/silverstripe-gridfield-deleted-items.git",
+                "reference": "22bfe19c13c30f6c568e6be0a0a4f34656ea0bfb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webbuilders-group/silverstripe-gridfield-deleted-items/zipball/22bfe19c13c30f6c568e6be0a0a4f34656ea0bfb",
+                "reference": "22bfe19c13c30f6c568e6be0a0a4f34656ea0bfb",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/framework": "~4.5|~5.0",
+                "silverstripe/versioned": "~1.5|~2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~9.5"
+            },
+            "type": "silverstripe-vendormodule",
+            "extra": {
+                "expose": [
+                    "css"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "WebbuildersGroup\\GridFieldDeletedItems\\": "src/",
+                    "WebbuildersGroup\\GridFieldDeletedItems\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ed Chipman",
+                    "homepage": "http://webbuildersgroup.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides a series of components that allows you to view versioned objects that have been deleted from the draft site.",
+            "keywords": [
+                "deleted",
+                "gridfield",
+                "silverstripe",
+                "versioned"
+            ],
+            "support": {
+                "issues": "https://github.com/webbuilders-group/silverstripe-gridfield-deleted-items/issues",
+                "source": "https://github.com/webbuilders-group/silverstripe-gridfield-deleted-items/tree/2.1.2"
+            },
+            "time": "2023-07-28T14:18:40+00:00"
+        },
+        {
+            "name": "webbuilders-group/silverstripe-siteconfig-error-pages",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webbuilders-group/silverstripe-siteconfig-error-pages.git",
+                "reference": "1871b19e896cf5f4a610c42901066d5a87994dae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webbuilders-group/silverstripe-siteconfig-error-pages/zipball/1871b19e896cf5f4a610c42901066d5a87994dae",
+                "reference": "1871b19e896cf5f4a610c42901066d5a87994dae",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/recipe-cms": "~4.12|^5",
+                "webbuilders-group/silverstripe-gridfield-deleted-items": "~2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~9.5"
+            },
+            "type": "silverstripe-vendormodule",
+            "extra": {
+                "expose": [
+                    "css",
+                    "javascript"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "WebbuildersGroup\\SiteConfigErrorPages\\": "src/",
+                    "WebbuildersGroup\\SiteConfigErrorPages\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ed Chipman",
+                    "homepage": "https://webbuildersgroup.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Moves the SilverStripe Error Page management from the page tree to Settings section.",
+            "keywords": [
+                "error pages",
+                "management",
+                "silverstripe",
+                "siteconfig"
+            ],
+            "support": {
+                "issues": "https://github.com/webbuilders-group/silverstripe-siteconfig-error-pages/issues",
+                "source": "https://github.com/webbuilders-group/silverstripe-siteconfig-error-pages/tree/2.1.0"
+            },
+            "time": "2023-10-19T19:55:33+00:00"
         },
         {
             "name": "webonyx/graphql-php",
