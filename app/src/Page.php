@@ -2,21 +2,20 @@
 
 namespace {
 
-    use DateTime;
     use App\Events\EventPage;
     use SilverStripe\CMS\Model\SiteTree;
     use SilverStripe\Forms\DropdownField;
 
     /**
- * Class \Page
- *
- * @property string $MenuPosition
- * @property int $ElementalAreaID
- * @method ElementalArea ElementalArea()
- * @mixin ElementalPageExtension
- * @mixin DashboardSearchResultExtension
- */
-class Page extends SiteTree
+     * Class \Page
+     *
+     * @property string $MenuPosition
+     * @property int $ElementalAreaID
+     * @method ElementalArea ElementalArea()
+     * @mixin ElementalPageExtension
+     * @mixin DashboardSearchResultExtension
+     */
+    class Page extends SiteTree
     {
         private static $table_name = 'Page';
 
