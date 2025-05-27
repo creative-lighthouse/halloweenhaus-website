@@ -1,12 +1,9 @@
 <?php
+
 namespace App\Podcast;
 
-use App\Team\Character;
-use App\Team\TeamMember;
 use App\Podcast\PodcastEntry;
 use SilverStripe\Admin\ModelAdmin;
-use SilverStripe\Forms\GridField\GridField;
-use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 
 /**
  * Class \App\Podcast\PodcastAdmin
@@ -15,7 +12,7 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 class PodcastAdmin extends ModelAdmin
 {
 
-    private static $managed_models = array (
+    private static $managed_models = array(
         PodcastEntry::class,
     );
 

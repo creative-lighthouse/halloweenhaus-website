@@ -3,8 +3,6 @@
 namespace App\Elements;
 
 use DNADesign\Elemental\Models\BaseElement;
-use SilverStripe\Assets\Image;
-use SilverStripe\Forms\DropdownField;
 
 /**
  * Class \App\Elements\SpaceElement

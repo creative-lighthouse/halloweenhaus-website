@@ -14,7 +14,7 @@ use SilverStripe\Security\Permission;
  * @property string $Text
  * @property int $SortOrder
  * @property int $ParentID
- * @method \App\Elements\FactElement Parent()
+ * @method FactElement Parent()
  */
 class FactItem extends DataObject
 {

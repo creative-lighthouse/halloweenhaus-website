@@ -1,17 +1,18 @@
 <?php
+
 namespace App\Feedback;
 
 use App\Feedback\FeedbackEntry;
 use SilverStripe\Admin\ModelAdmin;
 
 /**
- * Class \App\Team\TeamAdmin
+ * Class \App\Feedback\FeedbackAdmin
  *
  */
 class FeedbackAdmin extends ModelAdmin
 {
 
-    private static $managed_models = array (
+    private static $managed_models = array(
         FeedbackEntry::class,
     );
 

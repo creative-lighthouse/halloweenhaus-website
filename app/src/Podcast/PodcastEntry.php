@@ -3,7 +3,6 @@
 namespace App\Podcast;
 
 use SilverStripe\Assets\File;
-use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
 
 /**
@@ -18,7 +17,7 @@ use SilverStripe\ORM\DataObject;
  * @property string $Hash
  * @property int $AudioLength
  * @property int $AudioID
- * @method \SilverStripe\Assets\File Audio()
+ * @method File Audio()
  */
 class PodcastEntry extends DataObject
 {
@@ -63,7 +62,11 @@ class PodcastEntry extends DataObject
     ];
 
     private static $searchable_fields = [
-        "Title", "Description", "Season", "Episode", "PublishDate"
+        "Title",
+        "Description",
+        "Season",
+        "Episode",
+        "PublishDate"
     ];
 
     private static $table_name = "PodcastEntry";

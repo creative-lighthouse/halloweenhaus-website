@@ -2,7 +2,7 @@
 
 namespace App\Elements;
 
-use App\Elements\TeaserItem;
+use SilverStripe\ORM\DataList;
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
@@ -12,7 +12,7 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
  * Class \App\Elements\ReportsElement
  *
  * @property string $Text
- * @method \SilverStripe\ORM\DataList|\App\Elements\ReferenceItem[] ReferenceItems()
+ * @method DataList|ReferenceItem[] ReferenceItems()
  */
 class ReferencesElement extends BaseElement
 {
@@ -47,9 +47,9 @@ class ReferencesElement extends BaseElement
         $fields->removeByName("ReferenceItems");
 
         $gridFieldConfig = GridFieldConfig_RecordEditor::create(200);
-        $sorter = new GridFieldSortableRows( 'SortOrder' );
+        $sorter = GridFieldSortableRows::create('SortOrder');
         $gridFieldConfig->addComponent($sorter);
-        $gridfield = new GridField( "ReferenceItems", "Erwähnungen", $this->ReferenceItems(), $gridFieldConfig );
+        $gridfield = GridField::create("ReferenceItems", "Erwähnungen", $this->ReferenceItems(), $gridFieldConfig);
         $fields->addFieldToTab( 'Root.Main', $gridfield );
         return $fields;
     }

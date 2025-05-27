@@ -2,15 +2,16 @@
 
 namespace App\POS;
 
+use SilverStripe\ORM\DataList;
 use App\Feedback\FeedbackAdmin;
 use SilverStripe\ORM\DataObject;
 
 /**
- * Class \App\Team\TeamSocial
+ * Class \App\POS\Sale
  *
  * @property float $TotalPrice
  * @property string $SaleTime
- * @method \SilverStripe\ORM\DataList|\App\POS\ProductSale[] ProductSales()
+ * @method DataList|ProductSale[] ProductSales()
  */
 class Sale extends DataObject
 {

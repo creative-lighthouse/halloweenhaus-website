@@ -2,6 +2,7 @@
 
 namespace App\Elements;
 
+use SilverStripe\ORM\DataList;
 use App\Elements\TeaserItem;
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Forms\GridField\GridField;
@@ -12,7 +13,7 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
  * Class \App\Elements\TeaserElement
  *
  * @property string $Text
- * @method \SilverStripe\ORM\DataList|\App\Elements\TeaserItem[] TeaserItems()
+ * @method DataList|TeaserItem[] TeaserItems()
  */
 class TeaserElement extends BaseElement
 {
@@ -47,9 +48,9 @@ class TeaserElement extends BaseElement
         $fields->removeByName("TeaserItems");
 
         $gridFieldConfig = GridFieldConfig_RecordEditor::create(200);
-        $sorter = new GridFieldSortableRows( 'SortOrder' );
+        $sorter = GridFieldSortableRows::create('SortOrder');
         $gridFieldConfig->addComponent($sorter);
-        $gridfield = new GridField( "TeaserItems", "Teaser", $this->TeaserItems(), $gridFieldConfig );
+        $gridfield = GridField::create("TeaserItems", "Teaser", $this->TeaserItems(), $gridFieldConfig);
         $fields->addFieldToTab( 'Root.Main', $gridfield );
         return $fields;
     }

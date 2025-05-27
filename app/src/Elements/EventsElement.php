@@ -4,9 +4,6 @@ namespace App\Elements;
 
 use App\Events\Event;
 use DNADesign\Elemental\Models\BaseElement;
-use SilverStripe\Forms\GridField\GridField;
-use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
-use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 
 /**
  * Class \App\Elements\TimelineElement

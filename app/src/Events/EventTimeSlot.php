@@ -2,22 +2,18 @@
 
 namespace App\Events;
 
-use App\Events\EventAdmin;
 use App\Events\Registration;
-use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\ORM\FieldType\DBTime;
-use SilverStripe\ORM\FieldType\DBDatetime;
 
 /**
- * Class \App\Team\TeamMember
+ * Class \App\Events\EventTimeSlot
  *
  * @property string $SlotTime
  * @property int $MaxAttendees
  * @property int $MaxVIPs
  * @property bool $Active
  * @property int $ParentID
- * @method \App\Events\Event Parent()
+ * @method Event Parent()
  */
 class EventTimeSlot extends DataObject
 {

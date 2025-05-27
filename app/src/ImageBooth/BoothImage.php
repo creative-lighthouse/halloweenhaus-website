@@ -4,18 +4,15 @@ namespace App\ImageBooth;
 
 use DateTime;
 use SilverStripe\Assets\File;
-use SilverStripe\Assets\Image;
-use SilverStripe\Assets\Upload;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\AssetAdmin\Controller\AssetAdmin;
 
 /**
- * Class \App\Podcast\PodcastEntry
+ * Class \App\ImageBooth\BoothImage
  *
  * @property bool $isVisible
  * @property string $HashID
  * @property int $ImageID
- * @method \SilverStripe\Assets\File Image()
+ * @method File Image()
  */
 class BoothImage extends DataObject
 {

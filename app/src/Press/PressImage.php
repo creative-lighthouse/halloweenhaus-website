@@ -6,14 +6,14 @@ use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
 
 /**
- * Class \App\Team\TeamMember
+ * Class \App\Press\PressImage
  *
  * @property string $Title
  * @property string $Description
  * @property string $Copyright
  * @property int $Importance
  * @property int $ImageID
- * @method \SilverStripe\Assets\Image Image()
+ * @method Image Image()
  */
 class PressImage extends DataObject
 {
@@ -38,8 +38,7 @@ class PressImage extends DataObject
 
     private static $default_sort = "Importance DESC";
 
-    private static $field_labels = [
-    ];
+    private static $field_labels = [];
 
     private static $summary_fields = [
         "Thumbnail" => "Bild",
@@ -47,8 +46,7 @@ class PressImage extends DataObject
         "Importance" => "Wichtigkeit",
     ];
 
-    private static $searchable_fields = [
-    ];
+    private static $searchable_fields = [];
 
     private static $table_name = "PressImage";
 

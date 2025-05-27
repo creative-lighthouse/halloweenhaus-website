@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Team;
 
 use PageController;
@@ -6,9 +7,9 @@ use PageController;
 /**
  * Class \App\Team\TeamOverviewController
  *
- * @property \App\Team\TeamOverview $dataRecord
- * @method \App\Team\TeamOverview data()
- * @mixin \App\Team\TeamOverview
+ * @property TeamOverview $dataRecord
+ * @method TeamOverview data()
+ * @mixin TeamOverview
  */
 class TeamOverviewController extends PageController
 {

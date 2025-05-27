@@ -17,9 +17,9 @@ use SilverStripe\ORM\DataObject;
  * @property int $ParentID
  * @property int $ImageID
  * @property int $ButtonID
- * @method \App\Elements\TeaserElement Parent()
- * @method \SilverStripe\Assets\Image Image()
- * @method \SilverStripe\LinkField\Models\Link Button()
+ * @method TeaserElement Parent()
+ * @method Image Image()
+ * @method Link Button()
  */
 class TeaserItem extends DataObject {
     private static $db = [

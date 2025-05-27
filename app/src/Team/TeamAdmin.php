@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Team;
 
 use App\Team\Character;
@@ -13,8 +14,7 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
  */
 class TeamAdmin extends ModelAdmin
 {
-
-    private static $managed_models = array (
+    private static $managed_models = array(
         TeamMember::class,
         Character::class,
     );
@@ -40,7 +40,7 @@ class TeamAdmin extends ModelAdmin
 
             // This is just a precaution to ensure we got a GridField from dataFieldByName() which you should have
             if ($gridField instanceof GridField) {
-                $gridField->getConfig()->addComponent(new GridFieldSortableRows('Importance'));
+                $gridField->getConfig()->addComponent(GridFieldSortableRows::create('Importance'));
             }
         }
 

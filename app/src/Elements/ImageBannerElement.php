@@ -15,7 +15,7 @@ use SilverStripe\Forms\DropdownField;
  * @property int $Height
  * @property string $Parallax
  * @property int $ImageID
- * @method \SilverStripe\Assets\Image Image()
+ * @method Image Image()
  */
 class ImageBannerElement extends BaseElement
 {
@@ -57,13 +57,13 @@ class ImageBannerElement extends BaseElement
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->replaceField('Variant', new DropdownField('Variant', 'Variante', [
+        $fields->replaceField('Variant', DropdownField::create('Variant', 'Variante', [
             "" => "Volle Breite",
             "variant--limited" => "Begrenzte Breite",
             "variant--contained" => "Angepasste Breite",
             "variant--hovering" => "Hervorgehoben",
         ]));
-        $fields->replaceField('Overlay', new DropdownField('Overlay', 'Überlagerung', [
+        $fields->replaceField('Overlay', DropdownField::create('Overlay', 'Überlagerung', [
             "" => "Keine Überlagerung",
             "overlay--darker" => "Dunkler",
             "overlay--darkest" => "Am dunkelsten",
@@ -71,7 +71,7 @@ class ImageBannerElement extends BaseElement
             "overlay--fadeout_vertical" => "Fadeout Vertical",
             "overlay--fadeout_horizontal" => "Fadeout Horizontal",
         ]));
-        $fields->replaceField('Parallax', new DropdownField('Parallax', 'Parallax', [
+        $fields->replaceField('Parallax', DropdownField::create('Parallax', 'Parallax', [
             "0" => "Kein Parallax",
             "0.2" => "Normale Geschwindigkeit (0.2)",
             "0.4" => "Hohe Geschwindigkeit (0.4)",

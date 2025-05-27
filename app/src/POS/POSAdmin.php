@@ -2,11 +2,10 @@
 
 namespace App\POS;
 
-use App\Feedback\FeedbackEntry;
 use SilverStripe\Admin\ModelAdmin;
 
 /**
- * Class \App\Team\TeamAdmin
+ * Class \App\POS\POSAdmin
  *
  */
 class POSAdmin extends ModelAdmin

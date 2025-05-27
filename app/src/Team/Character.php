@@ -3,12 +3,10 @@
 namespace App\Team;
 
 use SilverStripe\Assets\Image;
-use SilverStripe\LinkField\Models\Link;
-use SilverStripe\LinkField\Form\LinkField;
 use SilverStripe\ORM\DataObject;
 
 /**
- * Class \App\Team\TeamMember
+ * Class \App\Team\Character
  *
  * @property string $Title
  * @property string $Place
@@ -19,7 +17,7 @@ use SilverStripe\ORM\DataObject;
  * @property int $Importance
  * @property bool $InCarousel
  * @property int $ImageID
- * @method \SilverStripe\Assets\Image Image()
+ * @method Image Image()
  */
 class Character extends DataObject
 {

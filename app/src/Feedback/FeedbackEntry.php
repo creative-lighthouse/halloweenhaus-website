@@ -7,7 +7,7 @@ use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\DataObject;
 
 /**
- * Class \App\Team\TeamSocial
+ * Class \App\Feedback\FeedbackEntry
  *
  * @property string $Day
  * @property float $Stars

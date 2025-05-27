@@ -2,6 +2,7 @@
 
 namespace {
 
+    use DateTime;
     use App\Events\EventPage;
     use SilverStripe\CMS\Model\SiteTree;
     use SilverStripe\Forms\DropdownField;
@@ -11,11 +12,13 @@ namespace {
  *
  * @property string $MenuPosition
  * @property int $ElementalAreaID
- * @method \DNADesign\Elemental\Models\ElementalArea ElementalArea()
- * @mixin \DNADesign\Elemental\Extensions\ElementalPageExtension
+ * @method ElementalArea ElementalArea()
+ * @mixin ElementalPageExtension
  */
-    class Page extends SiteTree
+class Page extends SiteTree
     {
+        private static $table_name = 'Page';
+
         private static $db = [
             "MenuPosition" => "Enum('main,footer', 'main')",
         ];
@@ -25,7 +28,7 @@ namespace {
         public function getCMSFields()
         {
             $fields = parent::getCMSFields();
-            $fields->addFieldToTab("Root.Main", new DropdownField("MenuPosition", "Menü", [
+            $fields->addFieldToTab("Root.Main", DropdownField::create("MenuPosition", "Menü", [
                 "main" => "Hauptmenü",
                 "footer" => "Footer",
             ]), "Content");

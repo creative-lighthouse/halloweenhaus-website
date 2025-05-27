@@ -6,14 +6,14 @@ use App\Feedback\FeedbackAdmin;
 use SilverStripe\ORM\DataObject;
 
 /**
- * Class \App\Team\TeamSocial
+ * Class \App\POS\ProductSale
  *
  * @property int $Amount
  * @property float $SellingPrice
  * @property int $ParentID
  * @property int $ProductID
- * @method \App\POS\Sale Parent()
- * @method \App\POS\Product Product()
+ * @method Sale Parent()
+ * @method Product Product()
  */
 class ProductSale extends DataObject
 {

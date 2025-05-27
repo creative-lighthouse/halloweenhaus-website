@@ -2,6 +2,7 @@
 
 namespace App\Elements;
 
+use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Security\Permission;
@@ -15,9 +16,9 @@ use SilverStripe\Security\Permission;
  * @property string $Text
  * @property int $SortOrder
  * @property int $ParentID
- * @method \App\Elements\TimelineElement Parent()
- * @method \SilverStripe\ORM\DataList|\PurpleSpider\BasicGalleryExtension\PhotoGalleryImage[] PhotoGalleryImages()
- * @mixin \PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
+ * @method TimelineElement Parent()
+ * @method DataList|PhotoGalleryImage[] PhotoGalleryImages()
+ * @mixin PhotoGalleryExtension
  */
 class TimelineItem extends DataObject
 {
@@ -61,7 +62,7 @@ class TimelineItem extends DataObject
     {
         $fields = parent::getCMSFields();
         $fields->removeFieldFromTab("Root.Main", "ParentID");
-        $fields->replaceField('Type', new DropdownField('Type', 'Typ', [
+        $fields->replaceField('Type', DropdownField::create('Type', 'Typ', [
             "halloween" => "Halloween",
             "media" => "Medien",
             "milestone" => "Meilenstein",

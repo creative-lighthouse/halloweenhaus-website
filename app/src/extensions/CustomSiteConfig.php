@@ -2,16 +2,17 @@
 
 namespace App;
 
+use SilverStripe\Core\Extension;
+use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\Forms\TextField;
-use SilverStripe\ORM\DataExtension;
 
 /**
  * Class \App\CustomSiteConfig
  *
- * @property \SilverStripe\SiteConfig\SiteConfig|\App\CustomSiteConfig $owner
+ * @property SiteConfig|CustomSiteConfig $owner
  * @property string $DateText
  * @property string $PlaceText
  * @property bool $ShowBanner
@@ -25,7 +26,7 @@ use SilverStripe\ORM\DataExtension;
  * @property bool $EmailsActive
  * @property string $EventAdminEmail
  */
-class CustomSiteConfig extends DataExtension
+class CustomSiteConfig extends Extension
 {
 
     private static $db = [
@@ -49,10 +50,10 @@ class CustomSiteConfig extends DataExtension
 
     public function updateCMSFields(FieldList $fields)
     {
-        $fields->addFieldToTab("Root.Main", new TextField("DateText", "Date Text"));
-        $fields->addFieldToTab("Root.Main", new TextField("PlaceText", "Place Text"));
-        $fields->addFieldToTab("Root.Main", new CheckboxField("ShowBanner", "Show Banner"));
-        $fields->addFieldToTab("Root.Main", new HTMLEditorField("BannerText", "Banner Text"));
+        $fields->addFieldToTab("Root.Main", TextField::create("DateText", "Date Text"));
+        $fields->addFieldToTab("Root.Main", TextField::create("PlaceText", "Place Text"));
+        $fields->addFieldToTab("Root.Main", CheckboxField::create("ShowBanner", "Show Banner"));
+        $fields->addFieldToTab("Root.Main", HTMLEditorField::create("BannerText", "Banner Text"));
         $fields->addFieldToTab('Root.Event Emails', CheckboxField::create('EmailsActive', 'E-Mails aktiviert'));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('EventAdminEmail', 'Event Admin Emailadresse'));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('AckMessageSubject', 'Empfangsbestätigung Betreff'));

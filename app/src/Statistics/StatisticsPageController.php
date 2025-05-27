@@ -9,11 +9,11 @@ use SilverStripe\ORM\GroupedList;
 use SilverStripe\Security\Security;
 
 /**
- * Class \App\Team\TeamOverviewController
+ * Class \App\Statistics\StatisticsPageController
  *
- * @property \App\Statistics\StatisticsPage $dataRecord
- * @method \App\Statistics\StatisticsPage data()
- * @mixin \App\Statistics\StatisticsPage
+ * @property StatisticsPage $dataRecord
+ * @method StatisticsPage data()
+ * @mixin StatisticsPage
  */
 class StatisticsPageController extends PageController
 {

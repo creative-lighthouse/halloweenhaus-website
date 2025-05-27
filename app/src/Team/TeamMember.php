@@ -2,9 +2,10 @@
 
 namespace App\Team;
 
+use SilverStripe\ORM\DataList;
+use SilverStripe\ORM\ManyManyList;
 use App\Team\TeamAdmin;
 use App\Team\TeamSocial;
-use App\Team\TeamMemberImage;
 use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\DropdownField;
@@ -19,10 +20,10 @@ use SilverStripe\Forms\DropdownField;
  * @property int $Importance
  * @property string $Status
  * @property int $ImageID
- * @method \SilverStripe\Assets\Image Image()
- * @method \SilverStripe\ORM\DataList|\PurpleSpider\BasicGalleryExtension\PhotoGalleryImage[] PhotoGalleryImages()
- * @method \SilverStripe\ORM\ManyManyList|\App\Team\TeamSocial[] Socials()
- * @mixin \PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
+ * @method Image Image()
+ * @method DataList|PhotoGalleryImage[] PhotoGalleryImages()
+ * @method ManyManyList|TeamSocial[] Socials()
+ * @mixin PhotoGalleryExtension
  */
 class TeamMember extends DataObject
 {
@@ -67,7 +68,8 @@ class TeamMember extends DataObject
     ];
 
     private static $searchable_fields = [
-        "Title", "Description",
+        "Title",
+        "Description",
     ];
 
     private static $indexes = [
@@ -84,7 +86,7 @@ class TeamMember extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->replaceField('Status', new DropdownField('Status', 'Status', [
+        $fields->replaceField('Status', DropdownField::create('Status', 'Status', [
             "active" => "Aktiv",
             "formerly" => "Ehemalig",
             "hidden" => "Versteckt",

@@ -2,6 +2,7 @@
 
 namespace App\Team;
 
+use SilverStripe\ORM\ManyManyList;
 use App\Team\TeamAdmin;
 use App\Team\TeamMember;
 use SilverStripe\ORM\DataObject;
@@ -13,7 +14,7 @@ use SilverStripe\Forms\DropdownField;
  * @property int $SortOrder
  * @property string $Plattform
  * @property string $Link
- * @method \SilverStripe\ORM\ManyManyList|\App\Team\TeamMember[] Members()
+ * @method ManyManyList|TeamMember[] Members()
  */
 class TeamSocial extends DataObject
 {
@@ -49,7 +50,7 @@ class TeamSocial extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->replaceField('Plattform', new DropdownField('Plattform', 'Plattform', [
+        $fields->replaceField('Plattform', DropdownField::create('Plattform', 'Plattform', [
             "website" => "Website",
             "mail" => "Mail",
             "youtube" => "Youtube",

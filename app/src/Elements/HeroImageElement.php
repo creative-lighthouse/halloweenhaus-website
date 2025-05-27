@@ -4,7 +4,6 @@ namespace App\Elements;
 
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Assets\Image;
-use SilverStripe\Forms\DropdownField;
 
 /**
  * Class \App\Elements\TextImageElement
@@ -15,12 +14,12 @@ use SilverStripe\Forms\DropdownField;
  * @property int $ImageObjectID
  * @property int $ImageEffectID
  * @property int $ImageEffectOverlayID
- * @method \SilverStripe\Assets\Image ImageBackground()
- * @method \SilverStripe\Assets\Image ImageBackground2()
- * @method \SilverStripe\Assets\Image ImageCharacter()
- * @method \SilverStripe\Assets\Image ImageObject()
- * @method \SilverStripe\Assets\Image ImageEffect()
- * @method \SilverStripe\Assets\Image ImageEffectOverlay()
+ * @method Image ImageBackground()
+ * @method Image ImageBackground2()
+ * @method Image ImageCharacter()
+ * @method Image ImageObject()
+ * @method Image ImageEffect()
+ * @method Image ImageEffectOverlay()
  */
 class HeroImageElement extends BaseElement
 {

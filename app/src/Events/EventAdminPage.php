@@ -3,12 +3,9 @@
 namespace App\Events;
 
 use Page;
-use SilverStripe\Assets\Image;
-
-use SilverStripe\AssetAdmin\Forms\UploadField;
 
 /**
- * Class \App\Team\TeamOverview
+ * Class \App\Events\EventAdminPage
  *
  */
 class EventAdminPage extends Page

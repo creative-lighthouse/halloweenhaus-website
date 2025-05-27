@@ -2,9 +2,8 @@
 
 namespace App\Elements;
 
-use SilverStripe\Assets\Image;
+use SilverStripe\ORM\DataList;
 use App\Elements\SocialBannerItem;
-use SilverStripe\Forms\DropdownField;
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
@@ -14,7 +13,7 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
  * Class \App\Elements\TextImageElement
  *
  * @property string $Text
- * @method \SilverStripe\ORM\DataList|\App\Elements\SocialBannerItem[] Socials()
+ * @method DataList|SocialBannerItem[] Socials()
  */
 class SocialBannerElement extends BaseElement
 {
@@ -53,9 +52,9 @@ class SocialBannerElement extends BaseElement
         $fields->removeByName("Socials");
 
         $gridFieldConfig = GridFieldConfig_RecordEditor::create(200);
-        $sorter = new GridFieldSortableRows( 'SortOrder' );
+        $sorter = GridFieldSortableRows::create('SortOrder');
         $gridFieldConfig->addComponent($sorter);
-        $gridfield = new GridField( "Socials", "Soziale Links", $this->Socials(), $gridFieldConfig );
+        $gridfield = GridField::create("Socials", "Soziale Links", $this->Socials(), $gridFieldConfig);
         $fields->addFieldToTab( 'Root.Main', $gridfield );
         return $fields;
     }

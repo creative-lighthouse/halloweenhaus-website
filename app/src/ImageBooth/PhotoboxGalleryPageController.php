@@ -8,11 +8,11 @@ use SilverStripe\Security\Security;
 use SilverStripe\Control\HTTPRequest;
 
 /**
- * Class \App\Team\TeamOverviewController
+ * Class \App\ImageBooth\PhotoboxGalleryPageController
  *
- * @property \App\ImageBooth\PhotoboxGalleryPage $dataRecord
- * @method \App\ImageBooth\PhotoboxGalleryPage data()
- * @mixin \App\ImageBooth\PhotoboxGalleryPage
+ * @property PhotoboxGalleryPage $dataRecord
+ * @method PhotoboxGalleryPage data()
+ * @mixin PhotoboxGalleryPage
  */
 class PhotoboxGalleryPageController extends PageController
 {

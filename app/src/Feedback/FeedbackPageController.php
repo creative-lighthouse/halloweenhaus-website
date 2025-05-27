@@ -9,11 +9,11 @@ use SilverStripe\ORM\GroupedList;
 use SilverStripe\Control\HTTPRequest;
 
 /**
- * Class \App\Team\TeamOverviewController
+ * Class \App\Feedback\FeedbackPageController
  *
- * @property \App\Feedback\FeedbackPage $dataRecord
- * @method \App\Feedback\FeedbackPage data()
- * @mixin \App\Feedback\FeedbackPage
+ * @property FeedbackPage $dataRecord
+ * @method FeedbackPage data()
+ * @mixin FeedbackPage
  */
 class FeedbackPageController extends PageController
 {

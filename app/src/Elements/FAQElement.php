@@ -2,6 +2,7 @@
 
 namespace App\Elements;
 
+use SilverStripe\ORM\DataList;
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
@@ -11,7 +12,7 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
  * Class \App\Elements\TimelineElement
  *
  * @property bool $IsCollapsible
- * @method \SilverStripe\ORM\DataList|\App\Elements\FAQItem[] FAQItems()
+ * @method DataList|FAQItem[] FAQItems()
  */
 class FAQElement extends BaseElement
 {
@@ -51,9 +52,9 @@ class FAQElement extends BaseElement
         $fields->removeByName("FAQItems");
 
         $gridFieldConfig = GridFieldConfig_RecordEditor::create(200);
-        $sorter = new GridFieldSortableRows('SortOrder');
+        $sorter = GridFieldSortableRows::create('SortOrder');
         $gridFieldConfig->addComponent($sorter);
-        $gridfield = new GridField("FAQItems", "Eintrag", $this->FAQItems(), $gridFieldConfig);
+        $gridfield = GridField::create("FAQItems", "Eintrag", $this->FAQItems(), $gridFieldConfig);
         $fields->addFieldToTab('Root.Main', $gridfield);
 
         return $fields;

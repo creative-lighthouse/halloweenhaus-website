@@ -2,7 +2,6 @@
 
 namespace App\Elements;
 
-use SilverStripe\Assets\Image;
 use SilverStripe\Security\Permission;
 use SilverStripe\LinkField\Models\Link;
 use SilverStripe\LinkField\Form\LinkField;
@@ -16,8 +15,8 @@ use SilverStripe\ORM\DataObject;
  * @property int $SortOrder
  * @property int $ParentID
  * @property int $ButtonID
- * @method \App\Elements\ReferencesElement Parent()
- * @method \SilverStripe\LinkField\Models\Link Button()
+ * @method ReferencesElement Parent()
+ * @method Link Button()
  */
 class ReferenceItem extends DataObject {
     private static $db = [

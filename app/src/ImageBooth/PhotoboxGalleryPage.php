@@ -5,7 +5,7 @@ namespace App\ImageBooth;
 use Page;
 
 /**
- * Class \App\Team\TeamOverview
+ * Class \App\ImageBooth\PhotoboxGalleryPage
  *
  */
 class PhotoboxGalleryPage extends Page

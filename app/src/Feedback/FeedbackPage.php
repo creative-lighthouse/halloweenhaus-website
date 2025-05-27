@@ -5,7 +5,7 @@ namespace App\Feedback;
 use Page;
 
 /**
- * Class \App\Team\TeamOverview
+ * Class \App\Feedback\FeedbackPage
  *
  */
 class FeedbackPage extends Page

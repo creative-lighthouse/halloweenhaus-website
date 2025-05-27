@@ -1,36 +1,35 @@
 <?php
 
-namespace App\POS {
+namespace App\POS;
 
-    use SilverStripe\Control\HTTPRequest;
-    use SilverStripe\CMS\Controllers\ContentController;
+use SilverStripe\Control\HTTPRequest;
+use SilverStripe\CMS\Controllers\ContentController;
 
-    /**
- * Class \PageController
+/**
+ * Class \App\POS\POSPageController
  *
- * @property \App\POS\POSPage $dataRecord
- * @method \App\POS\POSPage data()
- * @mixin \App\POS\POSPage
+ * @property POSPage $dataRecord
+ * @method POSPage data()
+ * @mixin POSPage
  */
-    class POSPageController extends ContentController
+class POSPageController extends ContentController
+{
+    private static $allowed_actions = [];
+
+    public function index(HTTPRequest $request)
     {
-        private static $allowed_actions = [];
+        $products = Product::get();
+        $sales = Sale::get();
 
-        public function index(HTTPRequest $request)
-        {
-            $products = Product::get();
-            $sales = Sale::get();
+        return $this->customise([
+            "Products" => $products,
+            "Sales" => $sales
+        ])->renderWith(["App/POS/POSPage"]);
+    }
 
-            return $this->customise([
-                "Products" => $products,
-                "Sales" => $sales
-            ])->renderWith(["App/POS/POSPage"]);
-        }
-
-        public function getProducts()
-        {
-            $products = Product::get();
-            return $products;
-        }
+    public function getProducts()
+    {
+        $products = Product::get();
+        return $products;
     }
 }

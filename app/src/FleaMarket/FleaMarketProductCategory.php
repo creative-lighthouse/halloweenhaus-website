@@ -2,6 +2,7 @@
 
 namespace App\FleaMarket;
 
+use SilverStripe\ORM\ManyManyList;
 use SilverStripe\ORM\DataObject;
 use App\FleaMarket\FleaMarketAdmin;
 use App\FleaMarket\FleaMarketProduct;
@@ -11,7 +12,7 @@ use App\FleaMarket\FleaMarketProduct;
  *
  * @property string $Title
  * @property string $Description
- * @method \SilverStripe\ORM\ManyManyList|\App\FleaMarket\FleaMarketProduct[] Products()
+ * @method ManyManyList|FleaMarketProduct[] Products()
  */
 class FleaMarketProductCategory extends DataObject
 {

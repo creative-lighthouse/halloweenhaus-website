@@ -13,7 +13,7 @@ use SilverStripe\Forms\GridField\GridFieldConfig;
 use SilverStripe\Forms\LiteralField;
 
 /**
- * Class \App\Team\TeamAdmin
+ * Class \App\Events\EventAdmin
  *
  */
 class EventAdmin extends ModelAdmin
@@ -41,7 +41,7 @@ class EventAdmin extends ModelAdmin
     {
         $config = parent::getGridFieldConfig();
 
-        $config->addComponent(new BulkManager(), 'GridFieldEditButton');
+        $config->addComponent(BulkManager::create(), 'GridFieldEditButton');
 
         return $config;
     }
@@ -54,7 +54,7 @@ class EventAdmin extends ModelAdmin
 
         $fields->addFieldToTab(
             'Root.Gästezähler',
-            new LiteralField('Total Guests', $totalvqguestcount + " | " + $totalsqguestcount + " | " + $totalguestcount)
+            LiteralField::create('Total Guests', $totalvqguestcount + " | " + $totalsqguestcount + " | " + $totalguestcount)
         );
     }
 }

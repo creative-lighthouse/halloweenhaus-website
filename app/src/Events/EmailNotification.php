@@ -18,9 +18,9 @@ use SilverStripe\SiteConfig\SiteConfig;
  * @property int $EventID
  * @property int $RegistrationID
  * @property int $AttachmentID
- * @method \App\Events\Event Event()
- * @method \App\Events\Registration Registration()
- * @method \SilverStripe\Assets\File Attachment()
+ * @method Event Event()
+ * @method Registration Registration()
+ * @method File Attachment()
  */
 class EmailNotification extends DataObject
 {

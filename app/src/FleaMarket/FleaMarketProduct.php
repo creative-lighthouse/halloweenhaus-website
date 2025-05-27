@@ -2,6 +2,8 @@
 
 namespace App\FleaMarket;
 
+use SilverStripe\ORM\DataList;
+use SilverStripe\ORM\ManyManyList;
 use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
 use App\FleaMarket\FleaMarketAdmin;
@@ -23,9 +25,9 @@ use SilverStripe\Forms\CheckboxSetField;
  * @property string $Brand
  * @property string $Condition
  * @property string $Weight
- * @method \SilverStripe\ORM\DataList|\PurpleSpider\BasicGalleryExtension\PhotoGalleryImage[] PhotoGalleryImages()
- * @method \SilverStripe\ORM\ManyManyList|\App\FleaMarket\FleaMarketProductCategory[] Categories()
- * @mixin \PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
+ * @method DataList|PhotoGalleryImage[] PhotoGalleryImages()
+ * @method ManyManyList|FleaMarketProductCategory[] Categories()
+ * @mixin PhotoGalleryExtension
  */
 class FleaMarketProduct extends DataObject
 {

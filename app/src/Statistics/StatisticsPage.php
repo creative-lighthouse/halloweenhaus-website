@@ -5,7 +5,7 @@ namespace App\Statistics;
 use Page;
 
 /**
- * Class \App\Team\TeamOverview
+ * Class \App\Statistics\StatisticsPage
  *
  */
 class StatisticsPage extends Page

@@ -48,7 +48,7 @@ class VideoElement extends BaseElement
     {
         $fields = parent::getCMSFields();
 
-        $fields->addFieldToTab('Root.Main', new DropdownField('Width', 'Video-Breite', [
+        $fields->addFieldToTab('Root.Main', DropdownField::create('Width', 'Video-Breite', [
             '100%' => '100% Breite',
             '85%' => '85% Breite',
             '75%' => '75% Breite',

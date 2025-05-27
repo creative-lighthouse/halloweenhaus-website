@@ -15,17 +15,16 @@ use SilverStripe\Forms\FormAction;
 use SilverStripe\Forms\HiddenField;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\NumericField;
-use SilverStripe\Control\Email\Email;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\RequiredFields;
 
 /**
- * Class \App\Team\TeamOverviewController
+ * Class \App\Events\EventPageController
  *
- * @property \App\Events\EventPage $dataRecord
- * @method \App\Events\EventPage data()
- * @mixin \App\Events\EventPage
+ * @property EventPage $dataRecord
+ * @method EventPage data()
+ * @mixin EventPage
  */
 class EventPageController extends PageController
 {
@@ -222,7 +221,7 @@ class EventPageController extends PageController
         $event = Event::get()->byId($event_id);
         $hash = $request->param("OtherID");
 
-        if (isset($hash) && isset($event)) {
+        if ($hash != "" && isset($event)) {
             $registration = Registration::get()->filter(array("Hash" => $hash))->First();
             if ($registration) {
                 return array(
@@ -308,7 +307,7 @@ class EventPageController extends PageController
     {
         $hash = $request->param("ID");
 
-        if (isset($hash)) {
+        if ($hash != "") {
             $registration = Registration::get()->filter(array("Hash" => $hash))->First();
             if ($registration) {
                 $registration->delete();
@@ -322,7 +321,7 @@ class EventPageController extends PageController
     {
         $hash = $request->param("ID");
 
-        if (isset($hash)) {
+        if ($hash != "") {
             $registration = Registration::get()->filter(array("Hash" => $hash))->First();
             if ($registration) {
 
@@ -343,14 +342,14 @@ class EventPageController extends PageController
         $json["Valid"] = false;
         $json["Message"] = "Ungültiger Code";
 
-        if (isset($hash)) {
+        if ($hash != "") {
             $registration = Registration::get()->filter(array("Hash" => $hash))->First();
 
             //Return JSON from the data
 
             if ($registration) {
                 //Check if Timeslot is now plus 10 minutes and minus 10 minutes
-                if (strtotime($registration->Event()->EventDate) - strtotime(date("Y-m-d H:i:s")) < 600 && strtotime($registration->Event()->EventDate) - strtotime(date("Y-m-d H:i:s")) > -600) {
+                if ($registration->Event()->exists() && strtotime($registration->Event()->EventDate) - strtotime(date("Y-m-d H:i:s")) < 600 && $registration->Event()->EventDate()->exists() && strtotime($registration->Event()->EventDate) - strtotime(date("Y-m-d H:i:s")) > -600) {
                     $json["Valid"] = true;
                     $json["Message"] = "Ticket gültig";
                     $json["Name"] = $registration->Title;

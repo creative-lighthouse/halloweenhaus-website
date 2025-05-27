@@ -11,7 +11,7 @@ use SilverStripe\AssetAdmin\Forms\UploadField;
  * Class \App\Team\TeamOverview
  *
  * @property int $HeaderImageID
- * @method \SilverStripe\Assets\Image HeaderImage()
+ * @method Image HeaderImage()
  */
 class TeamOverview extends Page
 {
@@ -30,7 +30,7 @@ class TeamOverview extends Page
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->addFieldToTab("Root.Main", new UploadField("HeaderImage", "Headerbild"));
+        $fields->addFieldToTab("Root.Main", UploadField::create("HeaderImage", "Headerbild"));
         return $fields;
     }
 }

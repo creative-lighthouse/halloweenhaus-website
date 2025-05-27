@@ -6,7 +6,7 @@ use App\Feedback\FeedbackAdmin;
 use SilverStripe\ORM\DataObject;
 
 /**
- * Class \App\Team\TeamSocial
+ * Class \App\POS\DonationCount
  *
  * @property float $Amount
  * @property string $CountDateTime

@@ -5,17 +5,14 @@ namespace App\Events;
 use DateTime;
 use DateTimeZone;
 use IntlDateFormatter;
-use App\Events\EventAdmin;
 use App\Events\Registration;
 use App\Events\EventTimeSlot;
 use SilverStripe\Assets\Image;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataObject;
-use Colymba\BulkManager\BulkManager;
-use SilverStripe\Forms\GridField\GridField;
 
 /**
- * Class \App\Team\TeamMember
+ * Class \App\Events\Event
  *
  * @property string $Title
  * @property string $Place
@@ -26,8 +23,8 @@ use SilverStripe\Forms\GridField\GridField;
  * @property string $InfoForAttendees
  * @property int $SlotDuration
  * @property int $ImageID
- * @method \SilverStripe\Assets\Image Image()
- * @method \SilverStripe\ORM\DataList|\App\Events\EventTimeSlot[] TimeSlots()
+ * @method Image Image()
+ * @method DataList|EventTimeSlot[] TimeSlots()
  */
 class Event extends DataObject
 {
@@ -183,7 +180,7 @@ class Event extends DataObject
             "SlotTime:GreaterThanOrEqual" => $now->format("H:i:s"),
             "Active" => true
         ]);
-        $timeslotsWithSpace = new ArrayList();
+        $timeslotsWithSpace = ArrayList::create();
         foreach ($timeslots as $timeslot) {
             if ($timeslot->getFreeSlotCount() > 0) {
                 $timeslotsWithSpace->push($timeslot);
@@ -199,7 +196,7 @@ class Event extends DataObject
             "SlotTime:GreaterThanOrEqual" => $now->format("H:i:s"),
             "Active" => true,
         ]);
-        $timeslotsWithSpace = new ArrayList();
+        $timeslotsWithSpace = ArrayList::create();
         foreach ($timeslots as $timeslot) {
             if ($timeslot->getFreeCouponSlotCount() > 0) {
                 $timeslotsWithSpace->push($timeslot);
@@ -215,7 +212,7 @@ class Event extends DataObject
             $timeslots = $this->TimeSlots()->filter([
                 "Active" => true
             ]);
-            $timeslotsWithSpace = new ArrayList();
+            $timeslotsWithSpace = ArrayList::create();
             foreach ($timeslots as $timeslot) {
                 if ($timeslot->getFreeSlotCount() > 0) {
                     $timeslotsWithSpace->push($timeslot);
@@ -234,7 +231,7 @@ class Event extends DataObject
             $timeslots = $this->TimeSlots()->filter([
                 "Active" => true
             ]);
-            $timeslotsWithSpace = new ArrayList();
+            $timeslotsWithSpace = ArrayList::create();
             foreach ($timeslots as $timeslot) {
                 if ($timeslot->getFreeCouponSlotCount() > 0) {
                     $timeslotsWithSpace->push($timeslot);
@@ -252,7 +249,7 @@ class Event extends DataObject
         $timeslots = $this->TimeSlots()->filter([
             "Active" => true
         ]);
-        $timeslotsWithoutSpace = new ArrayList();
+        $timeslotsWithoutSpace = ArrayList::create();
         foreach ($timeslots as $timeslot) {
             if ($timeslot->getFreeSlotCount() <= 0) {
                 $timeslotsWithoutSpace->push($timeslot);
@@ -267,7 +264,7 @@ class Event extends DataObject
         $timeslots = $this->TimeSlots()->filter(array(
             "Active" => true
         ));
-        $timeslotsWithoutSpace = new ArrayList();
+        $timeslotsWithoutSpace = ArrayList::create();
         foreach ($timeslots as $timeslot) {
             if ($timeslot->getFreeCouponSlotCount() <= 0) {
                 $timeslotsWithoutSpace->push($timeslot);

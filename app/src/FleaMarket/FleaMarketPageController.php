@@ -5,16 +5,16 @@ namespace App\FleaMarket;
 use App\FleaMarket\FleaMarketProduct;
 use SilverStripe\Control\HTTPRequest;
 use App\FleaMarket\FleaMarketProductCategory;
-use SilverStripe\CMS\Controllers\ContentController;
+use PageController;
 
 /**
  * Class \App\FleaMarket\FleaMarketPageController
  *
- * @property \App\FleaMarket\FleaMarketPage $dataRecord
- * @method \App\FleaMarket\FleaMarketPage data()
- * @mixin \App\FleaMarket\FleaMarketPage
+ * @property FleaMarketPage $dataRecord
+ * @method FleaMarketPage data()
+ * @mixin FleaMarketPage
  */
-class FleaMarketPageController extends ContentController
+class FleaMarketPageController extends PageController
 {
     private static $allowed_actions = [
         "view",

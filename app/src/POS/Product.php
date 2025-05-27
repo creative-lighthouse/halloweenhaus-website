@@ -8,13 +8,13 @@ use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\DataObject;
 
 /**
- * Class \App\Team\TeamSocial
+ * Class \App\POS\Product
  *
  * @property string $Title
  * @property float $Price
  * @property float $BuyPrice
  * @property int $ImageID
- * @method \SilverStripe\Assets\Image Image()
+ * @method Image Image()
  */
 class Product extends DataObject
 {

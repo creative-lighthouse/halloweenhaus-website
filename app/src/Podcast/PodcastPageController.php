@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Podcast;
 
 use PageController;
@@ -7,9 +8,9 @@ use App\Podcast\PodcastEntry;
 /**
  * Class \App\Podcast\PodcastPageController
  *
- * @property \App\Podcast\PodcastPage $dataRecord
- * @method \App\Podcast\PodcastPage data()
- * @mixin \App\Podcast\PodcastPage
+ * @property PodcastPage $dataRecord
+ * @method PodcastPage data()
+ * @mixin PodcastPage
  */
 class PodcastPageController extends PageController
 {

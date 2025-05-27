@@ -12,7 +12,7 @@ use SilverStripe\Forms\DropdownField;
  * @property string $Link
  * @property int $SortOrder
  * @property int $ParentID
- * @method \App\Elements\SocialBannerElement Parent()
+ * @method SocialBannerElement Parent()
  */
 class SocialBannerItem extends DataObject
 {
@@ -48,7 +48,7 @@ class SocialBannerItem extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->replaceField('Plattform', new DropdownField('Plattform', 'Plattform', [
+        $fields->replaceField('Plattform', DropdownField::create('Plattform', 'Plattform', [
             "website" => "Website",
             "mail" => "Mail",
             "youtube" => "Youtube",

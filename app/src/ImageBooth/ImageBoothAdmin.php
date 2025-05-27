@@ -8,7 +8,7 @@ use Colymba\BulkManager\BulkManager;
 use SilverStripe\Forms\GridField\GridFieldConfig;
 
 /**
- * Class \App\Podcast\PodcastAdmin
+ * Class \App\ImageBooth\ImageBoothAdmin
  *
  */
 class ImageBoothAdmin extends ModelAdmin
@@ -33,7 +33,7 @@ class ImageBoothAdmin extends ModelAdmin
     {
         $config = parent::getGridFieldConfig();
 
-        $config->addComponent(new BulkManager(), 'GridFieldEditButton');
+        $config->addComponent(BulkManager::create(), 'GridFieldEditButton');
 
         return $config;
     }

@@ -15,7 +15,7 @@ use SilverStripe\Forms\DropdownField;
  * @property string $ColorVariant
  * @property bool $OnlyNearHalloween
  * @property int $ButtonID
- * @method \SilverStripe\LinkField\Models\Link Button()
+ * @method Link Button()
  */
 class TextElement extends BaseElement
 {
@@ -55,12 +55,12 @@ class TextElement extends BaseElement
         $fields = parent::getCMSFields();
         $fields->removeByName("ButtonID");
         $fields->insertAfter('ColorVariant', LinkField::create('Button'));
-        $fields->replaceField('AlignVariant', new DropdownField('AlignVariant', 'Ausrichtungs-Variante', [
+        $fields->replaceField('AlignVariant', DropdownField::create('AlignVariant', 'Ausrichtungs-Variante', [
             "style--text-left" => "Text linksbündig",
             "style--text-center" => "Text zentriert",
             "style--text-right" => "Text rechtsbündig",
         ]));
-        $fields->replaceField('ColorVariant', new DropdownField('ColorVariant', 'Farb-Variante', [
+        $fields->replaceField('ColorVariant', DropdownField::create('ColorVariant', 'Farb-Variante', [
             "color--transparent" => "transparenter Hintergrund",
             "color--light" => "heller Hintergrund"
         ]));

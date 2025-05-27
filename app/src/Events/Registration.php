@@ -3,7 +3,6 @@
 namespace App\Events;
 
 use DateTime;
-use DateTimeZone;
 use App\Events\Event;
 use App\Events\EventAdmin;
 use App\Events\EventTimeSlot;
@@ -19,7 +18,7 @@ use SilverStripe\SiteConfig\SiteConfig;
 use Endroid\QrCode\ErrorCorrectionLevel;
 
 /**
- * Class \App\Team\TeamMember
+ * Class \App\Events\Registration
  *
  * @property string $Title
  * @property string $Email
@@ -33,9 +32,9 @@ use Endroid\QrCode\ErrorCorrectionLevel;
  * @property int $EventID
  * @property int $TimeSlotID
  * @property int $UsedCouponID
- * @method \App\Events\Event Event()
- * @method \App\Events\EventTimeSlot TimeSlot()
- * @method \App\Events\EventCoupon UsedCoupon()
+ * @method Event Event()
+ * @method EventTimeSlot TimeSlot()
+ * @method EventCoupon UsedCoupon()
  */
 class Registration extends DataObject
 {
@@ -95,7 +94,7 @@ class Registration extends DataObject
         $fields->addFieldsToTab(
             "Root.Main",
             array(
-                new DropdownField("Status", "Status", [
+                DropdownField::create("Status", "Status", [
                     "Registered" => "Registered",
                     "Confirmed" => "Confirmed",
                     "CheckedIn" => "CheckedIn",
@@ -147,13 +146,13 @@ class Registration extends DataObject
 
             //Send email to client
             $emailConfirmation = EmailNotification::create();
-            $emailConfirmation->Title = SSViewer::execute_string(SiteConfig::current_site_config()->AckMessageSubject, new ArrayData([
+            $emailConfirmation->Title = SSViewer::execute_string(SiteConfig::current_site_config()->AckMessageSubject, ArrayData::create([
                 "Registration" => $this,
                 "Event" => $this->Event,
                 "Name" => $this->Title,
                 "TimeSlot" => $this->TimeSlot
             ]));
-            $emailConfirmation->Text = SSViewer::execute_string(SiteConfig::current_site_config()->AckMessageContent, new ArrayData([
+            $emailConfirmation->Text = SSViewer::execute_string(SiteConfig::current_site_config()->AckMessageContent, ArrayData::create([
                 "Registration" => $this,
                 "Event" => $this->Event,
                 "Name" => $this->Title,
@@ -169,13 +168,13 @@ class Registration extends DataObject
 
             //Send email to admin
             $emailNotification = EmailNotification::create();
-            $emailNotification->Title = SSViewer::execute_string(SiteConfig::current_site_config()->NewRegisterMessageSubject, new ArrayData([
+            $emailNotification->Title = SSViewer::execute_string(SiteConfig::current_site_config()->NewRegisterMessageSubject, ArrayData::create([
                 "Registration" => $this,
                 "Event" => $this->Event,
                 "Name" => $this->Title,
                 "TimeSlot" => $this->TimeSlot
             ]));
-            $emailNotification->Text = SSViewer::execute_string(SiteConfig::current_site_config()->NewRegisterMessageContent, new ArrayData([
+            $emailNotification->Text = SSViewer::execute_string(SiteConfig::current_site_config()->NewRegisterMessageContent, ArrayData::create([
                 "Registration" => $this,
                 "Event" => $this->Event,
                 "Name" => $this->Title,
@@ -201,13 +200,13 @@ class Registration extends DataObject
 
             //Send email to client
             $emailConfirmation = EmailNotification::create();
-            $emailConfirmation->Title = SSViewer::execute_string(SiteConfig::current_site_config()->TicketMessageSubject, new ArrayData([
+            $emailConfirmation->Title = SSViewer::execute_string(SiteConfig::current_site_config()->TicketMessageSubject, ArrayData::create([
                 "Registration" => $this,
                 "Event" => $this->Event,
                 "Name" => $this->Title,
                 "TimeSlot" => $this->TimeSlot
             ]));
-            $emailConfirmation->Text = SSViewer::execute_string(SiteConfig::current_site_config()->TicketMessageContent, new ArrayData([
+            $emailConfirmation->Text = SSViewer::execute_string(SiteConfig::current_site_config()->TicketMessageContent, ArrayData::create([
                 "Registration" => $this,
                 "Event" => $this->Event,
                 "Name" => $this->Title,

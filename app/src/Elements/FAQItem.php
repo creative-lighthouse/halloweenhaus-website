@@ -2,6 +2,7 @@
 
 namespace App\Elements;
 
+use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Permission;
 
@@ -12,9 +13,9 @@ use SilverStripe\Security\Permission;
  * @property string $Text
  * @property int $SortOrder
  * @property int $ParentID
- * @method \App\Elements\FAQElement Parent()
- * @method \SilverStripe\ORM\DataList|\PurpleSpider\BasicGalleryExtension\PhotoGalleryImage[] PhotoGalleryImages()
- * @mixin \PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
+ * @method FAQElement Parent()
+ * @method DataList|PhotoGalleryImage[] PhotoGalleryImages()
+ * @mixin PhotoGalleryExtension
  */
 class FAQItem extends DataObject
 {

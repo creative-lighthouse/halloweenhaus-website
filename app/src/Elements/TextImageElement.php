@@ -17,8 +17,8 @@ use SilverStripe\Forms\DropdownField;
  * @property bool $ImageIsLinked
  * @property int $ImageID
  * @property int $ButtonID
- * @method \SilverStripe\Assets\Image Image()
- * @method \SilverStripe\LinkField\Models\Link Button()
+ * @method Image Image()
+ * @method Link Button()
  */
 class TextImageElement extends BaseElement
 {
@@ -59,11 +59,11 @@ class TextImageElement extends BaseElement
         $fields = parent::getCMSFields();
         $fields->removeByName("ButtonID");
         $fields->insertAfter('ImgWidth', LinkField::create('Button'));
-        $fields->replaceField('Variant', new DropdownField('Variant', 'Variante', [
+        $fields->replaceField('Variant', DropdownField::create('Variant', 'Variante', [
             "" => "Bild links",
             "image-right" => "Bild rechts",
         ]));
-        $fields->replaceField('ImgWidth', new DropdownField('ImgWidth', 'Bildbreite', [
+        $fields->replaceField('ImgWidth', DropdownField::create('ImgWidth', 'Bildbreite', [
             "image-30" => "30%",
             "image-40" => "40%",
             "image-50" => "50%",

@@ -5,7 +5,6 @@ namespace App\Podcast;
 use Page;
 use SilverStripe\Assets\Image;
 use SilverStripe\AssetAdmin\Forms\UploadField;
-use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\Forms\TextareaField;
 
 /**
@@ -14,7 +13,7 @@ use SilverStripe\Forms\TextareaField;
  * @property string $Title
  * @property string $Description
  * @property int $CoverImageID
- * @method \SilverStripe\Assets\Image CoverImage()
+ * @method Image CoverImage()
  */
 class PodcastPage extends Page
 {

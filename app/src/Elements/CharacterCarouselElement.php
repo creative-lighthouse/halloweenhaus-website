@@ -11,7 +11,7 @@ use DNADesign\Elemental\Models\BaseElement;
  *
  * @property string $Text
  * @property int $BackgroundImageID
- * @method \SilverStripe\Assets\Image BackgroundImage()
+ * @method Image BackgroundImage()
  */
 class CharacterCarouselElement extends BaseElement
 {

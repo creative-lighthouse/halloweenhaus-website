@@ -2,7 +2,6 @@
 
 namespace App\Elements;
 
-use App\Events\Event;
 use DNADesign\Elemental\Models\BaseElement;
 
 /**

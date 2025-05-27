@@ -3,16 +3,12 @@
 namespace App\Events;
 
 use DateTime;
-use App\Events\EventAdmin;
 use App\Events\Registration;
-use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\DropdownField;
-use SilverStripe\ORM\FieldType\DBTime;
-use SilverStripe\ORM\FieldType\DBDatetime;
 
 /**
- * Class \App\Team\TeamMember
+ * Class \App\Events\EventCoupon
  *
  * @property string $Title
  * @property string $Description
@@ -67,7 +63,7 @@ class EventCoupon extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->addFieldToTab("Root.Main", new DropdownField("Type", "Type", [
+        $fields->addFieldToTab("Root.Main", DropdownField::create("Type", "Type", [
             "Standard" => "Standard",
             "VIP" => "VIP",
             "Press" => "Press",

@@ -2,6 +2,7 @@
 
 namespace App\Elements;
 
+use SilverStripe\ORM\DataList;
 use App\Elements\FactItem;
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Forms\GridField\GridField;
@@ -12,7 +13,7 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
  * Class \App\Elements\ReportsElement
  *
  * @property string $Text
- * @method \SilverStripe\ORM\DataList|\App\Elements\FactItem[] FactItems()
+ * @method DataList|FactItem[] FactItems()
  */
 class FactElement extends BaseElement
 {
@@ -48,9 +49,9 @@ class FactElement extends BaseElement
         $fields->removeByName("FactItems");
 
         $gridFieldConfig = GridFieldConfig_RecordEditor::create(200);
-        $sorter = new GridFieldSortableRows('SortOrder');
+        $sorter = GridFieldSortableRows::create('SortOrder');
         $gridFieldConfig->addComponent($sorter);
-        $gridfield = new GridField("FactItems", "Fakten", $this->FactItems(), $gridFieldConfig);
+        $gridfield = GridField::create("FactItems", "Fakten", $this->FactItems(), $gridFieldConfig);
         $fields->addFieldToTab('Root.Main', $gridfield);
         return $fields;
     }
