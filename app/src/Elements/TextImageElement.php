@@ -22,7 +22,6 @@ use SilverStripe\Forms\DropdownField;
  */
 class TextImageElement extends BaseElement
 {
-
     private static $db = [
         "Text" => "HTMLText",
         "Variant" => "Varchar(20)",
@@ -36,7 +35,8 @@ class TextImageElement extends BaseElement
     ];
 
     private static $owns = [
-        "Image"
+        "Image",
+        "Button",
     ];
 
     private static $field_labels = [
@@ -58,7 +58,7 @@ class TextImageElement extends BaseElement
     {
         $fields = parent::getCMSFields();
         $fields->removeByName("ButtonID");
-        $fields->insertAfter('ImgWidth', LinkField::create('Button'));
+        $fields->insertAfter('Button', LinkField::create('Button'));
         $fields->replaceField('Variant', DropdownField::create('Variant', 'Variante', [
             "" => "Bild links",
             "image-right" => "Bild rechts",

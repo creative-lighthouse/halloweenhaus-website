@@ -17,7 +17,6 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
  */
 class TeaserElement extends BaseElement
 {
-
     private static $db = [
         "Text" => "HTMLText",
     ];
@@ -30,7 +29,8 @@ class TeaserElement extends BaseElement
         "TeaserItems" => TeaserItem::class,
     ];
 
-    public function inlineEditable() {
+    public function inlineEditable()
+    {
         return false;
     }
 
@@ -51,7 +51,7 @@ class TeaserElement extends BaseElement
         $sorter = GridFieldSortableRows::create('SortOrder');
         $gridFieldConfig->addComponent($sorter);
         $gridfield = GridField::create("TeaserItems", "Teaser", $this->TeaserItems(), $gridFieldConfig);
-        $fields->addFieldToTab( 'Root.Main', $gridfield );
+        $fields->addFieldToTab('Root.Main', $gridfield);
         return $fields;
     }
 }

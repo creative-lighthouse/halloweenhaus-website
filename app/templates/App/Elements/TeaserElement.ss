@@ -12,13 +12,13 @@
                             $Image
                         </div>
                     <% end_if %>
-                    <% if $Title %><h3 class="teaseritem_title">$Title</h3><% end_if %>
+                    <% if $Title %>
+                        <h3 class="teaseritem_title">$Title</h3>
+                    <% end_if %>
                     <% if $Text %>
                         $Text
                     <% end_if %>
-                    <% if $Button %>
-                        <a href="$Button.Url" <% if $Button.OpenInNew %> target="_blank"<% end_if %> class="link--button hollow textimage_text_button no_deco readmore">$Button.Title</a>
-                    <% end_if %>
+                    <% include Button Button=$Button %>
                 </div>
             <% end_loop %>
         </div>

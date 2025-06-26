@@ -45,6 +45,10 @@ class TextElement extends BaseElement
         "Button" => Link::class,
     ];
 
+    private static $owns = [
+        "Button"
+    ];
+
     public function getType()
     {
         return "Text";

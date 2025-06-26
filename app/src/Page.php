@@ -7,14 +7,14 @@ namespace {
     use SilverStripe\Forms\DropdownField;
 
     /**
-     * Class \Page
-     *
-     * @property string $MenuPosition
-     * @property int $ElementalAreaID
-     * @method ElementalArea ElementalArea()
-     * @mixin ElementalPageExtension
-     * @mixin DashboardSearchResultExtension
-     */
+ * Class \Page
+ *
+ * @property string $MenuPosition
+ * @property int $ElementalAreaID
+ * @method ElementalArea ElementalArea()
+ * @mixin ElementalPageExtension
+ * @mixin DashboardSearchResultExtension
+ */
     class Page extends SiteTree
     {
         private static $table_name = 'Page';
