@@ -1,6 +1,6 @@
 <div class="header">
     <div class="header_nav">
-        <a href="" class="nav_brand">
+        <a href="" class="nav_brand" title="Zur Startseite">
             <% include MovingLogo %>
         </a>
         <div class="menus">
