@@ -69,18 +69,9 @@ a{
             color: $ColorWhite;
 
             &:hover {
-                background-color: $ColorWhite;
-                color: $ColorBackground;
-
-                &.white{
-                    background-color: $ColorWhite;
-                    color: $ColorSecondary;
-                }
-            }
-
-            &.white{
-                border-color: $ColorWhite;
+                background-color: $ColorSecondary;
                 color: $ColorWhite;
+                border: 1px solid $ColorSecondary;
             }
         }
 
@@ -93,6 +84,6 @@ a{
 
     &:hover {
         text-decoration: none;
-        color: $ColorSecondary;
+        color: $ColorSecondaryLight;
     }
 }

@@ -12,9 +12,13 @@ use SilverStripe\Forms\DropdownField;
  * Class \App\Elements\TextImageElement
  *
  * @property string $Text
+ * @property string $TitleAlign
+ * @property string $BackgroundColor
+ * @property bool $OnlyNearHalloween
  * @property string $Variant
  * @property string $ImgWidth
  * @property bool $ImageIsLinked
+ * @property string $ButtonAlign
  * @property int $ImageID
  * @property int $ButtonID
  * @method Image Image()
@@ -24,9 +28,13 @@ class TextImageElement extends BaseElement
 {
     private static $db = [
         "Text" => "HTMLText",
-        "Variant" => "Varchar(20)",
-        "ImgWidth" => "Varchar(20)",
-        "ImageIsLinked" => "Boolean"
+        "TitleAlign" => "Varchar(50)",
+        "BackgroundColor" => "Varchar(50)",
+        "OnlyNearHalloween" => "Boolean",
+        "Variant" => "Varchar(50)",
+        "ImgWidth" => "Varchar(50)",
+        "ImageIsLinked" => "Boolean",
+        "ButtonAlign" => "Varchar(50)",
     ];
 
     private static $has_one = [
@@ -43,11 +51,12 @@ class TextImageElement extends BaseElement
         "Text" => "Text",
         "Image" => "Bild",
         "Button" => "Button",
-        "ImageIsLinked" => "Bild ist verlinkt",
+        "ImageIsLinked" => "Bild verlinkt auch (zum Button-Link)",
+        "OnlyNearHalloween" => "Nur nahe Halloween zu sehen",
     ];
 
     private static $table_name = 'TextImageElement';
-    private static $icon = 'icon_block-textimage';
+    private static $icon = 'font-icon-block-promo-3';
 
     public function getType()
     {
@@ -69,6 +78,20 @@ class TextImageElement extends BaseElement
             "image-50" => "50%",
             "image-60" => "60%",
             "image-70" => "70%",
+        ]));
+        $fields->replaceField('BackgroundColor', DropdownField::create('BackgroundColor', 'Hintergrundfarbe', [
+            "color--background-transparent" => "Transparent",
+            "color--background-light" => "Hellgrau"
+        ]));
+        $fields->insertAfter('Title', DropdownField::create('TitleAlign', 'Titel-Ausrichtung', [
+            "style--title-left" => "Linksbündig",
+            "style--title-center" => "Zentriert",
+            "style--title-right" => "Rechtsbündig",
+        ]));
+        $fields->insertAfter('Button', DropdownField::create('ButtonAlign', 'Button-Ausrichtung', [
+            "style--button-left" => "Linksbündig",
+            "style--button-center" => "Zentriert",
+            "style--button-right" => "Rechtsbündig",
         ]));
         return $fields;
     }
