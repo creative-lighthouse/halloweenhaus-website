@@ -84,11 +84,13 @@ class TextImageElement extends BaseElement
             "color--background-light" => "Hellgrau"
         ]));
         $fields->insertAfter('Title', DropdownField::create('TitleAlign', 'Titel-Ausrichtung', [
+            "" => "Automatisch",
             "style--title-left" => "Linksbündig",
             "style--title-center" => "Zentriert",
             "style--title-right" => "Rechtsbündig",
         ]));
         $fields->insertAfter('Button', DropdownField::create('ButtonAlign', 'Button-Ausrichtung', [
+            "" => "Automatisch",
             "style--button-left" => "Linksbündig",
             "style--button-center" => "Zentriert",
             "style--button-right" => "Rechtsbündig",
