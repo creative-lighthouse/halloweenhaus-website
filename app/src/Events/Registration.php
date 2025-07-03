@@ -73,6 +73,7 @@ class Registration extends DataObject
         "StatusText" => "Status",
         "Title" => "Name",
         "Email" => "E-Mail",
+        "ZIP" => "PLZ",
         "Created" => "Datum",
     ];
 

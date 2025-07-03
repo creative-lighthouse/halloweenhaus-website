@@ -37,7 +37,7 @@ class FeedbackEntry extends DataObject
         "FormattedVisitDate" => "Besuchstag",
         "Stars" => "Sterne",
         "PLZ" => "PLZ",
-        "ShortSummary" => "Kommentar",
+        "Comment" => "Kommentar",
     ];
 
     private static $table_name = "FeedbackEntry";
