@@ -1,4 +1,4 @@
-<div class="section section--facts">
+<div class="section section--FactsElement">
     <div class="section_content">
         <% if $ShowTitle %>
             <h2>$Title</h2>

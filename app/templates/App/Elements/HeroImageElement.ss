@@ -1,4 +1,4 @@
-<section class="section section--heroimage">
+<section class="section section--HeroImageElement">
 <div class="section_content" <% if $ImageBackground %>style="background-image:url($ImageBackground.FocusFill(2500, 1090).Link);"<% end_if %>>
         <% if $ImageBackground2 %>
             <img class="heroimage_image background2" src="$ImageBackground2.FocusFill(2500, 1090).Link">

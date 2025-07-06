@@ -1,4 +1,4 @@
-<section class="section section--imagebanner $Variant $Overlay" <% if $Height != 0 %>style="height: {$Height}px"<% end_if %> >
+<section class="section section--ImageBannerElement $Variant $Overlay" <% if $Height != 0 %>style="height: {$Height}px"<% end_if %> >
     <% if $Parallax != 0 %>
         <% if $Variant == "variant--contained" %>
             <div class="section_content">

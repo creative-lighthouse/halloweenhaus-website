@@ -1,3 +1,3 @@
-<section class="section section--space" style="height: {$Height}px" >
+<section class="section section--SpaceElement" style="height: {$Height}px" >
 
 </section>

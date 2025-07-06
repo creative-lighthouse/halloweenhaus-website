@@ -13,22 +13,23 @@
 @import "layout/footer.scss";
 @import "layout/header.scss";
 
-@import "layout/team/team_overview.scss";
-@import "layout/team/team_details.scss";
+@import "layout/team/TeamOverview.scss";
+@import "layout/team/TeamDetails.scss";
 
-@import "layout/TextImageElement.scss";
-@import "layout/ImageBannerElement.scss";
-@import "layout/CharacterCarousel.scss";
-@import "layout/TeaserElement.scss";
-@import "layout/ReferencesElement.scss";
-@import "layout/FactElement.scss";
-@import "layout/SocialBannerElement.scss";
-@import "layout/TimelineElement.scss";
-@import "layout/FAQElement.scss";
-@import "layout/SpaceElement.scss";
-@import "layout/HeroImageElement.scss";
-@import "layout/PressImageElement.scss";
-@import "layout/VideoElement.scss";
+@import "elements/TextImageElement.scss";
+@import "elements/ImageBannerElement.scss";
+@import "elements/CharacterCarouselElement.scss";
+@import "elements/TeaserElement.scss";
+@import "elements/ReferencesElement.scss";
+@import "elements/FactElement.scss";
+@import "elements/SocialBannerElement.scss";
+@import "elements/TimelineElement.scss";
+@import "elements/FAQElement.scss";
+@import "elements/SpaceElement.scss";
+@import "elements/HeroImageElement.scss";
+@import "elements/HeroVideoElement.scss";
+@import "elements/PressImagesElement.scss";
+@import "elements/VideoElement.scss";
 
 @import "layout/Feedback.scss";
 @import "layout/PhotoboxGallery.scss";

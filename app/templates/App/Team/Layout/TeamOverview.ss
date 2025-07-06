@@ -1,4 +1,4 @@
-<div class="section section--team_overview">
+<div class="section section--TeamOverview">
     <div class="section_content">
         <h1 class="teammember_title">$Title</h1>
         <% if $TeamMembers.Filter("Status", "active").Count > 0 %>

@@ -1,4 +1,4 @@
-.section.section--facts{
+.section.section--FactsElement {
     .section_content{
         text-align: center;
 
@@ -16,7 +16,7 @@
 
                 background-color: $ColorBackgroundLight;
                 transition: background-color 0.2s ease-in-out;
-                
+
                 .factitem_facts{
 
                     margin: 5px;

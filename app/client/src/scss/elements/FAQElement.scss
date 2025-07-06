@@ -1,4 +1,4 @@
-.section.section--timeline{
+.section.section--FAQElement {
     .section_content{
         padding: 40px 0;
         .section_title{
@@ -30,16 +30,12 @@
             .list_item{
                 display: flex;
                 align-items: stretch;
-                transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-
-                .timeline_toggle{
-                    cursor: pointer;
-                }
+                transition: max-height 1s ease-in-out, opacity 0.3s ease-in-out;
+                overflow: hidden;
 
                 .list_item_timeline{
-                    width: 50px;
+                    min-width: 50px;
                     position: relative;
-                    flex-shrink: 0;
 
                     .circle{
                         display: block;
@@ -64,21 +60,39 @@
 
                 .list_item_content{
                     transition: transform 0.1s ease-in-out;
-                    width: 100%;
 
                     .list_item_content_title{
                         &:hover{
                             color: $ColorWhite;
                         }
+
+                        display: flex;
+                        align-items: center;
+
+                        .list_item_title_triangle{
+                            fill: $ColorWhite;
+                            width: 20px;
+                            height: 20px;
+                            transform: rotate(-90deg);
+                            margin-right: 5px;
+                            transition: transform 0.2s ease-in-out;
+                            pointer-events: none;
+                        }
                     }
                     .list_item_content_date{
-                        padding-top: 21px;
-                        padding-bottom: 3px;
-                        margin: 0;
+                        h3{
+                            color: $ColorWhite;
+
+                        }
+                        h4{
+                            margin-top: 21px;
+                            color: $ColorWhite;
+                        }
                         color: $ColorWhite;
                     }
 
                     .list_item_content_text{
+                        padding-left: 30px;
                         max-height: 0;
                         overflow: hidden;
                         transition: max-height 0.2s ease-in-out;
@@ -90,57 +104,29 @@
                             object-fit: contain;
                         }
 
-                        .timeline_gallery{
+                        .faq_gallery{
                             display: flex;
                             gap: 20px;
                             flex-wrap: wrap;
-                            justify-content: flex-start;
+                            justify-content: space-evenly;
                         }
                     }
 
-
-                }
-
-                .list_item_arrow{
-                    flex-shrink: 0;
-                    width: 50px;
-                    position: relative;
-
-                    .arrow{
-                        position: absolute;
-                        top: 30px;
-                        left: 15px;
-                        width: 20px;
-                        height: 20px;
-                        display: block;
-                        border-bottom: 2px solid $ColorWhite;
-                        border-left: 2px solid $ColorWhite;
-                        transform: rotate(-45deg);
-                        transition: 0.1s ease-in-out;
-                    }
-                }
-
-                &:hover{
-                    .list_item_content{
-                        transform: translateX(5px);
-                    }
-
-                    .list_item_arrow{
+                    &:hover{
                         transform: translateX(5px);
                     }
                 }
 
                 &.list_item--visible{
                     .list_item_content_text{
-                        max-height: 2000px;
+                        max-height: 400px;
                     }
-
-                    .list_item_arrow{
-                        .arrow{
-                            top: 40px;
-                            transform: rotate(135deg);
+                    .list_item_content_title{
+                        .list_item_title_triangle{
+                            transform: rotate(0deg) translateY(-4px);
                         }
                     }
+
                 }
 
                 &:last-of-type{
@@ -157,10 +143,10 @@
                 }
 
                 &.active{
-                    max-height: 200px;
+                    max-height: 400px;
                     opacity: 1;
                     &.list_item--visible{
-                        max-height: 2000px;
+                        max-height: 500px;
                     }
                 }
             }

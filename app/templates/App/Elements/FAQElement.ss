@@ -1,4 +1,4 @@
-<div class="section section--faq">
+<div class="section section--FAQElement">
     <div class="section_content">
         <% if $ShowTitle %>
             <div class="section_title">

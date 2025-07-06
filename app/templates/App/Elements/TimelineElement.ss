@@ -1,4 +1,4 @@
-<div class="section section--timeline">
+<div class="section section--TimelineElement">
     <div class="section_content">
         <% if $ShowTitle %>
             <div class="section_title">

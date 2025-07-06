@@ -1,4 +1,4 @@
-<div class="section section--references">
+<div class="section section--ReferencesElement">
     <div class="section_content">
         <% if $ShowTitle %>
             <h2>$Title</h2>

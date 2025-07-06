@@ -1,4 +1,4 @@
-<section class="section section--pressimages">
+<section class="section section--PressImagesElement">
     <div class="section_content">
         <% if $ShowTitle %>
             <h2>$Title</h2>

@@ -1,4 +1,4 @@
-<div class="section section--socialbanner">
+<div class="section section--SocialBannerElement">
     <div class="section_content">
         <% if $ShowTitle %>
             <h2>$Title</h2>

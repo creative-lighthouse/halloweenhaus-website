@@ -1,5 +1,5 @@
 <% if not $OnlyNearHalloween || $NearHalloween %>
-    <div class="section section--textimage $BackgroundColor">
+    <div class="section section--TextImageElement $BackgroundColor">
         <div class="section_content $ImgWidth $Variant">
             <% if $Image %>
                 <div class="textimage_image">
