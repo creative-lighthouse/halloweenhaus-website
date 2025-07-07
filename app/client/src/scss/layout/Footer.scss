@@ -1,0 +1,82 @@
+@mixin Footer {
+    .footer {
+        display: block;
+        flex-direction: column;
+        background-color: var(--ColorBackground);
+        position: relative;
+
+        .footer_content_wrap{
+            background-color: var(--ColorBackgroundLight);
+
+            .footer_content {
+                max-width: $maxWidth;
+                margin-right: auto;
+                margin-left: auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                padding: 0px 20px;
+
+                .footer_text {
+                    text-decoration: none;
+                    padding: 15px 10px;
+                }
+
+                .footer_menu_list {
+                    padding: 0;
+                    margin: 0;
+                    display: flex;
+                }
+
+                .footer_menu_item {
+                    list-style: none;
+
+                    a {
+                        display: block;
+                        text-decoration: none;
+                        padding: 15px 10px;
+                        &:hover{
+                            color: white;
+                            background-color: var(--ColorSecondary);
+                        }
+                    }
+                }
+
+                @include media(max-medium) {
+                    padding-top: 110px;
+                    flex-direction: column;
+                    justify-content: center;
+                    text-align: center;
+                }
+            }
+
+            @include media(max-medium) {
+                background-color: var(--ColorBackground);
+            }
+        }
+
+        .footer_logo{
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            background-color: var(--ColorBackground);
+            border-radius: 50%;
+            padding: 20px;
+            color: white;
+            animation: rainbow 45s infinite;
+
+            .eyes{
+                transform-origin: 40% 31%;
+                animation: leftright 20s infinite;
+            }
+
+            .mouth{
+                animation: updown 10s infinite ease-in-out;
+            }
+        }
+    }
+}

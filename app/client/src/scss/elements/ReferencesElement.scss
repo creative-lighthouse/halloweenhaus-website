@@ -1,60 +1,62 @@
-.section.section--ReferencesElement {
-    .section_content{
-        text-align: center;
+@mixin ReferencesElement {
+    .section.section--ReferencesElement {
+        .section_content{
+            text-align: center;
 
-        .referenceelement_list{
-            display: grid;
-            grid-template-columns: repeat(3, calc(100% / 3));
-            justify-content: space-around;
-            gap: 20px;
+            .referenceelement_list{
+                display: grid;
+                grid-template-columns: repeat(3, calc(100% / 3));
+                justify-content: space-around;
+                gap: 20px;
 
-            .referenceitem{
-                background-color: $ColorBackgroundLight;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                text-align: center;
-                padding: 20px;
-                border-radius: 20px;
-                transition: background-color 0.2s ease-in-out;
+                .referenceitem{
+                    background-color: var(--ColorBackgroundLight);
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: center;
+                    text-align: center;
+                    padding: 20px;
+                    border-radius: 20px;
+                    transition: background-color 0.2s ease-in-out;
 
-                p{
-                    margin-bottom: 0px;
-                }
+                    p{
+                        margin-bottom: 0px;
+                    }
 
-                .link--button{
-                    margin-top: 10px;
-                }
+                    .link--button{
+                        margin-top: 10px;
+                    }
 
-                .referenceitem_text{
-                    height: calc(100% - 20px);
-                    padding-bottom: 10px;
-                    border-bottom: 2px solid $ColorWhite;
-                }
+                    .referenceitem_text{
+                        height: calc(100% - 20px);
+                        padding-bottom: 10px;
+                        border-bottom: 2px solid var(--ColorWhite);
+                    }
 
-                .referenceitem_source{
-                    color: $ColorWhite;
-                    margin: 1em 0 0 0;
-                    font-weight: 200;
-                }
+                    .referenceitem_source{
+                        color: var(--ColorWhite);
+                        margin: 1em 0 0 0;
+                        font-weight: 200;
+                    }
 
-                &:hover{
-                    color: $ColorWhite;
-                    background-color: $ColorSecondary;
+                    &:hover{
+                        color: var(--ColorWhite);
+                        background-color: var(--ColorSecondary);
 
-                    &.no_color{
-                        background-color: $ColorBackgroundLight;
+                        &.no_color{
+                            background-color: var(--ColorBackgroundLight);
+                        }
                     }
                 }
-            }
 
-            @include media("<medium") {
-                grid-template-columns: repeat(2, calc(100% / 2));
-            }
-            @include media("<smartphone") {
-                grid-template-columns: repeat(1, calc(100% / 1));
+                @include media(max-medium) {
+                    grid-template-columns: repeat(2, calc(100% / 2));
+                }
+                @include media(max-smartphone) {
+                    grid-template-columns: repeat(1, calc(100% / 1));
+                }
             }
         }
     }

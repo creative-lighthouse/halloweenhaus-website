@@ -4,17 +4,17 @@
     "description": "The SilverStripe Framework Installer",
     "require": {
         "php": "^8.2",
+        "ext-json": "*",
         "silverstripe/recipe-plugin": "^2",
         "silverstripe/recipe-cms": "5.4",
         "dnadesign/silverstripe-elemental": "^5",
-        "ext-json": "*",
         "colymba/gridfield-bulk-editing-tools": "^4.0",
         "jonom/focuspoint": "^5.0",
         "silverstripe/login-forms": "^5.1",
         "purplespider/silverstripe-basic-gallery-extension": "4",
         "silverstripe/linkfield": "^4.1",
         "wilr/silverstripe-googlesitemaps": "^3.0",
-        "dnadesign/silverstripe-elemental-userforms": "^4.1",
+        "dnadesign/silverstripe-elemental-userforms": "^5.0.0",
         "undefinedoffset/sortablegridfield": "^2.2",
         "endroid/qrcode": "^5.0",
         "ryanpotter/silverstripe-cms-theme": "dev-master",
@@ -24,7 +24,6 @@
     },
     "require-dev": {
         "silverleague/ideannotator": "^3.5",
-        "phpunit/phpunit": "^9.6",
         "wernerkrauss/silverstripe-rector": "^1",
         "cambis/silverstan": "^2",
         "phpstan/extension-installer": "^1.0"
@@ -55,8 +54,8 @@
             "web.config"
         ]
     },
-    "prefer-stable": true,
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
         "lint": "vendor/bin/phpcs",
         "fix": "vendor/bin/phpcbf",

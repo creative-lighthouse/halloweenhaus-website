@@ -34,7 +34,7 @@ h1{
 
 a{
     cursor: pointer;
-    color: $ColorWhite;
+    color: var(--ColorWhite);
 
     &.no_deco{
         text-decoration: none;
@@ -45,13 +45,13 @@ a{
     }
 
     &.white{
-        color: $ColorWhite;
+        color: var(--ColorWhite);
     }
 
     &.link--button{
         display: inline-block;
         padding: 10px 20px;
-        color: $ColorWhite;
+        color: var(--ColorWhite);
         font-weight: 500;
         transition: 0.2s ease-in-out;
         text-decoration: none;
@@ -66,25 +66,25 @@ a{
         &.hollow{
             border-radius: 20px;
             background-color: transparent;
-            border: 1px solid $ColorWhite;
-            color: $ColorWhite;
+            border: 1px solid var(--ColorWhite);
+            color: var(--ColorWhite);
 
             &:hover {
-                background-color: $ColorSecondary;
-                color: $ColorWhite;
-                border: 1px solid $ColorSecondary;
+                background-color: var(--ColorSecondary);
+                color: var(--ColorWhite);
+                border: 1px solid var(--ColorSecondary);
             }
         }
 
         &:hover {
             text-decoration: none;
-            background-color: $ColorSecondary;
-            color: $ColorWhite;
+            background-color: var(--ColorSecondary);
+            color: var(--ColorWhite);
         }
     }
 
     &:hover {
         text-decoration: none;
-        color: $ColorSecondaryLight;
+        color: var(--ColorSecondaryLight);
     }
 }

@@ -1,128 +1,130 @@
-.section.section--PressImagesElement {
-    .section_content{
-        .press_images{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+@mixin PressImagesElement {
+    .section.section--PressImagesElement {
+        .section_content{
+            .press_images{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
 
-            .pressimage_entry{
-                padding: 10px 0;
-                .pressimage{
-                    display: flex;
-                    padding: 5px;
-                    width: 100%;
-                    align-items: center;
-
-                    .pressimage_image{
-                        width: 65%;
-
-                        .pressimage_image_content{
-                            height: 100%;
-                            transform: scale(0.9) rotate(-5deg);
-                            display: block;
-                            transition: transform 0.2s ease-in-out;
-
-                            img{
-                                display: block;
-                                width: 100%;
-                                object-fit: contain;
-                                border: 5px solid $ColorWhite;
-                                box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-                            }
-
-                            &:hover{
-                                cursor: pointer;
-                                transform: scale(0.95) rotate(-3deg);
-                            }
-                        }
-                    }
-
-                    .pressimage_meta{
-                        width: calc(35% + 50px);
-                        padding: 15px;
-                        padding-left: 60px;
-                        margin-left: -50px;
-                        border-radius: 20px;
-                        background-color: $ColorBackgroundLight;
-
-                        p{
-                            margin: 0;
-                            font-size: 14px;
-
-                            b{
-                                display: block;
-                                margin-top: 5px;
-                            }
-
-                            &:first-of-type{
-                                margin-top: 15px;
-                            }
-
-                            &:last-of-type{
-                                margin-bottom: 15px;
-                            }
-                        }
-
-                        .pressimage_download{
-                            position: relative;
-                            text-decoration: none;
-
-                            &::after{
-                                content: "";
-                                display: block;
-                                position: absolute;
-                                top: 0;
-                                right: -20px;
-                                width: 10px;
-                                height: 10px;
-                                border-top: 2px solid $ColorWhite;
-                                border-right: 2px solid $ColorWhite;
-                                transform: translateY(3px) rotate(45deg);
-                            }
-
-                            &:hover{
-                                cursor: pointer;
-                                color: $ColorPrimary;
-
-                                &::after{
-                                    border-top: 2px solid $ColorPrimary;
-                                    border-right: 2px solid $ColorPrimary;
-                                }
-                            }
-                        }
-                    }
-
-                    @include media("<medium") {
-                        flex-direction: column;
-                        align-items: flex-start;
+                .pressimage_entry{
+                    padding: 10px 0;
+                    .pressimage{
+                        display: flex;
+                        padding: 5px;
+                        width: 100%;
+                        align-items: center;
 
                         .pressimage_image{
-                            width: 100%;
+                            width: 65%;
 
                             .pressimage_image_content{
-                                transform: scale(0.9) rotate(5deg);
+                                height: 100%;
+                                transform: scale(0.9) rotate(-5deg);
+                                display: block;
+                                transition: transform 0.2s ease-in-out;
+
+                                img{
+                                    display: block;
+                                    width: 100%;
+                                    object-fit: contain;
+                                    border: 5px solid var(--ColorWhite);
+                                    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+                                }
 
                                 &:hover{
                                     cursor: pointer;
-                                    transform: scale(0.95) rotate(4deg);
+                                    transform: scale(0.95) rotate(-3deg);
                                 }
                             }
                         }
 
                         .pressimage_meta{
-                            width: 100%;
+                            width: calc(35% + 50px);
                             padding: 15px;
-                            padding-top: 60px;
-                            margin-top: -50px;
-                            margin-left: 0;
+                            padding-left: 60px;
+                            margin-left: -50px;
+                            border-radius: 20px;
+                            background-color: var(--ColorBackgroundLight);
+
+                            p{
+                                margin: 0;
+                                font-size: 14px;
+
+                                b{
+                                    display: block;
+                                    margin-top: 5px;
+                                }
+
+                                &:first-of-type{
+                                    margin-top: 15px;
+                                }
+
+                                &:last-of-type{
+                                    margin-bottom: 15px;
+                                }
+                            }
+
+                            .pressimage_download{
+                                position: relative;
+                                text-decoration: none;
+
+                                &::after{
+                                    content: "";
+                                    display: block;
+                                    position: absolute;
+                                    top: 0;
+                                    right: -20px;
+                                    width: 10px;
+                                    height: 10px;
+                                    border-top: 2px solid var(--ColorWhite);
+                                    border-right: 2px solid var(--ColorWhite);
+                                    transform: translateY(3px) rotate(45deg);
+                                }
+
+                                &:hover{
+                                    cursor: pointer;
+                                    color: var(--ColorPrimary);
+
+                                    &::after{
+                                        border-top: 2px solid var(--ColorPrimary);
+                                        border-right: 2px solid var(--ColorPrimary);
+                                    }
+                                }
+                            }
+                        }
+
+                        @include media(max-medium) {
+                            flex-direction: column;
+                            align-items: flex-start;
+
+                            .pressimage_image{
+                                width: 100%;
+
+                                .pressimage_image_content{
+                                    transform: scale(0.9) rotate(5deg);
+
+                                    &:hover{
+                                        cursor: pointer;
+                                        transform: scale(0.95) rotate(4deg);
+                                    }
+                                }
+                            }
+
+                            .pressimage_meta{
+                                width: 100%;
+                                padding: 15px;
+                                padding-top: 60px;
+                                margin-top: -50px;
+                                margin-left: 0;
+                            }
                         }
                     }
                 }
-            }
 
 
 
-            @include media("<550px") {
-                grid-template-columns: 1fr;
+                @include media(max-smartphone) {
+                    grid-template-columns: 1fr;
+                }
             }
         }
     }

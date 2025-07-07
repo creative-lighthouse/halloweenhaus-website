@@ -1,615 +1,617 @@
-.section.section--events{
-    margin-top: 130px;
-    min-height: 80%;
+@mixin Events {
+    .section.section--events{
+        margin-top: 130px;
+        min-height: 80%;
 
-    h1{
-        text-align: center;
-    }
-
-    h2{
-        text-align: center;
-        margin: 10px 0 0 0;
-    }
-
-    b{
-        font-weight: 900;
-        color: $ColorSecondaryLight;
-    }
-
-    &.unsubscribe{
-        .section_content{
+        h1{
             text-align: center;
-        }
-
-        .section_emoji{
-            animation: cry 2s infinite;
-        }
-    }
-
-    &.registrationfull {
-        .section_content {
-            text-align: center;
-        }
-
-        h1,
-        h2 {
-            margin: 20px 0;
-        }
-
-        h2 {
-            background-color: white;
-            color: black;
-            padding: 10px 20px;
-            transform: rotate(-3deg);
-            display: inline-block;
-            width: auto;
-            margin-bottom: 30px;
-        }
-
-        .section_emoji {
-            animation: cry 2s infinite;
-        }
-    }
-
-    &.registrationsuccessful{
-        margin: 130px auto;
-
-        .section_content {
-            text-align: center;
-        }
-
-        h1, h2{
-            margin: 20px 0;
         }
 
         h2{
-            background-color: white;
-            color: black;
-            padding: 10px 20px;
-            transform: rotate(-3deg);
-            display: inline-block;
-            width: auto;
-            margin-bottom: 30px;
-        }
-
-
-        p{
-            margin: 10px 0;
-        }
-    }
-
-    &.eventnotfound {
-        margin: 130px auto;
-
-        .section_content {
             text-align: center;
+            margin: 10px 0 0 0;
         }
 
-        h1,
-        h2 {
-            margin: 20px 0;
+        b{
+            font-weight: 900;
+            color: var(--ColorSecondaryLight);
         }
 
-        h2 {
-            background-color: white;
-            color: black;
-            padding: 10px 20px;
-            transform: rotate(-3deg);
-            display: inline-block;
-            width: auto;
-            margin-bottom: 30px;
-        }
+        &.unsubscribe{
+            .section_content{
+                text-align: center;
+            }
 
-
-        p {
-            margin: 10px 0;
-        }
-
-        .ticket_button {
-            background-color: $ColorSecondary;
-            color: $ColorWhite;
-            border: none;
-            border-radius: 10px;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: background-color 0.1s ease-in-out;
-            text-align: center;
-            margin: 20px 0;
-            text-decoration: none;
-            display: inline-block;
-
-            &:hover {
-                background-color: $ColorSecondaryDark;
+            .section_emoji{
+                animation: cry 2s infinite;
             }
         }
-    }
 
-    &.registrationconfirm {
-        margin: 130px auto;
+        &.registrationfull {
+            .section_content {
+                text-align: center;
+            }
 
-        h1,
-        h2 {
-            margin: 20px 0;
-        }
+            h1,
+            h2 {
+                margin: 20px 0;
+            }
 
-        h2 {
-            background-color: white;
-            color: black;
-            padding: 10px 20px;
-            transform: rotate(-3deg);
-            display: inline-block;
-            width: auto;
-            margin-bottom: 30px;
-        }
+            h2 {
+                background-color: white;
+                color: black;
+                padding: 10px 20px;
+                transform: rotate(-3deg);
+                display: inline-block;
+                width: auto;
+                margin-bottom: 30px;
+            }
 
-
-        p {
-            margin: 10px 0;
-        }
-
-        .ticket_button{
-            background-color: $ColorSecondary;
-            color: $ColorWhite;
-            border: none;
-            border-radius: 10px;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: background-color 0.1s ease-in-out;
-            text-align: center;
-            margin: 20px 0;
-            text-decoration: none;
-            display: inline-block;
-
-            &:hover{
-                background-color: $ColorSecondaryDark;
+            .section_emoji {
+                animation: cry 2s infinite;
             }
         }
-    }
 
-    .section_content{
-        .events_navigator{
-            background-color: white;
-            border-radius: 20px;
-            color: black;
-            overflow: hidden;
-            padding: 10px;
+        &.registrationsuccessful{
+            margin: 130px auto;
 
-            .events_navigator_step{
-                max-height: 1000px;
-                transition: 0.2s ease-in-out;
+            .section_content {
+                text-align: center;
+            }
 
-                .section_couponform{
-                    margin: 10px 0;
-                    display: flex;
-                    width: 100%;
-                    justify-content: center;
-                    align-items: center;
+            h1, h2{
+                margin: 20px 0;
+            }
 
-                    label{
-                        font-weight: 700;
-                    }
+            h2{
+                background-color: white;
+                color: black;
+                padding: 10px 20px;
+                transform: rotate(-3deg);
+                display: inline-block;
+                width: auto;
+                margin-bottom: 30px;
+            }
 
-                    input{
-                        padding: 10px;
-                        border-radius: 10px 0 0 10px;
-                        border: 1px solid rgb(216, 216, 216);
-                        height: 100%;
-                        line-height: 18px;
-                    }
 
-                    button{
-                        padding: 10px 20px;
-                        border-radius: 0 10px 10px 0;
-                        border: none;
-                        background-color: $ColorSecondary;
-                        color: $ColorWhite;
-                        cursor: pointer;
-                        font-weight: 700;
-                        height: 100%;
-                        transition: background-color 0.1s ease-in-out;
-                        line-height: 18px;
+            p{
+                margin: 10px 0;
+            }
+        }
 
-                        &:hover{
-                            background-color: $ColorSecondaryDark;
-                        }
-                    }
+        &.eventnotfound {
+            margin: 130px auto;
 
-                    &.hidden{
-                        display: none;
-                    }
+            .section_content {
+                text-align: center;
+            }
 
-                    @include media("<medium"){
-                        flex-direction: column;
+            h1,
+            h2 {
+                margin: 20px 0;
+            }
+
+            h2 {
+                background-color: white;
+                color: black;
+                padding: 10px 20px;
+                transform: rotate(-3deg);
+                display: inline-block;
+                width: auto;
+                margin-bottom: 30px;
+            }
+
+
+            p {
+                margin: 10px 0;
+            }
+
+            .ticket_button {
+                background-color: var(--ColorSecondary);
+                color: var(--ColorWhite);
+                border: none;
+                border-radius: 10px;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-weight: 700;
+                transition: background-color 0.1s ease-in-out;
+                text-align: center;
+                margin: 20px 0;
+                text-decoration: none;
+                display: inline-block;
+
+                &:hover {
+                    background-color: var(--ColorSecondaryDark);
+                }
+            }
+        }
+
+        &.registrationconfirm {
+            margin: 130px auto;
+
+            h1,
+            h2 {
+                margin: 20px 0;
+            }
+
+            h2 {
+                background-color: white;
+                color: black;
+                padding: 10px 20px;
+                transform: rotate(-3deg);
+                display: inline-block;
+                width: auto;
+                margin-bottom: 30px;
+            }
+
+
+            p {
+                margin: 10px 0;
+            }
+
+            .ticket_button{
+                background-color: var(--ColorSecondary);
+                color: var(--ColorWhite);
+                border: none;
+                border-radius: 10px;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-weight: 700;
+                transition: background-color 0.1s ease-in-out;
+                text-align: center;
+                margin: 20px 0;
+                text-decoration: none;
+                display: inline-block;
+
+                &:hover{
+                    background-color: var(--ColorSecondaryDark);
+                }
+            }
+        }
+
+        .section_content{
+            .events_navigator{
+                background-color: white;
+                border-radius: 20px;
+                color: black;
+                overflow: hidden;
+                padding: 10px;
+
+                .events_navigator_step{
+                    max-height: 1000px;
+                    transition: 0.2s ease-in-out;
+
+                    .section_couponform{
+                        margin: 10px 0;
+                        display: flex;
+                        width: 100%;
+                        justify-content: center;
                         align-items: center;
 
+                        label{
+                            font-weight: 700;
+                        }
+
                         input{
-                            border-radius: 10px 10px 0 0;
-                            width: 100%;
+                            padding: 10px;
+                            border-radius: 10px 0 0 10px;
+                            border: 1px solid rgb(216, 216, 216);
+                            height: 100%;
+                            line-height: 18px;
                         }
 
                         button{
-                            border-radius: 0 0 10px 10px;
-                            width: 100%;
-                        }
-                    }
-                }
-
-                .coupon_message{
-                    text-align: center;
-                    margin: 10px 0 0px 0;
-                    opacity: 0.5;
-
-                    &.valid{
-                        color: green;
-                    }
-
-                    &.invalid{
-                        color: red;
-                    }
-                }
-
-                .coupon_reset{
-                    display: block;
-                    text-align: center;
-                    margin: 10px 0 0px 0;
-                    cursor: pointer;
-                    color: $ColorSecondary;
-                    font-weight: 700;
-                    font-size: 12px;
-
-                    &.hidden {
-                        display: none;
-                    }
-                }
-
-                .coupon_description{
-                    text-align: center;
-                    margin: 10px 0 20px 0;
-                }
-
-                .section_selectablelist{
-                    display: flex;
-                    margin: 10px auto 20px;
-                    justify-content: center;
-                    align-items: center;
-                    flex-wrap: wrap;
-                }
-
-                &.coupon{
-                    h3{
-                        text-align: center;
-                        margin: 10px 0;
-                    }
-                }
-
-                &.selected{
-                    background-color: $ColorSecondary;
-                }
-
-                &.dates{
-                    padding: 0 20px;
-
-                    .date_card{
-                        cursor: pointer;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        flex-direction: column;
-                        color: $ColorBlack;
-                        overflow: hidden;
-                        border-top: 1px solid rgb(216, 216, 216);
-                        border-bottom: 1px solid rgb(216, 216, 216);
-
-                        .date_card_weekday{
-                            font-size: 0.8em;
-                            margin: 0;
-                            width: 100%;
-                            text-align: center;
+                            padding: 10px 20px;
+                            border-radius: 0 10px 10px 0;
+                            border: none;
+                            background-color: var(--ColorSecondary);
+                            color: var(--ColorWhite);
+                            cursor: pointer;
                             font-weight: 700;
-                            padding: 5px 20px 3px 20px;
-                            background-color: rgb(240, 240, 240);
-                            border-bottom: 1px solid rgb(216, 216, 216);
-                        }
+                            height: 100%;
+                            transition: background-color 0.1s ease-in-out;
+                            line-height: 18px;
 
-                        .date_card_day{
-                            font-size: 1.5em;
-                            margin: 0;
-                            width: 100%;
-                            text-align: center;
-                            font-weight: 700;
-                            padding: 10px 20px 0 20px;
-                            color: $ColorSecondary;
-                        }
-
-                        .date_card_month{
-                            font-size: 0.8em;
-                            margin: 0;
-                            width: 100%;
-                            text-align: center;
-                            padding: 5px 15px 10px 15px;
-                            color: $ColorSecondary;
+                            &:hover{
+                                background-color: var(--ColorSecondaryDark);
+                            }
                         }
 
                         &.hidden{
                             display: none;
                         }
 
-                        &.selected{
-                            .date_card_day, .date_card_month{
-                                background-color: $ColorSecondary;
-                                color: $ColorWhite;
+                        @include media(max-medium){
+                            flex-direction: column;
+                            align-items: center;
+
+                            input{
+                                border-radius: 10px 10px 0 0;
+                                width: 100%;
+                            }
+
+                            button{
+                                border-radius: 0 0 10px 10px;
+                                width: 100%;
                             }
                         }
+                    }
 
-                        &:first-of-type{
-                            border-top-left-radius: 20px;
-                            border-bottom-left-radius: 20px;
-                            border-left: 1px solid rgb(216, 216, 216);
+                    .coupon_message{
+                        text-align: center;
+                        margin: 10px 0 0px 0;
+                        opacity: 0.5;
+
+                        &.valid{
+                            color: green;
                         }
-                        &:last-of-type{
-                            border-top-right-radius: 20px;
-                            border-bottom-right-radius: 20px;
-                            border-right: 1px solid rgb(216, 216, 216);
+
+                        &.invalid{
+                            color: red;
                         }
                     }
-                }
 
-                &.events{
-                    padding: 0 20px;
+                    .coupon_reset{
+                        display: block;
+                        text-align: center;
+                        margin: 10px 0 0px 0;
+                        cursor: pointer;
+                        color: var(--ColorSecondary);
+                        font-weight: 700;
+                        font-size: 12px;
+
+                        &.hidden {
+                            display: none;
+                        }
+                    }
+
+                    .coupon_description{
+                        text-align: center;
+                        margin: 10px 0 20px 0;
+                    }
 
                     .section_selectablelist{
-                        gap: 10px;
+                        display: flex;
+                        margin: 10px auto 20px;
+                        justify-content: center;
+                        align-items: center;
+                        flex-wrap: wrap;
                     }
-                    .event_card{
-                        border: 1px solid rgb(216, 216, 216);
-                        border-radius: 10px;
-                        text-align: center;
-                        cursor: pointer;
-                        width: 40%;
-                        height: 200px;
-                        overflow: hidden;
-                        color: $ColorSecondary;
-                        transition: background-color 0.1s ease-in-out;
 
-                        .event_card_image{
-                            width: 100%;
-                            height: 40%;
-                            border-bottom-left-radius: 50%;
+                    &.coupon{
+                        h3{
+                            text-align: center;
+                            margin: 10px 0;
+                        }
+                    }
+
+                    &.selected{
+                        background-color: var(--ColorSecondary);
+                    }
+
+                    &.dates{
+                        padding: 0 20px;
+
+                        .date_card{
+                            cursor: pointer;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction: column;
+                            color: var(--ColorBlack);
                             overflow: hidden;
-                            background-color: rgb(216, 216, 216);
-                            transition: 0.3s ease-in-out;
+                            border-top: 1px solid rgb(216, 216, 216);
+                            border-bottom: 1px solid rgb(216, 216, 216);
 
-                            img{
+                            .date_card_weekday{
+                                font-size: 0.8em;
+                                margin: 0;
                                 width: 100%;
-                                height: 100%;
-                                object-fit: cover;
+                                text-align: center;
+                                font-weight: 700;
+                                padding: 5px 20px 3px 20px;
+                                background-color: rgb(240, 240, 240);
+                                border-bottom: 1px solid rgb(216, 216, 216);
+                            }
+
+                            .date_card_day{
+                                font-size: 1.5em;
+                                margin: 0;
+                                width: 100%;
+                                text-align: center;
+                                font-weight: 700;
+                                padding: 10px 20px 0 20px;
+                                color: var(--ColorSecondary);
+                            }
+
+                            .date_card_month{
+                                font-size: 0.8em;
+                                margin: 0;
+                                width: 100%;
+                                text-align: center;
+                                padding: 5px 15px 10px 15px;
+                                color: var(--ColorSecondary);
+                            }
+
+                            &.hidden{
+                                display: none;
+                            }
+
+                            &.selected{
+                                .date_card_day, .date_card_month{
+                                    background-color: var(--ColorSecondary);
+                                    color: var(--ColorWhite);
+                                }
+                            }
+
+                            &:first-of-type{
+                                border-top-left-radius: 20px;
+                                border-bottom-left-radius: 20px;
+                                border-left: 1px solid rgb(216, 216, 216);
+                            }
+                            &:last-of-type{
+                                border-top-right-radius: 20px;
+                                border-bottom-right-radius: 20px;
+                                border-right: 1px solid rgb(216, 216, 216);
                             }
                         }
+                    }
 
-                        .event_card_text{
+                    &.events{
+                        padding: 0 20px;
+
+                        .section_selectablelist{
+                            gap: 10px;
+                        }
+                        .event_card{
+                            border: 1px solid rgb(216, 216, 216);
+                            border-radius: 10px;
+                            text-align: center;
+                            cursor: pointer;
+                            width: 40%;
+                            height: 200px;
+                            overflow: hidden;
+                            color: var(--ColorSecondary);
+                            transition: background-color 0.1s ease-in-out;
+
+                            .event_card_image{
+                                width: 100%;
+                                height: 40%;
+                                border-bottom-left-radius: 50%;
+                                overflow: hidden;
+                                background-color: rgb(216, 216, 216);
+                                transition: 0.3s ease-in-out;
+
+                                img{
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                }
+                            }
+
+                            .event_card_text{
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                height: 60%;
+                                transition: 0.3s ease-in-out;
+
+                                .event_card_title{
+                                    margin: 0;
+                                }
+
+                                .event_card_duration{
+                                    font-size: 12px;
+                                    margin: 0;
+                                    color: darkgray;
+                                }
+                            }
+
+                            &.hidden{
+                                display: none;
+                            }
+                            &.selected{
+                                .event_card_image{
+                                    height: 50%;
+                                }
+
+                                .event_card_text{
+                                    height: 50%;
+                                }
+                                background-color: var(--ColorSecondary);
+                                color: var(--ColorWhite);
+                            }
+
+                            @include media(max-medium){
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    &.timeslots{
+                        padding: 0 20px;
+
+                        .section_selectablelist{
+                            gap: 10px;
+                        }
+
+                        .timeslot_card{
+                            border: 1px solid rgb(216, 216, 216);
+                            cursor: pointer;
+                            border-radius: 10px;
+                            padding: 10px 15px;
+                            color: var(--ColorSecondary);
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
                             align-items: center;
-                            height: 60%;
-                            transition: 0.3s ease-in-out;
 
-                            .event_card_title{
+                            .timeslot_card_time{
+                                font-size: 18px;
+                                font-weight: 700;
                                 margin: 0;
                             }
 
-                            .event_card_duration{
+                            .timeslot_card_capacity{
+                                font-weight: 400;
                                 font-size: 12px;
                                 margin: 0;
-                                color: darkgray;
-                            }
-                        }
-
-                        &.hidden{
-                            display: none;
-                        }
-                        &.selected{
-                            .event_card_image{
-                                height: 50%;
                             }
 
-                            .event_card_text{
-                                height: 50%;
+                            &.timeslot_card--text{
+                                pointer-events: none;
+                                width: 100%;
+                                text-align: center;
                             }
-                            background-color: $ColorSecondary;
-                            color: $ColorWhite;
-                        }
 
-                        @include media("<medium"){
-                            width: 100%;
-                        }
-                    }
-                }
+                            &.timeslot_card--full{
+                                filter: grayscale(100%);
+                                pointer-events: none;
+                                opacity: 0.5;
+                            }
 
-                &.timeslots{
-                    padding: 0 20px;
-
-                    .section_selectablelist{
-                        gap: 10px;
-                    }
-
-                    .timeslot_card{
-                        border: 1px solid rgb(216, 216, 216);
-                        cursor: pointer;
-                        border-radius: 10px;
-                        padding: 10px 15px;
-                        color: $ColorSecondary;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-
-                        .timeslot_card_time{
-                            font-size: 18px;
-                            font-weight: 700;
-                            margin: 0;
-                        }
-
-                        .timeslot_card_capacity{
-                            font-weight: 400;
-                            font-size: 12px;
-                            margin: 0;
-                        }
-
-                        &.timeslot_card--text{
-                            pointer-events: none;
-                            width: 100%;
-                            text-align: center;
-                        }
-
-                        &.timeslot_card--full{
-                            filter: grayscale(100%);
-                            pointer-events: none;
-                            opacity: 0.5;
-                        }
-
-                        &.hidden{
-                            display: none;
-                        }
-                        &.selected{
-                            background-color: $ColorSecondary;
-                            color: $ColorWhite;
+                            &.hidden{
+                                display: none;
+                            }
+                            &.selected{
+                                background-color: var(--ColorSecondary);
+                                color: var(--ColorWhite);
+                            }
                         }
                     }
-                }
 
-                &.groupsize{
-                    .section_selectablelist{
-                        gap: 10px;
-                    }
-
-                    .groupsize_button{
-                        border: 1px solid rgb(216, 216, 216);
-                        cursor: pointer;
-                        border-radius: 10px;
-                        padding: 10px 15px;
-                        color: $ColorSecondary;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-
-                        &.selected{
-                            background-color: $ColorSecondary;
-                            color: $ColorWhite;
+                    &.groupsize{
+                        .section_selectablelist{
+                            gap: 10px;
                         }
 
-                        &.hidden{
-                            filter: grayscale(100%);
-                            pointer-events: none;
-                            opacity: 0.3;
+                        .groupsize_button{
+                            border: 1px solid rgb(216, 216, 216);
+                            cursor: pointer;
+                            border-radius: 10px;
+                            padding: 10px 15px;
+                            color: var(--ColorSecondary);
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+
+                            &.selected{
+                                background-color: var(--ColorSecondary);
+                                color: var(--ColorWhite);
+                            }
+
+                            &.hidden{
+                                filter: grayscale(100%);
+                                pointer-events: none;
+                                opacity: 0.3;
+                            }
                         }
-                    }
-                }
-
-                &.form{
-                    padding: 20px;
-                    background-color: rgb(216, 216, 216);
-                    border-radius: 10px;
-                    text-align: center;
-
-                    a{
-                        color: $ColorSecondary;
-                        text-decoration: none;
-                        font-weight: 700;
-                    }
-
-                    .btn-toolbar{
-                        display: flex;
-                        justify-content: center;
-                    }
-
-                    input[type="submit"]{
-                        background-color: $ColorSecondary;
-                        color: $ColorWhite;
-                        border: none;
-                        border-radius: 10px;
-                        padding: 10px 20px;
-                        cursor: pointer;
-                        font-weight: 700;
-                        transition: background-color 0.1s ease-in-out;
-                        text-align: center;
-
-                        &:hover{
-                            background-color: $ColorSecondaryDark;
-                        }
-                    }
-                }
-
-                &.hidden{
-                    max-height: 0px;
-                    opacity: 0;
-                    margin: 0;
-
-                    h2{
-                        margin: 0;
-                    }
-
-                    .section_selectablelist{
-                        padding: 0px;
                     }
 
                     &.form{
-                        padding: 0px;
+                        padding: 20px;
+                        background-color: rgb(216, 216, 216);
+                        border-radius: 10px;
+                        text-align: center;
+
+                        a{
+                            color: var(--ColorSecondary);
+                            text-decoration: none;
+                            font-weight: 700;
+                        }
+
+                        .btn-toolbar{
+                            display: flex;
+                            justify-content: center;
+                        }
+
+                        input[type="submit"]{
+                            background-color: var(--ColorSecondary);
+                            color: var(--ColorWhite);
+                            border: none;
+                            border-radius: 10px;
+                            padding: 10px 20px;
+                            cursor: pointer;
+                            font-weight: 700;
+                            transition: background-color 0.1s ease-in-out;
+                            text-align: center;
+
+                            &:hover{
+                                background-color: var(--ColorSecondaryDark);
+                            }
+                        }
+                    }
+
+                    &.hidden{
+                        max-height: 0px;
+                        opacity: 0;
+                        margin: 0;
+
+                        h2{
+                            margin: 0;
+                        }
+
+                        .section_selectablelist{
+                            padding: 0px;
+                        }
+
+                        &.form{
+                            padding: 0px;
+                        }
                     }
                 }
             }
-        }
 
-        .event_text{
-            text-align: center;
+            .event_text{
+                text-align: center;
 
-            .section_emoji{
-                max-height: 150px;
+                .section_emoji{
+                    max-height: 150px;
+                }
             }
         }
     }
-}
 
-.timeslot_dialog{
-    border: 1px solid $ColorSecondary;
-    border-radius: 10px;
-    max-width: 90%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.timeslot_dialog_button{
-    display: block;
-    padding: 10px 20px;
-    color: $ColorWhite;
-    background-color: $ColorSecondary;
-    font-weight: 500;
-    transition: 0.2s ease-in-out;
-    text-decoration: none;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    margin: 0 auto;
-    text-align: center;
-    left: 50%;
-    margin-bottom: 20px;
-    opacity: 0.7;
-
-    &:hover{
-        background-color: $ColorSecondaryDark;
+    .timeslot_dialog{
+        border: 1px solid var(--ColorSecondary);
+        border-radius: 10px;
+        max-width: 90%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-}
 
-@keyframes cry {
-    0% {
-        transform: translateY(0) scaleY(1);
+    .timeslot_dialog_button{
+        display: block;
+        padding: 10px 20px;
+        color: var(--ColorWhite);
+        background-color: var(--ColorSecondary);
+        font-weight: 500;
+        transition: 0.2s ease-in-out;
+        text-decoration: none;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 0 auto;
+        text-align: center;
+        left: 50%;
+        margin-bottom: 20px;
+        opacity: 0.7;
+
+        &:hover{
+            background-color: var(--ColorSecondaryDark);
+        }
     }
-    50% {
-        transform: translateY(-10px) scaleY(0.98);
-    }
-    100% {
-        transform: translateY(0) scaleY(1);
+
+    @keyframes cry {
+        0% {
+            transform: translateY(0) scaleY(1);
+        }
+        50% {
+            transform: translateY(-10px) scaleY(0.98);
+        }
+        100% {
+            transform: translateY(0) scaleY(1);
+        }
     }
 }

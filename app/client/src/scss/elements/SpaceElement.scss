@@ -1,4 +1,6 @@
-.section.section--SpaceElement {
-    padding: 0;
-    position: relative;
+@mixin SpaceElement {
+    .section.section--SpaceElement {
+        padding: 0;
+        position: relative;
+    }
 }

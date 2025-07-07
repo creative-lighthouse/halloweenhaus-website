@@ -1,0 +1,49 @@
+@mixin FactsElement {
+    .section.section--FactsElement {
+        .section_content{
+            text-align: center;
+
+            .factselement_list{
+                display: grid;
+                justify-content: space-around;
+                gap: 10px;
+
+                .factitem{
+                    display: grid;
+                    grid-template-columns: 30% 70%;
+                    grid-template-areas: "facts text";
+                    border-radius: 20px;
+                    align-items: center;
+
+                    background-color: var(--ColorBackgroundLight);
+                    transition: background-color 0.2s ease-in-out;
+
+                    .factitem_facts{
+
+                        margin: 5px;
+                        grid-area: facts;
+                        color: var(--ColorWhite);
+
+                        .factitem_number{
+                            font-size: 50px;
+                            margin: 0px 0px -10px 0px;
+                        }
+
+                        .factitem_title{
+                            margin: 0;
+                        }
+                    }
+
+                    .factitem_text{
+                        p{
+                            margin: 5px;
+                        }
+                        color: var(--ColorWhite);
+                        grid-area: text;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}
