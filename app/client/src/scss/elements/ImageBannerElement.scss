@@ -1,136 +1,135 @@
-@mixin ImageBannerElement {
-    .section.section--ImageBannerElement {
-        margin: 0 auto;
-        padding: 0;
-        max-width: 100%;
-        background-color: transparent;
-        overflow: hidden;
-        align-items: center;
-        position: relative;
+@use "../variables" as *;
+.section.section--ImageBannerElement {
+    margin: 0 auto;
+    padding: 0;
+    max-width: 100%;
+    background-color: transparent;
+    overflow: hidden;
+    align-items: center;
+    position: relative;
 
-        .section_content{
-            display: block;
-            width: 100%;
-            height: calc(100% + 40vh);
-            max-width: 100%;
-            margin: 0;
-            padding: 0;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            z-index: -100;
+    .section_content{
+        display: block;
+        width: 100%;
+        height: calc(100% + 40vh);
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        z-index: -100;
+    }
+
+    .section_description{
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        display: block;
+        margin: 0 auto;
+        max-width: var(--MaxWidth)Content;
+        color: white;
+
+        @include media(max-desktop) {
+            padding: 30px;
         }
+    }
+
+    &.overlay--darker{
+        .section_content{
+            opacity: 0.8;
+            background-color: rgba(0, 0, 0, 1);
+        }
+    }
+
+    &.overlay--darkest{
+        .section_content{
+            opacity: 0.5;
+            background-color: rgba(0, 0, 0, 1);
+        }
+    }
+
+    &.overlay--brushstroke{
+        mask-image: url("../../../images/brushstroke_mask.svg");
+        mask-size: 100% 100%;
+        mask-repeat: no-repeat;
+        mask-mode: luminance;
+
+        @include media(max-medium) {
+            mask-image: url("../../../images/brushstroke_mask_mobile.svg");
+        }
+        .section_description{
+            display: none;
+        }
+    }
+
+    &.overlay--fadeout_vertical{
+        .section_content{
+            mask-image: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+        }
+    }
+
+    &.overlay--fadeout_horizontal{
+        .section_content{
+            mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+        }
+    }
+
+    &.variant--limited{
+        margin: 50px auto;
+        max-width: var(--MaxWidth);
+        border-radius: 20px;
+        .section_description{
+            max-width: var(--MaxWidth);
+            padding-left: 30px;
+        }
+    }
+
+    &.variant--contained{
+        margin: 20px auto;
+        max-width: var(--MaxWidth);
+        border-radius: 20px;
+        height: auto;
+        margin-top: -160px;
+        z-index: 10;
+        margin-bottom: -60px;
 
         .section_description{
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            right: 0;
-            display: block;
-            margin: 0 auto;
-            max-width: $maxWidthContent;
-            color: white;
-
-            @include media(max-desktop) {
-                padding: 30px;
-            }
+            max-width: var(--MaxWidth);
+            padding-left: 30px;
         }
 
-        &.overlay--darker{
-            .section_content{
-                opacity: 0.8;
-                background-color: rgba(0, 0, 0, 1);
-            }
-        }
-
-        &.overlay--darkest{
-            .section_content{
-                opacity: 0.5;
-                background-color: rgba(0, 0, 0, 1);
-            }
-        }
-
-        &.overlay--brushstroke{
-            mask-image: url("../../../images/brushstroke_mask.svg");
-            mask-size: 100% 100%;
-            mask-repeat: no-repeat;
-            mask-mode: luminance;
-
-            @include media(max-medium) {
-                mask-image: url("../../../images/brushstroke_mask_mobile.svg");
-            }
-            .section_description{
-                display: none;
-            }
-        }
-
-        &.overlay--fadeout_vertical{
-            .section_content{
-                mask-image: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
-            }
-        }
-
-        &.overlay--fadeout_horizontal{
-            .section_content{
-                mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
-            }
-        }
-
-        &.variant--limited{
-            margin: 50px auto;
-            max-width: $maxWidth;
-            border-radius: 20px;
-            .section_description{
-                max-width: $maxWidth;
-                padding-left: 30px;
-            }
-        }
-
-        &.variant--contained{
-            margin: 20px auto;
-            max-width: $maxWidth;
-            border-radius: 20px;
+        .section_content{
+            background-size: contain;
+            background-repeat: no-repeat;
             height: auto;
-            margin-top: -160px;
-            z-index: 10;
-            margin-bottom: -60px;
 
-            .section_description{
-                max-width: $maxWidth;
-                padding-left: 30px;
-            }
-
-            .section_content{
-                background-size: contain;
-                background-repeat: no-repeat;
+            img{
+                width: 100%;
                 height: auto;
-
-                img{
-                    width: 100%;
-                    height: auto;
-                    object-fit: contain;
-                }
-            }
-
-            @include media(max-desktop) {
-                margin-top: -75px;
-            }
-
-            @include media(max-smartphone) {
-                margin-top: -40px;
+                object-fit: contain;
             }
         }
 
-        &.variant--hovering{
-            max-width: $maxWidth;
-            margin: 50px auto;
-            max-width: $maxWidthContent;
-            box-shadow: 0px 0px 10px var(--ColorBlack);
-            border-radius: 20px;
+        @include media(max-desktop) {
+            margin-top: -75px;
+        }
 
-            .section_description{
-                padding-left: 30px;
-            }
+        @include media(max-smartphone) {
+            margin-top: -40px;
+        }
+    }
+
+    &.variant--hovering{
+        max-width: var(--MaxWidth);
+        margin: 50px auto;
+        max-width: var(--MaxWidth)Content;
+        box-shadow: 0px 0px 10px var(--ColorBlack);
+        border-radius: 20px;
+
+        .section_description{
+            padding-left: 30px;
         }
     }
 }

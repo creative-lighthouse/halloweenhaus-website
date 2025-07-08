@@ -1,95 +1,95 @@
-@mixin Feedback {
-    .section.section--feedback{
-        .section_content{
-            margin: 160px auto;
+@use "../variables" as *;
 
-            h1{
-                text-align: center;
-                margin-bottom: 50px;
-            }
+.section.section--feedback{
+    .section_content{
+        margin: 160px auto;
 
-            .feedback_form{
+        h1{
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .feedback_form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+
+            .form-group{
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-                gap: 20px;
+                gap: 10px;
+                margin-top: 20px;
 
-                .form-group{
+                label{
+                    font-size: 18px;
+                    text-align: center;
+                }
+
+                input, textarea{
+                    border: 1px solid #000;
+                    padding: 10px;
+                    font-size: 16px;
+                }
+
+                textarea{
+                    resize: none;
+                    height: 200px;
+                }
+
+                input[type="submit"]{
+                    width: 100%;
+                    background-color: var(--ColorSecondary);
+                    color: #fff;
+                    border: none;
+                    padding: 20px 40px;
+                    border-radius: 20px;
+                    font-size: 16px;
+                    cursor: pointer;
+                }
+
+                .switch{
                     display: flex;
-                    flex-direction: column;
+                    align-items: center;
                     gap: 10px;
-                    margin-top: 20px;
+                    justify-content: center;
+                    margin-bottom: 30px;
 
                     label{
-                        font-size: 18px;
-                        text-align: center;
-                    }
-
-                    input, textarea{
-                        border: 1px solid #000;
                         padding: 10px;
                         font-size: 16px;
-                    }
-
-                    textarea{
-                        resize: none;
-                        height: 200px;
-                    }
-
-                    input[type="submit"]{
-                        width: 100%;
-                        background-color: var(--ColorSecondary);
-                        color: #fff;
-                        border: none;
-                        padding: 20px 40px;
-                        border-radius: 20px;
-                        font-size: 16px;
+                        background-color: var(--ColorBlack);
                         cursor: pointer;
-                    }
+                        width: 50%;
 
-                    .switch{
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
-                        justify-content: center;
-                        margin-bottom: 30px;
-
-                        label{
-                            padding: 10px;
-                            font-size: 16px;
-                            background-color: var(--ColorBlack);
-                            cursor: pointer;
-                            width: 50%;
-
-                            p{
-                                margin: 0;
-                                text-align: center;
-                            }
-
-                            .weekday{
-                                display: block;
-                                font-size: 22px;
-                                margin: 5px;
-                            }
+                        p{
+                            margin: 0;
+                            text-align: center;
                         }
 
-                        input{
-                            display: none;
+                        .weekday{
+                            display: block;
+                            font-size: 22px;
+                            margin: 5px;
+                        }
+                    }
 
-                            &:checked+label{
-                                background-color: var(--ColorSecondary);
-                            }
+                    input{
+                        display: none;
+
+                        &:checked+label{
+                            background-color: var(--ColorSecondary);
                         }
                     }
                 }
             }
+        }
 
-            .section_emoji{
-                width: 100%;
-                max-width: 300px;
-                margin: 0 auto;
-                display: block;
-            }
+        .section_emoji{
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            display: block;
         }
     }
 }

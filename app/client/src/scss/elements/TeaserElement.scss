@@ -1,57 +1,57 @@
-@mixin TeaserElement {
-    .section.section--TeaserElement {
-        .section_content{
-            text-align: center;
+@use "../variables" as *;
 
-            .teaserelement_list{
-                display: grid;
-                grid-template-columns: repeat(3, calc(100% / 3));
-                justify-content: space-around;
-                gap: 20px;
+.section.section--TeaserElement {
+    .section_content{
+        text-align: center;
 
-                .teaseritem{
-                    background-color: var(--ColorBackgroundLight);
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-start;
-                    align-items: center;
-                    text-align: center;
-                    padding: 20px;
-                    border-radius: 20px;
+        .teaserelement_list{
+            display: grid;
+            grid-template-columns: repeat(3, calc(100% / 3));
+            justify-content: space-around;
+            gap: 20px;
 
-                    p{
-                        margin-bottom: 0px;
-                    }
+            .teaseritem{
+                background-color: var(--ColorBackgroundLight);
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+                border-radius: 20px;
 
-                    .link--button{
-                        margin-top: 10px;
-                    }
+                p{
+                    margin-bottom: 0px;
+                }
 
-                    .teaseritem_image{
-                        width: 150px;
-                        height: 150px;
-                        padding: 0 20px 5px 20px;
-                        img{
-                            width: 100%;
-                            height: 100%;
-                            object-fit: contain;
-                        }
-                    }
+                .link--button{
+                    margin-top: 10px;
+                }
 
-                    .teaseritem_title{
-                        font-size: 20px;
-                        padding: 0 10px 12px 10px;
-                        border-bottom: 2px solid var(--ColorWhite);
+                .teaseritem_image{
+                    width: 150px;
+                    height: 150px;
+                    padding: 0 20px 5px 20px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
                     }
                 }
 
-                @include media(max-medium) {
-                    grid-template-columns: repeat(2, calc(100% / 2));
+                .teaseritem_title{
+                    font-size: 20px;
+                    padding: 0 10px 12px 10px;
+                    border-bottom: 2px solid var(--ColorWhite);
                 }
-                @include media(max-smartphone) {
-                    grid-template-columns: repeat(1, calc(100% / 1));
-                }
+            }
+
+            @include media(max-medium) {
+                grid-template-columns: repeat(2, calc(100% / 2));
+            }
+            @include media(max-smartphone) {
+                grid-template-columns: repeat(1, calc(100% / 1));
             }
         }
     }

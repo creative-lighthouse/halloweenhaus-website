@@ -1,132 +1,131 @@
-@mixin HeroImageElement {
-    .section.section--HeroImageElement {
-        max-width: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 0;
+@use "../variables" as *;
+.section.section--HeroImageElement {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 
-        .section_content{
-            background-size: cover;
-            background-repeat: no-repeat;
-            position: relative;
+    .section_content{
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        height: 800px;
+        overflow: hidden;
+
+        .heroimage_image{
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 100%;
-            height: 800px;
-            overflow: hidden;
+            height: 100%;
+            object-fit: cover;
+
+            &.background2{
+                z-index: 2;
+                animation: character 50s infinite;
+            }
+
+            &.character{
+                z-index: 3;
+                animation: character 25s infinite;
+            }
+
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .heroimage_object{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            z-index: 4;
+            animation: float 15s infinite;
 
             .heroimage_image{
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-
-                &.background2{
-                    z-index: 2;
-                    animation: character 50s infinite;
+                &.object{
+                    z-index: 5;
                 }
 
-                &.character{
-                    z-index: 3;
-                    animation: character 25s infinite;
+                &.effect{
+                    z-index: 6;
+                    animation: wobble 15s infinite;
+                    transform-origin: center 80%;
                 }
 
-                img{
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-
-            .heroimage_object{
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-
-                z-index: 4;
-                animation: float 15s infinite;
-
-                .heroimage_image{
-                    &.object{
-                        z-index: 5;
-                    }
-
-                    &.effect{
-                        z-index: 6;
-                        animation: wobble 15s infinite;
-                        transform-origin: center 80%;
-                    }
-
-                    &.effectoverlay{
-                        z-index: 7;
-                        animation: opacityeffect 5s infinite;
-                    }
+                &.effectoverlay{
+                    z-index: 7;
+                    animation: opacityeffect 5s infinite;
                 }
             }
         }
     }
+}
 
-    @keyframes wobble {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(20deg);
-        }
-        100% {
-            transform: rotate(0deg);
-        }
+@keyframes wobble {
+    0% {
+        transform: rotate(0deg);
     }
-
-    @keyframes wobblebackground {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(50deg);
-        }
-        100% {
-            transform: rotate(0deg);
-        }
+    100% {
+        transform: rotate(20deg);
     }
-
-    @keyframes float {
-        0% {
-            transform: translateY(0px);
-        }
-        50% {
-            transform: translateY(10px);
-        }
-        100% {
-            transform: translateY(0px);
-        }
+    100% {
+        transform: rotate(0deg);
     }
+}
 
-    @keyframes character {
-        0% {
-            transform: translateY(0px) rotateY(0deg) scale(1);
-        }
-        50% {
-            transform: translateY(10px) rotateY(10deg) scale(1.05);
-        }
-        100% {
-            transform: translateY(0px) rotateY(0deg) scale(1);
-        }
+@keyframes wobblebackground {
+    0% {
+        transform: rotate(0deg);
     }
+    100% {
+        transform: rotate(50deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
 
-    @keyframes opacityeffect {
-        0% {
-            opacity: 1;
-        }
-        50% {
-            opacity: 0.7;
-        }
-        100% {
-            opacity: 1;
-        }
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes character {
+    0% {
+        transform: translateY(0px) rotateY(0deg) scale(1);
+    }
+    50% {
+        transform: translateY(10px) rotateY(10deg) scale(1.05);
+    }
+    100% {
+        transform: translateY(0px) rotateY(0deg) scale(1);
+    }
+}
+
+@keyframes opacityeffect {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
     }
 }

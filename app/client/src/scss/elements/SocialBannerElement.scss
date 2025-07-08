@@ -1,11 +1,11 @@
-@mixin SocialBannerElement {
-    .section.section--SocialBannerElement {
-        .section_content{
-            text-align: center;
-            .socialbanner_list{
-                display: flex;
-                justify-content: center;
-            }
+@use "../variables" as *;
+
+.section.section--SocialBannerElement {
+    .section_content{
+        text-align: center;
+        .socialbanner_list{
+            display: flex;
+            justify-content: center;
         }
     }
 }

@@ -1,96 +1,96 @@
-@mixin Animations {
-    @keyframes rainbow{
-        100%,0%{
-            color: rgb(255,0,0);
-        }
-        8%{
-            color: rgb(255,127,0);
-        }
-        16%{
-            color: rgb(255,255,0);
-        }
-        25%{
-            color: rgb(127,255,0);
-        }
-        33%{
-            color: rgb(0,255,0);
-        }
-        41%{
-            color: rgb(0,255,127);
-        }
-        50%{
-            color: rgb(0,255,255);
-        }
-        58%{
-            color: rgb(128, 191, 253);
-        }
-        66%{
-            color: rgb(139, 139, 255);
-        }
-        75%{
-            color: rgb(189, 124, 255);
-        }
-        83%{
-            color: rgb(255,0,255);
-        }
-        91%{
-            color: rgb(255,0,127);
-        }
-    }
+@use "variables" as *;
 
-    @keyframes leftright {
-        0%{
-            transform: translateX(-2px);
-        }
-        15%{
-            transform: translateX(2px);
-        }
-        25%{
-            transform: translateX(-2px);
-        }
-        30%{
-            transform: translateX(2px);
-        }
-        50%{
-            transform: translateX(-2px);
-        }
-        56%{
-            transform: translateX(2px) scaleY(1);
-        }
-        58%{
-            transform: translateX(2px) scaleY(0);
-        }
-        60%{
-            transform: translateX(2px) scaleY(1);
-        }
-        65%{
-            transform: translateX(2px);
-        }
-        70%{
-            transform: translateX(-2px);
-        }
-        80%{
-            transform: translateX(2px);
-        }
-        100%{
-            transform: translateX(-2px);
-        }
+@keyframes rainbow{
+    100%,0%{
+        color: rgb(255,0,0);
     }
+    8%{
+        color: rgb(255,127,0);
+    }
+    16%{
+        color: rgb(255,255,0);
+    }
+    25%{
+        color: rgb(127,255,0);
+    }
+    33%{
+        color: rgb(0,255,0);
+    }
+    41%{
+        color: rgb(0,255,127);
+    }
+    50%{
+        color: rgb(0,255,255);
+    }
+    58%{
+        color: rgb(128, 191, 253);
+    }
+    66%{
+        color: rgb(139, 139, 255);
+    }
+    75%{
+        color: rgb(189, 124, 255);
+    }
+    83%{
+        color: rgb(255,0,255);
+    }
+    91%{
+        color: rgb(255,0,127);
+    }
+}
 
-    @keyframes updown {
-        0%{
-            transform: translateY(-3%);
-        }
-        50%{
-            transform: translateY(1%);
-        }
-        100%{
-            transform: translateY(-3%);
-        }
+@keyframes leftright {
+    0%{
+        transform: translateX(-2px);
     }
+    15%{
+        transform: translateX(2px);
+    }
+    25%{
+        transform: translateX(-2px);
+    }
+    30%{
+        transform: translateX(2px);
+    }
+    50%{
+        transform: translateX(-2px);
+    }
+    56%{
+        transform: translateX(2px) scaleY(1);
+    }
+    58%{
+        transform: translateX(2px) scaleY(0);
+    }
+    60%{
+        transform: translateX(2px) scaleY(1);
+    }
+    65%{
+        transform: translateX(2px);
+    }
+    70%{
+        transform: translateX(-2px);
+    }
+    80%{
+        transform: translateX(2px);
+    }
+    100%{
+        transform: translateX(-2px);
+    }
+}
 
-    @keyframes fade {
-        from {opacity: .4}
-        to {opacity: 1}
+@keyframes updown {
+    0%{
+        transform: translateY(-3%);
     }
+    50%{
+        transform: translateY(1%);
+    }
+    100%{
+        transform: translateY(-3%);
+    }
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
 }

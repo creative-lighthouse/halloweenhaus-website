@@ -1,617 +1,617 @@
-@mixin Events {
-    .section.section--events{
-        margin-top: 130px;
-        min-height: 80%;
+@use "../../variables" as *;
 
-        h1{
+.section.section--events{
+    margin-top: 130px;
+    min-height: 80%;
+
+    h1{
+        text-align: center;
+    }
+
+    h2{
+        text-align: center;
+        margin: 10px 0 0 0;
+    }
+
+    b{
+        font-weight: 900;
+        color: var(--ColorSecondaryLight);
+    }
+
+    &.unsubscribe{
+        .section_content{
             text-align: center;
+        }
+
+        .section_emoji{
+            animation: cry 2s infinite;
+        }
+    }
+
+    &.registrationfull {
+        .section_content {
+            text-align: center;
+        }
+
+        h1,
+        h2 {
+            margin: 20px 0;
+        }
+
+        h2 {
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            transform: rotate(-3deg);
+            display: inline-block;
+            width: auto;
+            margin-bottom: 30px;
+        }
+
+        .section_emoji {
+            animation: cry 2s infinite;
+        }
+    }
+
+    &.registrationsuccessful{
+        margin: 130px auto;
+
+        .section_content {
+            text-align: center;
+        }
+
+        h1, h2{
+            margin: 20px 0;
         }
 
         h2{
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            transform: rotate(-3deg);
+            display: inline-block;
+            width: auto;
+            margin-bottom: 30px;
+        }
+
+
+        p{
+            margin: 10px 0;
+        }
+    }
+
+    &.eventnotfound {
+        margin: 130px auto;
+
+        .section_content {
             text-align: center;
-            margin: 10px 0 0 0;
         }
 
-        b{
-            font-weight: 900;
-            color: var(--ColorSecondaryLight);
+        h1,
+        h2 {
+            margin: 20px 0;
         }
 
-        &.unsubscribe{
-            .section_content{
-                text-align: center;
-            }
-
-            .section_emoji{
-                animation: cry 2s infinite;
-            }
+        h2 {
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            transform: rotate(-3deg);
+            display: inline-block;
+            width: auto;
+            margin-bottom: 30px;
         }
 
-        &.registrationfull {
-            .section_content {
-                text-align: center;
-            }
 
-            h1,
-            h2 {
-                margin: 20px 0;
-            }
-
-            h2 {
-                background-color: white;
-                color: black;
-                padding: 10px 20px;
-                transform: rotate(-3deg);
-                display: inline-block;
-                width: auto;
-                margin-bottom: 30px;
-            }
-
-            .section_emoji {
-                animation: cry 2s infinite;
-            }
+        p {
+            margin: 10px 0;
         }
 
-        &.registrationsuccessful{
-            margin: 130px auto;
+        .ticket_button {
+            background-color: var(--ColorSecondary);
+            color: var(--ColorWhite);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.1s ease-in-out;
+            text-align: center;
+            margin: 20px 0;
+            text-decoration: none;
+            display: inline-block;
 
-            .section_content {
-                text-align: center;
-            }
-
-            h1, h2{
-                margin: 20px 0;
-            }
-
-            h2{
-                background-color: white;
-                color: black;
-                padding: 10px 20px;
-                transform: rotate(-3deg);
-                display: inline-block;
-                width: auto;
-                margin-bottom: 30px;
-            }
-
-
-            p{
-                margin: 10px 0;
+            &:hover {
+                background-color: var(--ColorSecondaryDark);
             }
         }
+    }
 
-        &.eventnotfound {
-            margin: 130px auto;
+    &.registrationconfirm {
+        margin: 130px auto;
 
-            .section_content {
-                text-align: center;
-            }
-
-            h1,
-            h2 {
-                margin: 20px 0;
-            }
-
-            h2 {
-                background-color: white;
-                color: black;
-                padding: 10px 20px;
-                transform: rotate(-3deg);
-                display: inline-block;
-                width: auto;
-                margin-bottom: 30px;
-            }
-
-
-            p {
-                margin: 10px 0;
-            }
-
-            .ticket_button {
-                background-color: var(--ColorSecondary);
-                color: var(--ColorWhite);
-                border: none;
-                border-radius: 10px;
-                padding: 10px 20px;
-                cursor: pointer;
-                font-weight: 700;
-                transition: background-color 0.1s ease-in-out;
-                text-align: center;
-                margin: 20px 0;
-                text-decoration: none;
-                display: inline-block;
-
-                &:hover {
-                    background-color: var(--ColorSecondaryDark);
-                }
-            }
+        h1,
+        h2 {
+            margin: 20px 0;
         }
 
-        &.registrationconfirm {
-            margin: 130px auto;
-
-            h1,
-            h2 {
-                margin: 20px 0;
-            }
-
-            h2 {
-                background-color: white;
-                color: black;
-                padding: 10px 20px;
-                transform: rotate(-3deg);
-                display: inline-block;
-                width: auto;
-                margin-bottom: 30px;
-            }
-
-
-            p {
-                margin: 10px 0;
-            }
-
-            .ticket_button{
-                background-color: var(--ColorSecondary);
-                color: var(--ColorWhite);
-                border: none;
-                border-radius: 10px;
-                padding: 10px 20px;
-                cursor: pointer;
-                font-weight: 700;
-                transition: background-color 0.1s ease-in-out;
-                text-align: center;
-                margin: 20px 0;
-                text-decoration: none;
-                display: inline-block;
-
-                &:hover{
-                    background-color: var(--ColorSecondaryDark);
-                }
-            }
+        h2 {
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            transform: rotate(-3deg);
+            display: inline-block;
+            width: auto;
+            margin-bottom: 30px;
         }
 
-        .section_content{
-            .events_navigator{
-                background-color: white;
-                border-radius: 20px;
-                color: black;
-                overflow: hidden;
-                padding: 10px;
 
-                .events_navigator_step{
-                    max-height: 1000px;
-                    transition: 0.2s ease-in-out;
+        p {
+            margin: 10px 0;
+        }
 
-                    .section_couponform{
-                        margin: 10px 0;
-                        display: flex;
-                        width: 100%;
-                        justify-content: center;
+        .ticket_button{
+            background-color: var(--ColorSecondary);
+            color: var(--ColorWhite);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.1s ease-in-out;
+            text-align: center;
+            margin: 20px 0;
+            text-decoration: none;
+            display: inline-block;
+
+            &:hover{
+                background-color: var(--ColorSecondaryDark);
+            }
+        }
+    }
+
+    .section_content{
+        .events_navigator{
+            background-color: white;
+            border-radius: 20px;
+            color: black;
+            overflow: hidden;
+            padding: 10px;
+
+            .events_navigator_step{
+                max-height: 1000px;
+                transition: 0.2s ease-in-out;
+
+                .section_couponform{
+                    margin: 10px 0;
+                    display: flex;
+                    width: 100%;
+                    justify-content: center;
+                    align-items: center;
+
+                    label{
+                        font-weight: 700;
+                    }
+
+                    input{
+                        padding: 10px;
+                        border-radius: 10px 0 0 10px;
+                        border: 1px solid rgb(216, 216, 216);
+                        height: 100%;
+                        line-height: 18px;
+                    }
+
+                    button{
+                        padding: 10px 20px;
+                        border-radius: 0 10px 10px 0;
+                        border: none;
+                        background-color: var(--ColorSecondary);
+                        color: var(--ColorWhite);
+                        cursor: pointer;
+                        font-weight: 700;
+                        height: 100%;
+                        transition: background-color 0.1s ease-in-out;
+                        line-height: 18px;
+
+                        &:hover{
+                            background-color: var(--ColorSecondaryDark);
+                        }
+                    }
+
+                    &.hidden{
+                        display: none;
+                    }
+
+                    @include media(max-medium){
+                        flex-direction: column;
                         align-items: center;
 
-                        label{
-                            font-weight: 700;
-                        }
-
                         input{
-                            padding: 10px;
-                            border-radius: 10px 0 0 10px;
-                            border: 1px solid rgb(216, 216, 216);
-                            height: 100%;
-                            line-height: 18px;
+                            border-radius: 10px 10px 0 0;
+                            width: 100%;
                         }
 
                         button{
-                            padding: 10px 20px;
-                            border-radius: 0 10px 10px 0;
-                            border: none;
-                            background-color: var(--ColorSecondary);
-                            color: var(--ColorWhite);
-                            cursor: pointer;
-                            font-weight: 700;
-                            height: 100%;
-                            transition: background-color 0.1s ease-in-out;
-                            line-height: 18px;
+                            border-radius: 0 0 10px 10px;
+                            width: 100%;
+                        }
+                    }
+                }
 
-                            &:hover{
-                                background-color: var(--ColorSecondaryDark);
-                            }
+                .coupon_message{
+                    text-align: center;
+                    margin: 10px 0 0px 0;
+                    opacity: 0.5;
+
+                    &.valid{
+                        color: green;
+                    }
+
+                    &.invalid{
+                        color: red;
+                    }
+                }
+
+                .coupon_reset{
+                    display: block;
+                    text-align: center;
+                    margin: 10px 0 0px 0;
+                    cursor: pointer;
+                    color: var(--ColorSecondary);
+                    font-weight: 700;
+                    font-size: 12px;
+
+                    &.hidden {
+                        display: none;
+                    }
+                }
+
+                .coupon_description{
+                    text-align: center;
+                    margin: 10px 0 20px 0;
+                }
+
+                .section_selectablelist{
+                    display: flex;
+                    margin: 10px auto 20px;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+                }
+
+                &.coupon{
+                    h3{
+                        text-align: center;
+                        margin: 10px 0;
+                    }
+                }
+
+                &.selected{
+                    background-color: var(--ColorSecondary);
+                }
+
+                &.dates{
+                    padding: 0 20px;
+
+                    .date_card{
+                        cursor: pointer;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        color: var(--ColorBlack);
+                        overflow: hidden;
+                        border-top: 1px solid rgb(216, 216, 216);
+                        border-bottom: 1px solid rgb(216, 216, 216);
+
+                        .date_card_weekday{
+                            font-size: 0.8em;
+                            margin: 0;
+                            width: 100%;
+                            text-align: center;
+                            font-weight: 700;
+                            padding: 5px 20px 3px 20px;
+                            background-color: rgb(240, 240, 240);
+                            border-bottom: 1px solid rgb(216, 216, 216);
+                        }
+
+                        .date_card_day{
+                            font-size: 1.5em;
+                            margin: 0;
+                            width: 100%;
+                            text-align: center;
+                            font-weight: 700;
+                            padding: 10px 20px 0 20px;
+                            color: var(--ColorSecondary);
+                        }
+
+                        .date_card_month{
+                            font-size: 0.8em;
+                            margin: 0;
+                            width: 100%;
+                            text-align: center;
+                            padding: 5px 15px 10px 15px;
+                            color: var(--ColorSecondary);
                         }
 
                         &.hidden{
                             display: none;
                         }
 
-                        @include media(max-medium){
-                            flex-direction: column;
-                            align-items: center;
-
-                            input{
-                                border-radius: 10px 10px 0 0;
-                                width: 100%;
-                            }
-
-                            button{
-                                border-radius: 0 0 10px 10px;
-                                width: 100%;
+                        &.selected{
+                            .date_card_day, .date_card_month{
+                                background-color: var(--ColorSecondary);
+                                color: var(--ColorWhite);
                             }
                         }
-                    }
 
-                    .coupon_message{
-                        text-align: center;
-                        margin: 10px 0 0px 0;
-                        opacity: 0.5;
-
-                        &.valid{
-                            color: green;
+                        &:first-of-type{
+                            border-top-left-radius: 20px;
+                            border-bottom-left-radius: 20px;
+                            border-left: 1px solid rgb(216, 216, 216);
                         }
-
-                        &.invalid{
-                            color: red;
+                        &:last-of-type{
+                            border-top-right-radius: 20px;
+                            border-bottom-right-radius: 20px;
+                            border-right: 1px solid rgb(216, 216, 216);
                         }
                     }
+                }
 
-                    .coupon_reset{
-                        display: block;
-                        text-align: center;
-                        margin: 10px 0 0px 0;
-                        cursor: pointer;
-                        color: var(--ColorSecondary);
-                        font-weight: 700;
-                        font-size: 12px;
-
-                        &.hidden {
-                            display: none;
-                        }
-                    }
-
-                    .coupon_description{
-                        text-align: center;
-                        margin: 10px 0 20px 0;
-                    }
+                &.events{
+                    padding: 0 20px;
 
                     .section_selectablelist{
-                        display: flex;
-                        margin: 10px auto 20px;
-                        justify-content: center;
-                        align-items: center;
-                        flex-wrap: wrap;
+                        gap: 10px;
                     }
+                    .event_card{
+                        border: 1px solid rgb(216, 216, 216);
+                        border-radius: 10px;
+                        text-align: center;
+                        cursor: pointer;
+                        width: 40%;
+                        height: 200px;
+                        overflow: hidden;
+                        color: var(--ColorSecondary);
+                        transition: background-color 0.1s ease-in-out;
 
-                    &.coupon{
-                        h3{
-                            text-align: center;
-                            margin: 10px 0;
+                        .event_card_image{
+                            width: 100%;
+                            height: 40%;
+                            border-bottom-left-radius: 50%;
+                            overflow: hidden;
+                            background-color: rgb(216, 216, 216);
+                            transition: 0.3s ease-in-out;
+
+                            img{
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                            }
                         }
-                    }
 
-                    &.selected{
-                        background-color: var(--ColorSecondary);
-                    }
-
-                    &.dates{
-                        padding: 0 20px;
-
-                        .date_card{
-                            cursor: pointer;
+                        .event_card_text{
                             display: flex;
+                            flex-direction: column;
                             justify-content: center;
                             align-items: center;
-                            flex-direction: column;
-                            color: var(--ColorBlack);
-                            overflow: hidden;
-                            border-top: 1px solid rgb(216, 216, 216);
-                            border-bottom: 1px solid rgb(216, 216, 216);
+                            height: 60%;
+                            transition: 0.3s ease-in-out;
 
-                            .date_card_weekday{
-                                font-size: 0.8em;
+                            .event_card_title{
                                 margin: 0;
-                                width: 100%;
-                                text-align: center;
-                                font-weight: 700;
-                                padding: 5px 20px 3px 20px;
-                                background-color: rgb(240, 240, 240);
-                                border-bottom: 1px solid rgb(216, 216, 216);
                             }
 
-                            .date_card_day{
-                                font-size: 1.5em;
+                            .event_card_duration{
+                                font-size: 12px;
                                 margin: 0;
-                                width: 100%;
-                                text-align: center;
-                                font-weight: 700;
-                                padding: 10px 20px 0 20px;
-                                color: var(--ColorSecondary);
-                            }
-
-                            .date_card_month{
-                                font-size: 0.8em;
-                                margin: 0;
-                                width: 100%;
-                                text-align: center;
-                                padding: 5px 15px 10px 15px;
-                                color: var(--ColorSecondary);
-                            }
-
-                            &.hidden{
-                                display: none;
-                            }
-
-                            &.selected{
-                                .date_card_day, .date_card_month{
-                                    background-color: var(--ColorSecondary);
-                                    color: var(--ColorWhite);
-                                }
-                            }
-
-                            &:first-of-type{
-                                border-top-left-radius: 20px;
-                                border-bottom-left-radius: 20px;
-                                border-left: 1px solid rgb(216, 216, 216);
-                            }
-                            &:last-of-type{
-                                border-top-right-radius: 20px;
-                                border-bottom-right-radius: 20px;
-                                border-right: 1px solid rgb(216, 216, 216);
+                                color: darkgray;
                             }
                         }
-                    }
 
-                    &.events{
-                        padding: 0 20px;
-
-                        .section_selectablelist{
-                            gap: 10px;
+                        &.hidden{
+                            display: none;
                         }
-                        .event_card{
-                            border: 1px solid rgb(216, 216, 216);
-                            border-radius: 10px;
-                            text-align: center;
-                            cursor: pointer;
-                            width: 40%;
-                            height: 200px;
-                            overflow: hidden;
-                            color: var(--ColorSecondary);
-                            transition: background-color 0.1s ease-in-out;
-
+                        &.selected{
                             .event_card_image{
-                                width: 100%;
-                                height: 40%;
-                                border-bottom-left-radius: 50%;
-                                overflow: hidden;
-                                background-color: rgb(216, 216, 216);
-                                transition: 0.3s ease-in-out;
-
-                                img{
-                                    width: 100%;
-                                    height: 100%;
-                                    object-fit: cover;
-                                }
+                                height: 50%;
                             }
 
                             .event_card_text{
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: center;
-                                align-items: center;
-                                height: 60%;
-                                transition: 0.3s ease-in-out;
-
-                                .event_card_title{
-                                    margin: 0;
-                                }
-
-                                .event_card_duration{
-                                    font-size: 12px;
-                                    margin: 0;
-                                    color: darkgray;
-                                }
+                                height: 50%;
                             }
-
-                            &.hidden{
-                                display: none;
-                            }
-                            &.selected{
-                                .event_card_image{
-                                    height: 50%;
-                                }
-
-                                .event_card_text{
-                                    height: 50%;
-                                }
-                                background-color: var(--ColorSecondary);
-                                color: var(--ColorWhite);
-                            }
-
-                            @include media(max-medium){
-                                width: 100%;
-                            }
-                        }
-                    }
-
-                    &.timeslots{
-                        padding: 0 20px;
-
-                        .section_selectablelist{
-                            gap: 10px;
-                        }
-
-                        .timeslot_card{
-                            border: 1px solid rgb(216, 216, 216);
-                            cursor: pointer;
-                            border-radius: 10px;
-                            padding: 10px 15px;
-                            color: var(--ColorSecondary);
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
-
-                            .timeslot_card_time{
-                                font-size: 18px;
-                                font-weight: 700;
-                                margin: 0;
-                            }
-
-                            .timeslot_card_capacity{
-                                font-weight: 400;
-                                font-size: 12px;
-                                margin: 0;
-                            }
-
-                            &.timeslot_card--text{
-                                pointer-events: none;
-                                width: 100%;
-                                text-align: center;
-                            }
-
-                            &.timeslot_card--full{
-                                filter: grayscale(100%);
-                                pointer-events: none;
-                                opacity: 0.5;
-                            }
-
-                            &.hidden{
-                                display: none;
-                            }
-                            &.selected{
-                                background-color: var(--ColorSecondary);
-                                color: var(--ColorWhite);
-                            }
-                        }
-                    }
-
-                    &.groupsize{
-                        .section_selectablelist{
-                            gap: 10px;
-                        }
-
-                        .groupsize_button{
-                            border: 1px solid rgb(216, 216, 216);
-                            cursor: pointer;
-                            border-radius: 10px;
-                            padding: 10px 15px;
-                            color: var(--ColorSecondary);
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
-
-                            &.selected{
-                                background-color: var(--ColorSecondary);
-                                color: var(--ColorWhite);
-                            }
-
-                            &.hidden{
-                                filter: grayscale(100%);
-                                pointer-events: none;
-                                opacity: 0.3;
-                            }
-                        }
-                    }
-
-                    &.form{
-                        padding: 20px;
-                        background-color: rgb(216, 216, 216);
-                        border-radius: 10px;
-                        text-align: center;
-
-                        a{
-                            color: var(--ColorSecondary);
-                            text-decoration: none;
-                            font-weight: 700;
-                        }
-
-                        .btn-toolbar{
-                            display: flex;
-                            justify-content: center;
-                        }
-
-                        input[type="submit"]{
                             background-color: var(--ColorSecondary);
                             color: var(--ColorWhite);
-                            border: none;
-                            border-radius: 10px;
-                            padding: 10px 20px;
-                            cursor: pointer;
-                            font-weight: 700;
-                            transition: background-color 0.1s ease-in-out;
-                            text-align: center;
+                        }
 
-                            &:hover{
-                                background-color: var(--ColorSecondaryDark);
-                            }
+                        @include media(max-medium){
+                            width: 100%;
                         }
                     }
+                }
 
-                    &.hidden{
-                        max-height: 0px;
-                        opacity: 0;
-                        margin: 0;
+                &.timeslots{
+                    padding: 0 20px;
 
-                        h2{
+                    .section_selectablelist{
+                        gap: 10px;
+                    }
+
+                    .timeslot_card{
+                        border: 1px solid rgb(216, 216, 216);
+                        cursor: pointer;
+                        border-radius: 10px;
+                        padding: 10px 15px;
+                        color: var(--ColorSecondary);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+
+                        .timeslot_card_time{
+                            font-size: 18px;
+                            font-weight: 700;
                             margin: 0;
                         }
 
-                        .section_selectablelist{
-                            padding: 0px;
+                        .timeslot_card_capacity{
+                            font-weight: 400;
+                            font-size: 12px;
+                            margin: 0;
                         }
 
-                        &.form{
-                            padding: 0px;
+                        &.timeslot_card--text{
+                            pointer-events: none;
+                            width: 100%;
+                            text-align: center;
+                        }
+
+                        &.timeslot_card--full{
+                            filter: grayscale(100%);
+                            pointer-events: none;
+                            opacity: 0.5;
+                        }
+
+                        &.hidden{
+                            display: none;
+                        }
+                        &.selected{
+                            background-color: var(--ColorSecondary);
+                            color: var(--ColorWhite);
                         }
                     }
                 }
-            }
 
-            .event_text{
-                text-align: center;
+                &.groupsize{
+                    .section_selectablelist{
+                        gap: 10px;
+                    }
 
-                .section_emoji{
-                    max-height: 150px;
+                    .groupsize_button{
+                        border: 1px solid rgb(216, 216, 216);
+                        cursor: pointer;
+                        border-radius: 10px;
+                        padding: 10px 15px;
+                        color: var(--ColorSecondary);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+
+                        &.selected{
+                            background-color: var(--ColorSecondary);
+                            color: var(--ColorWhite);
+                        }
+
+                        &.hidden{
+                            filter: grayscale(100%);
+                            pointer-events: none;
+                            opacity: 0.3;
+                        }
+                    }
+                }
+
+                &.form{
+                    padding: 20px;
+                    background-color: rgb(216, 216, 216);
+                    border-radius: 10px;
+                    text-align: center;
+
+                    a{
+                        color: var(--ColorSecondary);
+                        text-decoration: none;
+                        font-weight: 700;
+                    }
+
+                    .btn-toolbar{
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    input[type="submit"]{
+                        background-color: var(--ColorSecondary);
+                        color: var(--ColorWhite);
+                        border: none;
+                        border-radius: 10px;
+                        padding: 10px 20px;
+                        cursor: pointer;
+                        font-weight: 700;
+                        transition: background-color 0.1s ease-in-out;
+                        text-align: center;
+
+                        &:hover{
+                            background-color: var(--ColorSecondaryDark);
+                        }
+                    }
+                }
+
+                &.hidden{
+                    max-height: 0px;
+                    opacity: 0;
+                    margin: 0;
+
+                    h2{
+                        margin: 0;
+                    }
+
+                    .section_selectablelist{
+                        padding: 0px;
+                    }
+
+                    &.form{
+                        padding: 0px;
+                    }
                 }
             }
         }
-    }
 
-    .timeslot_dialog{
-        border: 1px solid var(--ColorSecondary);
-        border-radius: 10px;
-        max-width: 90%;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+        .event_text{
+            text-align: center;
 
-    .timeslot_dialog_button{
-        display: block;
-        padding: 10px 20px;
-        color: var(--ColorWhite);
-        background-color: var(--ColorSecondary);
-        font-weight: 500;
-        transition: 0.2s ease-in-out;
-        text-decoration: none;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        margin: 0 auto;
-        text-align: center;
-        left: 50%;
-        margin-bottom: 20px;
-        opacity: 0.7;
-
-        &:hover{
-            background-color: var(--ColorSecondaryDark);
+            .section_emoji{
+                max-height: 150px;
+            }
         }
     }
+}
 
-    @keyframes cry {
-        0% {
-            transform: translateY(0) scaleY(1);
-        }
-        50% {
-            transform: translateY(-10px) scaleY(0.98);
-        }
-        100% {
-            transform: translateY(0) scaleY(1);
-        }
+.timeslot_dialog{
+    border: 1px solid var(--ColorSecondary);
+    border-radius: 10px;
+    max-width: 90%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.timeslot_dialog_button{
+    display: block;
+    padding: 10px 20px;
+    color: var(--ColorWhite);
+    background-color: var(--ColorSecondary);
+    font-weight: 500;
+    transition: 0.2s ease-in-out;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 auto;
+    text-align: center;
+    left: 50%;
+    margin-bottom: 20px;
+    opacity: 0.7;
+
+    &:hover{
+        background-color: var(--ColorSecondaryDark);
+    }
+}
+
+@keyframes cry {
+    0% {
+        transform: translateY(0) scaleY(1);
+    }
+    50% {
+        transform: translateY(-10px) scaleY(0.98);
+    }
+    100% {
+        transform: translateY(0) scaleY(1);
     }
 }

@@ -1,320 +1,320 @@
-@mixin EventAdmin {
-    .section.section--EventsAdmin{
-        background-color: var(--ColorBlack);
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-        max-width: none;
-        text-align: center;
+@use "../../variables" as *;
 
-        .section_content{
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
+.section.section--EventsAdmin{
+    background-color: var(--ColorBlack);
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    max-width: none;
+    text-align: center;
 
-            .section_qrcodescan{
-                height: 50%;
-                overflow: hidden;
+    .section_content{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        .section_qrcodescan{
+            height: 50%;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+
+
+            #qrcode-video{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
                 aspect-ratio: 1/1;
-                display: block;
-                width: 100vw;
-                height: 100vh;
-                position: relative;
+            }
 
+            .scan-region-highlight{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 50%;
+                height: 50%;
+                transform: translate(-50%, -50%) scaleX(-1);
+                max-width: 200px;
+                max-height: 200px;
+                aspect-ratio: 1/1;
+                padding: 30%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
-                #qrcode-video{
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    aspect-ratio: 1/1;
-                }
+            .section_bottombar{
+                position: fixed;
+                bottom: 0px;
+                left: 0;
+                right: 0;
+                display: flex;
+                height: 70px;
+                background-color: var(--ColorBackground);
+                justify-content: center;
+                align-items: center;
 
-                .scan-region-highlight{
-                    position: absolute;
-                    left: 50%;
-                    top: 50%;
+                .clock{
                     width: 50%;
-                    height: 50%;
-                    transform: translate(-50%, -50%) scaleX(-1);
-                    max-width: 200px;
-                    max-height: 200px;
-                    aspect-ratio: 1/1;
-                    padding: 30%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    font-size: 20px;
                 }
 
-                .section_bottombar{
-                    position: fixed;
-                    bottom: 0px;
-                    left: 0;
-                    right: 0;
-                    display: flex;
-                    height: 70px;
-                    background-color: var(--ColorBackground);
-                    justify-content: center;
-                    align-items: center;
+                .logo {
+                    height: 100%;
+                    width: 50%;
+                    padding: 5px;
 
-                    .clock{
-                        width: 50%;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        font-size: 20px;
-                    }
-
-                    .logo {
+                    svg {
+                        width: 100%;
                         height: 100%;
-                        width: 50%;
-                        padding: 5px;
+                        object-fit: contain;
+                        color: var(--ColorWhite);
+                        animation: rainbow 75s infinite;
 
-                        svg {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: contain;
-                            color: var(--ColorWhite);
-                            animation: rainbow 75s infinite;
+                        .eyes {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            transform-origin: 22px 17px;
+                            animation: leftright 40s infinite;
+                        }
 
-                            .eyes {
-                                position: absolute;
-                                left: 0;
-                                top: 0;
-                                transform-origin: 22px 17px;
-                                animation: leftright 40s infinite;
+                        &.mobile {
+                            display: none;
+
+                            @include media(max-desktop) {
+                                display: block;
                             }
+                        }
 
+                        &.desktop {
+                            display: block;
+
+                            @include media(max-desktop) {
+                                display: none;
+                            }
+                        }
+
+                        .menu--fixed & {
                             &.mobile {
                                 display: none;
-
-                                @include media(max-desktop) {
-                                    display: block;
-                                }
                             }
 
                             &.desktop {
                                 display: block;
-
-                                @include media(max-desktop) {
-                                    display: none;
-                                }
-                            }
-
-                            .menu--fixed & {
-                                &.mobile {
-                                    display: none;
-                                }
-
-                                &.desktop {
-                                    display: block;
-                                }
                             }
                         }
                     }
                 }
             }
+        }
 
-            .section_counter{
-                position: absolute;
-                right: 20px;
-                top: 0;
-                bottom: 90px;
-                width: 12%;
-                border-radius: 10px 0 0 10px;
+        .section_counter{
+            position: absolute;
+            right: 20px;
+            top: 0;
+            bottom: 90px;
+            width: 12%;
+            border-radius: 10px 0 0 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 2%;
+
+            .section_counter_button{
+                width: 60px;
+                padding: 10px;
+                border: 2px solid var(--ColorBlack);
+                background-color: var(--ColorBackground);
+                text-decoration: none;
+                font-size: 20px;
                 display: flex;
-                flex-direction: column;
+                justify-content: center;
+                align-items: center;margin: 0;
+                aspect-ratio: 1/1;
+                border-radius: 50%;
+
+                .button_icon{
+                    width: 75%;
+                    height: 75%;
+                    object-fit: contain;
+                }
+            }
+        }
+
+        .section_numbers{
+            position: absolute;
+            top: 0%;
+            background-color: var(--ColorBackground);
+            left: 0;
+            right: 0;
+            height: 70px;
+            border-radius: 0 0 10px 10px;
+            display: flex;
+
+            .section_numbers_entry{
+                height: 100%;
+                width: calc(100%/3);
+                padding: 10px;
+                border: 2px solid var(--ColorBlack);
+                text-decoration: none;
+                font-size: 18px;
+                display: flex;
+                justify-content: center;
                 align-items: center;
-                justify-content: flex-end;
-                gap: 2%;
+                margin: 0;
+                gap: 10px;
 
-                .section_counter_button{
-                    width: 60px;
-                    padding: 10px;
-                    border: 2px solid var(--ColorBlack);
-                    background-color: var(--ColorBackground);
-                    text-decoration: none;
-                    font-size: 20px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;margin: 0;
+                .numbers_icon{
+                    width: 40px;
+                    height: 100%;
                     aspect-ratio: 1/1;
-                    border-radius: 50%;
+                    object-fit: contain;
+                }
 
-                    .button_icon{
-                        width: 75%;
-                        height: 75%;
-                        object-fit: contain;
-                    }
+                p{
+                    width: 40px;
+                }
+            }
+        }
+
+        .section_popup{
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            right: 10%;
+            bottom: 10%;
+            background-color: var(--ColorBackground);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            display: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px 5px var(--ColorWhite);
+            padding: 10px;
+
+            hr{
+                opacity: 0.2;
+            }
+
+            .section_popup_close{
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 10px;
+                background-color: gray;
+                color: var(--ColorWhite);
+                border-radius: 0 0 0 10px;
+            }
+
+            .section_popup_client_message{
+                padding: 10px;
+                border-bottom: 1px solid var(--ColorBlack);
+                width: 100%;
+                text-align: center;
+                margin-top: 0;
+                font-weight: bold;
+
+                &.valid{
+                    background-color: green;
+                }
+
+                &.problematic {
+                    background-color: orange;
+                }
+
+                &.invalid{
+                    background-color: red;
                 }
             }
 
-            .section_numbers{
+            .section_people_helper{
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
                 position: absolute;
-                top: 0%;
-                background-color: var(--ColorBackground);
+                bottom: 70px;
+                opacity: 0.5;
                 left: 0;
                 right: 0;
-                height: 70px;
-                border-radius: 0 0 10px 10px;
-                display: flex;
+                gap: 10px;
+                width: 100%;
+                padding: 0 20px;
 
-                .section_numbers_entry{
-                    height: 100%;
-                    width: calc(100%/3);
+                .section_people_helper_person{
+                    aspect-ratio: 1/1;
+                    max-height: 50px;
+                    min-width: 0;
+                }
+            }
+
+            .section_popup_buttons{
+                display: flex;
+                justify-content: stretch;
+                align-items: center;
+                gap: 10px;
+                padding: 10px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+
+                .section_popup_button{
+                    width: 50%;
+                    height: 50px;
+                    border-radius: 10px;
                     padding: 10px;
-                    border: 2px solid var(--ColorBlack);
-                    text-decoration: none;
-                    font-size: 18px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    margin: 0;
-                    gap: 10px;
 
-                    .numbers_icon{
-                        width: 40px;
-                        height: 100%;
-                        aspect-ratio: 1/1;
-                        object-fit: contain;
-                    }
-
-                    p{
-                        width: 40px;
-                    }
-                }
-            }
-
-            .section_popup{
-                position: absolute;
-                top: 10%;
-                left: 10%;
-                right: 10%;
-                bottom: 10%;
-                background-color: var(--ColorBackground);
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-                display: none;
-                border-radius: 10px;
-                overflow: hidden;
-                box-shadow: 0 0 10px 5px var(--ColorWhite);
-                padding: 10px;
-
-                hr{
-                    opacity: 0.2;
-                }
-
-                .section_popup_close{
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    padding: 10px;
-                    background-color: gray;
-                    color: var(--ColorWhite);
-                    border-radius: 0 0 0 10px;
-                }
-
-                .section_popup_client_message{
-                    padding: 10px;
-                    border-bottom: 1px solid var(--ColorBlack);
-                    width: 100%;
-                    text-align: center;
-                    margin-top: 0;
-                    font-weight: bold;
-
-                    &.valid{
+                    &.button_checkinGuest {
+                        color: var(--ColorWhite);
                         background-color: green;
                     }
 
-                    &.problematic {
-                        background-color: orange;
-                    }
-
-                    &.invalid{
-                        background-color: red;
+                    &.button_deleteTicket {
+                        color: red;
+                        border: 1px solid red;
                     }
                 }
-
-                .section_people_helper{
-                    display: flex;
-                    justify-content: center;
-                    align-items: flex-end;
-                    position: absolute;
-                    bottom: 70px;
-                    opacity: 0.5;
-                    left: 0;
-                    right: 0;
-                    gap: 10px;
-                    width: 100%;
-                    padding: 0 20px;
-
-                    .section_people_helper_person{
-                        aspect-ratio: 1/1;
-                        max-height: 50px;
-                        min-width: 0;
-                    }
-                }
-
-                .section_popup_buttons{
-                    display: flex;
-                    justify-content: stretch;
-                    align-items: center;
-                    gap: 10px;
-                    padding: 10px;
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-
-                    .section_popup_button{
-                        width: 50%;
-                        height: 50px;
-                        border-radius: 10px;
-                        padding: 10px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-
-                        &.button_checkinGuest {
-                            color: var(--ColorWhite);
-                            background-color: green;
-                        }
-
-                        &.button_deleteTicket {
-                            color: red;
-                            border: 1px solid red;
-                        }
-                    }
-                }
-
-
             }
 
-            .section_loading{
-                position: absolute;
-                top: 15%;
-                left: 15%;
-                right: 15%;
-                bottom: 15%;
-                background-color: rgba(0,0,0,0.5);
-                display: none;
-                justify-content: center;
-                align-items: center;
-                border-radius: 50%;
 
-                .loading{
-                    width: 100px;
-                    height: 100px;
-                    border: 10px solid var(--ColorBackground);
-                    border-top: 10px solid var(--ColorBlack);
-                    border-radius: 50%;
-                    animation: spin 1s linear infinite;
-                }
+        }
+
+        .section_loading{
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            right: 15%;
+            bottom: 15%;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+
+            .loading{
+                width: 100px;
+                height: 100px;
+                border: 10px solid var(--ColorBackground);
+                border-top: 10px solid var(--ColorBlack);
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
             }
         }
     }

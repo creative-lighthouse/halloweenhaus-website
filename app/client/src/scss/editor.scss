@@ -1,8 +1,8 @@
-@import "fonts";
-@import "normalize";
-@import "variables";
-@import "typography";
-@import "icons";
+@use "fonts" as *;
+@use "normalize" as *;
+@use "variables" as *;
+@use "typography" as *;
+@use "Icons" as *;
 
 #tinymce{
     a{

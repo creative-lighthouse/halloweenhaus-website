@@ -1,7 +1,7 @@
-@mixin HeroVideoElement {
-    .section.section--HeroVideoElement {
-        .section_content {
+@use "../variables" as *;
 
-        }
+.section.section--HeroVideoElement {
+    .section_content {
+
     }
 }

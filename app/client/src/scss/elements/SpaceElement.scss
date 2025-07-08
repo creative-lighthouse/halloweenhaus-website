@@ -1,6 +1,6 @@
-@mixin SpaceElement {
-    .section.section--SpaceElement {
-        padding: 0;
-        position: relative;
-    }
+@use "../variables" as *;
+
+.section.section--SpaceElement {
+    padding: 0;
+    position: relative;
 }

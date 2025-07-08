@@ -1,14 +1,3 @@
-$maxWidth: 1200px;
-$maxWidthContent: 980px;
-
-$breakpoints: (
-    'smartphone': 320px,
-    'medium': 640px,
-    'desktop': 1000px,
-    'large': 1280px,
-    'maxwidth': 1600px,
-);
-
 @mixin media($size) {
     @if $size == smartphone {
         @media (max-width: 639px) { @content; }
@@ -46,4 +35,7 @@ html {
     --ColorBackground: #151515;
     --ColorBackgroundLight: #383838;
     --ColorCms: #43536d;
+
+    --MaxWidth: 1200px;
+    --MaxWidthContent: 980px;
 }

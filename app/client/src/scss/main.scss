@@ -3,7 +3,6 @@
 @use "glightbox/dist/css/glightbox.css";
 @use "normalize";
 @use 'swiper/css/bundle';
-
 @use "typography" as *;
 
 @use "Forms";
@@ -33,20 +32,19 @@
 @use "elements/VideoElement";
 
 @use "layout/Feedback";
-@use "layout/PhotoboxGallery.scss";
+@use "layout/PhotoboxGallery";
 
-@use "layout/Events/EventTicket.scss";
-@use "layout/Events/EventAdmin.scss";
-@use "layout/Events/Events.scss";
+@use "layout/Events/EventTicket";
+@use "layout/Events/EventAdmin";
+@use "layout/Events/Events";
 
-@use "layout/POS.scss";
-@use "layout/StatisticsPage.scss";
+@use "layout/POS";
+@use "layout/StatisticsPage";
 
-@use "layout/FleaMarket.scss";
+@use "layout/FleaMarket";
 
 html {
     background-color: var(--ColorBackground);
-
 }
 
 body{
@@ -59,7 +57,7 @@ body{
 }
 
 .section {
-    max-width: $maxWidth;
+    max-width: var(--MaxWidth);
     margin: 50px auto;
 
     @include media(max-desktop) {
@@ -68,7 +66,7 @@ body{
 }
 
 .section_content{
-    max-width: $maxWidthContent;
+    max-width: var(--MaxWidth)Content;
     margin: 0 auto;
 }
 
