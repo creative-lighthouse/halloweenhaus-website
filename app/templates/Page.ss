@@ -32,7 +32,6 @@
     <meta property="og:locale" content="de_DE" />
     <meta name="twitter:card" content="summary_large_image">
 
-
     <link rel="manifest" href="site.webmanifest">
 
     <meta name="msapplication-TileColor" content="#151515">
