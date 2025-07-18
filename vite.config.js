@@ -18,11 +18,11 @@ export default defineConfig(({command}) => {
             }
         },
         alias: {
-            alias: [{find: '@', replacement: './app/client/src'}],
+            alias: [{find: '@', replacement: './src'}],
         },
         // base: (command === 'build') ? '/_resources/app/client/dist/' : '/', // TODO: .env variable, only on build
         base: './',
-        publicDir: 'app/client/public',
+        publicDir: '/public',
         build: {
             // cssCodeSplit: false,
             outDir: './app/client/dist',

@@ -32,10 +32,12 @@
     <meta property="og:locale" content="de_DE" />
     <meta name="twitter:card" content="summary_large_image">
 
-    <link rel="manifest" href="site.webmanifest">
-
     <meta name="msapplication-TileColor" content="#151515">
     <meta name="theme-color" content="#151515">
+
+    $ViteClient.RAW
+    <link rel="stylesheet" href="$Vite('app/client/src/scss/main.scss')">
+    <link rel="manifest" href="site.webmanifest" />
 </head>
     <body>
         <% include Header %>
