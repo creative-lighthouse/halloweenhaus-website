@@ -7,52 +7,54 @@
             grid-template-columns: 1fr 1fr;
 
             .pressimage_entry{
-                padding: 10px 0;
+                display: flex;
+                padding: 20px;
+                width: 100%;
+                align-items: center;
+                flex-direction: column;
 
-                .pressimage{
-                    display: flex;
-                    padding: 5px;
-                    width: 100%;
-                    align-items: center;
+                .pressimage_image{
+                    max-width: 100%;
 
-                    .pressimage_image{
-                        width: 65%;
+                    .pressimage_image_content{
+                        height: 100%;
+                        transform: scale(0.9) rotate(-4deg);
+                        display: block;
+                        transition: transform 0.2s ease-in-out;
 
-                        .pressimage_image_content{
-                            height: 100%;
-                            transform: scale(0.9) rotate(-5deg);
+                        img{
                             display: block;
-                            transition: transform 0.2s ease-in-out;
+                            object-fit: contain;
+                            border: 5px solid var(--ColorWhite);
+                            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+                            max-width: 100%;
+                            max-height: 250px;
+                        }
 
-                            img{
-                                display: block;
-                                width: 100%;
-                                object-fit: contain;
-                                border: 5px solid var(--ColorWhite);
-                                box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-                            }
-
-                            &:hover{
-                                cursor: pointer;
-                                transform: scale(0.95) rotate(-3deg);
-                            }
+                        &:hover{
+                            cursor: pointer;
+                            transform: scale(0.95) rotate(-2deg);
                         }
                     }
+                }
 
-                    .pressimage_meta{
-                        width: calc(35% + 50px);
-                        padding: 15px;
-                        padding-left: 60px;
-                        margin-left: -50px;
-                        border-radius: 20px;
-                        background-color: var(--ColorBackgroundLight);
+                .pressimage_meta{
+                    width: 100%;
+                    padding: 120px 15px 20px 15px;
+                    margin-top: -100px;
+                    border-radius: 20px;
+                    margin-bottom: 30px;
+                    background-color: var(--ColorBackgroundLight);
+
+                    .pressimage_meta_content{
+                        width: 90%;
+                        margin: 0 auto;
 
                         p{
                             margin: 0;
                             font-size: 14px;
 
                             b{
-                                display: block;
                                 margin-top: 5px;
                             }
 
@@ -93,31 +95,16 @@
                             }
                         }
                     }
+                }
 
-                    @include media(max-medium) {
-                        flex-direction: column;
-                        align-items: flex-start;
+                @include media(max-medium) {
 
-                        .pressimage_image{
-                            width: 100%;
-
-                            .pressimage_image_content{
-                                transform: scale(0.9) rotate(5deg);
-
-                                &:hover{
-                                    cursor: pointer;
-                                    transform: scale(0.95) rotate(4deg);
-                                }
-                            }
-                        }
-
-                        .pressimage_meta{
-                            width: 100%;
-                            padding: 15px;
-                            padding-top: 60px;
-                            margin-top: -50px;
-                            margin-left: 0;
-                        }
+                    .pressimage_meta{
+                        width: 100%;
+                        padding: 15px;
+                        padding-top: 60px;
+                        margin-top: -50px;
+                        margin-left: 0;
                     }
                 }
             }

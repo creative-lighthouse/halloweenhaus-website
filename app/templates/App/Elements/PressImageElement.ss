@@ -7,37 +7,31 @@
         <div class="press_images">
             <% loop $PressImages %>
                 <div class="pressimage_entry">
-                    <div class="pressimage">
-                        <div class="pressimage_image">
-                            <a class="pressimage_image_content" href="$Image.AbsoluteUrl" target="_blank">
-                                <img data-gallery="gallery" data-glightbox="$Title" data-caption="$Title" src="$Image.URL" alt="$Image.Title" loading="lazy">
-                            </a>
-                            
-                        </div>
-                        <div class="pressimage_meta">
+                    <div class="pressimage_image">
+                        <a class="pressimage_image_content" href="$Image.AbsoluteUrl" target="_blank">
+                            <img data-gallery="gallery" data-glightbox="$Title" data-caption="$Title" src="$Image.URL" alt="$Image.Title" loading="lazy">
+                        </a>                            
+                    </div>
+                    <div class="pressimage_meta">
+                        <div class="pressimage_meta_content">
                             <h3>$Title</h3>
                             <% if $Description %>
-                                <p>$Description</p>
+                                <p>$Description</p><br>
                             <% end_if %>
                             <% if $Copyright %>
-                                <p><b>Urheber:</b></p>
-                                <p>$Copyright</p>
+                                <p><b>Urheber:</b> $Copyright</p>
                             <% end_if %>
                             <% if $FileExtension %>
-                                <p><b>Format:</b></p>
-                                <p>.{$FileExtension}</p>
+                                <p><b>Format:</b> .{$FileExtension}</p>
                             <% end_if %>
                             <% if $FileSize %>
-                                <p><b>Größe:</b></p>
-                                <p>$FileSize</p>
+                                <p><b>Größe:</b> $FileSize</p>
                             <% end_if %>
                             <% if $Image %>
-                                <p><b>Auflösung:</b></p>
-                                <p>{$Image.Width} x {$Image.Height}px</p>
+                                <p><b>Auflösung:</b> {$Image.Width} x {$Image.Height}px</p>
                             <% end_if %>
                             <a href="$Image.AbsoluteUrl" download="$Title" target="_blank" class="pressimage_download">Download</a>
                         </div>
-
                     </div>
                 </div>
             <% end_loop %>
