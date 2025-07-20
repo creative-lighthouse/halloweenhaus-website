@@ -8,6 +8,7 @@
 
             .pressimage_entry{
                 padding: 10px 0;
+
                 .pressimage{
                     display: flex;
                     padding: 5px;
@@ -83,11 +84,11 @@
 
                             &:hover{
                                 cursor: pointer;
-                                color: var(--ColorPrimary);
+                                color: var(--ColorPrimaryLight);
 
                                 &::after{
-                                    border-top: 2px solid var(--ColorPrimary);
-                                    border-right: 2px solid var(--ColorPrimary);
+                                    border-top: 2px solid var(--ColorPrimaryLight);
+                                    border-right: 2px solid var(--ColorPrimaryLight);
                                 }
                             }
                         }

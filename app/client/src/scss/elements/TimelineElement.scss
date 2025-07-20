@@ -11,7 +11,7 @@
             text-align: center;
             .filter_item{
                 display: inline-block;
-                border: 1px solid var(--ColorPrimaryDark);
+                border: 1px solid var(--ColorWhite);
                 background-color: transparent;
                 border-radius: 20px;
                 padding: 5px 10px;
@@ -19,11 +19,13 @@
 
                 &.hidden{
                     display: none;
-                    color: var(--ColorWhite);
                 }
 
-                &.active{
-                    background-color: var(--ColorPrimaryDark);
+                &:hover{
+                    background-color: var(--ColorPrimary);
+                    border: 1px solid var(--ColorPrimary);
+
+                        color: var(--ColorWhite);
                 }
             }
         }

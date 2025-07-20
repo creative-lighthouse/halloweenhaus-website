@@ -10,8 +10,9 @@
                     <div class="pressimage">
                         <div class="pressimage_image">
                             <a class="pressimage_image_content" href="$Image.AbsoluteUrl" target="_blank">
-                                <img data-gallery="gallery" data-glightbox="$Title" data-caption="$Title" src="$Image.URL" alt="$Image.Title" />
+                                <img data-gallery="gallery" data-glightbox="$Title" data-caption="$Title" src="$Image.URL" alt="$Image.Title" loading="lazy">
                             </a>
+                            
                         </div>
                         <div class="pressimage_meta">
                             <h3>$Title</h3>

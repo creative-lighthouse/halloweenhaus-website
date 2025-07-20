@@ -35,7 +35,7 @@
                         z-index: 1;
                         top: 0;
                         left: 0;
-                        background-color: var(--ColorSecondary);
+                        background-color: var(--ColorPrimary);
                         color: white;
                         padding: 5px;
                         border-radius: 0 0 10px 0;
@@ -77,11 +77,11 @@
                 text-decoration: none;
                 padding: 5px 15px;
                 border-radius: 15px;
-                border: 1px solid var(--ColorSecondary);
+                border: 1px solid var(--ColorPrimary);
                 transition: 0.1s ease-in-out;
 
                 &:hover{
-                    background-color: var(--ColorSecondary);
+                    background-color: var(--ColorPrimary);
                     color: var(--ColorWhite);
                 }
             }

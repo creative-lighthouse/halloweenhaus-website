@@ -88,21 +88,21 @@
                 text-align: center;
 
                 &:hover {
-                    background-color: var(--ColorSecondary);
+                    background-color: var(--ColorPrimary);
                     color: var(--ColorWhite);
                 }
 
                 &:active {
-                    background-color: var(--ColorSecondary);
+                    background-color: var(--ColorPrimary);
                 }
 
                 &:focus {
-                    background-color: var(--ColorSecondary);
+                    background-color: var(--ColorPrimary);
                     color: var(--ColorWhite);
                 }
 
                 &.nav_link--active {
-                    background-color: var(--ColorSecondary);
+                    background-color: var(--ColorPrimary);
                     color: var(--ColorWhite);
                 }
             }

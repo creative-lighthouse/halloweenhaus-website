@@ -15,7 +15,7 @@
 
     b{
         font-weight: 900;
-        color: var(--ColorSecondaryLight);
+        color: var(--ColorPrimaryLight);
     }
 
     &.unsubscribe{
@@ -108,7 +108,7 @@
         }
 
         .ticket_button {
-            background-color: var(--ColorSecondary);
+            background-color: var(--ColorPrimary);
             color: var(--ColorWhite);
             border: none;
             border-radius: 10px;
@@ -122,7 +122,7 @@
             display: inline-block;
 
             &:hover {
-                background-color: var(--ColorSecondaryDark);
+                background-color: var(--ColorPrimaryDark);
             }
         }
     }
@@ -151,7 +151,7 @@
         }
 
         .ticket_button{
-            background-color: var(--ColorSecondary);
+            background-color: var(--ColorPrimary);
             color: var(--ColorWhite);
             border: none;
             border-radius: 10px;
@@ -165,7 +165,7 @@
             display: inline-block;
 
             &:hover{
-                background-color: var(--ColorSecondaryDark);
+                background-color: var(--ColorPrimaryDark);
             }
         }
     }
@@ -205,7 +205,7 @@
                         padding: 10px 20px;
                         border-radius: 0 10px 10px 0;
                         border: none;
-                        background-color: var(--ColorSecondary);
+                        background-color: var(--ColorPrimary);
                         color: var(--ColorWhite);
                         cursor: pointer;
                         font-weight: 700;
@@ -214,7 +214,7 @@
                         line-height: 18px;
 
                         &:hover{
-                            background-color: var(--ColorSecondaryDark);
+                            background-color: var(--ColorPrimaryDark);
                         }
                     }
 
@@ -257,7 +257,7 @@
                     text-align: center;
                     margin: 10px 0 0px 0;
                     cursor: pointer;
-                    color: var(--ColorSecondary);
+                    color: var(--ColorPrimary);
                     font-weight: 700;
                     font-size: 12px;
 
@@ -287,7 +287,7 @@
                 }
 
                 &.selected{
-                    background-color: var(--ColorSecondary);
+                    background-color: var(--ColorPrimary);
                 }
 
                 &.dates{
@@ -322,7 +322,7 @@
                             text-align: center;
                             font-weight: 700;
                             padding: 10px 20px 0 20px;
-                            color: var(--ColorSecondary);
+                            color: var(--ColorPrimary);
                         }
 
                         .date_card_month{
@@ -331,7 +331,7 @@
                             width: 100%;
                             text-align: center;
                             padding: 5px 15px 10px 15px;
-                            color: var(--ColorSecondary);
+                            color: var(--ColorPrimary);
                         }
 
                         &.hidden{
@@ -340,7 +340,7 @@
 
                         &.selected{
                             .date_card_day, .date_card_month{
-                                background-color: var(--ColorSecondary);
+                                background-color: var(--ColorPrimary);
                                 color: var(--ColorWhite);
                             }
                         }
@@ -372,7 +372,7 @@
                         width: 40%;
                         height: 200px;
                         overflow: hidden;
-                        color: var(--ColorSecondary);
+                        color: var(--ColorPrimary);
                         transition: background-color 0.1s ease-in-out;
 
                         .event_card_image{
@@ -420,7 +420,7 @@
                             .event_card_text{
                                 height: 50%;
                             }
-                            background-color: var(--ColorSecondary);
+                            background-color: var(--ColorPrimary);
                             color: var(--ColorWhite);
                         }
 
@@ -442,7 +442,7 @@
                         cursor: pointer;
                         border-radius: 10px;
                         padding: 10px 15px;
-                        color: var(--ColorSecondary);
+                        color: var(--ColorPrimary);
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
@@ -476,7 +476,7 @@
                             display: none;
                         }
                         &.selected{
-                            background-color: var(--ColorSecondary);
+                            background-color: var(--ColorPrimary);
                             color: var(--ColorWhite);
                         }
                     }
@@ -492,14 +492,14 @@
                         cursor: pointer;
                         border-radius: 10px;
                         padding: 10px 15px;
-                        color: var(--ColorSecondary);
+                        color: var(--ColorPrimary);
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
                         align-items: center;
 
                         &.selected{
-                            background-color: var(--ColorSecondary);
+                            background-color: var(--ColorPrimary);
                             color: var(--ColorWhite);
                         }
 
@@ -518,7 +518,7 @@
                     text-align: center;
 
                     a{
-                        color: var(--ColorSecondary);
+                        color: var(--ColorPrimary);
                         text-decoration: none;
                         font-weight: 700;
                     }
@@ -529,7 +529,7 @@
                     }
 
                     input[type="submit"]{
-                        background-color: var(--ColorSecondary);
+                        background-color: var(--ColorPrimary);
                         color: var(--ColorWhite);
                         border: none;
                         border-radius: 10px;
@@ -540,7 +540,7 @@
                         text-align: center;
 
                         &:hover{
-                            background-color: var(--ColorSecondaryDark);
+                            background-color: var(--ColorPrimaryDark);
                         }
                     }
                 }
@@ -576,7 +576,7 @@
 }
 
 .timeslot_dialog{
-    border: 1px solid var(--ColorSecondary);
+    border: 1px solid var(--ColorPrimary);
     border-radius: 10px;
     max-width: 90%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -586,7 +586,7 @@
     display: block;
     padding: 10px 20px;
     color: var(--ColorWhite);
-    background-color: var(--ColorSecondary);
+    background-color: var(--ColorPrimary);
     font-weight: 500;
     transition: 0.2s ease-in-out;
     text-decoration: none;
@@ -600,7 +600,7 @@
     opacity: 0.7;
 
     &:hover{
-        background-color: var(--ColorSecondaryDark);
+        background-color: var(--ColorPrimaryDark);
     }
 }
 

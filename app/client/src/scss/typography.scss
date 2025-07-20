@@ -72,21 +72,21 @@ a{
             color: var(--ColorWhite);
 
             &:hover {
-                background-color: var(--ColorSecondary);
+                background-color: var(--ColorPrimary);
                 color: var(--ColorWhite);
-                border: 1px solid var(--ColorSecondary);
+                border: 1px solid var(--ColorPrimary);
             }
         }
 
         &:hover {
             text-decoration: none;
-            background-color: var(--ColorSecondary);
+            background-color: var(--ColorPrimary);
             color: var(--ColorWhite);
         }
     }
 
     &:hover {
         text-decoration: none;
-        color: var(--ColorSecondaryLight);
+        color: var(--ColorPrimaryLight);
     }
 }

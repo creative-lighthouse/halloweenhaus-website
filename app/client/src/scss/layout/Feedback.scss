@@ -39,7 +39,7 @@
 
                 input[type="submit"]{
                     width: 100%;
-                    background-color: var(--ColorSecondary);
+                    background-color: var(--ColorPrimary);
                     color: #fff;
                     border: none;
                     padding: 20px 40px;
@@ -78,7 +78,7 @@
                         display: none;
 
                         &:checked+label{
-                            background-color: var(--ColorSecondary);
+                            background-color: var(--ColorPrimary);
                         }
                     }
                 }

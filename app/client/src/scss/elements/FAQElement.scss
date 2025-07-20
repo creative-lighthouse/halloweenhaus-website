@@ -7,27 +7,6 @@
             text-align: center;
         }
 
-        .section_list_filter{
-            text-align: center;
-            .filter_item{
-                display: inline-block;
-                border: 1px solid var(--ColorPrimaryDark);
-                background-color: transparent;
-                border-radius: 20px;
-                padding: 5px 10px;
-                text-decoration: none;
-
-                &.hidden{
-                    display: none;
-                    color: var(--ColorWhite);
-                }
-
-                &.active{
-                    background-color: var(--ColorPrimaryDark);
-                }
-            }
-        }
-
         .section_list{
             .list_item{
                 display: flex;
