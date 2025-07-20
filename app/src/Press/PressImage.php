@@ -11,7 +11,6 @@ use SilverStripe\ORM\DataObject;
  * @property string $Title
  * @property string $Description
  * @property string $Copyright
- * @property int $Importance
  * @property int $ImageID
  * @method Image Image()
  */
@@ -21,7 +20,7 @@ class PressImage extends DataObject
         "Title" => "Varchar(255)",
         "Description" => "Text",
         "Copyright" => "Varchar(255)",
-        "Importance" => "Int",
+        "SortField" => "Int",
     ];
 
     private static $has_one = [
@@ -32,18 +31,15 @@ class PressImage extends DataObject
         "Image"
     ];
 
-    private static $indexes = [
-        'Importance' => true,
-    ];
-
-    private static $default_sort = "Importance DESC";
+    private static $default_sort = "SortField ASC";
 
     private static $field_labels = [];
 
     private static $summary_fields = [
         "Thumbnail" => "Bild",
         "Title" => "Titel",
-        "Importance" => "Wichtigkeit",
+        "Description" => "Beschreibung",
+        "Copyright" => "Copyright",
     ];
 
     private static $searchable_fields = [];
@@ -58,6 +54,7 @@ class PressImage extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
+        $fields->removeByName("SortField");
         return $fields;
     }
 
