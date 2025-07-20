@@ -16,12 +16,19 @@
             &::before{
                 content:"";
                 display: inline-block;
-                border-bottom: 2px solid white;
-                border-left: 2px solid white;
+                border-bottom: 2px solid var(--ColorWhite);
+                border-left: 2px solid var(--ColorWhite);
                 width: 10px;
                 height: 10px;
                 transform-origin: center;
                 transform: rotate(45deg);
+            }
+
+            &:hover {
+                &::before {
+                    border-bottom: 2px solid var(--ColorPrimaryLight);
+                    border-left: 2px solid var(--ColorPrimaryLight);
+                }
             }
         }
         .teammember_item_image{

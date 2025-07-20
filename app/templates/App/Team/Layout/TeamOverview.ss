@@ -2,7 +2,6 @@
     <div class="section_content">
         <h1 class="teammember_title">$Title</h1>
         <% if $TeamMembers.Filter("Status", "active").Count > 0 %>
-            <h2>Aktuelle</h2>
             <div class="teammember_list">
                 <% loop $TeamMembers.Sort("Importance", DESC).Filter("Status", "active") %>
                     <div class="teammember_item">
