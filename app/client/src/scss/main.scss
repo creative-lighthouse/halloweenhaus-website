@@ -1,51 +1,50 @@
-@import "include-media";
-@import "glightbox/dist/css/glightbox.css";
-@import "swiper/swiper-bundle.css";
+@use "variables" as *;
+@use "fonts" as *;
+@use "glightbox/dist/css/glightbox.css";
+@use "normalize";
+@use 'swiper/css/bundle';
+@use "typography" as *;
 
-@import "variables";
-@import "fonts";
-@import "normalize";
+@use "Forms";
+@use "Animations";
+@use "Icons";
 
-@import "typography";
-@import "forms";
-@import "animations";
+@use "layout/Footer";
+@use "layout/Header";
 
-@import "layout/footer.scss";
-@import "layout/header.scss";
+@use "elements/CharacterCarouselElement";
+@use "elements/ImageBannerElement";
+@use "elements/FactsElement";
 
-@import "layout/team/TeamOverview.scss";
-@import "layout/team/TeamDetails.scss";
+@use "layout/team/TeamOverview";
+@use "layout/team/TeamDetails";
 
-@import "elements/TextImageElement.scss";
-@import "elements/ImageBannerElement.scss";
-@import "elements/CharacterCarouselElement.scss";
-@import "elements/TeaserElement.scss";
-@import "elements/ReferencesElement.scss";
-@import "elements/FactElement.scss";
-@import "elements/SocialBannerElement.scss";
-@import "elements/TimelineElement.scss";
-@import "elements/FAQElement.scss";
-@import "elements/SpaceElement.scss";
-@import "elements/HeroImageElement.scss";
-@import "elements/HeroVideoElement.scss";
-@import "elements/PressImagesElement.scss";
-@import "elements/VideoElement.scss";
+@use "elements/TextImageElement";
+@use "elements/TeaserElement";
+@use "elements/ReferencesElement";
+@use "elements/SocialBannerElement";
+@use "elements/TimelineElement";
+@use "elements/FAQElement";
+@use "elements/SpaceElement";
+@use "elements/HeroImageElement";
+@use "elements/HeroVideoElement";
+@use "elements/PressImagesElement";
+@use "elements/VideoElement";
 
-@import "layout/Feedback.scss";
-@import "layout/PhotoboxGallery.scss";
+@use "layout/Feedback";
+@use "layout/PhotoboxGallery";
 
-@import "layout/Events/EventTicket.scss";
-@import "layout/Events/EventAdmin.scss";
-@import "layout/Events/Events.scss";
+@use "layout/Events/EventTicket";
+@use "layout/Events/EventAdmin";
+@use "layout/Events/Events";
 
-@import "layout/POS.scss";
-@import "layout/StatisticsPage.scss";
+@use "layout/POS";
+@use "layout/StatisticsPage";
 
-@import "layout/FleaMarket.scss";
+@use "layout/FleaMarket";
 
 html {
-    background-color: $ColorBackground;
-
+    background-color: var(--ColorBackground);
 }
 
 body{
@@ -58,16 +57,16 @@ body{
 }
 
 .section {
-    max-width: $maxWidth;
+    max-width: var(--MaxWidth);
     margin: 50px auto;
 
-    @include media("<desktop") {
+    @include media(max-desktop) {
         padding: 0 20px;
     }
 }
 
 .section_content{
-    max-width: $maxWidthContent;
+    max-width: var(--MaxWidthContent);
     margin: 0 auto;
 }
 
@@ -88,7 +87,7 @@ body{
         transform: scale(1.1);
     }
 
-    @include media("<medium") {
+    @include media(max-medium) {
         height: 35px;
         width: 35px;
         margin: 5px;

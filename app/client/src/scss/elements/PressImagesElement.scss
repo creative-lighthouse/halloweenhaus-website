@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 .section.section--PressImagesElement {
     .section_content{
         .press_images{
@@ -25,7 +27,7 @@
                                 display: block;
                                 width: 100%;
                                 object-fit: contain;
-                                border: 5px solid $ColorWhite;
+                                border: 5px solid var(--ColorWhite);
                                 box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
                             }
 
@@ -42,7 +44,7 @@
                         padding-left: 60px;
                         margin-left: -50px;
                         border-radius: 20px;
-                        background-color: $ColorBackgroundLight;
+                        background-color: var(--ColorBackgroundLight);
 
                         p{
                             margin: 0;
@@ -74,24 +76,24 @@
                                 right: -20px;
                                 width: 10px;
                                 height: 10px;
-                                border-top: 2px solid $ColorWhite;
-                                border-right: 2px solid $ColorWhite;
+                                border-top: 2px solid var(--ColorWhite);
+                                border-right: 2px solid var(--ColorWhite);
                                 transform: translateY(3px) rotate(45deg);
                             }
 
                             &:hover{
                                 cursor: pointer;
-                                color: $ColorPrimary;
+                                color: var(--ColorPrimary);
 
                                 &::after{
-                                    border-top: 2px solid $ColorPrimary;
-                                    border-right: 2px solid $ColorPrimary;
+                                    border-top: 2px solid var(--ColorPrimary);
+                                    border-right: 2px solid var(--ColorPrimary);
                                 }
                             }
                         }
                     }
 
-                    @include media("<medium") {
+                    @include media(max-medium) {
                         flex-direction: column;
                         align-items: flex-start;
 
@@ -121,7 +123,7 @@
 
 
 
-            @include media("<550px") {
+            @include media(max-smartphone) {
                 grid-template-columns: 1fr;
             }
         }

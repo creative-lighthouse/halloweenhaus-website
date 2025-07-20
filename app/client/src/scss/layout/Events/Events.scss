@@ -1,3 +1,5 @@
+@use "../../variables" as *;
+
 .section.section--events{
     margin-top: 130px;
     min-height: 80%;
@@ -13,7 +15,7 @@
 
     b{
         font-weight: 900;
-        color: $ColorSecondaryLight;
+        color: var(--ColorSecondaryLight);
     }
 
     &.unsubscribe{
@@ -106,8 +108,8 @@
         }
 
         .ticket_button {
-            background-color: $ColorSecondary;
-            color: $ColorWhite;
+            background-color: var(--ColorSecondary);
+            color: var(--ColorWhite);
             border: none;
             border-radius: 10px;
             padding: 10px 20px;
@@ -120,7 +122,7 @@
             display: inline-block;
 
             &:hover {
-                background-color: $ColorSecondaryDark;
+                background-color: var(--ColorSecondaryDark);
             }
         }
     }
@@ -149,8 +151,8 @@
         }
 
         .ticket_button{
-            background-color: $ColorSecondary;
-            color: $ColorWhite;
+            background-color: var(--ColorSecondary);
+            color: var(--ColorWhite);
             border: none;
             border-radius: 10px;
             padding: 10px 20px;
@@ -163,7 +165,7 @@
             display: inline-block;
 
             &:hover{
-                background-color: $ColorSecondaryDark;
+                background-color: var(--ColorSecondaryDark);
             }
         }
     }
@@ -203,8 +205,8 @@
                         padding: 10px 20px;
                         border-radius: 0 10px 10px 0;
                         border: none;
-                        background-color: $ColorSecondary;
-                        color: $ColorWhite;
+                        background-color: var(--ColorSecondary);
+                        color: var(--ColorWhite);
                         cursor: pointer;
                         font-weight: 700;
                         height: 100%;
@@ -212,7 +214,7 @@
                         line-height: 18px;
 
                         &:hover{
-                            background-color: $ColorSecondaryDark;
+                            background-color: var(--ColorSecondaryDark);
                         }
                     }
 
@@ -220,7 +222,7 @@
                         display: none;
                     }
 
-                    @include media("<medium"){
+                    @include media(max-medium){
                         flex-direction: column;
                         align-items: center;
 
@@ -255,7 +257,7 @@
                     text-align: center;
                     margin: 10px 0 0px 0;
                     cursor: pointer;
-                    color: $ColorSecondary;
+                    color: var(--ColorSecondary);
                     font-weight: 700;
                     font-size: 12px;
 
@@ -285,7 +287,7 @@
                 }
 
                 &.selected{
-                    background-color: $ColorSecondary;
+                    background-color: var(--ColorSecondary);
                 }
 
                 &.dates{
@@ -297,7 +299,7 @@
                         justify-content: center;
                         align-items: center;
                         flex-direction: column;
-                        color: $ColorBlack;
+                        color: var(--ColorBlack);
                         overflow: hidden;
                         border-top: 1px solid rgb(216, 216, 216);
                         border-bottom: 1px solid rgb(216, 216, 216);
@@ -320,7 +322,7 @@
                             text-align: center;
                             font-weight: 700;
                             padding: 10px 20px 0 20px;
-                            color: $ColorSecondary;
+                            color: var(--ColorSecondary);
                         }
 
                         .date_card_month{
@@ -329,7 +331,7 @@
                             width: 100%;
                             text-align: center;
                             padding: 5px 15px 10px 15px;
-                            color: $ColorSecondary;
+                            color: var(--ColorSecondary);
                         }
 
                         &.hidden{
@@ -338,8 +340,8 @@
 
                         &.selected{
                             .date_card_day, .date_card_month{
-                                background-color: $ColorSecondary;
-                                color: $ColorWhite;
+                                background-color: var(--ColorSecondary);
+                                color: var(--ColorWhite);
                             }
                         }
 
@@ -370,7 +372,7 @@
                         width: 40%;
                         height: 200px;
                         overflow: hidden;
-                        color: $ColorSecondary;
+                        color: var(--ColorSecondary);
                         transition: background-color 0.1s ease-in-out;
 
                         .event_card_image{
@@ -418,11 +420,11 @@
                             .event_card_text{
                                 height: 50%;
                             }
-                            background-color: $ColorSecondary;
-                            color: $ColorWhite;
+                            background-color: var(--ColorSecondary);
+                            color: var(--ColorWhite);
                         }
 
-                        @include media("<medium"){
+                        @include media(max-medium){
                             width: 100%;
                         }
                     }
@@ -440,7 +442,7 @@
                         cursor: pointer;
                         border-radius: 10px;
                         padding: 10px 15px;
-                        color: $ColorSecondary;
+                        color: var(--ColorSecondary);
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
@@ -474,8 +476,8 @@
                             display: none;
                         }
                         &.selected{
-                            background-color: $ColorSecondary;
-                            color: $ColorWhite;
+                            background-color: var(--ColorSecondary);
+                            color: var(--ColorWhite);
                         }
                     }
                 }
@@ -490,15 +492,15 @@
                         cursor: pointer;
                         border-radius: 10px;
                         padding: 10px 15px;
-                        color: $ColorSecondary;
+                        color: var(--ColorSecondary);
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
                         align-items: center;
 
                         &.selected{
-                            background-color: $ColorSecondary;
-                            color: $ColorWhite;
+                            background-color: var(--ColorSecondary);
+                            color: var(--ColorWhite);
                         }
 
                         &.hidden{
@@ -516,7 +518,7 @@
                     text-align: center;
 
                     a{
-                        color: $ColorSecondary;
+                        color: var(--ColorSecondary);
                         text-decoration: none;
                         font-weight: 700;
                     }
@@ -527,8 +529,8 @@
                     }
 
                     input[type="submit"]{
-                        background-color: $ColorSecondary;
-                        color: $ColorWhite;
+                        background-color: var(--ColorSecondary);
+                        color: var(--ColorWhite);
                         border: none;
                         border-radius: 10px;
                         padding: 10px 20px;
@@ -538,7 +540,7 @@
                         text-align: center;
 
                         &:hover{
-                            background-color: $ColorSecondaryDark;
+                            background-color: var(--ColorSecondaryDark);
                         }
                     }
                 }
@@ -574,7 +576,7 @@
 }
 
 .timeslot_dialog{
-    border: 1px solid $ColorSecondary;
+    border: 1px solid var(--ColorSecondary);
     border-radius: 10px;
     max-width: 90%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -583,8 +585,8 @@
 .timeslot_dialog_button{
     display: block;
     padding: 10px 20px;
-    color: $ColorWhite;
-    background-color: $ColorSecondary;
+    color: var(--ColorWhite);
+    background-color: var(--ColorSecondary);
     font-weight: 500;
     transition: 0.2s ease-in-out;
     text-decoration: none;
@@ -598,7 +600,7 @@
     opacity: 0.7;
 
     &:hover{
-        background-color: $ColorSecondaryDark;
+        background-color: var(--ColorSecondaryDark);
     }
 }
 

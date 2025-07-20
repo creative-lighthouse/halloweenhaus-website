@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 form{
     border: none;
     padding: 0;
@@ -12,17 +14,16 @@ form{
             input[type="text"], input[type="email"], input[type="number"]{
                 width: 50%;
                 border-radius: 25px;
-                border: 1px solid $ColorSecondaryDark;
+                border: 1px solid var(--ColorSecondaryDark);
                 padding: 10px;
 
-                @include media("<medium") {
+                @include media(max-medium) {
                     width: 100%;
                 }
             }
         }
     }
 }
-
 
 //== RATING ==
 .rating {

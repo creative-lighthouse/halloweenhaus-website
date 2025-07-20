@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 .section.section--FAQElement {
     .section_content{
         padding: 40px 0;
@@ -9,7 +11,7 @@
             text-align: center;
             .filter_item{
                 display: inline-block;
-                border: 1px solid $ColorPrimaryDark;
+                border: 1px solid var(--ColorPrimaryDark);
                 background-color: transparent;
                 border-radius: 20px;
                 padding: 5px 10px;
@@ -17,11 +19,11 @@
 
                 &.hidden{
                     display: none;
-                    color: $ColorWhite;
+                    color: var(--ColorWhite);
                 }
 
                 &.active{
-                    background-color: $ColorPrimaryDark;
+                    background-color: var(--ColorPrimaryDark);
                 }
             }
         }
@@ -45,7 +47,7 @@
                         width: 15px;
                         height: 15px;
                         border-radius: 20px;
-                        background-color: $ColorWhite;
+                        background-color: var(--ColorWhite);
                     }
                     .line{
                         position: absolute;
@@ -54,7 +56,7 @@
                         height: calc(100% - 35px);
                         display: block;
                         width: 2px;
-                        background-color: $ColorWhite;
+                        background-color: var(--ColorWhite);
                     }
                 }
 
@@ -63,14 +65,14 @@
 
                     .list_item_content_title{
                         &:hover{
-                            color: $ColorWhite;
+                            color: var(--ColorWhite);
                         }
 
                         display: flex;
                         align-items: center;
 
                         .list_item_title_triangle{
-                            fill: $ColorWhite;
+                            fill: var(--ColorWhite);
                             width: 20px;
                             height: 20px;
                             transform: rotate(-90deg);
@@ -81,14 +83,14 @@
                     }
                     .list_item_content_date{
                         h3{
-                            color: $ColorWhite;
+                            color: var(--ColorWhite);
 
                         }
                         h4{
                             margin-top: 21px;
-                            color: $ColorWhite;
+                            color: var(--ColorWhite);
                         }
-                        color: $ColorWhite;
+                        color: var(--ColorWhite);
                     }
 
                     .list_item_content_text{

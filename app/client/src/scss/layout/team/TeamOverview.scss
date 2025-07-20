@@ -1,3 +1,5 @@
+@use "../../variables" as *;
+
 .section.section--TeamOverview {
     .section_content{
 
@@ -20,7 +22,7 @@
                 align-items: center;
                 padding: 10px;
                 .teammember_texts{
-                    color: $ColorWhite;
+                    color: var(--ColorWhite);
                     text-align: center;
                     margin: 20px 0 0 0;
                     .teammember_item_image{
@@ -59,7 +61,7 @@
                 }
             }
 
-            @include media("<medium") {
+            @include media(max-medium) {
                 grid-template-columns: repeat(2, calc(100% / 2));
             }
         }

@@ -1,8 +1,10 @@
+@use "../variables" as *;
+
 .section.section--TextImageElement {
     padding: 30px 20px;
 
     .section_content {
-        max-width: $maxWidthContent;
+        max-width: var(--MaxWidthContent);
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
@@ -19,7 +21,7 @@
                 object-fit: cover;
             }
 
-            @include media(">medium") {
+            @include media(medium) {
                 padding-left: 0px;
                 padding-right: 20px;
             }
@@ -33,7 +35,7 @@
                 height: 100%;
 
                 .textimage_text_button {
-                    @include media("<medium") {
+                    @include media(max-medium) {
                         text-align: center;
                         right: 0;
                     }
@@ -66,13 +68,13 @@
                 }
             }
 
-            @include media("<medium") {
+            @include media(max-medium) {
                 padding-top: 20px;
                 text-align: center;
             }
         }
 
-        @include media(">medium") {
+        @include media(medium) {
             flex-wrap: nowrap;
 
             &.image-30 {
@@ -121,6 +123,6 @@
 
     &.color--background-light {
         max-width: 100%;
-        background-color: $ColorBackgroundLight;
+        background-color: var(--ColorBackgroundLight);
     }
 }

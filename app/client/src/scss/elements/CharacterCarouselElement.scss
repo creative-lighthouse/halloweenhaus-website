@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 .section.section--CharacterCarouselElement {
     width: 100%;
     max-width: 100%;
@@ -37,16 +39,16 @@
                         object-fit: contain;
                         object-position: bottom;
 
-                        @include media("<medium") {
+                        @include media(max-medium) {
                             object-fit: cover;
                         }
 
-                        @include media("<smartphone") {
+                        @include media(max-smartphone) {
                             object-fit: contain;
                         }
                     }
 
-                    @include media("<smartphone") {
+                    @include media(max-smartphone) {
                         order: 2;
                     }
                 }
@@ -59,7 +61,7 @@
                     text-align: right;
                     padding-right: 60px;
 
-                    @include media("<medium") {
+                    @include media(max-medium) {
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
@@ -67,7 +69,7 @@
                         gap: 10px;
                     }
 
-                    @include media("<smartphone") {
+                    @include media(max-smartphone) {
                         padding-right: 0;
                         align-items: center;
                         text-align: center;
@@ -95,7 +97,7 @@
                     }
                 }
 
-                @include media("<smartphone") {
+                @include media(max-smartphone) {
                     flex-direction: column;
                     justify-content: space-between;
                     text-align: center;
@@ -143,7 +145,7 @@
         }
     }
 
-    @include media("<smartphone") {
+    @include media(max-smartphone) {
         display: none;
     }
 }

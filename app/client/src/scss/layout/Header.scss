@@ -1,8 +1,10 @@
+@use "../variables" as *;
+
 .header {
     overflow: visible;
     margin-right: auto;
     margin-left: auto;
-    background-color: $ColorBlack;
+    background-color: var(--ColorBlack);
     width: 100%;
     filter: none;
     position: fixed;
@@ -10,7 +12,7 @@
     z-index: 100;
 
     .header_nav{
-        max-width: $maxWidth;
+        max-width: var(--MaxWidth);
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
@@ -27,7 +29,7 @@
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
-                color: $ColorWhite;
+                color: var(--ColorWhite);
                 animation: rainbow 75s infinite;
 
                 .eyes{
@@ -40,14 +42,14 @@
 
                 &.mobile{
                     display: none;
-                    @include media("<desktop") {
+                    @include media(max-desktop) {
                         display: block;
                     }
                 }
 
                 &.desktop{
                     display: block;
-                    @include media("<desktop") {
+                    @include media(max-desktop) {
                         display: none;
                     }
                 }
@@ -73,35 +75,35 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            
+
             .nav_link {
                 text-decoration: none;
                 display: inline-block;
                 margin: 5px 5px;
                 padding: 10px 30px;
-                color: $ColorWhite;
+                color: var(--ColorWhite);
                 font-size: 17px;
                 line-height: 20px;
                 font-weight: 400;
                 text-align: center;
 
                 &:hover {
-                    background-color: $ColorSecondary;
-                    color: $ColorWhite;
+                    background-color: var(--ColorSecondary);
+                    color: var(--ColorWhite);
                 }
 
                 &:active {
-                    background-color: $ColorSecondary;
+                    background-color: var(--ColorSecondary);
                 }
 
                 &:focus {
-                    background-color: $ColorSecondary;
-                    color: $ColorWhite;
+                    background-color: var(--ColorSecondary);
+                    color: var(--ColorWhite);
                 }
 
                 &.nav_link--active {
-                    background-color: $ColorSecondary;
-                    color: $ColorWhite;
+                    background-color: var(--ColorSecondary);
+                    color: var(--ColorWhite);
                 }
             }
 
@@ -110,7 +112,7 @@
                 display: flex-wrap;
                 align-items: center;
 
-                @include media("<medium") {
+                @include media(max-medium) {
                     max-height: 0;
                     overflow: hidden;
                     position: absolute;
@@ -137,7 +139,7 @@
 
                 .virtualqueue{
                     margin-left: 0px;
-                    @include media("<medium") {
+                    @include media(max-medium) {
                         width: 100%;
                         display: block;
                     }
@@ -163,7 +165,7 @@
                 .menu--fixed &{
                     top: 50px;
 
-                    @include media("<medium") {
+                    @include media(max-medium) {
                         top: 100px;
                     }
                 }
@@ -174,7 +176,7 @@
                     opacity: 1;
                 }
 
-                @include media("<medium") {
+                @include media(max-medium) {
                     width: 100%;
                     left: 0;
                     top: 150px;
@@ -196,7 +198,7 @@
                 .bar1, .bar2, .bar3, .bar4 {
                     width: 35px;
                     height: 5px;
-                    background-color: $ColorWhite;
+                    background-color: var(--ColorWhite);
                     transition: 0.4s;
                     position: absolute;
                 }
@@ -239,7 +241,7 @@
                 display: flex;
                 align-items: flex-end;
                 justify-content: center;
-                flex-direction: column;                
+                flex-direction: column;
                 padding-right: 10px;
                 p{
                     font-size: 14px;
@@ -249,7 +251,7 @@
                     line-height: 1.2;
                 }
 
-                @include media("<medium") {
+                @include media(max-medium) {
                     display: none;
                 }
             }
@@ -262,7 +264,7 @@
     right: 0;
     display: block;
     width: 100%;
-    max-width: $maxWidth;
+    max-width: var(--MaxWidth);
     margin: 0 auto;
     padding: 5px 20px;
     opacity: 0.9;

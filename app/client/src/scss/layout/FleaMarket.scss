@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 .section.section--fleamarket{
     .section_content{
         h1{
@@ -14,7 +16,7 @@
             grid-auto-rows: 1fr;
 
             .fleamarket_item{
-                background-color: $ColorBackgroundLight;
+                background-color: var(--ColorBackgroundLight);
                 border-radius: 10px;
                 overflow: hidden;
                 box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -33,7 +35,7 @@
                         z-index: 1;
                         top: 0;
                         left: 0;
-                        background-color: $ColorSecondary;
+                        background-color: var(--ColorSecondary);
                         color: white;
                         padding: 5px;
                         border-radius: 0 0 10px 0;
@@ -54,7 +56,7 @@
 
                 &:hover{
                     transform: scale(1.02);
-                    color: $ColorWhite;
+                    color: var(--ColorWhite);
 
                     .fleamarket_item_image{
                         img{
@@ -75,12 +77,12 @@
                 text-decoration: none;
                 padding: 5px 15px;
                 border-radius: 15px;
-                border: 1px solid $ColorSecondary;
+                border: 1px solid var(--ColorSecondary);
                 transition: 0.1s ease-in-out;
 
                 &:hover{
-                    background-color: $ColorSecondary;
-                    color: $ColorWhite;
+                    background-color: var(--ColorSecondary);
+                    color: var(--ColorWhite);
                 }
             }
         }
@@ -96,15 +98,15 @@
 
             &:hover{
                 opacity: 1;
-                color: $ColorWhite;
+                color: var(--ColorWhite);
             }
         }
 
         .swiper-button-prev, .swiper-button-next{
-            color: $ColorWhite;
+            color: var(--ColorWhite);
 
             &::after{
-                color: $ColorWhite;
+                color: var(--ColorWhite);
             }
         }
 
@@ -132,8 +134,8 @@
                 tr{
                     td{
                         padding: 5px 10px;
-                        border-top: 1px solid $ColorWhite;
-                        border-bottom: 1px solid $ColorWhite;
+                        border-top: 1px solid var(--ColorWhite);
+                        border-bottom: 1px solid var(--ColorWhite);
 
                         &:first-child{
                             font-weight: bold;

@@ -1,4 +1,4 @@
-@import "variables";
+@use "variables" as *;
 
 #tinymce{
     color: black;
@@ -8,7 +8,7 @@ i{
     width: 1em;
     height: 1em;
     display: block;
-    color: $cmsColor;
+    color: var(--ColorCms);
 }
 
 button.icon_block-text{
@@ -18,7 +18,7 @@ button.icon_block-text{
     &::before{
         content: "";
         mask-image: url("../../icons/block-text.svg");
-        background-color: $cmsColor;
+        background-color: var(--ColorCms);
         width: 1em;
         height: 1em;
         display: inline-block;
@@ -31,7 +31,7 @@ button.icon_block-textimage{
     &::before{
         content: "";
         mask-image: url("../../icons/block-textimage.svg");
-        background-color: $cmsColor;
+        background-color: var(--ColorCms);
         width: 1em;
         height: 1em;
         display: inline-block;
@@ -44,7 +44,7 @@ button.icon_block-image{
     &::before{
         content: "";
         mask-image: url("../../icons/block-image.svg");
-        background-color: $cmsColor;
+        background-color: var(--ColorCms);
         width: 1em;
         height: 1em;
         display: inline-block;
@@ -57,7 +57,7 @@ button.icon_block-references{
     &::before{
         content: "";
         mask-image: url("../../icons/block-references.svg");
-        background-color: $cmsColor;
+        background-color: var(--ColorCms);
         width: 1em;
         height: 1em;
         display: inline-block;
@@ -66,25 +66,25 @@ button.icon_block-references{
 
 i.icon_block-text{
     mask-image: url("../../icons/block-text.svg");
-    background-color: $cmsColor;
+    background-color: var(--ColorCms);
 }
 
 i.icon_block-textimage{
     mask-image: url("../../icons/block-textimage.svg");
-    background-color: $cmsColor;
+    background-color: var(--ColorCms);
 }
 
 i.icon_block-carousel{
     mask-image: url("../../icons/block-carousel.svg");
-    background-color: $cmsColor;
+    background-color: var(--ColorCms);
 }
 
 i.icon_block-image{
     mask-image: url("../../icons/block-image.svg");
-    background-color: $cmsColor;
+    background-color: var(--ColorCms);
 }
 
 i.icon_block-references{
     mask-image: url("../../icons/block-references.svg");
-    background-color: $cmsColor;
+    background-color: var(--ColorCms);
 }

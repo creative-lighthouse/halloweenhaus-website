@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 .section.section--FactsElement {
     .section_content{
         text-align: center;
@@ -14,14 +16,14 @@
                 border-radius: 20px;
                 align-items: center;
 
-                background-color: $ColorBackgroundLight;
+                background-color: var(--ColorBackgroundLight);
                 transition: background-color 0.2s ease-in-out;
 
                 .factitem_facts{
 
                     margin: 5px;
                     grid-area: facts;
-                    color: $ColorWhite;
+                    color: var(--ColorWhite);
 
                     .factitem_number{
                         font-size: 50px;
@@ -37,7 +39,7 @@
                     p{
                         margin: 5px;
                     }
-                    color: $ColorWhite;
+                    color: var(--ColorWhite);
                     grid-area: text;
                     text-align: left;
                 }

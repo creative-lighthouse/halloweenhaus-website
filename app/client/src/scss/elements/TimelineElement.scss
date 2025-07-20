@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 .section.section--TimelineElement {
     .section_content{
         padding: 40px 0;
@@ -9,7 +11,7 @@
             text-align: center;
             .filter_item{
                 display: inline-block;
-                border: 1px solid $ColorPrimaryDark;
+                border: 1px solid var(--ColorPrimaryDark);
                 background-color: transparent;
                 border-radius: 20px;
                 padding: 5px 10px;
@@ -17,11 +19,11 @@
 
                 &.hidden{
                     display: none;
-                    color: $ColorWhite;
+                    color: var(--ColorWhite);
                 }
 
                 &.active{
-                    background-color: $ColorPrimaryDark;
+                    background-color: var(--ColorPrimaryDark);
                 }
             }
         }
@@ -49,7 +51,7 @@
                         width: 15px;
                         height: 15px;
                         border-radius: 20px;
-                        background-color: $ColorWhite;
+                        background-color: var(--ColorWhite);
                     }
                     .line{
                         position: absolute;
@@ -58,7 +60,7 @@
                         height: calc(100% - 35px);
                         display: block;
                         width: 2px;
-                        background-color: $ColorWhite;
+                        background-color: var(--ColorWhite);
                     }
                 }
 
@@ -68,14 +70,14 @@
 
                     .list_item_content_title{
                         &:hover{
-                            color: $ColorWhite;
+                            color: var(--ColorWhite);
                         }
                     }
                     .list_item_content_date{
                         padding-top: 21px;
                         padding-bottom: 3px;
                         margin: 0;
-                        color: $ColorWhite;
+                        color: var(--ColorWhite);
                     }
 
                     .list_item_content_text{
@@ -113,8 +115,8 @@
                         width: 20px;
                         height: 20px;
                         display: block;
-                        border-bottom: 2px solid $ColorWhite;
-                        border-left: 2px solid $ColorWhite;
+                        border-bottom: 2px solid var(--ColorWhite);
+                        border-left: 2px solid var(--ColorWhite);
                         transform: rotate(-45deg);
                         transition: 0.1s ease-in-out;
                     }

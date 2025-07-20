@@ -2,29 +2,41 @@
     "name": "sp-universe/halloweenhaus-website",
     "type": "silverstripe-recipe",
     "description": "The SilverStripe Framework Installer",
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/wernerkrauss/silverstripe-ideannotator.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/wernerkrauss/silverstripe-cms-actions.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/stevenpaw/silverstripe-cms-theme.git"
+        }
+    ],
     "require": {
-        "php": "^8.2",
-        "silverstripe/recipe-plugin": "^2",
-        "silverstripe/recipe-cms": "5.4",
-        "dnadesign/silverstripe-elemental": "^5",
+        "php": "^8.3",
         "ext-json": "*",
-        "colymba/gridfield-bulk-editing-tools": "^4.0",
-        "jonom/focuspoint": "^5.0",
-        "silverstripe/login-forms": "^5.1",
-        "purplespider/silverstripe-basic-gallery-extension": "4",
-        "silverstripe/linkfield": "^4.1",
-        "wilr/silverstripe-googlesitemaps": "^3.0",
-        "dnadesign/silverstripe-elemental-userforms": "^4.1",
-        "undefinedoffset/sortablegridfield": "^2.2",
+        "silverstripe/recipe-cms": "^6",
+        "silverstripe/framework": "^6.0.0",
+        "dnadesign/silverstripe-elemental": "^6",
+        "colymba/gridfield-bulk-editing-tools": "^5.0.0",
+        "jonom/focuspoint": "^6.0",
+        "silverstripe/login-forms": "^6.0",
+        "purplespider/silverstripe-basic-gallery-extension": "^5.0",
+        "silverstripe/linkfield": "^5",
+        "wilr/silverstripe-googlesitemaps": "^4.0",
+        "dnadesign/silverstripe-elemental-userforms": "^5.0.0",
+        "undefinedoffset/sortablegridfield": "^3.0",
         "endroid/qrcode": "^5.0",
-        "ryanpotter/silverstripe-cms-theme": "dev-master",
-        "atwx/silverstripe-vitehelper": "^0.1",
-        "webbuilders-group/silverstripe-siteconfig-error-pages": "^2.1",
-        "plastyk/dashboard": "^4.0"
+        "atwx/silverstripe-vitehelper": "^1.1",
+        "webbuilders-group/silverstripe-siteconfig-error-pages": "^3.0",
+        "plastyk/dashboard": "^5.0"
     },
     "require-dev": {
-        "silverleague/ideannotator": "^3.5",
-        "phpunit/phpunit": "^9.6",
+        "silverleague/ideannotator": "dev-silverstripe6 as 4.0",
         "wernerkrauss/silverstripe-rector": "^1",
         "cambis/silverstan": "^2",
         "phpstan/extension-installer": "^1.0"
@@ -55,8 +67,8 @@
             "web.config"
         ]
     },
-    "prefer-stable": true,
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
         "lint": "vendor/bin/phpcs",
         "fix": "vendor/bin/phpcbf",
