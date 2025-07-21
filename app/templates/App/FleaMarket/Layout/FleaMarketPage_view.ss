@@ -1,14 +1,15 @@
 <% with $Product %>
     <div class="section section--fleamarket">
         <div class="section_content">
-            <a class="backbutton" href="$Top.Link">← Zurück zur Übersicht</a>
+            <a class="backbutton" href="$Top.Link">Zurück zur Übersicht</a>
             <h1>Flohmarkt</h1>
             <div class="productgallery swiper">
                 <div class="productgallery_slider swiper-wrapper">
                     <% loop PhotoGalleryImages %>
                         <div class="swiper-slide">
                             <a data-gallery="gallery" data-glightbox="description: $Title" data-caption="$Title" class="productimage" data-noloadingscreen="true" href="$Image.URL">
-                                $Image.FocusFill(1200,500)
+                                $Image.FitMax(1200,900)
+                                <img src="$Image.FillMax(400,300).URL" alt="$Title" class="product_image_background"/>
                             </a>
                         </div>
                     <% end_loop %>
