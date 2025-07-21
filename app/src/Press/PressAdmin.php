@@ -4,7 +4,7 @@ namespace App\Press;
 
 use SilverStripe\Admin\ModelAdmin;
 use SilverStripe\Forms\GridField\GridField;
-use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
+use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 
 /**
  * Class \App\Press\PressAdmin
@@ -37,7 +37,8 @@ class PressAdmin extends ModelAdmin
 
         // This is just a precaution to ensure we got a GridField from dataFieldByName() which you should have
         if ($gridField instanceof GridField) {
-            $gridField->getConfig()->addComponent(GridFieldSortableRows::create('SortField'));
+            // $gridField->getConfig()->addComponent(GridFieldSortableRows::create('SortField'));
+            $gridField->getConfig()->addComponent(GridFieldOrderableRows::create('SortField'));
         }
 
         return $form;

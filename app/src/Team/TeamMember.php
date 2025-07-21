@@ -17,7 +17,6 @@ use SilverStripe\Forms\DropdownField;
  * @property string $Profession
  * @property string $Jointime
  * @property string $Description
- * @property int $Importance
  * @property string $Status
  * @property int $ImageID
  * @method Image Image()
@@ -32,7 +31,7 @@ class TeamMember extends DataObject
         "Profession" => "Varchar(255)",
         "Jointime" => "Varchar(255)",
         "Description" => "HTMLText",
-        "Importance" => "Int",
+        "SortField" => "Int",
         "Status" => "Varchar(255)"
     ];
 
@@ -48,7 +47,7 @@ class TeamMember extends DataObject
         "Socials" => TeamSocial::class
     ];
 
-    private static $default_sort = "Status, Importance DESC";
+    private static $default_sort = "Status, SortField ASC";
 
     private static $field_labels = [
         "Title" => "Name",
@@ -56,12 +55,11 @@ class TeamMember extends DataObject
         "Jointime" => "Seit wann dabei",
         "Description" => "Beschreibung",
         "Socials" => "Soziale Links",
-        "Importance" => "Wichtigkeit",
         "Status" => "Status",
     ];
 
     private static $summary_fields = [
-        "Importance" => "Wichtigkeit",
+        "Thumbnail" => "Bild",
         "Title" => "Name",
         "Profession" => "Aufgabenbereich",
         "Status" => "Status"
@@ -70,10 +68,6 @@ class TeamMember extends DataObject
     private static $searchable_fields = [
         "Title",
         "Description",
-    ];
-
-    private static $indexes = [
-        'Importance' => true,
     ];
 
     private static $table_name = "TeamMembers";
@@ -91,6 +85,7 @@ class TeamMember extends DataObject
             "formerly" => "Ehemalig",
             "hidden" => "Versteckt",
         ]));
+        $fields->removeByName("SortField");
         return $fields;
     }
 
@@ -104,5 +99,14 @@ class TeamMember extends DataObject
     public function getFormattedName()
     {
         return str_replace(' ', '_', $this->Title);
+    }
+
+    public function getThumbnail()
+    {
+        $file = $this->Image();
+        if ($file) {
+            return $file->Fit(100, 100);
+        }
+        return null;
     }
 }
