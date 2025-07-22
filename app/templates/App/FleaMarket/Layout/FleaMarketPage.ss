@@ -1,6 +1,5 @@
 <div class="section section--fleamarket">
     <div class="section_content">
-        <a class="backbutton"></a>
         <h1>Flohmarkt</h1>
         $Text
         <div class="fleamarket_categories">
