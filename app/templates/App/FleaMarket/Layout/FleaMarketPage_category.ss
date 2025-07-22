@@ -6,7 +6,7 @@
             <p><b>Kategorien:</b></p>
             <% loop $Categories %>
                 <% if $Items.Count > 0 %>
-                    <a href="$Link" class="fleamarket_category">
+                    <a href="$Link" class="fleamarket_category <% if $ID == $Up.Category.ID %>active<% end_if %>">
                         $Title
                     </a>
                 <% end_if %>

@@ -80,7 +80,7 @@
                 border: 1px solid var(--ColorPrimary);
                 transition: 0.1s ease-in-out;
 
-                &:hover{
+                &:hover, &.active{
                     background-color: var(--ColorPrimary);
                     color: var(--ColorWhite);
                 }
