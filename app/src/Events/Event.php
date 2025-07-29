@@ -8,8 +8,8 @@ use IntlDateFormatter;
 use App\Events\Registration;
 use App\Events\EventTimeSlot;
 use SilverStripe\Assets\Image;
-use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\Model\List\ArrayList;
 
 /**
  * Class \App\Events\Event
