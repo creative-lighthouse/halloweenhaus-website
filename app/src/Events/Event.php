@@ -37,6 +37,7 @@ class Event extends DataObject
         "Description" => "HTMLText",
         "InfoForAttendees" => "HTMLText",
         "SlotDuration" => "Int",
+        "Visible" => "Boolean",
     ];
 
     private static $has_one = [
