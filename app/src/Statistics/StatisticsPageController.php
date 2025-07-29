@@ -5,7 +5,7 @@ namespace App\Statistics;
 use App\Events\EntryLog;
 use PageController;
 use SilverStripe\Control\HTTPRequest;
-use SilverStripe\ORM\GroupedList;
+use SilverStripe\Model\List\GroupedList;
 use SilverStripe\Security\Security;
 
 /**

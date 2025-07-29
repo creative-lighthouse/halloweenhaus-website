@@ -9,7 +9,7 @@ use SilverStripe\Forms\Form;
 use App\Feedback\FeedbackPage;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
-use SilverStripe\ORM\GroupedList;
+use SilverStripe\Model\List\GroupedList;
 use SilverStripe\Forms\EmailField;
 use SilverStripe\Forms\FormAction;
 use SilverStripe\Forms\HiddenField;
@@ -17,7 +17,7 @@ use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\NumericField;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Forms\CheckboxField;
-use SilverStripe\Forms\RequiredFields;
+use SilverStripe\Forms\Validation\RequiredFieldsValidator;
 
 /**
  * Class \App\Events\EventPageController
@@ -125,7 +125,7 @@ class EventPageController extends PageController
             FormAction::create("completeregistration")->setTitle("Absenden")
         );
 
-        $required = RequiredFields::create(
+        $required = RequiredFieldsValidator::create(
             "Title",
             "EventID",
             "TimeSlotID",
