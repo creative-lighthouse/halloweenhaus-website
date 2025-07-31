@@ -8,17 +8,17 @@
             display: grid;
             grid-template-columns: repeat(3, calc(100% / 3));
             justify-content: space-around;
-            gap: 20px;
+            margin: 0 -10px;
 
             .referenceitem{
                 background-color: var(--ColorBackgroundLight);
-                width: 100%;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: center;
                 text-align: center;
                 padding: 20px;
+                margin: 10px;
                 border-radius: 20px;
                 transition: background-color 0.2s ease-in-out;
 
