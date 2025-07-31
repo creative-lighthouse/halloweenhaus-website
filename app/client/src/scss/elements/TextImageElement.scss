@@ -118,6 +118,20 @@
                     order: 2;
                 }
             }
+
+            &.image-100 {
+                flex-wrap: wrap;
+                .textimage_image {
+                    width: 100%;
+                    padding: 0 0 20px 0;
+                }
+
+                &.image-right {
+                    .textimage_image {
+                        padding: 20px 0 0 0;
+                    }
+                }
+            }
         }
     }
 

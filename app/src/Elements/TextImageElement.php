@@ -78,6 +78,7 @@ class TextImageElement extends BaseElement
             "image-50" => "50%",
             "image-60" => "60%",
             "image-70" => "70%",
+            "image-100" => "100%",
         ]));
         $fields->replaceField('BackgroundColor', DropdownField::create('BackgroundColor', 'Hintergrundfarbe', [
             "color--background-transparent" => "Transparent",
