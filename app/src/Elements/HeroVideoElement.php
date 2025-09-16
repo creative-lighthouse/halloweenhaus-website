@@ -2,6 +2,7 @@
 
 namespace App\Elements;
 
+use SilverStripe\Assets\Image;
 use DNADesign\Elemental\Models\BaseElement;
 
 /**
@@ -14,11 +15,16 @@ class HeroVideoElement extends BaseElement
 
     private static $db = [
         "EmbedCode" => "Text",
+        "DirectVideo" => "Varchar(512)",
     ];
 
-    private static $has_one = [];
+    private static $has_one = [
+        "DateFrame" => Image::class,
+    ];
 
-    private static $owns = [];
+    private static $owns = [
+        "DateFrame",
+    ];
 
     private static $field_labels = [];
 
