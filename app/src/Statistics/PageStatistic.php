@@ -17,7 +17,7 @@ class PageStatistic extends DataObject
         "Page" => Page::class
     ];
 
-    private static $default_sort = "PageViews DESC";
+    private static $default_sort = "GuestViews DESC";
 
     private static $field_labels = [
         "Page.Title" => "Seite",
