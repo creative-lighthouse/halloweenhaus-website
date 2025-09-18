@@ -7,7 +7,7 @@
     .section_content {
         max-width: unset;
         position: relative;
-        margin-bottom: 150px;
+        margin-bottom: 180px;
 
         .hero_video {
             width: 100%;
@@ -18,11 +18,11 @@
 
         .hero_dateframe {
             position: absolute;
-            bottom: -125px;
+            bottom: -150px;
             left: 50%;
             transform: translateX(-50%);
             height: 100%;
-            max-height: 250px;
+            max-height: 300px;
             width: 70%;
             max-width: 800px;
 
