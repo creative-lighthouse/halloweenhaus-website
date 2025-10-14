@@ -225,6 +225,11 @@ class ApiPageController extends ContentController
     //Get Image from base64 string in API call and save to database
     public function addImageFromBooth(HTTPRequest $request)
     {
+        // CORS headers
+        $this->response->addHeader('Access-Control-Allow-Origin', 'http://localhost');
+        $this->response->addHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+        $this->response->addHeader('Access-Control-Allow-Headers', 'Content-Type');
+
         $data = json_decode($request->getBody(), true);
         if (!isset($data['image'])) {
             $this->response->addHeader('Content-Type', 'application/json');
@@ -245,7 +250,6 @@ class ApiPageController extends ContentController
             $returndata["detaillink"] = $photogallery->AbsoluteLink("foto") . "/" . $boothImage->HashID;
             $returndata["qrlink"] = $this->createQRCode($photogallery->AbsoluteLink("foto") . "/" . $boothImage->HashID);
         }
-
 
         $this->response->addHeader('Content-Type', 'application/json');
         return json_encode($returndata);
@@ -454,7 +458,7 @@ class ApiPageController extends ContentController
         foreach ($sales as $sale) {
             $productamount = 0;
             foreach ($sale->ProductSales() as $productSale) {
-                $productamount += $productSale->Amount;
+                $productamount += (int)$productSale->Amount;
             }
             $day = date("Y-m-d", strtotime($sale->SaleTime));
             if (!isset($days[$day])) {
@@ -489,9 +493,9 @@ class ApiPageController extends ContentController
         $days = [];
 
         foreach ($sales as $sale) {
-            $profit = 0;
+            $profit = 0.0;
             foreach ($sale->ProductSales() as $productSale) {
-                $profit += $productSale->Amount * ($productSale->SellingPrice - $productSale->Product()->BuyPrice);
+                $profit += (float)$productSale->Amount * ((float)$productSale->SellingPrice - (float)$productSale->Product()->BuyPrice);
             }
             $day = date("Y-m-d", strtotime($sale->SaleTime));
             if (!isset($days[$day])) {
@@ -588,7 +592,7 @@ class ApiPageController extends ContentController
         foreach ($sales as $sale) {
             $productamount = 0;
             foreach ($sale->ProductSales() as $productSale) {
-                $productamount += $productSale->Amount;
+                $productamount += (int)$productSale->Amount;
             }
             $hour = date("Y-m-d H:00", strtotime($sale->SaleTime));
             if (!isset($hours[$hour])) {
