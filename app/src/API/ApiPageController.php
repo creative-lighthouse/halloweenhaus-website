@@ -50,7 +50,18 @@ class ApiPageController extends ContentController
         "submitBoothImage",
         "statistics",
         "addPOSSale",
+        "optionsSubmitBoothImage",
     ];
+    /**
+     * Handle OPTIONS preflight for submitBoothImage endpoint (CORS)
+     */
+    public function optionsSubmitBoothImage(HTTPRequest $request)
+    {
+        $this->response->addHeader('Access-Control-Allow-Origin', 'http://localhost');
+        $this->response->addHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+        $this->response->addHeader('Access-Control-Allow-Headers', 'Content-Type');
+        return $this->response;
+    }
 
     public function index(HTTPRequest $request)
     {
