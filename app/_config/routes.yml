@@ -1,0 +1,9 @@
+---
+Name: apioptions
+After: '#coreroutes'
+---
+SilverStripe\\Control\\Director:
+  rules:
+    'api/submitBoothImage':
+      Controller: 'App\\API\\ApiPageController'
+      Methods: 'GET,POST,OPTIONS'
