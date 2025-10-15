@@ -2,14 +2,16 @@
     <head>
         <% base_tag %>
         $MetaTags(false)
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta charset="utf-8">
         <title>$Title - $SiteConfig.Title</title>
+        $ViteClient.RAW
+        <link rel="stylesheet" href="$Vite('app/client/src/scss/main.scss')">
+
         <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-        <link rel="manifest" href="../site.webmanifest">
         <link rel="mask-icon" href="../mask_icon.svg" color="#ffffff">
 
         <meta property="og:title" content="$Title - $SiteConfig.Title" />
@@ -31,8 +33,10 @@
 
         <meta name="msapplication-TileColor" content="#151515">
         <meta name="theme-color" content="#151515">
-        <meta http-equiv="refresh" content="10" />
-        <link rel="stylesheet" href="$Mix("/css/styles.min.css")">
+
+        $ViteClient.RAW
+        <link rel="stylesheet" href="$Vite('app/client/src/scss/main.scss')">
+        <link rel="manifest" href="site.webmanifest" />
     </head>
     <body class="ticket <% if $UsedCoupon %>$UsedCoupon.Type<% end_if %>">
         <div class="section section--Ticket">

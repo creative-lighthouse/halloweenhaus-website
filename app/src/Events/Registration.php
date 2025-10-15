@@ -6,16 +6,17 @@ use DateTime;
 use App\Events\Event;
 use App\Events\EventAdmin;
 use App\Events\EventTimeSlot;
-use SilverStripe\View\SSViewer;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\View\ArrayData;
+use SilverStripe\Model\ArrayData;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Writer\PngWriter;
+use SilverStripe\View\ViewLayerData;
 use Endroid\QrCode\Encoding\Encoding;
 use SilverStripe\Forms\DropdownField;
 use Endroid\QrCode\RoundBlockSizeMode;
 use SilverStripe\SiteConfig\SiteConfig;
 use Endroid\QrCode\ErrorCorrectionLevel;
+use SilverStripe\TemplateEngine\SSTemplateEngine;
 
 /**
  * Class \App\Events\Registration
@@ -142,45 +143,53 @@ class Registration extends DataObject
     public function sendReceiveConfirmation()
     {
         if ($this->Email != "test@test.de") {
+
             $eventpage = EventPage::get()->first();
             $confirmLink = $eventpage->AbsoluteLink("registrationconfirm?event=" . $this->EventID . "&hash=" . $this->Hash);
 
+            // Variablen für Platzhalter
+            $vars = [
+                '{Registration.Title}' => $this->Title,
+                '{Registration.Name}' => $this->Title,
+                '{Registration.Email}' => $this->Email,
+                '{Registration.GroupSize}' => $this->GroupSize,
+                '{Registration.UnsubscribeLink}' => $this->getUnsubscribeLink(),
+                '{Event.Title}' => $this->Event ? $this->Event->Title : '',
+                '{Event.DateFormatted}' => $this->Event ? $this->Event->DateFormatted : '',
+                '{TimeSlot.SlotTime}' => $this->TimeSlot ? $this->TimeSlot->SlotTime : '',
+                '{TimeSlot.SlotTimeFormatted}' => $this->TimeSlot->SlotTimeFormatted,
+                '{TimeSlot.SlotTimeEndFormatted}' => $this->TimeSlot->SlotTimeEndFormatted,
+                '{TimeSlot.FreeSlotCount}' => $this->TimeSlot->getFreeSlotCount(),
+                '{TimeSlot.MaxAttendees}' => $this->TimeSlot->MaxAttendees,
+                '{ConfirmLink}' => $confirmLink
+            ];
+
             //Send email to client
             $emailConfirmation = EmailNotification::create();
-            $emailConfirmation->Title = SSViewer::execute_string(SiteConfig::current_site_config()->AckMessageSubject, ArrayData::create([
-                "Registration" => $this,
-                "Event" => $this->Event,
-                "Name" => $this->Title,
-                "TimeSlot" => $this->TimeSlot
-            ]));
-            $emailConfirmation->Text = SSViewer::execute_string(SiteConfig::current_site_config()->AckMessageContent, ArrayData::create([
-                "Registration" => $this,
-                "Event" => $this->Event,
-                "Name" => $this->Title,
-                "TimeSlot" => $this->TimeSlot,
-                "ConfirmLink" => $confirmLink
-            ]));
+            $subject = SiteConfig::current_site_config()->AckMessageSubject;
+            $content = SiteConfig::current_site_config()->AckMessageContent;
+            foreach ($vars as $key => $value) {
+                $subject = str_replace($key, $value, $subject);
+                $content = str_replace($key, $value, $content);
+            }
+            $emailConfirmation->Title = $subject;
+            $emailConfirmation->Text = $content;
             $emailConfirmation->Type = "AckMessage";
             $emailConfirmation->Email = $this->Email;
             $emailConfirmation->Event = $this->Event;
             $emailConfirmation->Registration = $this;
             $emailConfirmation->write();
 
-
             //Send email to admin
             $emailNotification = EmailNotification::create();
-            $emailNotification->Title = SSViewer::execute_string(SiteConfig::current_site_config()->NewRegisterMessageSubject, ArrayData::create([
-                "Registration" => $this,
-                "Event" => $this->Event,
-                "Name" => $this->Title,
-                "TimeSlot" => $this->TimeSlot
-            ]));
-            $emailNotification->Text = SSViewer::execute_string(SiteConfig::current_site_config()->NewRegisterMessageContent, ArrayData::create([
-                "Registration" => $this,
-                "Event" => $this->Event,
-                "Name" => $this->Title,
-                "TimeSlot" => $this->TimeSlot
-            ]));
+            $adminSubject = SiteConfig::current_site_config()->NewRegisterMessageSubject;
+            $adminContent = SiteConfig::current_site_config()->NewRegisterMessageContent;
+            foreach ($vars as $key => $value) {
+                $adminSubject = str_replace($key, $value, $adminSubject);
+                $adminContent = str_replace($key, $value, $adminContent);
+            }
+            $emailNotification->Title = $adminSubject;
+            $emailNotification->Text = $adminContent;
             $emailNotification->Type = "NewRegistration";
             $emailNotification->Email = SiteConfig::current_site_config()->EventAdminEmail;
             $emailNotification->Event = $this->Event;
@@ -197,23 +206,33 @@ class Registration extends DataObject
     {
         if ($this->Email != "test@test.de") {
             $eventpage = EventPage::get()->first();
-            $confirmLink = $eventpage->AbsoluteLink("ticket/" . $this->Hash);
+            $ticketLink = $eventpage->AbsoluteLink("ticket/" . $this->Hash);
+
+            // Variablen für Platzhalter
+            $vars = [
+                '{Registration.Title}' => $this->Title,
+                '{Registration.Name}' => $this->Title,
+                '{Registration.Email}' => $this->Email,
+                '{Registration.GroupSize}' => $this->GroupSize,
+                '{Registration.UnsubscribeLink}' => $this->getUnsubscribeLink(),
+                '{Event.Title}' => $this->Event->Title,
+                '{Event.DateFormatted}' => $this->Event->DateFormatted,
+                '{TimeSlot.SlotTime}' => $this->TimeSlot->SlotTime,
+                '{TimeSlot.SlotTimeFormatted}' => $this->TimeSlot->SlotTimeFormatted,
+                '{TimeSlot.SlotTimeEndFormatted}' => $this->TimeSlot->SlotTimeEndFormatted,
+                '{TicketLink}' => $ticketLink
+            ];
 
             //Send email to client
             $emailConfirmation = EmailNotification::create();
-            $emailConfirmation->Title = SSViewer::execute_string(SiteConfig::current_site_config()->TicketMessageSubject, ArrayData::create([
-                "Registration" => $this,
-                "Event" => $this->Event,
-                "Name" => $this->Title,
-                "TimeSlot" => $this->TimeSlot
-            ]));
-            $emailConfirmation->Text = SSViewer::execute_string(SiteConfig::current_site_config()->TicketMessageContent, ArrayData::create([
-                "Registration" => $this,
-                "Event" => $this->Event,
-                "Name" => $this->Title,
-                "TimeSlot" => $this->TimeSlot,
-                "TicketLink" => $confirmLink
-            ]));
+            $subject = SiteConfig::current_site_config()->TicketMessageSubject;
+            $content = SiteConfig::current_site_config()->TicketMessageContent;
+            foreach ($vars as $key => $value) {
+                $subject = str_replace($key, $value, $subject);
+                $content = str_replace($key, $value, $content);
+            }
+            $emailConfirmation->Title = $subject;
+            $emailConfirmation->Text = $content;
             $emailConfirmation->Type = "AckMessage";
             $emailConfirmation->Email = $this->Email;
             $emailConfirmation->Event = $this->Event;

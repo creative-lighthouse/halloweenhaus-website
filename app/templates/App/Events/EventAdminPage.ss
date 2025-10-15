@@ -1,14 +1,16 @@
 <head>
     <% base_tag %>
     $MetaTags(false)
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="utf-8">
     <title>$Title - $SiteConfig.Title</title>
+    $ViteClient.RAW
+    <link rel="stylesheet" href="$Vite('app/client/src/scss/main.scss')">
+
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-    <link rel="manifest" href="../site.webmanifest">
     <link rel="mask-icon" href="../mask_icon.svg" color="#ffffff">
 
     <meta property="og:title" content="$Title - $SiteConfig.Title" />
@@ -30,7 +32,10 @@
 
     <meta name="msapplication-TileColor" content="#151515">
     <meta name="theme-color" content="#151515">
-    <link rel="stylesheet" href="$Mix("/css/styles.min.css")">
+
+    $ViteClient.RAW
+    <link rel="stylesheet" href="$Vite('app/client/src/scss/main.scss')">
+    <link rel="manifest" href="site.webmanifest" />
 </head>
 <body class="ticket">
     <% if $CurrentUser %>
@@ -156,7 +161,7 @@
                     }
 
                     const decodedUrl = new URL(result);
-                    console.log('Decoded URL:', decodedUrl);
+                    //console.log('Decoded URL:', decodedUrl);
 
                     if(popup_active) {
                         return;
@@ -169,7 +174,7 @@
                     const lastPart = urlParts[urlParts.length - 1];
                     checkCode(lastPart);
 
-                    if(decodedUrl.hostname == "localhost" || decodedUrl.hostname == 'halloweenhaus-schmalenbeck.de') {
+                    if(decodedUrl.hostname == "localhost" || decodedUrl.hostname == 'halloweenhaus-schmalenbeck.de' || decodedUrl.hostname == 'halloweenhaus-website.ddev.site') {
                         //Get last part of the URL
                         const urlParts = decodedUrl.pathname.split('/');
                         const lastPart = urlParts[urlParts.length - 1];
@@ -274,7 +279,7 @@
                             client_timedifference.innerHTML = calculateTimeDifference(data.TimeSlot);
                         }
                     }, 1000);
-                    console.log("TimeDifferenceInterval: ", timeDifferenceInterval);
+                    //console.log("TimeDifferenceInterval: ", timeDifferenceInterval);
 
                     button_checkinGuest.onclick = function() {
                         checkinGuest(data.EventID, hash);
@@ -309,7 +314,7 @@
 
             //Calculate difference and output in human readable format (X days, X hours, X seconds) and add - or + depending on the difference
             const difference = ticketTime - currentTime;
-            console.log('Difference:', difference);
+            //console.log('Difference:', difference);
             const differenceAbs = Math.abs(difference);
             const days = Math.floor(differenceAbs / (1000 * 60 * 60 * 24));
             const hours = Math.floor((differenceAbs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
