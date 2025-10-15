@@ -225,11 +225,6 @@ class ApiPageController extends ContentController
     //Get Image from base64 string in API call and save to database
     public function addImageFromBooth(HTTPRequest $request)
     {
-        // CORS headers
-        $this->response->addHeader('Access-Control-Allow-Origin', 'http://localhost');
-        $this->response->addHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-        $this->response->addHeader('Access-Control-Allow-Headers', 'Content-Type');
-
         $data = json_decode($request->getBody(), true);
         if (!isset($data['image'])) {
             $this->response->addHeader('Content-Type', 'application/json');
