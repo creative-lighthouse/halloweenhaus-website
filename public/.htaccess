@@ -27,15 +27,17 @@ ErrorDocument 500 /assets/error-500.html
         DirectorySlash On
     </IfModule>
 
+    <IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Headers "*"
+        # Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+    </IfModule>
+
     SetEnv HTTP_MOD_REWRITE On
     RewriteEngine On
 
     # Enable HTTP Basic authentication workaround for PHP running in CGI mode
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-
-    # Allow OPTIONS requests to pass through to Silverstripe (CORS)
-    RewriteCond %{REQUEST_METHOD} =OPTIONS
-    RewriteRule .* index.php [L]
 
     # Deny access to potentially sensitive files and folders
     RewriteRule ^vendor(/|$) - [F,L,NC]
