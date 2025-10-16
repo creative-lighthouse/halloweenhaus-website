@@ -27,7 +27,7 @@ class EmailNotification extends DataObject
 
     private static $db = array(
         "Title" => "Varchar(512)",
-        "Text" => "Varchar(1023)",
+        "Text" => "Text",
         "Email" => "Varchar(255)",
         "Type" => "Varchar(255)",
     );

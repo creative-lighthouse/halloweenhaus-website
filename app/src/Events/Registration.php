@@ -265,7 +265,12 @@ class Registration extends DataObject
 
     public function getQRCode()
     {
-        $validateLink = EventAdminPage::get()->first()->AbsoluteLink("checkRegistration") . "/" . $this->Hash;
+        $adminPage = EventAdminPage::get()->first();
+        if ($adminPage) {
+            $validateLink = $adminPage->AbsoluteLink("checkRegistration") . "/" . $this->Hash;
+        } else {
+            $validateLink = "/404";
+        }
 
         $qrCode = Builder::create()
             ->writer(new PngWriter())
