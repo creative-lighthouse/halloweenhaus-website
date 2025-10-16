@@ -107,7 +107,7 @@
 
     <!--Admin Scanner Script-->
     <script type="module">
-        import QrScanner from '../_resources/app/client/dist/qr-scanner.min.js';
+        import QrScanner from '../qr-scanner.min.js';
 
         const qrVideo = document.getElementById('qrcode-video');
         const popup = document.querySelector('.section_popup');
