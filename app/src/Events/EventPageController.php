@@ -275,7 +275,7 @@ class EventPageController extends PageController
                 return $this->redirect($this->Link("error") . "?error=Diese Registrierung wurde bereits bestätigt!");
             }
             $registration->Status = "Confirmed";
-            //$registration->write();
+            $registration->write();
             return array(
                 "Event" => $event,
                 "Registration" => $registration,
