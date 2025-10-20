@@ -111,11 +111,9 @@
                 <div class="events_navigator_step groupsize hidden" data-eventstep="4">
                     <h2>4. Gruppengröße wählen</h2>
                     <div class="section_selectablelist">
-                        <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="1">1 Person</a>
-                        <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="2">2 Personen</a>
-                        <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="3">3 Personen</a>
-                        <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="4">4 Personen</a>
-                        <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="5">5 Personen</a>
+                        <% loop $SiteConfig.MaxGroupSizeAsArraySize %>
+                            <a class="groupsize_button" data-behaviour="groupsize-button" data-groupsize="$Pos"><% if $Pos == 1 %>1 Person<% else %>$Pos Personen<% end_if %></a>
+                        <% end_loop %>
                     </div>
                 </div>
 

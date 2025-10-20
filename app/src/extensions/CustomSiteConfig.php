@@ -42,6 +42,7 @@ class CustomSiteConfig extends Extension
         'NewRegisterMessageContent' => 'HTMLText',
         'EmailsActive' => 'Boolean',
         'EventAdminEmail' => 'Varchar(255)',
+        "MaxGroupSize" => "Int",
     ];
 
     private static $defaults = [
@@ -54,6 +55,7 @@ class CustomSiteConfig extends Extension
         $fields->addFieldToTab("Root.Main", TextField::create("PlaceText", "Place Text"));
         $fields->addFieldToTab("Root.Main", CheckboxField::create("ShowBanner", "Show Banner"));
         $fields->addFieldToTab("Root.Main", HTMLEditorField::create("BannerText", "Banner Text"));
+        $fields->addFieldToTab("Root.Main", TextField::create("MaxGroupSize", "Maximale Gruppengröße zum registrieren"));
         $fields->addFieldToTab('Root.Event Emails', CheckboxField::create('EmailsActive', 'E-Mails aktiviert'));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('EventAdminEmail', 'Event Admin Emailadresse'));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('AckMessageSubject', 'Empfangsbestätigung Betreff'));
@@ -62,5 +64,15 @@ class CustomSiteConfig extends Extension
         $fields->addFieldToTab('Root.Event Emails', HTMLEditorField::create('TicketMessageContent', 'Ticket-Email Inhalt'));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('NewRegisterMessageSubject', 'Neue Anmeldung Betreff'));
         $fields->addFieldToTab('Root.Event Emails', HTMLEditorField::create('NewRegisterMessageContent', 'Neue Anmeldung Inhalt'));
+    }
+
+    public function getMaxGroupSizeAsArraySize()
+    {
+        //Create an array in the size of MaxGroupSize
+        $sizes = [];
+        for ($i = 1; $i <= $this->owner->MaxGroupSize; $i++) {
+            $sizes[] = $i;
+        }
+        return $sizes;
     }
 }
