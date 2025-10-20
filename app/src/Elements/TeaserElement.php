@@ -7,6 +7,7 @@ use App\Elements\TeaserItem;
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 
 /**
@@ -48,9 +49,8 @@ class TeaserElement extends BaseElement
         $fields->removeByName("TeaserItems");
 
         $gridFieldConfig = GridFieldConfig_RecordEditor::create(200);
-        $sorter = GridFieldSortableRows::create('SortOrder');
-        $gridFieldConfig->addComponent($sorter);
         $gridfield = GridField::create("TeaserItems", "Teaser", $this->TeaserItems(), $gridFieldConfig);
+        $gridfield->getConfig()->addComponent(GridFieldOrderableRows::create('SortOrder'));
         $fields->addFieldToTab('Root.Main', $gridfield);
         return $fields;
     }
