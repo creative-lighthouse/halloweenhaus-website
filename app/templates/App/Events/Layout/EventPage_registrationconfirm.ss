@@ -11,7 +11,7 @@
             <p>Dein Ticket ist auch in deinem Email-Postfach.</p>
 
             <p>Das Halloweenhaus Schmalenbeck findet hier statt: <strong>Deepenstegen 25A, 22952 Lütjensee</strong><br>
-            Bitte stelle Dich vor Ort in der gesonderten Warteschlange "Otto's Sondereingang" an und zeige beim Einlass dein Ticket vor.<br>
+            Bitte stelle Dich vor Ort in der gesonderten Warteschlange "Ottos Sondereingang" an und zeige beim Einlass dein Ticket vor.<br>
             Falls Du doch nicht mehr kommen willst oder kannst, melde dich bitte über <a href="$Registration.UnsubscribeLink">diesen Link</a> ab.<br>
             Du hast noch eine Frage? - Wir haben vielleicht schon eine Antwort: Alles Wichtige steht in unseren <a href="https://halloweenhaus-schmalenbeck.de/faq">FAQs</a>.</p>
             <p>Zum Abschluss noch ein Tipp: Für unsere Show benötigt deine Gruppe einen Halloweenspruch.</p>
