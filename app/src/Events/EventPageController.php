@@ -230,7 +230,7 @@ class EventPageController extends PageController
                 );
             }
         } else {
-            user_error("Unbekannter Hash");
+            return $this->redirect($this->Link("error") . "?error=Unbekannte Registrierung");
         }
     }
 
@@ -247,7 +247,7 @@ class EventPageController extends PageController
                 "TimeSlot" => $timeslot,
             );
         } else {
-            $this->redirect($this->Link("eventnotfound"));
+            return $this->redirect($this->Link("eventnotfound"));
         }
     }
 
@@ -255,13 +255,19 @@ class EventPageController extends PageController
     {
         $event_id = $_GET["event"];
         $event = Event::get()->byId($event_id);
-        $hash = $_GET["hash"];
 
-        if (!isset($hash)) {
-            return user_error("Unbekannter Hash");
+        if (!isset($_GET["hash"])) {
+            return $this->redirect($this->Link("error") . "?error=Unbekannte Registrierung");
+        } else {
+            $hash = $_GET["hash"];
         }
         if (!isset($event)) {
-            return user_error("Unbekanntes Event");
+            return $this->redirect($this->Link("error") . "?error=Unbekanntes Event");
+        }
+        if (!isset($timeslot_id)) {
+            return $this->redirect($this->Link("error") . "?error=Unbekannter Timeslot");
+        } else {
+            $timeslot_id = $_GET["timeslot"];
         }
 
         $registration = Registration::get()->filter(array(
