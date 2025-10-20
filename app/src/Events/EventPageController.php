@@ -264,11 +264,6 @@ class EventPageController extends PageController
         if (!isset($event)) {
             return $this->redirect($this->Link("error") . "?error=Unbekanntes Event");
         }
-        if (!isset($timeslot_id)) {
-            return $this->redirect($this->Link("error") . "?error=Unbekannter Timeslot");
-        } else {
-            $timeslot_id = $_GET["timeslot"];
-        }
 
         $registration = Registration::get()->filter(array(
             "Hash" => $hash,
@@ -280,7 +275,7 @@ class EventPageController extends PageController
                 return $this->redirect($this->Link("error") . "?error=Diese Registrierung wurde bereits bestätigt!");
             }
             $registration->Status = "Confirmed";
-            $registration->write();
+            //$registration->write();
             return array(
                 "Event" => $event,
                 "Registration" => $registration,

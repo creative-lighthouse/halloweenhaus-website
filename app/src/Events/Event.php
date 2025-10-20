@@ -31,6 +31,7 @@ class Event extends DataObject
     private static $db = [
         "Title" => "Varchar(255)",
         "Place" => "Varchar(255)",
+        "PlaceLink" => "Varchar(255)",
         "EventDate" => "Date",
         "StartTime" => "Time",
         "EndTime" => "Time",

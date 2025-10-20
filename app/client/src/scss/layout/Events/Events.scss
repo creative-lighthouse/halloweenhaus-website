@@ -58,21 +58,48 @@
 
         .section_content {
             text-align: center;
+
+            .event_text {
+                .onemorestep{
+                    margin-top: -55px;
+                    border: 1px solid white;
+                    border-radius: 10px;
+                    padding: 50px 20px 10px 20px;
+                    color: white;
+
+                    .hint{
+                        font-size: 12px;
+                        opacity: 0.7;
+                        margin-top: 10px;
+                    }
+                }
+
+                .booked-event{
+                    margin-top: 30px;
+                    border: 1px solid darkgray;
+                    border-radius: 10px;
+                    padding: 10px 20px;
+                    color: darkgray;
+                }
+
+                .event-statustitle {
+                    background-color: white;
+                    color: black;
+                    padding: 10px 20px;
+                    transform: rotate(-3deg);
+                    display: inline-block;
+                    width: auto;
+                    margin: 0 -10px;
+                    margin-bottom: 30px;
+                }
+            }
         }
 
         h1, h2{
             margin: 20px 0;
         }
 
-        h2{
-            background-color: white;
-            color: black;
-            padding: 10px 20px;
-            transform: rotate(-3deg);
-            display: inline-block;
-            width: auto;
-            margin-bottom: 30px;
-        }
+
 
 
         p{
@@ -135,7 +162,7 @@
             margin: 20px 0;
         }
 
-        h2 {
+        .event-statustitle {
             background-color: white;
             color: black;
             padding: 10px 20px;
@@ -145,27 +172,66 @@
             margin-bottom: 30px;
         }
 
-
-        p {
-            margin: 10px 0;
-        }
-
-        .ticket_button{
-            background-color: var(--ColorPrimary);
-            color: var(--ColorWhite);
-            border: none;
+        .event-box{
+            border: 1px solid darkgray;
             border-radius: 10px;
             padding: 10px 20px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: background-color 0.1s ease-in-out;
+            margin: 20px auto;
+            max-width: 600px;
+            color: darkgray;
             text-align: center;
-            margin: 20px 0;
-            text-decoration: none;
-            display: inline-block;
 
-            &:hover{
-                background-color: var(--ColorPrimaryDark);
+            &.event_details{
+                .link--button{
+                    background-color: var(--ColorPrimary);
+                    border: 1px solid var(--ColorPrimary);
+
+                    &:hover{
+                        background-color: var(--ColorPrimaryDark);
+                    }
+                }
+
+                .call-to-action{
+                    margin: 0;
+                }
+
+                .eventplace{
+                    margin-top: 0;
+
+                    a{
+                        color: var(--ColorPrimaryLight);
+                        border: none;
+                        text-decoration: none;
+                    }
+                }
+
+                .hint{
+                    font-size: 12px;
+                    opacity: 0.7;
+                    margin: 10px 0 0 0;
+                }
+            }
+
+            &.booked-event {
+                p{
+                    margin: 0;
+                }
+            }
+
+            &.important-info {
+                p{
+                    &:last-of-type {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            &:first-of-type {
+                margin-top: -55px;
+                border: 1px solid white;
+                border-radius: 10px;
+                padding: 50px 20px 10px 20px;
+                color: white;
             }
         }
     }
