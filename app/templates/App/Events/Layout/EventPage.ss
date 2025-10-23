@@ -97,13 +97,15 @@
                             <% end_loop %>
                         <% end_loop %>
                     </div>
-                    <button class="timeslot_dialog_button" onclick="timeslot_dialog.showModal()">Passt kein Zeitslot? Klicke hier</button>
+                    <p class="timeslot_info_text">Weitere Zeitslots werden regelmäßig freigeschaltet. Unsere reguläre Warteschlange vor Ort hat zusätzlich geöffnet und benötigt keine Buchung.</p>
+                    <button class="timeslot_dialog_button" onclick="timeslot_dialog.showModal()">Weitere Informationen</button>
                     <dialog class="timeslot_dialog" id="timeslot_dialog">
                         <h1 class="text-center">Hinweis zu den Zeitslots der Halloween Shows</h1>
                         <p class="text-center">Sollte kein passender Zeitslot verfügbar sein, <strong>versuche es bitte später erneut oder komm einfach vorbei</strong> und stelle dich in die <strong>reguläre Warteschlange.</strong></p>
-                        <p class="text-center">Die <strong>Zeitslots für die Halloween Shows</strong> sind aufgrund der hohen Nachfrage limitiert. Es melden sich immer mal wieder auch Leute ab oder wir schalten neue Plätze frei.</p>
+                        <p class="text-center">Die <strong>digitalen Zeitslots für die Halloween-Shows</strong> sind aufgrund der hohen Nachfrage limitiert. Regelmäßig werden neue Plätze freigeschaltet.</p>
                         <p class="text-center">Sollte deine Gruppe <strong>größer als $SiteConfig.MaxGroupSize Personen sein</strong>, buche gerne zwei aufeinander folgende Zeitslots und gib am Eingang Bescheid. Ihr könnt dann auch gemeinsam die Show genießen.</p>
-                        <p class="text-center">Die <strong>Behind the Scenes Touren</strong> haben keine reguläre Warteschlange und sind auf die angegebenen Plätze limitiert. Es können sich aber auch Personen abmelden und dadurch wieder Plätze frei werden.</p>
+                        <p class="text-center">Die <strong>Behind the Scenes Touren</strong> haben keine reguläre Warteschlange und sind auf die angegebenen Plätze limitiert.</p>
+                        <p class="text-center">Weitere Informationen zu den Zeitslots, unserer virtuellen Warteschlange, dem Einlass und der Show findest Du auch in unseren <a href="/faq">FAQs</a>.</p>
                         <button class="timeslot_dialog_button" onclick="timeslot_dialog.close()">Schließen</button>
                     </dialog>
                 </div>
