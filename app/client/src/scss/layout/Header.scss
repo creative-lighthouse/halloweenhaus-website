@@ -21,7 +21,7 @@
         .nav_brand{
             height: 100px;
             width: auto;
-            max-width: calc(100vw - 80px);
+            max-width: 500px;
             flex-shrink: 0;
             padding: 10px 30px 10px 10px;
             transition: height 0.2s ease-in-out;
@@ -114,8 +114,12 @@
 
             .nav_mainmenu{
                 padding-right: 30px;
-                display: flex-wrap;
+                display: flex;
                 align-items: center;
+
+                @media (max-width: 780px) {
+                    flex-wrap: wrap;
+                }
 
                 @include media(max-medium) {
                     max-height: 0;
