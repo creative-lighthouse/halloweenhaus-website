@@ -21,10 +21,10 @@
         <meta property="og:description" content="$Description">
         <meta property="og:url" content="$Link" />
         <% if $Image %>
-        <meta property="og:image" content="$Image.Link" />
+            <meta property="og:image" content="$Image.Link" />
         <% else %>
-        <meta property="og:image" content="../_resources/app/client/images/socialmedia.png" />
-        <meta property="og:image:alt" content="Otto Woodmann vor einem dunklem Wald" />
+            <meta property="og:image" content="../_resources/app/client/images/socialmedia.png" />
+            <meta property="og:image:alt" content="Otto Woodmann vor einem dunklem Wald" />
         <% end_if %>
         <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="1200" />
@@ -40,9 +40,15 @@
         <link rel="manifest" href="site.webmanifest" />
     </head>
     <body>
-        <% include Header %>
-        $Layout
+        <div class="area_header">
+            <% include Header %>
+        </div>
+        <main class="area_content main">
+            $Layout
+        </main>
+        <div class="area_footer">
+            <% include Footer %>
+        </div>
         <script type="module" src="$Vite('app/client/src/js/main.js')"></script>
-        <% include Footer %>
     </body>
 </html>
