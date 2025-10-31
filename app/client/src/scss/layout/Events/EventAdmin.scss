@@ -130,6 +130,7 @@
             align-items: center;
             justify-content: flex-end;
             gap: 2%;
+            z-index: 1;
 
             .section_counter_button{
                 width: 60px;
@@ -149,6 +150,29 @@
                     height: 75%;
                     object-fit: contain;
                 }
+            }
+        }
+
+        .section_extras{
+            position: absolute;
+            left: 0;
+
+            .button_timer_text{
+                visibility: hidden;
+                position: absolute;
+                right: 20%;
+                height: 100%;
+                top: 0;
+                border: 2px solid var(--ColorBlack);
+                background-color: var(--ColorBackground);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+                z-index: -1;
+                padding-right: 50px;
+                border-radius: 50px;
+                color: white;
             }
         }
 
