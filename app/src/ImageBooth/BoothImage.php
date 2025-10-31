@@ -96,7 +96,7 @@ class BoothImage extends DataObject
     {
         $adminPage = PhotoboxGalleryPage::get()->first();
         if ($adminPage) {
-            $validateLink = $adminPage->AbsoluteLink("foto") . "/" . $this->Hash;
+            $validateLink = $adminPage->AbsoluteLink("foto") . "/" . $this->HashID;
         } else {
             $validateLink = "/404";
         }
