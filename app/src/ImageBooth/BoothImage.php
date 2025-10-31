@@ -5,6 +5,11 @@ namespace App\ImageBooth;
 use DateTime;
 use SilverStripe\Assets\File;
 use SilverStripe\ORM\DataObject;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Writer\PngWriter;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\RoundBlockSizeMode;
+use Endroid\QrCode\ErrorCorrectionLevel;
 
 /**
  * Class \App\ImageBooth\BoothImage
@@ -18,7 +23,8 @@ class BoothImage extends DataObject
 {
     private static $db = [
         "isVisible" => "Boolean",
-        "HashID" => "Varchar(5)"
+        "HashID" => "Varchar(5)",
+        "GroupID" => "Varchar(128)"
     ];
 
     private static $has_one = [
@@ -33,7 +39,7 @@ class BoothImage extends DataObject
 
     private static $field_labels = [
         "isVisible" => "Sichtbar in Gallerie",
-        "Base64Image" => "Bild-Code"
+        "Base64Image" => "Bild-Code",
     ];
 
     private static $summary_fields = [
@@ -69,7 +75,11 @@ class BoothImage extends DataObject
 
     public function getThumbnail()
     {
-        return $this->Image()->CMSThumbnail();
+        $image = $this->Image();
+        if ($image && $image->exists()) {
+            return $image->CMSThumbnail();
+        }
+        return null;
     }
 
     public function getFormattedCreationDate()
@@ -80,5 +90,29 @@ class BoothImage extends DataObject
     public function getFormattedIsVisible()
     {
         return $this->isVisible ? "Ja" : "Nein";
+    }
+
+    public function getQRCode()
+    {
+        $adminPage = PhotoboxGalleryPage::get()->first();
+        if ($adminPage) {
+            $validateLink = $adminPage->AbsoluteLink("foto") . "/" . $this->Hash;
+        } else {
+            $validateLink = "/404";
+        }
+
+        $qrCode = Builder::create()
+            ->writer(new PngWriter())
+            ->writerOptions([])
+            ->data($validateLink)
+            ->encoding(new Encoding('UTF-8'))
+            ->errorCorrectionLevel(ErrorCorrectionLevel::High)
+            ->size(300)
+            ->margin(10)
+            ->roundBlockSizeMode(RoundBlockSizeMode::Margin)
+            ->validateResult(false)
+            ->build();
+        header('Content-Type: ' . $qrCode->getMimeType());
+        return $qrCode->getDataUri();
     }
 }

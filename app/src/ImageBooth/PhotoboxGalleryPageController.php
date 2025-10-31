@@ -19,6 +19,7 @@ class PhotoboxGalleryPageController extends PageController
 
     private static $allowed_actions = [
         "foto",
+        "newest"
     ];
 
     public function index(HTTPRequest $request)
@@ -38,6 +39,15 @@ class PhotoboxGalleryPageController extends PageController
 
         return array(
             "BoothImage" => $boothImage,
+        );
+    }
+
+    public function newest(HTTPRequest $request)
+    {
+        $boothImage = BoothImage::get()->filter("isVisible", true)->sort("Created", "DESC");
+
+        return array(
+            "BoothImages" => $boothImage,
         );
     }
 }

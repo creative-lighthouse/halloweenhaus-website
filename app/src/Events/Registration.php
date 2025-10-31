@@ -7,16 +7,13 @@ use App\Events\Event;
 use App\Events\EventAdmin;
 use App\Events\EventTimeSlot;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\Model\ArrayData;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Writer\PngWriter;
-use SilverStripe\View\ViewLayerData;
 use Endroid\QrCode\Encoding\Encoding;
 use SilverStripe\Forms\DropdownField;
 use Endroid\QrCode\RoundBlockSizeMode;
 use SilverStripe\SiteConfig\SiteConfig;
 use Endroid\QrCode\ErrorCorrectionLevel;
-use SilverStripe\TemplateEngine\SSTemplateEngine;
 
 /**
  * Class \App\Events\Registration
