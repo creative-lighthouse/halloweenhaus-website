@@ -14,16 +14,22 @@ use SilverStripe\Forms\DropdownField;
 /**
  * Class \App\Team\TeamMember
  *
- * @property string $Title
- * @property string $Profession
- * @property string $Jointime
- * @property string $Description
- * @property string $Status
+ * @property ?string $Title
+ * @property ?string $Profession
+ * @property ?string $Jointime
+ * @property ?string $Description
+ * @property int $SortField
+ * @property ?string $Status
  * @property int $ImageID
  * @method Image Image()
- * @method DataList|PhotoGalleryImage[] PhotoGalleryImages()
- * @method ManyManyList|TeamSocial[] Socials()
+ * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
+ * @method ManyManyList<TeamSocial> Socials()
  * @mixin PhotoGalleryExtension
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class TeamMember extends DataObject
 {

@@ -43,6 +43,9 @@
 
 @use "layout/FleaMarket";
 
+
+@use "pages/ShowOverviewPage";
+
 html {
     background-color: var(--ColorBackground);
 }
@@ -84,7 +87,7 @@ body{
 }
 
 
-.section {
+section, .section {
     max-width: var(--MaxWidth);
     margin: 50px auto;
 

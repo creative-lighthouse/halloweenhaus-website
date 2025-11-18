@@ -7,6 +7,31 @@ use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Model\List\GroupedList;
 
+/**
+ * Class \App\Shows\Show
+ *
+ * @property int $Year
+ * @property ?string $Title
+ * @property ?string $Place
+ * @property ?string $Storyline
+ * @property ?string $WalkthroughLink
+ * @property int $GuestCount
+ * @property int $DaysOpen
+ * @property int $WalkingLength
+ * @property int $ShowLength
+ * @property int $TeamSize
+ * @property int $SceneCount
+ * @property int $PosterImageID
+ * @property int $ShowImageID
+ * @method Image PosterImage()
+ * @method Image ShowImage()
+ * @method DataList<ShowCharacter> ShowCharacters()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
+ */
 class Show extends DataObject
 {
     private static $db = [

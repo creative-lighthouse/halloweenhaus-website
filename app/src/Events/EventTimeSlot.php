@@ -8,12 +8,17 @@ use SilverStripe\ORM\DataObject;
 /**
  * Class \App\Events\EventTimeSlot
  *
- * @property string $SlotTime
+ * @property ?string $SlotTime
  * @property int $MaxAttendees
  * @property int $MaxVIPs
  * @property bool $Active
  * @property int $ParentID
  * @method Event Parent()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class EventTimeSlot extends DataObject
 {

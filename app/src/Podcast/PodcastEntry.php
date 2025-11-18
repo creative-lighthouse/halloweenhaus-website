@@ -8,16 +8,21 @@ use SilverStripe\ORM\DataObject;
 /**
  * Class \App\Podcast\PodcastEntry
  *
- * @property string $Title
+ * @property ?string $Title
  * @property int $Episode
  * @property int $Season
- * @property string $Description
- * @property string $PublishDate
+ * @property ?string $Description
+ * @property ?string $PublishDate
  * @property bool $Explicit
- * @property string $Hash
+ * @property ?string $Hash
  * @property int $AudioLength
  * @property int $AudioID
  * @method File Audio()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class PodcastEntry extends DataObject
 {

@@ -7,11 +7,11 @@ namespace {
     use SilverStripe\CMS\Controllers\ContentController;
 
     /**
-     * Class \PageController
-     *
-     * @property Page $dataRecord
-     * @method Page data()
-     */
+ * Class \PageController
+ *
+ * @property Page $dataRecord
+ * @method Page data()
+ */
     class PageController extends ContentController
     {
         private static $allowed_actions = [];

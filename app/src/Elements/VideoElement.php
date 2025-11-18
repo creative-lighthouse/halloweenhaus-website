@@ -8,9 +8,14 @@ use SilverStripe\Forms\DropdownField;
 /**
  * Class \App\Elements\TextImageElement
  *
- * @property string $Text
- * @property string $VideoLink
- * @property string $Width
+ * @property ?string $Text
+ * @property ?string $VideoLink
+ * @property ?string $Width
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class VideoElement extends BaseElement
 {

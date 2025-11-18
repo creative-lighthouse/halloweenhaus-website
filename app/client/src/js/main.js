@@ -172,6 +172,40 @@ document.addEventListener("DOMContentLoaded", function (event) {
         });
     });
 
+    const showsliders = document.querySelectorAll('.showswiper');
+
+    showsliders.forEach(function (slider) {
+        const swiper = new Swiper(slider, {
+            effect: 'slide',
+            direction: 'horizontal',
+            loop: false,
+            slidesPerView: 1,
+            spaceBetween: 10,
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            // Responsive breakpoints
+            breakpoints: {
+                500: {
+                    slidesPerView: 2,
+                    spaceBetween: 20
+                },
+                740: {
+                    slidesPerView: 3,
+                    spaceBetween: 25
+                },
+                // when window width is >= 1024px
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 30
+                },
+            }
+        });
+    });
+
+
     /**
      * Our JavaScript function, which calculates the days, hours,
      * minutes and seconds left until Halloween day.

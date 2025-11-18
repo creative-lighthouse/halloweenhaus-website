@@ -10,15 +10,20 @@ use SilverStripe\Security\Permission;
 /**
  * Class \App\Elements\TimelineItem
  *
- * @property string $Year
- * @property string $Headline
- * @property string $Type
- * @property string $Text
+ * @property ?string $Year
+ * @property ?string $Headline
+ * @property ?string $Type
+ * @property ?string $Text
  * @property int $SortOrder
  * @property int $ParentID
  * @method TimelineElement Parent()
- * @method DataList|PhotoGalleryImage[] PhotoGalleryImages()
+ * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @mixin PhotoGalleryExtension
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class TimelineItem extends DataObject
 {

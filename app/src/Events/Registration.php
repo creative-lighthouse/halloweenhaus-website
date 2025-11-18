@@ -18,21 +18,26 @@ use Endroid\QrCode\ErrorCorrectionLevel;
 /**
  * Class \App\Events\Registration
  *
- * @property string $Title
- * @property string $Email
+ * @property ?string $Title
+ * @property ?string $Email
  * @property int $GroupSize
- * @property string $Hash
- * @property string $ConfirmEmailSent
- * @property string $TicketEmailSent
- * @property string $Status
- * @property string $Type
- * @property string $ZIP
+ * @property ?string $Hash
+ * @property ?string $ConfirmEmailSent
+ * @property ?string $TicketEmailSent
+ * @property ?string $Status
+ * @property ?string $Type
+ * @property ?string $ZIP
  * @property int $EventID
  * @property int $TimeSlotID
  * @property int $UsedCouponID
  * @method Event Event()
  * @method EventTimeSlot TimeSlot()
  * @method EventCoupon UsedCoupon()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class Registration extends DataObject
 {

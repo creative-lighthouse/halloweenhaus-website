@@ -13,8 +13,13 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 /**
  * Class \App\Elements\TeaserElement
  *
- * @property string $Text
- * @method DataList|TeaserItem[] TeaserItems()
+ * @property ?string $Text
+ * @method DataList<TeaserItem> TeaserItems()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class TeaserElement extends BaseElement
 {

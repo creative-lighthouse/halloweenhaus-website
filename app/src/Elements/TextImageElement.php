@@ -11,18 +11,23 @@ use SilverStripe\Forms\DropdownField;
 /**
  * Class \App\Elements\TextImageElement
  *
- * @property string $Text
- * @property string $TitleAlign
- * @property string $BackgroundColor
+ * @property ?string $Text
+ * @property ?string $TitleAlign
+ * @property ?string $BackgroundColor
  * @property bool $OnlyNearHalloween
- * @property string $Variant
- * @property string $ImgWidth
+ * @property ?string $Variant
+ * @property ?string $ImgWidth
  * @property bool $ImageIsLinked
- * @property string $ButtonAlign
+ * @property ?string $ButtonAlign
  * @property int $ImageID
  * @property int $ButtonID
  * @method Image Image()
  * @method Link Button()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class TextImageElement extends BaseElement
 {

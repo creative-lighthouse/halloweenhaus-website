@@ -12,6 +12,11 @@ use SilverStripe\AssetAdmin\Forms\UploadField;
  *
  * @property int $HeaderImageID
  * @method Image HeaderImage()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class TeamOverview extends Page
 {

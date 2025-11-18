@@ -7,6 +7,11 @@ use Page;
 /**
  * Class \App\Events\EventAdminPage
  *
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class EventAdminPage extends Page
 {

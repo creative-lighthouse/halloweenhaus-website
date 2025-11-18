@@ -11,16 +11,18 @@ use SilverStripe\ORM\DataObject;
 /**
  * Class \App\Team\Character
  *
- * @property string $Title
- * @property string $Place
- * @property string $Jointime
- * @property string $Bodysize
- * @property string $Age
- * @property string $Description
- * @property int $Importance
- * @property bool $InCarousel
- * @property int $ImageID
- * @method Image Image()
+ * @property ?string $Note
+ * @property int $ParentID
+ * @property int $CharacterID
+ * @property int $TeamMemberID
+ * @method Show Parent()
+ * @method Character Character()
+ * @method TeamMember TeamMember()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class ShowCharacter extends DataObject
 {

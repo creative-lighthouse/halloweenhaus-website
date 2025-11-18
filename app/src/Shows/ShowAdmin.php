@@ -7,10 +7,15 @@ use SilverStripe\Admin\ModelAdmin;
 use SilverStripe\Forms\GridField\GridField;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 
+/**
+ * Class \App\Shows\ShowAdmin
+ *
+ */
 class ShowAdmin extends ModelAdmin
 {
     private static $managed_models = array(
         Show::class,
+        Character::class,
     );
 
     private static $url_segment = "shows";

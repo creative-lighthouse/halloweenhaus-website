@@ -8,7 +8,15 @@ use DNADesign\Elemental\Models\BaseElement;
 /**
  * Class \App\Elements\HeroVideoElement
  *
- * @property string $EmbedCode
+ * @property ?string $EmbedCode
+ * @property ?string $DirectVideo
+ * @property int $DateFrameID
+ * @method Image DateFrame()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class HeroVideoElement extends BaseElement
 {

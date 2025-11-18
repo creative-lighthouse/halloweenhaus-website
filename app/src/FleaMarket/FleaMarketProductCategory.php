@@ -10,9 +10,14 @@ use App\FleaMarket\FleaMarketProduct;
 /**
  * Class \App\FleaMarket\FleaMarketProductCategory
  *
- * @property string $Title
- * @property string $Description
- * @method ManyManyList|FleaMarketProduct[] Products()
+ * @property ?string $Title
+ * @property ?string $Description
+ * @method ManyManyList<FleaMarketProduct> Products()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class FleaMarketProductCategory extends DataObject
 {

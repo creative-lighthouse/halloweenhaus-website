@@ -9,10 +9,15 @@ use SilverStripe\ORM\DataObject;
 /**
  * Class \App\Feedback\FeedbackEntry
  *
- * @property string $Day
+ * @property ?string $Day
  * @property float $Stars
- * @property string $Comment
- * @property string $PLZ
+ * @property ?string $Comment
+ * @property ?string $PLZ
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class FeedbackEntry extends DataObject
 {

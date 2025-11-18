@@ -7,6 +7,11 @@ use SilverStripe\CMS\Model\SiteTree;
 /**
  * Class \App\API\ApiPage
  *
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class ApiPage extends SiteTree
 {

@@ -12,8 +12,13 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 /**
  * Class \App\Elements\ReportsElement
  *
- * @property string $Text
- * @method DataList|FactItem[] FactItems()
+ * @property ?string $Text
+ * @method DataList<FactItem> FactItems()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class FactElement extends BaseElement
 {

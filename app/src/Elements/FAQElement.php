@@ -12,7 +12,12 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
  * Class \App\Elements\TimelineElement
  *
  * @property bool $IsCollapsible
- * @method DataList|FAQItem[] FAQItems()
+ * @method DataList<FAQItem> FAQItems()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class FAQElement extends BaseElement
 {

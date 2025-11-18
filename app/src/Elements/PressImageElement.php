@@ -8,7 +8,12 @@ use DNADesign\Elemental\Models\BaseElement;
 /**
  * Class \App\Elements\TeaserElement
  *
- * @property string $Text
+ * @property ?string $Text
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class PressImageElement extends BaseElement
 {

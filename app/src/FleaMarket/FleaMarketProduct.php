@@ -12,22 +12,27 @@ use SilverStripe\Forms\CheckboxSetField;
 /**
  * Class \App\FleaMarket\FleaMarketProduct
  *
- * @property string $Title
- * @property string $ProductCode
- * @property string $Description
+ * @property ?string $Title
+ * @property ?string $ProductCode
+ * @property ?string $Description
  * @property float $Price
  * @property int $Stock
  * @property bool $NegotiablePrice
  * @property bool $Visible
- * @property string $Size
- * @property string $Material
- * @property string $Color
- * @property string $Brand
- * @property string $Condition
- * @property string $Weight
- * @method DataList|PhotoGalleryImage[] PhotoGalleryImages()
- * @method ManyManyList|FleaMarketProductCategory[] Categories()
+ * @property ?string $Size
+ * @property ?string $Material
+ * @property ?string $Color
+ * @property ?string $Brand
+ * @property ?string $Condition
+ * @property ?string $Weight
+ * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
+ * @method ManyManyList<FleaMarketProductCategory> Categories()
  * @mixin PhotoGalleryExtension
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class FleaMarketProduct extends DataObject
 {

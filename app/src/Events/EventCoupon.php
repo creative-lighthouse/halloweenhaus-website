@@ -10,12 +10,17 @@ use SilverStripe\Forms\DropdownField;
 /**
  * Class \App\Events\EventCoupon
  *
- * @property string $Title
- * @property string $Description
- * @property string $Type
- * @property string $Hash
+ * @property ?string $Title
+ * @property ?string $Description
+ * @property ?string $Type
+ * @property ?string $Hash
  * @property int $UsedCount
  * @property int $MaxUses
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class EventCoupon extends DataObject
 {

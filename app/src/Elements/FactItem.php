@@ -9,12 +9,17 @@ use SilverStripe\Security\Permission;
 /**
  * Class \App\Elements\TeaserItem
  *
- * @property string $Title
+ * @property ?string $Title
  * @property int $Number
- * @property string $Text
+ * @property ?string $Text
  * @property int $SortOrder
  * @property int $ParentID
  * @method FactElement Parent()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class FactItem extends DataObject
 {

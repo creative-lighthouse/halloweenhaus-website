@@ -8,11 +8,16 @@ use SilverStripe\Forms\DropdownField;
 /**
  * Class \App\Team\TeamSocial
  *
- * @property string $Plattform
- * @property string $Link
+ * @property ?string $Plattform
+ * @property ?string $Link
  * @property int $SortOrder
  * @property int $ParentID
  * @method SocialBannerElement Parent()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class SocialBannerItem extends DataObject
 {

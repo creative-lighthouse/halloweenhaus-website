@@ -6,6 +6,27 @@ use SilverStripe\Assets\Image;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\ORM\DataObject;
 
+/**
+ * Class \App\Shows\Character
+ *
+ * @property ?string $Title
+ * @property ?string $Place
+ * @property ?string $Jointime
+ * @property ?string $Bodysize
+ * @property ?string $Bodyweight
+ * @property ?string $Age
+ * @property ?string $Description
+ * @property int $SortField
+ * @property ?string $Type
+ * @property ?string $ShortDescription
+ * @property int $ImageID
+ * @method Image Image()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
+ */
 class Character extends DataObject
 {
     private static $db = [
@@ -18,6 +39,7 @@ class Character extends DataObject
         "Description" => "HTMLText",
         "SortField" => "Int",
         "Type" => "Varchar(255)",
+        "ShortDescription" => "Varchar(50)",
     ];
 
     private static $has_one = [
@@ -40,12 +62,14 @@ class Character extends DataObject
         "Description" => "Beschreibung",
         "Image" => "Bild",
         "Type" => "Typ",
+        "ShortDescription" => "Kurze Beschreibung (Max 50 Zeichen)",
     ];
 
     private static $summary_fields = [
         "Title" => "Name",
         "Place" => "Herkunft",
         "Jointime" => "Erster Auftritt",
+        "ShortDescription" => "Kurze Beschreibung",
     ];
 
     private static $searchable_fields = [

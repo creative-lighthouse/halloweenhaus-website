@@ -13,18 +13,19 @@ use SilverStripe\Forms\TextField;
  * Class \App\CustomSiteConfig
  *
  * @property SiteConfig|CustomSiteConfig $owner
- * @property string $DateText
- * @property string $PlaceText
+ * @property ?string $DateText
+ * @property ?string $PlaceText
  * @property bool $ShowBanner
- * @property string $BannerText
- * @property string $AckMessageSubject
- * @property string $AckMessageContent
- * @property string $TicketMessageSubject
- * @property string $TicketMessageContent
- * @property string $NewRegisterMessageSubject
- * @property string $NewRegisterMessageContent
+ * @property ?string $BannerText
+ * @property ?string $AckMessageSubject
+ * @property ?string $AckMessageContent
+ * @property ?string $TicketMessageSubject
+ * @property ?string $TicketMessageContent
+ * @property ?string $NewRegisterMessageSubject
+ * @property ?string $NewRegisterMessageContent
  * @property bool $EmailsActive
- * @property string $EventAdminEmail
+ * @property ?string $EventAdminEmail
+ * @property int $MaxGroupSize
  */
 class CustomSiteConfig extends Extension
 {

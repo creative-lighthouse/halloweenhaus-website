@@ -7,6 +7,11 @@ use Page;
 /**
  * Class \App\Statistics\StatisticsPage
  *
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class StatisticsPage extends Page
 {
