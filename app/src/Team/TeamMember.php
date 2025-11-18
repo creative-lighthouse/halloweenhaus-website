@@ -2,12 +2,13 @@
 
 namespace App\Team;
 
-use SilverStripe\ORM\DataList;
-use SilverStripe\ORM\ManyManyList;
 use App\Team\TeamAdmin;
 use App\Team\TeamSocial;
+use App\Shows\ShowCharacter;
 use SilverStripe\Assets\Image;
+use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\ManyManyList;
 use SilverStripe\Forms\DropdownField;
 
 /**
@@ -47,12 +48,16 @@ class TeamMember extends DataObject
         "Socials" => TeamSocial::class
     ];
 
+    private static $belongs_many = [
+        "ShowCharacters" => ShowCharacter::class
+    ];
+
     private static $default_sort = "Status, SortField ASC";
 
     private static $field_labels = [
         "Title" => "Name",
         "Profession" => "Aufgabenbereich",
-        "Jointime" => "Seit wann dabei",
+        "Jointime" => "Dabei seit",
         "Description" => "Beschreibung",
         "Socials" => "Soziale Links",
         "Status" => "Status",
@@ -62,7 +67,7 @@ class TeamMember extends DataObject
         "Thumbnail" => "Bild",
         "Title" => "Name",
         "Profession" => "Aufgabenbereich",
-        "Status" => "Status"
+        "RenderStatus" => "Status"
     ];
 
     private static $searchable_fields = [
@@ -108,5 +113,24 @@ class TeamMember extends DataObject
             return $file->Fit(100, 100);
         }
         return null;
+    }
+
+    public function RenderStatus()
+    {
+        switch ($this->Status) {
+            case 'active':
+                return 'Aktiv';
+            case 'formerly':
+                return 'Ehemalig';
+            case 'hidden':
+                return 'Versteckt';
+            default:
+                return $this->Status;
+        }
+    }
+
+    public function getRoles()
+    {
+        return ShowCharacter::get()->filter('TeamMemberID', $this->ID);
     }
 }

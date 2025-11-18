@@ -21,7 +21,7 @@ namespace {
             parent::init();
 
             //Increment page view for this page for today
-            PageStatisticsDay::incrementPageViewForPage($this->dataRecord);
+            //PageStatisticsDay::incrementPageViewForPage($this->dataRecord);
         }
     }
 }
