@@ -3,47 +3,46 @@
 namespace App\Shows;
 
 use SilverStripe\Assets\Image;
-use SilverStripe\Forms\DropdownField;
 use SilverStripe\ORM\DataObject;
 
 /**
- * Class \App\Shows\Character
+ * Class \App\Shows\Artefact
  *
  * @property ?string $Title
- * @property ?string $Place
  * @property ?string $Jointime
- * @property ?string $Bodysize
- * @property ?string $Bodyweight
- * @property ?string $Age
  * @property ?string $Description
- * @property int $SortField
- * @property ?string $Type
  * @property ?string $ShortDescription
+ * @property int $SortField
  * @property int $ImageID
  * @method Image Image()
+ * @method DataList<ArtefactOwnership> ArtefactOwnerships()
+ * @method ManyManyList<Show> Shows()
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
  */
-class Character extends DataObject
+class Artefact extends DataObject
 {
     private static $db = [
         "Title" => "Varchar(255)",
-        "Place" => "Varchar(255)",
         "Jointime" => "Varchar(255)",
-        "Bodysize" => "Varchar(255)",
-        "Bodyweight" => "Varchar(255)",
-        "Age" => "Varchar(255)",
         "Description" => "HTMLText",
-        "SortField" => "Int",
-        "Type" => "Varchar(255)",
         "ShortDescription" => "Varchar(50)",
+        "SortField" => "Int",
+    ];
+
+    private static $many_many = [
+        "Shows" => Show::class,
     ];
 
     private static $has_one = [
         "Image" => Image::class,
+    ];
+
+    private static $has_many = [
+        "ArtefactOwnerships" => ArtefactOwnership::class,
     ];
 
     private static $owns = [
@@ -54,44 +53,32 @@ class Character extends DataObject
 
     private static $field_labels = [
         "Title" => "Name",
-        "Place" => "Herkunft",
-        "Jointime" => "Erster Auftritt",
-        "Bodysize" => "Körpergröße",
-        "Bodyweight" => "Körpergewicht",
-        "Age" => "Alter",
+        "Jointime" => "Erstes Vorkommen",
         "Description" => "Beschreibung",
         "Image" => "Bild",
-        "Type" => "Typ",
         "ShortDescription" => "Kurze Beschreibung (Max 50 Zeichen)",
     ];
 
     private static $summary_fields = [
         "Title" => "Name",
-        "Place" => "Herkunft",
-        "Jointime" => "Erster Auftritt",
-        "ShortDescription" => "Kurze Beschreibung",
+        "Jointime" => "Erstes Vorkommen",
     ];
 
     private static $searchable_fields = [
         "Title",
-        "Description",
+        "Jointime",
     ];
 
-    private static $table_name = "Characters";
+    private static $table_name = "Artefacts";
 
-    private static $singular_name = "Charakter";
-    private static $plural_name = "Charaktere";
+    private static $singular_name = "Artefakt";
+    private static $plural_name = "Artefakte";
 
-    private static $url_segment = "character";
+    private static $url_segment = "artefact";
 
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->addFieldToTab('Root.Main', DropdownField::create('Type', 'Typ', [
-            'humanplayed' => 'Von Schauspieler gespielt',
-            'animatronic' => 'Animatronik',
-            'other' => 'Sonstiges'
-        ]), 'Description');
         $fields->removeByName("SortField");
         return $fields;
     }
@@ -100,7 +87,7 @@ class Character extends DataObject
     {
         $admin = ShowAdmin::singleton();
         $urlClass = str_replace('\\', '-', self::class);
-        return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/character/{$this->ID}/edit");
+        return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/artefact/{$this->ID}/edit");
     }
 
     public function getLink ()
@@ -108,7 +95,7 @@ class Character extends DataObject
         $showOverviewPage = ShowOverviewPage::get()->first();
         if($showOverviewPage)
         {
-            return $showOverviewPage->Link("character/{$this->ID}");
+            return $showOverviewPage->Link("artefact/{$this->ID}");
         } else {
             return "";
         }

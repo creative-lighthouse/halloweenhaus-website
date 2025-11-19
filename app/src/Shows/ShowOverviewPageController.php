@@ -16,7 +16,11 @@ class ShowOverviewPageController extends PageController
 {
 
     private static $allowed_actions = [
-        'index'
+        'index',
+        'show',
+        'character',
+        'location',
+        'artefact',
     ];
 
     public function index(HTTPRequest $request)
@@ -33,5 +37,24 @@ class ShowOverviewPageController extends PageController
     public function getCharacters()
     {
         return Character::get()->sort('SortField ASC');
+    }
+
+    public function getLocations()
+    {
+        return Location::get()->sort('SortField ASC');
+    }
+
+    public function getArtefacts()
+    {
+        return Artefact::get()->sort('SortField ASC');
+    }
+
+    public function show(HTTPRequest $request)
+    {
+        $showID = $request->param('ID');
+        $show = Show::get()->byID($showID);
+        return [
+            'Show' => $show,
+        ];
     }
 }

@@ -26,6 +26,7 @@ use SilverStripe\Model\List\GroupedList;
  * @method Image PosterImage()
  * @method Image ShowImage()
  * @method DataList<ShowCharacter> ShowCharacters()
+ * @method ManyManyList<Location> Locations()
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -55,6 +56,10 @@ class Show extends DataObject
 
     private static $has_many = [
         "ShowCharacters" => ShowCharacter::class,
+    ];
+
+    private static $belongs_many_many = [
+        "Locations" => Location::class,
     ];
 
     private static $owns = [
@@ -125,7 +130,7 @@ class Show extends DataObject
     {
         $admin = ShowAdmin::singleton();
         $urlClass = str_replace('\\', '-', self::class);
-        return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/item/{$this->ID}/edit");
+        return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/show/{$this->ID}/edit");
     }
 
     public function getGroupedCharacters()
@@ -133,5 +138,16 @@ class Show extends DataObject
         //Group the Characters because a character can be played by multiple TeamMembers
         $groupedCharacters = GroupedList::create($this->ShowCharacters())->groupBy('CharacterID');
         return $groupedCharacters;
+    }
+
+    public function getLink ()
+    {
+        $showOverviewPage = ShowOverviewPage::get()->first();
+        if($showOverviewPage)
+        {
+            return $showOverviewPage->Link("show/{$this->ID}");
+        } else {
+            return "";
+        }
     }
 }

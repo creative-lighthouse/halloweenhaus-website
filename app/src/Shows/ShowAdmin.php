@@ -16,6 +16,8 @@ class ShowAdmin extends ModelAdmin
     private static $managed_models = array(
         Show::class,
         Character::class,
+        Location::class,
+        Artefact::class,
     );
 
     private static $url_segment = "shows";

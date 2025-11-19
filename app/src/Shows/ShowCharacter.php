@@ -78,7 +78,7 @@ class ShowCharacter extends DataObject
     {
         $admin = ShowAdmin::singleton();
         $urlClass = str_replace('\\', '-', self::class);
-        return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/item/{$this->ID}/edit");
+        return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/showcharacter/{$this->ID}/edit");
     }
 
     public function RenderRole()
