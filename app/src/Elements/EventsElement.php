@@ -8,7 +8,12 @@ use DNADesign\Elemental\Models\BaseElement;
 /**
  * Class \App\Elements\TimelineElement
  *
- * @property string $Content
+ * @property ?string $Content
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class EventsElement extends BaseElement
 {

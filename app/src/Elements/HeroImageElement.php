@@ -20,6 +20,11 @@ use SilverStripe\Assets\Image;
  * @method Image ImageObject()
  * @method Image ImageEffect()
  * @method Image ImageEffectOverlay()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class HeroImageElement extends BaseElement
 {

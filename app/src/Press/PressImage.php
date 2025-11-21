@@ -8,11 +8,17 @@ use SilverStripe\ORM\DataObject;
 /**
  * Class \App\Press\PressImage
  *
- * @property string $Title
- * @property string $Description
- * @property string $Copyright
+ * @property ?string $Title
+ * @property ?string $Description
+ * @property ?string $Copyright
+ * @property int $SortField
  * @property int $ImageID
  * @method Image Image()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class PressImage extends DataObject
 {

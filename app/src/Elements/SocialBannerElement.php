@@ -12,8 +12,13 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 /**
  * Class \App\Elements\TextImageElement
  *
- * @property string $Text
- * @method DataList|SocialBannerItem[] Socials()
+ * @property ?string $Text
+ * @method DataList<SocialBannerItem> Socials()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class SocialBannerElement extends BaseElement
 {

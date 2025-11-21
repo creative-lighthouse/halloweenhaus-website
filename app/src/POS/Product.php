@@ -10,11 +10,16 @@ use SilverStripe\ORM\DataObject;
 /**
  * Class \App\POS\Product
  *
- * @property string $Title
+ * @property ?string $Title
  * @property float $Price
  * @property float $BuyPrice
  * @property int $ImageID
  * @method Image Image()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class Product extends DataObject
 {

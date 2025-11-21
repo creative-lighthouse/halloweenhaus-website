@@ -9,13 +9,18 @@ use SilverStripe\Security\Permission;
 /**
  * Class \App\Elements\TimelineItem
  *
- * @property string $Title
- * @property string $Text
+ * @property ?string $Title
+ * @property ?string $Text
  * @property int $SortOrder
  * @property int $ParentID
  * @method FAQElement Parent()
- * @method DataList|PhotoGalleryImage[] PhotoGalleryImages()
+ * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @mixin PhotoGalleryExtension
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class FAQItem extends DataObject
 {

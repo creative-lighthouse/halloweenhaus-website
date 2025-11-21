@@ -8,7 +8,12 @@ use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 /**
  * Class \App\FleaMarket\FleaMarketPage
  *
- * @property string $Text
+ * @property ?string $Text
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class FleaMarketPage extends Page
 {

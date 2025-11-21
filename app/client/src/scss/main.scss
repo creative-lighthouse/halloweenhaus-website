@@ -43,6 +43,13 @@
 
 @use "layout/FleaMarket";
 
+
+@use "pages/WikiPage";
+
+
+
+//@view-transition { navigation: auto; }
+
 html {
     background-color: var(--ColorBackground);
 }
@@ -84,7 +91,7 @@ body{
 }
 
 
-.section {
+section, .section {
     max-width: var(--MaxWidth);
     margin: 50px auto;
 
@@ -120,4 +127,8 @@ body{
         width: 35px;
         margin: 5px;
     }
+}
+
+.gslide-desc{
+    color: var(--ColorBlack);
 }

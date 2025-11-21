@@ -15,9 +15,15 @@ use Endroid\QrCode\ErrorCorrectionLevel;
  * Class \App\ImageBooth\BoothImage
  *
  * @property bool $isVisible
- * @property string $HashID
+ * @property ?string $HashID
+ * @property ?string $GroupID
  * @property int $ImageID
  * @method File Image()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class BoothImage extends DataObject
 {

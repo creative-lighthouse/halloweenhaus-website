@@ -10,13 +10,18 @@ use SilverStripe\ORM\DataObject;
 /**
  * Class \App\Elements\TeaserItem
  *
- * @property string $Title
- * @property string $Text
+ * @property ?string $Title
+ * @property ?string $Text
  * @property int $SortOrder
  * @property int $ParentID
  * @property int $ButtonID
  * @method ReferencesElement Parent()
  * @method Link Button()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class ReferenceItem extends DataObject
 {

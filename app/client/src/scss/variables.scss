@@ -12,7 +12,7 @@
     } @else if $size == max-medium {
         @media (max-width: 640px) { @content; }
     } @else if $size == max-smartphone {
-        @media (max-width: 640px) { @content; }
+        @media (max-width: 450px) { @content; }
     } @else if $size == max-desktop {
         @media (max-width: 1000px) { @content; }
     } @else if $size == max-large {
@@ -33,6 +33,8 @@ html {
     --ColorBackground: #151515;
     --ColorBackgroundLight: #383838;
     --ColorCms: #43536d;
+
+    --BoxShadow: 0px 0px 14px 0px #00000040;
 
     --MaxWidth: 1200px;
     --MaxWidthContent: 980px;

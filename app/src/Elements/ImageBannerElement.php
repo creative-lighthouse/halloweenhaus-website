@@ -9,13 +9,18 @@ use SilverStripe\Forms\DropdownField;
 /**
  * Class \App\Elements\TextImageElement
  *
- * @property string $Text
- * @property string $Variant
- * @property string $Overlay
+ * @property ?string $Text
+ * @property ?string $Variant
+ * @property ?string $Overlay
  * @property int $Height
- * @property string $Parallax
+ * @property ?string $Parallax
  * @property int $ImageID
  * @method Image Image()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class ImageBannerElement extends BaseElement
 {

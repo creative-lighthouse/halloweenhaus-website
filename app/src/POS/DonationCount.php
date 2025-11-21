@@ -9,8 +9,13 @@ use SilverStripe\ORM\DataObject;
  * Class \App\POS\DonationCount
  *
  * @property float $Amount
- * @property string $CountDateTime
- * @property string $Source
+ * @property ?string $CountDateTime
+ * @property ?string $Source
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class DonationCount extends DataObject
 {

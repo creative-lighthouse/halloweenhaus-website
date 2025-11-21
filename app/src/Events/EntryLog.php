@@ -7,9 +7,14 @@ use SilverStripe\ORM\DataObject;
 /**
  * Class \App\Events\EntryLog
  *
- * @property string $EntryTime
+ * @property ?string $EntryTime
  * @property int $SQ
  * @property int $VQ
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class EntryLog extends DataObject
 {

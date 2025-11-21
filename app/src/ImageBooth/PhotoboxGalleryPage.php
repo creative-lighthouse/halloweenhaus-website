@@ -7,6 +7,11 @@ use Page;
 /**
  * Class \App\ImageBooth\PhotoboxGalleryPage
  *
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class PhotoboxGalleryPage extends Page
 {

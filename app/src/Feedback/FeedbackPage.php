@@ -7,6 +7,11 @@ use Page;
 /**
  * Class \App\Feedback\FeedbackPage
  *
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class FeedbackPage extends Page
 {

@@ -14,17 +14,24 @@ use SilverStripe\Model\List\ArrayList;
 /**
  * Class \App\Events\Event
  *
- * @property string $Title
- * @property string $Place
- * @property string $EventDate
- * @property string $StartTime
- * @property string $EndTime
- * @property string $Description
- * @property string $InfoForAttendees
+ * @property ?string $Title
+ * @property ?string $Place
+ * @property ?string $PlaceLink
+ * @property ?string $EventDate
+ * @property ?string $StartTime
+ * @property ?string $EndTime
+ * @property ?string $Description
+ * @property ?string $InfoForAttendees
  * @property int $SlotDuration
+ * @property bool $Visible
  * @property int $ImageID
  * @method Image Image()
- * @method DataList|EventTimeSlot[] TimeSlots()
+ * @method DataList<EventTimeSlot> TimeSlots()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class Event extends DataObject
 {

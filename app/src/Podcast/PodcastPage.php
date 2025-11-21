@@ -10,10 +10,15 @@ use SilverStripe\Forms\TextareaField;
 /**
  * Class \App\Podcast\PodcastPage
  *
- * @property string $Title
- * @property string $Description
+ * @property ?string $Title
+ * @property ?string $Description
  * @property int $CoverImageID
  * @method Image CoverImage()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class PodcastPage extends Page
 {

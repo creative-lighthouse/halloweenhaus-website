@@ -10,8 +10,13 @@ use SilverStripe\ORM\DataObject;
  * Class \App\POS\Sale
  *
  * @property float $TotalPrice
- * @property string $SaleTime
- * @method DataList|ProductSale[] ProductSales()
+ * @property ?string $SaleTime
+ * @method DataList<ProductSale> ProductSales()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class Sale extends DataObject
 {

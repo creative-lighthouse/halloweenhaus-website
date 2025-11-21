@@ -12,9 +12,14 @@ use SilverStripe\Forms\DropdownField;
  * Class \App\Team\TeamSocial
  *
  * @property int $SortOrder
- * @property string $Plattform
- * @property string $Link
- * @method ManyManyList|TeamMember[] Members()
+ * @property ?string $Plattform
+ * @property ?string $Link
+ * @method ManyManyList<TeamMember> Members()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class TeamSocial extends DataObject
 {

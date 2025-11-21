@@ -11,16 +11,21 @@ use SilverStripe\SiteConfig\SiteConfig;
 /**
  * Class \App\Events\EmailNotification
  *
- * @property string $Title
- * @property string $Text
- * @property string $Email
- * @property string $Type
+ * @property ?string $Title
+ * @property ?string $Text
+ * @property ?string $Email
+ * @property ?string $Type
  * @property int $EventID
  * @property int $RegistrationID
  * @property int $AttachmentID
  * @method Event Event()
  * @method Registration Registration()
  * @method File Attachment()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class EmailNotification extends DataObject
 {

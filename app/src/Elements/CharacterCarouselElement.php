@@ -9,9 +9,14 @@ use DNADesign\Elemental\Models\BaseElement;
 /**
  * Class \App\Elements\CharacterCarouselElement
  *
- * @property string $Text
+ * @property ?string $Text
  * @property int $BackgroundImageID
  * @method Image BackgroundImage()
+ * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
+ * @mixin SiteTreeLinkTracking
+ * @mixin RecursivePublishable
+ * @mixin VersionedStateExtension
  */
 class CharacterCarouselElement extends BaseElement
 {
