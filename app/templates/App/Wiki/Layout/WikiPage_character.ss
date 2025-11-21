@@ -65,12 +65,12 @@
                                     <% if $Children.Count > 0 %>
                                         <p class="character_actorlist_title">Gespielt von:</p>
                                         <div class="character_actorlist">
-                                            <div class="character_actor">
-                                                <% loop $Children %>
+                                            <% loop $Children %>
+                                                <div class="character_actor">
                                                     $TeamMember.Image
                                                     <p>$TeamMember.Title</p>
-                                                <% end_loop %>
-                                            </div>
+                                                </div>
+                                            <% end_loop %>
                                         </div>
                                     <% end_if %>
                                 </a>
