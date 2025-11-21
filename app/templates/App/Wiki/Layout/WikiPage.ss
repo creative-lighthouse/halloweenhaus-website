@@ -23,7 +23,7 @@
                         <% loop $Shows %>
                             <a href="$Link" class="swiper-slide showcard" style="view-transition-name: showcard-$ID;">
                                 <div class="showcard_image" style="view-transition-name: showposter-$ID;">
-                                    $PosterImage.Fill(420,600)
+                                    $PosterImage.FocusFill(420,600)
                                 </div>
                                 <div class="showcard_content">
                                     <h2 class="showcard_dates" style="view-transition-name: showyear-$ID;">$Year</h2>
