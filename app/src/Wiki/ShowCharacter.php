@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Shows;
+namespace App\Wiki;
 
-use App\Shows\Show;
-use App\Shows\Character;
+use App\Wiki\Show;
+use App\Wiki\Character;
 use App\Team\TeamMember;
-use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
 
 /**
- * Class \App\Team\Character
+ * Class \App\Wiki\ShowCharacter
  *
  * @property ?string $Note
  * @property int $ParentID

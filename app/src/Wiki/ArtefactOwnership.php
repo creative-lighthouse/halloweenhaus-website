@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Shows;
+namespace App\Wiki;
 
-use SilverStripe\Assets\Image;
+use App\Wiki\Artefact;
+use App\Wiki\Character;
 use SilverStripe\ORM\DataObject;
 
 /**
- * Class \App\Shows\Artefact
+ * Class \App\Wiki\ArtefactOwnership
  *
  * @property ?string $StartTime
  * @property ?string $EndTime
  * @property ?string $Description
  * @property int $ParentID
- * @property int $OwnerID
+ * @property int $CharacterID
  * @method Artefact Parent()
- * @method Character Owner()
+ * @method Character Character()
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -31,28 +32,28 @@ class ArtefactOwnership extends DataObject
 
     private static $has_one = [
         "Parent" => Artefact::class,
-        "Owner" => Character::class,
+        "Character" => Character::class,
     ];
 
-    private static $default_sort = "ArtefactID ASC";
+    private static $default_sort = "CharacterID ASC";
 
     private static $field_labels = [
-        "Owner" => "Besitzer",
-        "Artefact" => "Artefakt",
+        "Character" => "Besitzer",
+        "Parent" => "Artefakt",
         "StartTime" => "Besitz von",
         "EndTime" => "Besitz bis",
         "Description" => "Beschreibung",
     ];
 
     private static $summary_fields = [
-        "Owner" => "Besitzer",
-        "Artefact" => "Artefakt",
+        "Character.Title" => "Besitzer",
+        "Parent.Title" => "Artefakt",
         "RenderOwnershipTimespan" => "Besitzzeitraum",
     ];
 
     private static $searchable_fields = [
-        "Owner",
-        "Artefact",
+        "Character.Title",
+        "Parent.Title",
     ];
 
     private static $table_name = "ArtefactOwnerships";
@@ -70,7 +71,7 @@ class ArtefactOwnership extends DataObject
 
     public function CMSEditLink()
     {
-        $admin = ShowAdmin::singleton();
+        $admin = WikiAdmin::singleton();
         $urlClass = str_replace('\\', '-', self::class);
         return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/artefactownership/{$this->ID}/edit");
     }

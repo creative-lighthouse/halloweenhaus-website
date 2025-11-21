@@ -1,36 +1,38 @@
 <?php
 
-namespace App\Shows;
+namespace App\Wiki;
 
 use SilverStripe\Assets\Image;
-use SilverStripe\Forms\DropdownField;
 use SilverStripe\ORM\DataObject;
 
 /**
- * Class \App\Shows\Location
+ * Class \App\Wiki\Artefact
  *
  * @property ?string $Title
  * @property ?string $Jointime
  * @property ?string $Description
- * @property int $SortField
  * @property ?string $ShortDescription
+ * @property int $SortField
  * @property int $ImageID
  * @method Image Image()
+ * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
+ * @method DataList<ArtefactOwnership> ArtefactOwnerships()
  * @method ManyManyList<Show> Shows()
+ * @mixin PhotoGalleryExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
  */
-class Location extends DataObject
+class Artefact extends DataObject
 {
     private static $db = [
         "Title" => "Varchar(255)",
         "Jointime" => "Varchar(255)",
         "Description" => "HTMLText",
-        "SortField" => "Int",
         "ShortDescription" => "Varchar(50)",
+        "SortField" => "Int",
     ];
 
     private static $many_many = [
@@ -41,8 +43,13 @@ class Location extends DataObject
         "Image" => Image::class,
     ];
 
+    private static $has_many = [
+        "ArtefactOwnerships" => ArtefactOwnership::class,
+    ];
+
     private static $owns = [
-        "Image"
+        "Image",
+        "ArtefactOwnerships"
     ];
 
     private static $default_sort = "SortField ASC";
@@ -53,6 +60,8 @@ class Location extends DataObject
         "Description" => "Beschreibung",
         "Image" => "Bild",
         "ShortDescription" => "Kurze Beschreibung (Max 50 Zeichen)",
+        "Shows" => "Shows",
+        "ArtefactOwnerships" => "Besitzer",
     ];
 
     private static $summary_fields = [
@@ -65,12 +74,12 @@ class Location extends DataObject
         "Jointime",
     ];
 
-    private static $table_name = "Locations";
+    private static $table_name = "Artefacts";
 
-    private static $singular_name = "Ort";
-    private static $plural_name = "Orte";
+    private static $singular_name = "Artefakt";
+    private static $plural_name = "Artefakte";
 
-    private static $url_segment = "location";
+    private static $url_segment = "artefact";
 
     public function getCMSFields()
     {
@@ -81,19 +90,29 @@ class Location extends DataObject
 
     public function CMSEditLink()
     {
-        $admin = ShowAdmin::singleton();
+        $admin = WikiAdmin::singleton();
         $urlClass = str_replace('\\', '-', self::class);
-        return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/location/{$this->ID}/edit");
+        return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/artefact/{$this->ID}/edit");
     }
 
     public function getLink ()
     {
-        $showOverviewPage = ShowOverviewPage::get()->first();
-        if($showOverviewPage)
+        $wikiPage = WikiPage::get()->first();
+        if($wikiPage)
         {
-            return $showOverviewPage->Link("location/{$this->ID}");
+            return $wikiPage->Link("artefact/{$this->ID}");
         } else {
             return "";
         }
+    }
+
+    public function getArtefactShows()
+    {
+        return $this->Shows()->sort("Year DESC");
+    }
+
+    public function getOwners()
+    {
+        return $this->ArtefactOwnerships()->sort("StartTime DESC");
     }
 }

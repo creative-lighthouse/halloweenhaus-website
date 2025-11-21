@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Shows;
+namespace App\Wiki;
 
 use PageController;
 use SilverStripe\Control\HTTPRequest;
 
 /**
- * Class \App\Shows\ShowOverviewPageController
+ * Class \App\Wiki\WikiPageController
  *
- * @property ShowOverviewPage $dataRecord
- * @method ShowOverviewPage data()
- * @mixin ShowOverviewPage
+ * @property WikiPage $dataRecord
+ * @method WikiPage data()
+ * @mixin WikiPage
  */
-class ShowOverviewPageController extends PageController
+class WikiPageController extends PageController
 {
 
     private static $allowed_actions = [
@@ -55,6 +55,33 @@ class ShowOverviewPageController extends PageController
         $show = Show::get()->byID($showID);
         return [
             'Show' => $show,
+        ];
+    }
+
+    public function character(HTTPRequest $request)
+    {
+        $characterID = $request->param('ID');
+        $character = Character::get()->byID($characterID);
+        return [
+            'Character' => $character,
+        ];
+    }
+
+    public function location(HTTPRequest $request)
+    {
+        $locationID = $request->param('ID');
+        $location = Location::get()->byID($locationID);
+        return [
+            'Location' => $location,
+        ];
+    }
+
+    public function artefact(HTTPRequest $request)
+    {
+        $artefactID = $request->param('ID');
+        $artefact = Artefact::get()->byID($artefactID);
+        return [
+            'Artefact' => $artefact,
         ];
     }
 }

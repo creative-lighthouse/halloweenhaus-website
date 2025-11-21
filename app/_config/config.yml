@@ -39,3 +39,31 @@ App\FleaMarket\FleaMarketProduct:
   gallery-title: Galerie
   gallery-cms-tab: Galerie
   content-cms-tab: Top Content
+
+App\Wiki\Show:
+  extensions:
+    - PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
+  gallery-title: Galerie
+  gallery-cms-tab: Galerie
+  content-cms-tab: Top Content
+
+App\Wiki\Location:
+  extensions:
+    - PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
+  gallery-title: Galerie
+  gallery-cms-tab: Galerie
+  content-cms-tab: Top Content
+
+App\Wiki\Artefact:
+  extensions:
+    - PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
+  gallery-title: Galerie
+  gallery-cms-tab: Galerie
+  content-cms-tab: Top Content
+
+App\Wiki\Character:
+  extensions:
+    - PurpleSpider\BasicGalleryExtension\PhotoGalleryExtension
+  gallery-title: Galerie
+  gallery-cms-tab: Galerie
+  content-cms-tab: Top Content

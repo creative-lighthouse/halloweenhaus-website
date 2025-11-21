@@ -1,32 +1,37 @@
 <?php
 
-namespace App\Shows;
+namespace App\Wiki;
 
-use App\Shows\ShowAdmin;
+use App\Wiki\Artefact;
+use App\Wiki\ShowAdmin;
 use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Model\List\GroupedList;
 
 /**
- * Class \App\Shows\Show
+ * Class \App\Wiki\Show
  *
  * @property int $Year
  * @property ?string $Title
  * @property ?string $Place
  * @property ?string $Storyline
  * @property ?string $WalkthroughLink
- * @property int $GuestCount
- * @property int $DaysOpen
- * @property int $WalkingLength
- * @property int $ShowLength
- * @property int $TeamSize
- * @property int $SceneCount
+ * @property ?string $GuestCount
+ * @property ?string $DaysOpen
+ * @property ?string $WalkingLength
+ * @property ?string $ShowLength
+ * @property ?string $TeamSize
+ * @property ?string $SceneCount
+ * @property ?string $StatisticsNote
  * @property int $PosterImageID
  * @property int $ShowImageID
  * @method Image PosterImage()
  * @method Image ShowImage()
+ * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @method DataList<ShowCharacter> ShowCharacters()
  * @method ManyManyList<Location> Locations()
+ * @method ManyManyList<Artefact> Artefacts()
+ * @mixin PhotoGalleryExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -41,12 +46,13 @@ class Show extends DataObject
         "Place" => "Varchar(255)",
         "Storyline" => "HTMLText",
         "WalkthroughLink" => "Varchar(255)",
-        "GuestCount" => "Int",
-        "DaysOpen" => "Int",
-        "WalkingLength" => "Int",
-        "ShowLength" => "Int",
-        "TeamSize" => "Int",
-        "SceneCount" => "Int",
+        "GuestCount" => "Varchar(255)",
+        "DaysOpen" => "Varchar(255)",
+        "WalkingLength" => "Varchar(255)",
+        "ShowLength" => "Varchar(255)",
+        "TeamSize" => "Varchar(255)",
+        "SceneCount" => "Varchar(255)",
+        "StatisticsNote" => "Varchar(255)",
     ];
 
     private static $has_one = [
@@ -60,6 +66,7 @@ class Show extends DataObject
 
     private static $belongs_many_many = [
         "Locations" => Location::class,
+        "Artefacts" => Artefact::class,
     ];
 
     private static $owns = [
@@ -85,6 +92,8 @@ class Show extends DataObject
         "TeamSize" => "Teamgröße",
         "SceneCount" => "Anzahl der Szenen",
         "ShowCharacters" => "Charaktere",
+        "Locations" => "Orte",
+        "Artefacts" => "Artefakte",
     ];
 
     private static $summary_fields = [
@@ -123,12 +132,13 @@ class Show extends DataObject
         $fields->addFieldToTab('Root.Statistics', $fields->dataFieldByName('ShowLength'));
         $fields->addFieldToTab('Root.Statistics', $fields->dataFieldByName('TeamSize'));
         $fields->addFieldToTab('Root.Statistics', $fields->dataFieldByName('SceneCount'));
+        $fields->addFieldToTab('Root.Statistics', $fields->dataFieldByName('StatisticsNote'));
         return $fields;
     }
 
     public function CMSEditLink()
     {
-        $admin = ShowAdmin::singleton();
+        $admin = WikiAdmin::singleton();
         $urlClass = str_replace('\\', '-', self::class);
         return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/show/{$this->ID}/edit");
     }
@@ -136,16 +146,16 @@ class Show extends DataObject
     public function getGroupedCharacters()
     {
         //Group the Characters because a character can be played by multiple TeamMembers
-        $groupedCharacters = GroupedList::create($this->ShowCharacters())->groupBy('CharacterID');
+        $groupedCharacters = GroupedList::create($this->ShowCharacters());
         return $groupedCharacters;
     }
 
     public function getLink ()
     {
-        $showOverviewPage = ShowOverviewPage::get()->first();
-        if($showOverviewPage)
+        $wikiPage = WikiPage::get()->first();
+        if($wikiPage)
         {
-            return $showOverviewPage->Link("show/{$this->ID}");
+            return $wikiPage->Link("show/{$this->ID}");
         } else {
             return "";
         }

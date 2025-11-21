@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Shows;
+namespace App\Wiki;
 
-use App\Shows\Show;
+use App\Wiki\Show;
 use SilverStripe\Admin\ModelAdmin;
 use SilverStripe\Forms\GridField\GridField;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 
 /**
- * Class \App\Shows\ShowAdmin
+ * Class \App\Wiki\WikiAdmin
  *
  */
-class ShowAdmin extends ModelAdmin
+class WikiAdmin extends ModelAdmin
 {
     private static $managed_models = array(
         Show::class,
@@ -20,11 +20,11 @@ class ShowAdmin extends ModelAdmin
         Artefact::class,
     );
 
-    private static $url_segment = "shows";
+    private static $url_segment = "wiki";
 
-    private static $menu_title = "Shows & Historie";
+    private static $menu_title = "Wiki";
 
-    private static $menu_icon = "app/client/icons/show_admin.svg";
+    private static $menu_icon = "app/client/icons/wiki_admin.svg";
 
     public function init()
     {

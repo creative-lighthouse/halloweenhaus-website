@@ -1,7 +1,8 @@
 @use "../variables" as *;
 
-section.section--ShowOverview{
+section.section--WikiPage{
     margin-top: 110px;
+    padding: 0;
 
     .section_content{
         padding: 20px;
@@ -18,14 +19,38 @@ section.section--ShowOverview{
 
         .showsection{
             background-color: var(--ColorBackgroundLight);
-            padding: 20px;
             border-radius: 10px;
 
             h2{
                 margin: 0 0 20px 0;
             }
 
+            .wiki_image{
+                width: 100%;
+                height: 300px;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 10px;
+                    margin-bottom: 20px;
+                }
+            }
+
+            .wiki_title {
+                text-align: center;
+                margin: 0;
+                padding: 10px 20px;
+            }
+
+            .wiki_description{
+                text-align: center;
+            }
+
             &.showsection--shows {
+                padding: 20px;
                 position: relative;
 
                 .showswiper{
@@ -65,7 +90,35 @@ section.section--ShowOverview{
                 }
             }
 
+            &.showsection--numbers {
+                padding: 20px;
+
+                .section_text{
+                    p{
+                        border-bottom: 1px solid var(--ColorBackground);
+                        padding: 10px 0;
+                        margin: 0;
+
+                        &.note {
+                            display: block;
+                            font-size: 0.9rem;
+                            opacity: 0.6;
+                        }
+
+                        &:first-child{
+                            padding-top: 0;
+                        }
+
+                        &:last-child{
+                            border-bottom: none;
+                            padding-bottom: 0;
+                        }
+                    }
+                }
+            }
+
             &.showsection--characters{
+                padding: 20px;
                 .charactersgrid {
                     display: grid;
                     grid-template-columns: repeat(4, calc(100% / 4 - 60px / 4));
@@ -86,6 +139,7 @@ section.section--ShowOverview{
             }
 
             &.showsection--locations{
+                padding: 20px;
                 .locationsgrid {
                     display: grid;
                     grid-template-columns: repeat(4, calc(100% / 4 - 60px / 4));
@@ -106,6 +160,7 @@ section.section--ShowOverview{
             }
 
             &.showsection--artefacts{
+                padding: 20px;
                 .artefactgrid {
                     display: grid;
                     grid-template-columns: repeat(4, calc(100% / 4 - 60px / 4));
@@ -155,6 +210,42 @@ section.section--ShowOverview{
             }
         }
 
+        .character_actorlist{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+
+            .character_actor {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--ColorBackgroundLight);
+                border-radius: 20px;
+                padding: 4px 12px 4px 4px;
+
+                img{
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin-right: 8px;
+                }
+
+                p{
+                    margin: 0;
+                }
+            }
+        }
+
+        &:has(.character_actorlist){
+            background-color: var(--ColorBackground);
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: var(--BoxShadow);
+        }
+
         &:hover{
             .showcard_image{
                 transform: scale(1.05) translateY(-5px);
@@ -199,6 +290,39 @@ section.section--ShowOverview{
             .charactercard_jointime{
                 font-size: 12px;
                 opacity: 0.6;
+            }
+
+            .character_actorlist_title{
+                margin: 0 0 4px 0;
+            }
+
+            .character_actorlist{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 4px;
+
+                .character_actor {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: var(--ColorBackgroundLight);
+                    border-radius: 20px;
+                    padding: 4px 12px 4px 4px;
+
+                    img{
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        margin-right: 8px;
+                    }
+
+                    p{
+                        margin: 0;
+                    }
+                }
             }
         }
 
@@ -315,6 +439,25 @@ section.section--ShowOverview{
             }
         }
 
+        .artefact_ownershiplisttitle{
+            margin: 0 0 4px 0;
+        }
+
+        .artefact_ownershiplist{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+
+            .artefact_ownershipentry {
+                background-color: var(--ColorBackgroundLight);
+                border-radius: 20px;
+                padding: 5px 10px;
+                margin: 0;
+            }
+        }
+
         h3{
             margin: 0;
             color: var(--ColorWhite);
@@ -331,14 +474,31 @@ section.section--ShowOverview{
 
     &.showoverview--itemdetails{
         .showsection--details{
-            padding: 0;
+            padding: 0 0 20px 0;
             overflow: hidden;
             position: relative;
 
-            .show_title, .show_year, .show_storyline{
+            .show_title, .show_year, .show_storyline, .character_title, .character_description{
                 color: var(--ColorWhite);
                 text-align: center;
                 padding: 0 20px;
+            }
+
+            .character_image{
+                display: block;
+                width: 300px;
+                height: 400px;
+                border-radius: 30px;
+                overflow: hidden;
+                margin: 20px auto 20px auto;
+                box-shadow: var(--BoxShadow);
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
             }
 
             .overviewimage{
@@ -371,7 +531,129 @@ section.section--ShowOverview{
                     object-fit: cover;
                     display: block;
                 }
+
+                &.posterimage--single{
+                    position: relative;
+                    top: auto;
+                    left: auto;
+                    transform: none;
+                    display: block;
+                    margin: 20px auto 0 auto;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    box-shadow: var(--BoxShadow);
+                    aspect-ratio: 210/297;
+                    transition: transform 0.3s ease-in-out;
+                    background-color: var(--ColorBlack);
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
             }
+
+            .location_image{
+                display: block;
+                width: 100%;
+                height: 300px;
+                margin-bottom: 20px;
+                clip-path: polygon(100% 0%, 97% 17%, 99% 15%, 97% 34%, 98% 34%, 95% 50%, 97% 50%, 94% 70%, 96% 70%, 93% 85%, 94% 86%, 92% 100%, 9% 100%, 6% 73%, 8% 74%, 4% 47%, 7% 50%, 3% 25%, 6% 28%, 2% 10%, 4% 10%, 0% 0%);
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+
+                @include media(max-medium) {
+                    clip-path: polygon(100% 13%, 91% 31%, 97% 30%, 90% 53%, 96% 51%, 86% 83%, 94% 80%, 81% 100%, 25% 100%, 12% 79%, 18% 80%, 8% 53%, 13% 54%, 2% 23%, 7% 23%, 0 10%, 0% 0%, 100% 0);
+                }
+            }
+
+            .artefact_image {
+                display: block;
+                clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+                width: 300px;
+                height: 300px;
+                aspect-ratio: 1;
+                margin: 20px auto;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                    object-position: center;
+                }
+            }
+        }
+
+        .showsection--gallery{
+            padding: 20px;
+
+            .swiper--showsoverview{
+                position: relative;
+
+                .swiper-wrapper {
+                    .imagecard{
+                        border-radius: 10px;
+                        overflow: hidden;
+                        box-shadow: var(--BoxShadow);
+
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            display: block;
+                        }
+                    }
+                }
+
+                &::after{
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 100%;
+                    width: 2000px;
+                    height: 100%;
+                    background: linear-gradient(to right, transparent 0%, var(--ColorBackground) 8%, var(--ColorBackground) 100%);
+                    pointer-events: none;
+                    z-index: 10;
+                }
+
+                &::before{
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    right: 100%;
+                    width: 2000px;
+                    height: 100%;
+                    background: linear-gradient(to left, transparent 0%, var(--ColorBackground) 8%, var(--ColorBackground) 100%);
+                    pointer-events: none;
+                    z-index: 10;
+                }
+            }
+        }
+    }
+
+    .backbutton {
+        display: inline-block;
+        color: var(--ColorWhite);
+        text-decoration: none;
+        font-size: 14px;
+        background-color: var(--ColorBackgroundLight);
+        padding: 8px 12px;
+        border-radius: 8px;
+        width: auto;
+        align-self: flex-start;
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover{
+            background-color: var(--ColorBlack);
         }
     }
 }

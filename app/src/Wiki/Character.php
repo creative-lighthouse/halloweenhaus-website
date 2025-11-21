@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Shows;
+namespace App\Wiki;
 
 use SilverStripe\Assets\Image;
-use SilverStripe\Forms\DropdownField;
+use App\Wiki\ArtefactOwnership;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Model\List\GroupedList;
 
 /**
- * Class \App\Shows\Character
+ * Class \App\Wiki\Character
  *
  * @property ?string $Title
  * @property ?string $Place
@@ -21,6 +23,8 @@ use SilverStripe\ORM\DataObject;
  * @property ?string $ShortDescription
  * @property int $ImageID
  * @method Image Image()
+ * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
+ * @mixin PhotoGalleryExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -44,6 +48,10 @@ class Character extends DataObject
 
     private static $has_one = [
         "Image" => Image::class,
+    ];
+
+    private static $belongs_many = [
+        "ShowCharacters" => ShowCharacter::class
     ];
 
     private static $owns = [
@@ -98,19 +106,31 @@ class Character extends DataObject
 
     public function CMSEditLink()
     {
-        $admin = ShowAdmin::singleton();
+        $admin = WikiAdmin::singleton();
         $urlClass = str_replace('\\', '-', self::class);
         return $admin->Link("/{$urlClass}/EditForm/field/{$urlClass}/character/{$this->ID}/edit");
     }
 
     public function getLink ()
     {
-        $showOverviewPage = ShowOverviewPage::get()->first();
-        if($showOverviewPage)
+        $wikiPage = WikiPage::get()->first();
+        if($wikiPage)
         {
-            return $showOverviewPage->Link("character/{$this->ID}");
+            return $wikiPage->Link("character/{$this->ID}");
         } else {
             return "";
         }
+    }
+
+    public function getGroupedShowCharacters()
+    {
+        $groupedShowCharacters = GroupedList::create(ShowCharacter::get()->filter('CharacterID', $this->ID));
+        return $groupedShowCharacters;
+    }
+
+    public function getGroupedArtefactOwnerships()
+    {
+        $groupedArtefactOwnerships = GroupedList::create(ArtefactOwnership::get()->filter('CharacterID', $this->ID));
+        return $groupedArtefactOwnerships;
     }
 }
