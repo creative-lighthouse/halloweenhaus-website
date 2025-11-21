@@ -4,7 +4,8 @@ namespace App\Team;
 
 use App\Team\TeamAdmin;
 use App\Team\TeamSocial;
-use App\Shows\ShowCharacter;
+use App\Wiki\Show;
+use App\Wiki\ShowCharacter;
 use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\DataObject;
@@ -24,6 +25,7 @@ use SilverStripe\Forms\DropdownField;
  * @method Image Image()
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @method ManyManyList<TeamSocial> Socials()
+ * @method ManyManyList<Show> ShowsAsHelper()
  * @mixin PhotoGalleryExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
@@ -58,6 +60,10 @@ class TeamMember extends DataObject
         "ShowCharacters" => ShowCharacter::class
     ];
 
+    private static $belongs_many_many = [
+        "ShowsAsHelper" => Show::class
+    ];
+
     private static $default_sort = "Status, SortField ASC";
 
     private static $field_labels = [
@@ -67,6 +73,7 @@ class TeamMember extends DataObject
         "Description" => "Beschreibung",
         "Socials" => "Soziale Links",
         "Status" => "Status",
+        "ShowsAsHelper" => "Shows als Helfer"
     ];
 
     private static $summary_fields = [

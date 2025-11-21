@@ -2,6 +2,7 @@
 
 namespace App\Wiki;
 
+use App\Team\TeamMember;
 use App\Wiki\Artefact;
 use App\Wiki\ShowAdmin;
 use SilverStripe\Assets\Image;
@@ -29,6 +30,7 @@ use SilverStripe\Model\List\GroupedList;
  * @method Image ShowImage()
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @method DataList<ShowCharacter> ShowCharacters()
+ * @method ManyManyList<TeamMember> BackstageHelpers()
  * @method ManyManyList<Location> Locations()
  * @method ManyManyList<Artefact> Artefacts()
  * @mixin PhotoGalleryExtension
@@ -64,6 +66,10 @@ class Show extends DataObject
         "ShowCharacters" => ShowCharacter::class,
     ];
 
+    private static $many_many = [
+        "BackstageHelpers" => TeamMember::class,
+    ];
+
     private static $belongs_many_many = [
         "Locations" => Location::class,
         "Artefacts" => Artefact::class,
@@ -94,6 +100,7 @@ class Show extends DataObject
         "ShowCharacters" => "Charaktere",
         "Locations" => "Orte",
         "Artefacts" => "Artefakte",
+        "BackstageHelpers" => "Hintergrundhelfer",
     ];
 
     private static $summary_fields = [
