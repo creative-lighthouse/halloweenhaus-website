@@ -19,8 +19,8 @@ use SilverStripe\Security\Permission;
  * @method TimelineElement Parent()
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @mixin PhotoGalleryExtension
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

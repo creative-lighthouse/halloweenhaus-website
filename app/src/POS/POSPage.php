@@ -13,8 +13,8 @@ use SilverStripe\CMS\Model\SiteTree;
  *
  * @property int $BackgroundImageID
  * @method Image BackgroundImage()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

@@ -13,8 +13,8 @@ use App\FleaMarket\FleaMarketProduct;
  * @property ?string $Title
  * @property ?string $Description
  * @method ManyManyList<FleaMarketProduct> Products()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

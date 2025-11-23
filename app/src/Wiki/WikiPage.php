@@ -11,8 +11,8 @@ use SilverStripe\Assets\Image;
  * @property ?string $Description
  * @property int $ImageID
  * @method Image Image()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

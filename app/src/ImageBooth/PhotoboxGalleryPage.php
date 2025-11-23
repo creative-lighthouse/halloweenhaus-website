@@ -7,8 +7,8 @@ use Page;
 /**
  * Class \App\ImageBooth\PhotoboxGalleryPage
  *
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

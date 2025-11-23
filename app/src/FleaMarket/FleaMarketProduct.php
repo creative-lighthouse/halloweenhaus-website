@@ -28,8 +28,8 @@ use SilverStripe\Forms\CheckboxSetField;
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @method ManyManyList<FleaMarketProductCategory> Categories()
  * @mixin PhotoGalleryExtension
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

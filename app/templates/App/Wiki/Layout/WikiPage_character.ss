@@ -1,7 +1,19 @@
 <section class="section--WikiPage showoverview--itemdetails">
     <% with $Character %>
         <div class="section_content">
-            <a class="backbutton" href="$Top.Link">&larr; Zurück zur Übersicht</a>
+            <div class="wiki-navigation">
+                <% if $PrevCharacter %>
+                    <a class="link--button button-prev" href="$PrevCharacter.Link"></a>
+                <% else %>
+                    <span class="link--button button-prev link--buttondisabled"></span>
+                <% end_if %>
+                <a class="link--button button-overview" href="$Top.Link">Übersicht</a>
+                <% if $NextCharacter %>
+                    <a class="link--button button-next" href="$NextCharacter.Link"></a>
+                <% else %>
+                    <span class="link--button button-next link--buttondisabled"></span>
+                <% end_if %>
+            </div>
             <div class="showsection showsection--details" style="view-transition-name: charactercard-$ID;">
                 <% if $Image %>
                     <a href="$Image.Url" data-gallery="gallery" data-galleryid="character" class="character_image" style="view-transition-name: characterimage-$ID;">

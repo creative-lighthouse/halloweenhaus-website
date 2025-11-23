@@ -15,8 +15,8 @@ use SilverStripe\Forms\DropdownField;
  * @property ?string $Plattform
  * @property ?string $Link
  * @method ManyManyList<TeamMember> Members()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

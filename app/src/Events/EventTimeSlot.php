@@ -14,8 +14,8 @@ use SilverStripe\ORM\DataObject;
  * @property bool $Active
  * @property int $ParentID
  * @method Event Parent()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

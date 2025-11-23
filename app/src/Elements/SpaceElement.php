@@ -8,8 +8,8 @@ use DNADesign\Elemental\Models\BaseElement;
  * Class \App\Elements\SpaceElement
  *
  * @property int $Height
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

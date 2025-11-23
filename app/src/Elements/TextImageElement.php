@@ -23,8 +23,8 @@ use SilverStripe\Forms\DropdownField;
  * @property int $ButtonID
  * @method Image Image()
  * @method Link Button()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

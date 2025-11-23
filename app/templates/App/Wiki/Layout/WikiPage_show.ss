@@ -1,7 +1,19 @@
 <section class="section--WikiPage showoverview--itemdetails">
     <% with $Show %>
         <div class="section_content">
-            <a class="backbutton" href="$Top.Link">&larr; Zurück zur Übersicht</a>
+            <div class="wiki-navigation">
+                <% if $PrevShow %>
+                    <a class="link--button button-prev" href="$PrevShow.Link"></a>
+                <% else %>
+                    <span class="link--button button-prev link--buttondisabled"></span>
+                <% end_if %>
+                <a class="link--button button-overview" href="$Top.Link">Übersicht</a>
+                <% if $NextShow %>
+                    <a class="link--button button-next" href="$NextShow.Link"></a>
+                <% else %>
+                    <span class="link--button button-next link--buttondisabled"></span>
+                <% end_if %>
+            </div>
             <div class="showsection showsection--details">
                 <% if $ShowImage %>
                     <div class="overviewimage">

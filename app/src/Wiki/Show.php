@@ -34,8 +34,8 @@ use SilverStripe\Model\List\GroupedList;
  * @method ManyManyList<Location> Locations()
  * @method ManyManyList<Artefact> Artefacts()
  * @mixin PhotoGalleryExtension
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
@@ -166,5 +166,19 @@ class Show extends DataObject
         } else {
             return "";
         }
+    }
+
+    public function getNextShow()
+    {
+        //Check if there is a next show
+        $nextShow = Show::get()->filter('Year:GreaterThan', $this->Year)->sort('Year', 'ASC')->first();
+        return $nextShow;
+    }
+
+    public function getPrevShow()
+    {
+        //Check if there is a previous show
+        $prevShow = Show::get()->filter('Year:LessThan', $this->Year)->sort('Year', 'DESC')->first();
+        return $prevShow;
     }
 }

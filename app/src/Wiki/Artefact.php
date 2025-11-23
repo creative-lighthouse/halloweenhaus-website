@@ -19,8 +19,8 @@ use SilverStripe\ORM\DataObject;
  * @method DataList<ArtefactOwnership> ArtefactOwnerships()
  * @method ManyManyList<Show> Shows()
  * @mixin PhotoGalleryExtension
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
@@ -84,7 +84,7 @@ class Artefact extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->removeByName("SortField");
+        //$fields->removeByName("SortField");
         return $fields;
     }
 
@@ -114,5 +114,15 @@ class Artefact extends DataObject
     public function getOwners()
     {
         return $this->ArtefactOwnerships()->sort("StartTime DESC");
+    }
+
+    public function NextArtefact()
+    {
+        return Artefact::get()->filter('SortField:GreaterThan', $this->SortField)->sort('SortField', 'ASC')->first();
+    }
+
+    public function PreviousArtefact()
+    {
+        return Artefact::get()->filter('SortField:LessThan', $this->SortField)->sort('SortField', 'DESC')->first();
     }
 }

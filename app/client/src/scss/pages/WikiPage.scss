@@ -3,6 +3,7 @@
 section.section--WikiPage{
     margin-top: 110px;
     padding: 0;
+    overflow: hidden;
 
     .section_content{
         padding: 20px;
@@ -15,6 +16,63 @@ section.section--WikiPage{
             padding: 0;
             font-size: 2rem;
             color: var(--ColorWhite);
+        }
+
+        .wiki-navigation{
+            display: grid;
+            grid-template-columns: 10% 1fr 10%;
+            background-color: var(--ColorBackgroundLight);
+            border-radius: 10px;
+            view-transition-name: "wiki-navigation";
+
+            .link--button{
+                flex: 1;
+                text-align: center;
+                background-color: var(--ColorBackgroundLight);
+                border-radius: 10px;
+                padding: 10px 20px;
+                margin: 0;
+
+                &.button-prev {
+                    &::before{
+                        content: '';
+                        width: 10px;
+                        height: 10px;
+                        display: inline-block;
+                        border-left: 2px solid var(--ColorWhite);
+                        border-top: 2px solid var(--ColorWhite);
+                        transform: rotate(-45deg);
+                    }
+                }
+                &.button-next {
+                    &::after{
+                        content: '';
+                        width: 10px;
+                        height: 10px;
+                        display: inline-block;
+                        border-right: 2px solid var(--ColorWhite);
+                        border-top: 2px solid var(--ColorWhite);
+                        transform: rotate(45deg);
+                    }
+                }
+                &.button-overview {
+                    text-transform: uppercase;
+                    font-weight: 600;
+                }
+
+                &.link--buttondisabled {
+                    opacity: 0.2;
+                    pointer-events: none;
+                }
+                
+                &:hover{
+                    background-color: var(--ColorBlack);
+                }
+            }
+
+            @include media(max-medium) {
+                grid-template-columns: 1fr 2fr 1fr;
+            }
         }
 
         .showsection{

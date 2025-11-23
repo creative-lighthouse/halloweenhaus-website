@@ -25,8 +25,8 @@ use SilverStripe\Model\List\GroupedList;
  * @method Image Image()
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @mixin PhotoGalleryExtension
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
@@ -132,5 +132,15 @@ class Character extends DataObject
     {
         $groupedArtefactOwnerships = GroupedList::create(ArtefactOwnership::get()->filter('CharacterID', $this->ID));
         return $groupedArtefactOwnerships;
+    }
+
+    public function NextCharacter()
+    {
+        return Character::get()->filter('SortField:GreaterThan', $this->SortField)->sort('SortField', 'ASC')->first();
+    }
+
+    public function PreviousCharacter()
+    {
+        return Character::get()->filter('SortField:LessThan', $this->SortField)->sort('SortField', 'DESC')->first();
     }
 }

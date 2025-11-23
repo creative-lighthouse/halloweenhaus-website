@@ -14,8 +14,8 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
  *
  * @property ?string $Text
  * @method DataList<FactItem> FactItems()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

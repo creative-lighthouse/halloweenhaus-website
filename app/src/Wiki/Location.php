@@ -19,8 +19,8 @@ use SilverStripe\ORM\DataObject;
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @method ManyManyList<Show> Shows()
  * @mixin PhotoGalleryExtension
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
@@ -104,5 +104,15 @@ class Location extends DataObject
     public function getLocationShows()
     {
         return $this->Shows()->sort('Year', 'ASC');
+    }
+
+    public function NextLocation()
+    {
+        return Location::get()->filter('SortField:GreaterThan', $this->SortField)->sort('SortField', 'ASC')->first();
+    }
+
+    public function PreviousLocation()
+    {
+        return Location::get()->filter('SortField:LessThan', $this->SortField)->sort('SortField', 'DESC')->first();
     }
 }

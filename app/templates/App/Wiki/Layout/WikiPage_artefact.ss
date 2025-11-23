@@ -1,7 +1,19 @@
 <section class="section--WikiPage showoverview--itemdetails">
     <% with $Artefact %>
         <div class="section_content">
-            <a class="backbutton" href="$Top.Link">&larr; Zurück zur Übersicht</a>
+            <div class="wiki-navigation">
+                <% if $PrevArtefact %>
+                    <a class="link--button button-prev" href="$PrevArtefact.Link"></a>
+                <% else %>
+                    <span class="link--button button-prev link--buttondisabled"></span>
+                <% end_if %>
+                <a class="link--button button-overview" href="$Top.Link">Übersicht</a>
+                <% if $NextArtefact %>
+                    <a class="link--button button-next" href="$NextArtefact.Link"></a>
+                <% else %>
+                    <span class="link--button button-next link--buttondisabled"></span>
+                <% end_if %>
+            </div>
             <div class="showsection showsection--details" style="view-transition-name: locationcard-$ID;">
                 <% if $Image %>
                     <a href="$Image.Url" data-gallery="gallery" data-galleryid="mainimage" class="artefact_image" style="view-transition-name: artefactimage-$ID;">

@@ -18,8 +18,8 @@ use SilverStripe\ORM\DataObject;
  * @property int $AudioLength
  * @property int $AudioID
  * @method File Audio()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
