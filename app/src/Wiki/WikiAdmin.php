@@ -3,6 +3,7 @@
 namespace App\Wiki;
 
 use App\Wiki\Show;
+use App\Wiki\MediaProject;
 use SilverStripe\Admin\ModelAdmin;
 use SilverStripe\Forms\GridField\GridField;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
@@ -18,6 +19,7 @@ class WikiAdmin extends ModelAdmin
         Character::class,
         Location::class,
         Artefact::class,
+        MediaProject::class,
     );
 
     private static $url_segment = "wiki";

@@ -21,6 +21,7 @@ class WikiPageController extends PageController
         'character',
         'location',
         'artefact',
+        'shows',
     ];
 
     public function index(HTTPRequest $request)
@@ -47,6 +48,11 @@ class WikiPageController extends PageController
     public function getArtefacts()
     {
         return Artefact::get()->sort('SortField ASC');
+    }
+
+    public function getMediaProjects()
+    {
+        return MediaProject::get()->sort('PublicationDate DESC');
     }
 
     public function show(HTTPRequest $request)
@@ -82,6 +88,15 @@ class WikiPageController extends PageController
         $artefact = Artefact::get()->byID($artefactID);
         return [
             'Artefact' => $artefact,
+        ];
+    }
+
+    public function media(HTTPRequest $request)
+    {
+        $mediaID = $request->param('ID');
+        $mediaProject = MediaProject::get()->byID($mediaID);
+        return [
+            'MediaProject' => $mediaProject,
         ];
     }
 }

@@ -92,5 +92,24 @@
                 </div>
             </div>
         <% end_if %>
+        <% if $MediaProjects.Count > 0 %>
+            <div class="showsection showsection--mediaprojects">
+                <h2>Filme & Medienprojekte</h2>
+                <div class="mediaprojectgrid">
+                    <% loop $MediaProjects %>
+                        <a href="$Link" class="mediaprojectcard" style="view-transition-name: mediaprojectcard-$ID;">
+                            <div class="mediaprojectcard_image" style="view-transition-name: mediaprojectimage-$ID;">
+                                $Image.FocusFill(200,200)
+                            </div>
+                            <div class="mediaprojectcard_content">
+                                <h3 class="mediaprojectcard_name">$Title</h3>
+                                <% if $ShortDescription %><p class="mediaprojectcard_shortdescription">$ShortDescription</p><% end_if %>
+                                <% if $PublicationDate %><p class="mediaprojectcard_publicationdate"><b>Veröffentlicht am:</b> $PublicationDate</p><% end_if %>
+                            </div>
+                        </a>
+                    <% end_loop %>
+                </div>
+            </div>
+        <% end_if %>
     </div>
 </section>
