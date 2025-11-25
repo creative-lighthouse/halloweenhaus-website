@@ -2,10 +2,12 @@
 
 namespace App\Wiki;
 
+use App\Team\TeamMember;
 use SilverStripe\Assets\Image;
 use App\Wiki\ArtefactOwnership;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\DropdownField;
+use SilverStripe\LinkField\Models\Link;
 use SilverStripe\Model\List\GroupedList;
 
 /**
@@ -18,8 +20,9 @@ use SilverStripe\Model\List\GroupedList;
  * @property int $SortField
  * @property int $ImageID
  * @method Image Image()
- * @mixin AssetControlExtension
+ * @method ManyManyList<TeamMember> TeamMembers()
  * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
@@ -38,8 +41,17 @@ class MediaProject extends DataObject
         "Image" => Image::class,
     ];
 
+    private static $has_many = [
+        "Links" => Link::class,
+    ];
+
     private static $owns = [
-        "Image"
+        "Image",
+        "Links",
+    ];
+
+    private static $many_many = [
+        "TeamMembers" => TeamMember::class
     ];
 
     private static $default_sort = "PublicationDate DESC";
@@ -49,11 +61,12 @@ class MediaProject extends DataObject
         "Place" => "Veröffentlichungsort",
         "Description" => "Beschreibung",
         "PublicationDate" => "Veröffentlichungsdatum",
+        "TeamMembers" => "Teammitglieder",
     ];
 
     private static $summary_fields = [
         "Title" => "Titel",
-        "PublicationDate" => "Veröffentlichungsdatum",
+        "RenderPublicationDate" => "Veröffentlichungsdatum",
     ];
 
     private static $searchable_fields = [
@@ -102,5 +115,14 @@ class MediaProject extends DataObject
     public function PreviousMediaProject()
     {
         return MediaProject::get()->filter('PublicationDate:LessThan', $this->PublicationDate)->sort('PublicationDate', 'DESC')->first();
+    }
+
+    public function getRenderPublicationDate()
+    {
+        if($this->PublicationDate)
+        {
+            return date('d.m.Y', strtotime($this->PublicationDate));
+        }
+        return "";
     }
 }

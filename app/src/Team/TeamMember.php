@@ -2,9 +2,10 @@
 
 namespace App\Team;
 
+use App\Wiki\Show;
 use App\Team\TeamAdmin;
 use App\Team\TeamSocial;
-use App\Wiki\Show;
+use App\Wiki\MediaProject;
 use App\Wiki\ShowCharacter;
 use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataList;
@@ -25,10 +26,11 @@ use SilverStripe\Forms\DropdownField;
  * @method Image Image()
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @method ManyManyList<TeamSocial> Socials()
- * @method ManyManyList<Show> ShowsAsHelper()
+ * @method ManyManyList<Show> HelpedShows()
+ * @method ManyManyList<MediaProject> MediaProjects()
  * @mixin PhotoGalleryExtension
- * @mixin AssetControlExtension
  * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
@@ -61,7 +63,8 @@ class TeamMember extends DataObject
     ];
 
     private static $belongs_many_many = [
-        "ShowsAsHelper" => Show::class
+        "HelpedShows" => Show::class,
+        "MediaProjects" => MediaProject::class
     ];
 
     private static $default_sort = "Status, SortField ASC";
@@ -73,7 +76,8 @@ class TeamMember extends DataObject
         "Description" => "Beschreibung",
         "Socials" => "Soziale Links",
         "Status" => "Status",
-        "ShowsAsHelper" => "Shows als Helfer"
+        "HelpedShows" => "Shows",
+        "MediaProjects" => "Medienprojekte",
     ];
 
     private static $summary_fields = [
@@ -145,5 +149,31 @@ class TeamMember extends DataObject
     public function getRoles()
     {
         return ShowCharacter::get()->filter('TeamMemberID', $this->ID);
+    }
+
+    public function getLink()
+    {
+        $teamOverview = TeamOverview::get()->first();
+        if ($teamOverview) {
+            return $teamOverview->Link("view/{$this->ID}-{$this->getFormattedName()}");
+        } else {
+            return "";
+        }
+    }
+
+    public function getParticipatedShows()
+    {
+        //Get all shows where this team member either helped or played a character and add information about the role if applicable
+        $shows = Show::get()->filterAny([
+            'BackstageHelpers.ID' => $this->ID,
+        ])->distinct("ID");
+
+        //filter out all shows where the team member played a character
+        $characterShows = ShowCharacter::get()->filter('TeamMemberID', $this->ID)->column('CharacterID');
+        if (!empty($characterShows)) {
+            $shows = $shows->exclude('ID', $characterShows);
+        }
+
+        return $shows;
     }
 }

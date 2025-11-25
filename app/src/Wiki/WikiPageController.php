@@ -22,6 +22,7 @@ class WikiPageController extends PageController
         'location',
         'artefact',
         'shows',
+        'media',
     ];
 
     public function index(HTTPRequest $request)

@@ -12,8 +12,8 @@ use DNADesign\Elemental\Models\BaseElement;
  * @property ?string $Text
  * @property int $BackgroundImageID
  * @method Image BackgroundImage()
- * @mixin AssetControlExtension
  * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

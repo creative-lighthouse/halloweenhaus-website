@@ -17,8 +17,8 @@ use SilverStripe\ORM\DataObject;
  * @method Show Parent()
  * @method Character Character()
  * @method TeamMember TeamMember()
- * @mixin AssetControlExtension
  * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

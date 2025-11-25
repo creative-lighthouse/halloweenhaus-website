@@ -19,8 +19,8 @@ use SilverStripe\ORM\DataObject;
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @method ManyManyList<Show> Shows()
  * @mixin PhotoGalleryExtension
- * @mixin AssetControlExtension
  * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

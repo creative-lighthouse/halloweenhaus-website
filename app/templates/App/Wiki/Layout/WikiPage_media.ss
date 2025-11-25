@@ -17,12 +17,13 @@
             <div class="showsection showsection--details" style="view-transition-name: mediacard-$ID;">
                 <% if $Image %>
                     <a href="$Image.Url" data-gallery="gallery" data-galleryid="mainimage" class="media_image" style="view-transition-name: mediaimage-$ID;">
-                        $Image.FocusFill(300,300)
+                        $Image.FocusFill(400,300)
                     </a>
                 <% else %>
                     <br>
                 <% end_if %>
                 <h1 class="media_title" style="view-transition-name: mediatitle-$ID;">$Title</h1>
+                <p class="media_publicationdate">Veröffentlicht am $RenderPublicationDate</p>
                 <div class="media_description">
                     $Description
                 </div>
@@ -38,6 +39,21 @@
                                 </a>
                             <% end_loop %>
                         </div>
+                    </div>
+                </div>
+            <% end_if %>
+            <% if $TeamMembers.Count > 0 %>
+                <div class="showsection showsection--teammembers">
+                    <h2>Beteiligte Teammitglieder</h2>
+                    <div class="teammembersgrid">
+                        <% loop $TeamMembers %>
+                            <a href="$Link" class="teammembercard" style="view-transition-name: teammembercard-$ID;">
+                                <div class="teammembercard_image" style="view-transition-name: teammemberimage-$ID;">
+                                    $Image.FocusFill(200,200)
+                                </div>
+                                <h3 class="teammembercard_title">$Title</h3>
+                            </a>
+                        <% end_loop %>
                     </div>
                 </div>
             <% end_if %>
