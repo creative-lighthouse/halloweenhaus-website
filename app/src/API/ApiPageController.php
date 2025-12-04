@@ -26,6 +26,12 @@ use App\ImageBooth\BoothImage;
 use App\Events\Event;
 use App\Events\EntryLog;
 use App\Events\Registration;
+use App\Team\TeamMember;
+use App\Wiki\Artefact;
+use App\Wiki\Character;
+use App\Wiki\Location;
+use App\Wiki\MediaProject;
+use App\Wiki\Show;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Security\Security;
 use SilverStripe\CMS\Controllers\ContentController;
@@ -50,6 +56,7 @@ class ApiPageController extends ContentController
         "submitBoothImage",
         "statistics",
         "addPOSSale",
+        "wikiindex",
     ];
 
     public function index(HTTPRequest $request)
@@ -710,5 +717,66 @@ class ApiPageController extends ContentController
             $this->response->addHeader('Content-Type', 'application/json');
             return json_encode(["message" => "Not logged in."]);
         }
+    }
+
+    public function wikiindex(HTTPRequest $request)
+    {
+        $this->response->addHeader('Content-Type', 'application/json');
+
+        $shows = Show::get()->sort('Title', 'ASC');
+        $characters = Character::get()->sort('Title', 'ASC');
+        $teammembers = TeamMember::get()->sort('Title', 'ASC');
+        $artefacts = Artefact::get()->sort('Title', 'ASC');
+        $places = Location::get()->sort('Title', 'ASC');
+        $mediaprojects = MediaProject::get()->sort('Title', 'ASC');
+
+        $data = [];
+
+        //Create an index for all wiki relevant items with a link to them
+        foreach ($shows as $show) {
+            $data[] = [
+                'type' => 'show',
+                'title' => $show->Title,
+                'year' => $show->Year,
+                'link' => $show->getLink(),
+            ];
+        }
+        foreach ($characters as $character) {
+            $data[] = [
+                'type' => 'character',
+                'title' => $character->Title,
+                'link' => $character->getLink(),
+            ];
+        }
+        foreach ($teammembers as $teammember) {
+            $data[] = [
+                'type' => 'teammember',
+                'title' => $teammember->Title,
+                'link' => $teammember->getLink(),
+            ];
+        }
+        foreach ($artefacts as $artefact) {
+            $data[] = [
+                'type' => 'artefact',
+                'title' => $artefact->Title,
+                'link' => $artefact->getLink(),
+            ];
+        }
+        foreach ($places as $place) {
+            $data[] = [
+                'type' => 'location',
+                'title' => $place->Title,
+                'link' => $place->getLink(),
+            ];
+        }
+        foreach ($mediaprojects as $mediaproject) {
+            $data[] = [
+                'type' => 'mediaproject',
+                'title' => $mediaproject->Title,
+                'link' => $mediaproject->getLink(),
+            ];
+        }
+
+        return json_encode($data);
     }
 }

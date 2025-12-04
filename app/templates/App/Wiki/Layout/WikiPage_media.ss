@@ -24,7 +24,7 @@
                 <% end_if %>
                 <h1 class="media_title" style="view-transition-name: mediatitle-$ID;">$Title</h1>
                 <p class="media_publicationdate">Veröffentlicht am $RenderPublicationDate</p>
-                <div class="media_description">
+                <div class="media_description glossarizable">
                     $Description
                 </div>
             </div>

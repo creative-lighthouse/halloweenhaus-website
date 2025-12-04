@@ -20,6 +20,7 @@ use SilverStripe\Model\List\GroupedList;
  * @property int $SortField
  * @property int $ImageID
  * @method Image Image()
+ * @method DataList<Link> Links()
  * @method ManyManyList<TeamMember> TeamMembers()
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension

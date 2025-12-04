@@ -23,7 +23,7 @@
                     <br>
                 <% end_if %>
                 <h1 class="character_title">$Title</h1>
-                <div class="character_description">
+                <div class="character_description glossarizable">
                     $Description
                 </div>
             </div>

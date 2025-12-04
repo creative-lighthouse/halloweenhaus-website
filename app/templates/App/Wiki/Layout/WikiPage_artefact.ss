@@ -23,7 +23,7 @@
                     <br>
                 <% end_if %>
                 <h1 class="character_title" style="view-transition-name: locationtitle-$ID;">$Title</h1>
-                <div class="character_description">
+                <div class="character_description glossarizable">
                     $Description
                 </div>
             </div>

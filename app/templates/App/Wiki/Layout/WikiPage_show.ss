@@ -35,7 +35,7 @@
 
                 <h1 class="show_year" style="view-transition-name: showyear-$ID;">$Year</h1>
                 <h2 class="show_title" style="view-transition-name: showtitle-$ID;">$Title</h2>
-                <div class="show_storyline">$Storyline</div>
+                <div class="show_storyline glossarizable">$Storyline</div>
             </div>
             <% if $PhotoGalleryImages.Count > 0 %>
                 <div class="showsection showsection--gallery">

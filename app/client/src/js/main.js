@@ -3,6 +3,7 @@ import Swiper from 'swiper/bundle';
 import "./eventsNavigator";
 import "./posSystem";
 import "./statisticsPage";
+import "./glossar.js";
 
 document.addEventListener("DOMContentLoaded", function (event) {
 

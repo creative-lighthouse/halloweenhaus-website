@@ -10,7 +10,7 @@
                 <h1 class="wiki_title">$Title</h1>
             <% end_if %>
             <% if $Description %>
-                <div class="wiki_description">
+                <div class="wiki_description glossarizable">
                     $Description
                 </div>
             <% end_if %>
