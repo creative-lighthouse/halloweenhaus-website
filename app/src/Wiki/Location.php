@@ -18,6 +18,7 @@ use SilverStripe\ORM\DataObject;
  * @method Image Image()
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @method ManyManyList<Show> Shows()
+ * @method ManyManyList<MediaProject> MediaProjects()
  * @mixin PhotoGalleryExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
@@ -37,6 +38,7 @@ class Location extends DataObject
 
     private static $many_many = [
         "Shows" => Show::class,
+        "MediaProjects" => MediaProject::class,
     ];
 
     private static $has_one = [

@@ -18,6 +18,7 @@ use SilverStripe\ORM\DataObject;
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @method DataList<ArtefactOwnership> ArtefactOwnerships()
  * @method ManyManyList<Show> Shows()
+ * @method ManyManyList<MediaProject> MediaProjects()
  * @mixin PhotoGalleryExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
@@ -37,6 +38,7 @@ class Artefact extends DataObject
 
     private static $many_many = [
         "Shows" => Show::class,
+        "MediaProjects" => MediaProject::class,
     ];
 
     private static $has_one = [

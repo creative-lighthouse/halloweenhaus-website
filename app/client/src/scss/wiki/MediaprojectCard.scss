@@ -1,0 +1,34 @@
+.mediaprojectcard{
+    background-color: var(--ColorBackground);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: var(--BoxShadow);
+    text-decoration: none;
+    color: var(--ColorWhite);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+
+    .mediaprojectcard_image {
+        aspect-ratio: 4/3;
+        border-radius: 10px;
+        overflow: hidden;
+        mask-image: url("../../icons/media_mask.png");
+        mask-size: cover;
+        background-color: var(--ColorBackgroundLight);
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    .mediaprojectcard_name{
+        margin: 10px 0 0 0;
+    }
+
+    &:hover{
+        transform: scale(1.05);
+    }
+}

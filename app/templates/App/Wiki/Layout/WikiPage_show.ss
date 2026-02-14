@@ -85,27 +85,7 @@
                     <div class="charactersgrid">
                         $GroupedCharacters.GroupedBy('CharacterID').First.Title <!-- Not working -->
                         <% loop $GroupedCharacters.GroupedBy('CharacterID') %>
-                            <a href="$Children.First.Character.Link" class="charactercard" style="view-transition-name: charactercard-$Children.First.Character.ID;">
-                                <div class="charactercard_image">
-                                    $Children.First.Character.Image.FocusFill(200,200)
-                                </div>
-                                <div class="charactercard_content">
-                                    <h3 class="charactercard_name">$Children.First.Character.Title</h3>
-                                    <% if $Children.First.Character.ShortDescription %><p class="charactercard_shortdescription">$Children.First.Character.ShortDescription</p><% end_if %>
-                                    <% if $Children.First.Character.Jointime %><p class="charactercard_jointime"><b>Erstauftritt:</b> $Children.First.Character.Jointime</p><% end_if %>
-                                    <% if $Children.Count > 0 %>
-                                        <p class="character_actorlist_title">Gespielt von:</p>
-                                        <div class="character_actorlist">
-                                            <% loop $Children %>
-                                                <div class="character_actor">
-                                                    $TeamMember.Image
-                                                    <p>$TeamMember.Title</p>
-                                                </div>
-                                            <% end_loop %>
-                                        </div>
-                                    <% end_if %>
-                                </div>
-                            </a>
+                            <% include Includes/Wiki/CharacterCard Character=$Children.First, Children=$Children %>
                         <% end_loop %>
                     </div>
                 </div>

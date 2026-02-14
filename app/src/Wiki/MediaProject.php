@@ -17,11 +17,14 @@ use SilverStripe\Model\List\GroupedList;
  * @property ?string $Place
  * @property ?string $Description
  * @property ?string $PublicationDate
+ * @property ?string $VideoLink
  * @property int $SortField
  * @property int $ImageID
  * @method Image Image()
  * @method DataList<Link> Links()
  * @method ManyManyList<TeamMember> TeamMembers()
+ * @method ManyManyList<Location> Locations()
+ * @method ManyManyList<Artefact> Artefacts()
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -35,6 +38,7 @@ class MediaProject extends DataObject
         "Place" => "Varchar(255)",
         "Description" => "HTMLText",
         "PublicationDate" => "Date",
+        "VideoLink" => "Varchar(255)",
         "SortField" => "Int",
     ];
 
@@ -55,6 +59,11 @@ class MediaProject extends DataObject
         "TeamMembers" => TeamMember::class
     ];
 
+    private static $belongs_many_many = [
+        "Locations" => Location::class,
+        "Artefacts" => Artefact::class,
+    ];
+
     private static $default_sort = "PublicationDate DESC";
 
     private static $field_labels = [
@@ -62,6 +71,7 @@ class MediaProject extends DataObject
         "Place" => "Veröffentlichungsort",
         "Description" => "Beschreibung",
         "PublicationDate" => "Veröffentlichungsdatum",
+        "VideoLink" => "Video-Link",
         "TeamMembers" => "Teammitglieder",
     ];
 
