@@ -81,7 +81,7 @@ class Show extends DataObject
         "ShowCharacters",
     ];
 
-    private static $default_sort = "Year ASC";
+    private static $default_sort = "Year DESC";
 
     private static $field_labels = [
         "Year" => "Jahr",
