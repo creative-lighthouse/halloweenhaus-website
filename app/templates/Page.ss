@@ -38,6 +38,16 @@
         $ViteClient.RAW
         <link rel="stylesheet" href="$Vite('app/client/src/scss/main.scss')">
         <link rel="manifest" href="site.webmanifest" />
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QW9HQK22TZ"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-QW9HQK22TZ');
+        </script>
     </head>
     <body>
         <div class="area_header">
