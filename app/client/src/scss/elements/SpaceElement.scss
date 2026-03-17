@@ -1,6 +1,33 @@
 @use "../variables" as *;
 
-.section.section--SpaceElement {
+section.section--SpaceElement {
     padding: 0;
     position: relative;
+
+    &.variant--divider {
+        padding: 30px 20px;
+
+        .section_content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 30px;
+
+            .divider-icon {
+                width: 25px;
+                height: 25px;
+                background-color: var(--ColorGray);
+                transform: rotate(45deg);
+                flex-shrink: 0;
+            }
+
+            .divider-line {
+                border: none;
+                height: 2px;
+                background-color: var(--ColorGray);
+                width: 50%;
+            }
+        }
+    }
 }

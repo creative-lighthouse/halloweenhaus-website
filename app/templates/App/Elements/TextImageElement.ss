@@ -1,31 +1,35 @@
-<% if not $OnlyNearHalloween || $NearHalloween %>
-    <div class="section section--TextImageElement $BackgroundColor">
-        <div class="section_content $Variant $ImgWidth">
-            <% if $Image %>
-                <div class="textimage_image">
-                    <% if $ImageIsLinked %>
-                        <a href="$Button.Url" <% if $Button.OpenInNew %> target="_blank"<% end_if %>>
-                            $Image.ScaleWidth(800)
-                        </a>
-                    <% else %>
-                        $Image.ScaleWidth(800)
-                    <% end_if %>
+<section class="section--TextImageElement $Variant">
+    <div class="section_content grid-layout">
+        <% if $VideoCode %>
+            <div class="section_video">
+                <a class="media" href="https://www.youtube.com/watch?v=$VideoCode" target="_blank" rel="noopener noreferrer">
+                    $Thumbnail
+                </a>
+            </div>
+        <% else_if $Image %>
+             <div class="section_image">
+                $Image.FocusFillMax(600, 400)
+            </div>
+        <% end_if %>
+
+        <div class="section_text">
+            <% if $ShowTitle %>
+                <div class="section_title">
+                    <h2 class="hl2">$Title</h2>
                 </div>
             <% end_if %>
 
-            <div class="textimage_text">
-                <div class="textimage_text_content">
-                    <% if $ShowTitle %>
-                        <h2 class="textimage_text_title $TitleAlign">$Title</h2>
-                    <% end_if %>
+            <% if $Text %>
+                <div class="section_text">
                     $Text
-                    <% if $Button %>
-                        <div class="textimage_button $ButtonAlign">
-                            <a href="$Button.Url" <% if $Button.OpenInNew %> target="_blank"<% end_if %> class="link--button hollow textimage_text_button no_deco readmore">$Button.Title</a>
-                        </div>
-                    <% end_if %>
                 </div>
-            </div>
+            <% end_if %>
+
+            <% if $Button %>
+                <div class="section_button">
+                    <% include Button Button=$Button %>
+                </div>
+            <% end_if %>
         </div>
     </div>
-<% end_if %>
+</section>

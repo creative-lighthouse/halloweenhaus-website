@@ -26,14 +26,14 @@ section.section--WikiPage{
         .wiki-navigation{
             display: grid;
             grid-template-columns: 10% 1fr 10%;
-            background-color: var(--ColorBackgroundLight);
+            background-color: var(--ColorGray);
             border-radius: 10px;
             view-transition-name: "wiki-navigation";
 
             .link--button{
                 flex: 1;
                 text-align: center;
-                background-color: var(--ColorBackgroundLight);
+                background-color: var(--ColorGray);
                 border-radius: 10px;
                 padding: 10px 20px;
                 margin: 0;
@@ -81,7 +81,7 @@ section.section--WikiPage{
         }
 
         .showsection{
-            background-color: var(--ColorBackgroundLight);
+            background-color: var(--ColorGray);
             border-radius: 10px;
 
             h2{
@@ -516,7 +516,7 @@ section.section--WikiPage{
         color: var(--ColorWhite);
         text-decoration: none;
         font-size: 14px;
-        background-color: var(--ColorBackgroundLight);
+        background-color: var(--ColorGray);
         padding: 8px 12px;
         border-radius: 8px;
         width: auto;

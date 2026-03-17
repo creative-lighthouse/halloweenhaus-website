@@ -26,7 +26,6 @@
 @use "elements/TimelineElement";
 @use "elements/FAQElement";
 @use "elements/SpaceElement";
-@use "elements/HeroImageElement";
 @use "elements/HeroVideoElement";
 @use "elements/PressImagesElement";
 @use "elements/VideoElement";
@@ -43,12 +42,16 @@
 
 @use "layout/FleaMarket";
 
-
 @use "wiki/WikiPage";
 
 
-
 @view-transition { navigation: auto; }
+
+*{
+    margin:	0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 html {
     background-color: var(--ColorBackground);
@@ -88,16 +91,22 @@ body{
         height: 120px;
         margin-top: 40px;
     }
+
+    .grid-layout {
+        display: grid;
+        gap: 0 30px;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: auto auto auto;
+        max-width: var(--MaxWidthContent);
+        margin: 0 auto;
+        align-items: start;
+    }
 }
 
 
 section, .section {
-    max-width: var(--MaxWidth);
-    margin: 50px auto;
-
-    @include media(max-desktop) {
-        padding: 0 20px;
-    }
+    padding: 25px 20px;
+    margin: 0 auto;
 }
 
 .section_content{
