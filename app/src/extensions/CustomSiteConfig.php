@@ -26,6 +26,11 @@ use SilverStripe\Forms\TextField;
  * @property bool $EmailsActive
  * @property ?string $EventAdminEmail
  * @property int $MaxGroupSize
+ * @property ?string $SocialTikTok
+ * @property ?string $SocialInstagram
+ * @property ?string $SocialFacebook
+ * @property ?string $SocialLinkedIn
+ * @property ?string $SocialYoutube
  */
 class CustomSiteConfig extends Extension
 {
@@ -34,7 +39,7 @@ class CustomSiteConfig extends Extension
         'DateText' => 'Varchar(255)',
         "PlaceText" => "Varchar(255)",
         "ShowBanner" => "Boolean",
-        "BannerText" => "HTMLText",
+        "BannerText" => "Varchar(511)",
         'AckMessageSubject' => 'Varchar(255)',
         'AckMessageContent' => 'HTMLText',
         'TicketMessageSubject' => 'Varchar(255)',
@@ -44,6 +49,11 @@ class CustomSiteConfig extends Extension
         'EmailsActive' => 'Boolean',
         'EventAdminEmail' => 'Varchar(255)',
         "MaxGroupSize" => "Int",
+        "SocialTikTok" => "Varchar(255)",
+        "SocialInstagram" => "Varchar(255)",
+        "SocialFacebook" => "Varchar(255)",
+        "SocialLinkedIn" => "Varchar(255)",
+        "SocialYoutube" => "Varchar(255)",
     ];
 
     private static $defaults = [
@@ -55,7 +65,7 @@ class CustomSiteConfig extends Extension
         $fields->addFieldToTab("Root.Main", TextField::create("DateText", "Date Text"));
         $fields->addFieldToTab("Root.Main", TextField::create("PlaceText", "Place Text"));
         $fields->addFieldToTab("Root.Main", CheckboxField::create("ShowBanner", "Show Banner"));
-        $fields->addFieldToTab("Root.Main", HTMLEditorField::create("BannerText", "Banner Text"));
+        $fields->addFieldToTab("Root.Main", TextField::create("BannerText", "Banner Text"));
         $fields->addFieldToTab("Root.Main", TextField::create("MaxGroupSize", "Maximale Gruppengröße zum registrieren"));
         $fields->addFieldToTab('Root.Event Emails', CheckboxField::create('EmailsActive', 'E-Mails aktiviert'));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('EventAdminEmail', 'Event Admin Emailadresse'));
@@ -65,6 +75,12 @@ class CustomSiteConfig extends Extension
         $fields->addFieldToTab('Root.Event Emails', HTMLEditorField::create('TicketMessageContent', 'Ticket-Email Inhalt'));
         $fields->addFieldToTab('Root.Event Emails', TextField::create('NewRegisterMessageSubject', 'Neue Anmeldung Betreff'));
         $fields->addFieldToTab('Root.Event Emails', HTMLEditorField::create('NewRegisterMessageContent', 'Neue Anmeldung Inhalt'));
+        $fields->addFieldToTab('Root.Social Media', TextField::create('SocialTikTok', 'TikTok'));
+        $fields->addFieldToTab('Root.Social Media', TextField::create('SocialInstagram', 'Instagram'));
+        $fields->addFieldToTab('Root.Social Media', TextField::create('SocialFacebook', 'Facebook'));
+        $fields->addFieldToTab('Root.Social Media', TextField::create('SocialLinkedIn', 'LinkedIn'));
+        $fields->addFieldToTab('Root.Social Media', TextField::create('SocialYoutube', 'YouTube'));
+
     }
 
     public function getMaxGroupSizeAsArraySize()

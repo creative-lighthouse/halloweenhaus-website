@@ -14,6 +14,21 @@ SilverStripe\Admin\LeftAndMain:
   cms_drawer_color: 'inherit'
   cms_icon_color: currentColor
   menu_groups:
+    Vor Ort:
+      icon_class: 'stevens-icon-institution-admin-currentColor' # (optional) Defaults to 'fa-solid fa-cubes'
+      priority: -80 # (optional) Defaults to menu item order
+      items:
+        - App-Events-EventAdmin
+        - App-FleaMarket-FleaMarketAdmin
+        - App-ImageBooth-ImageBoothAdmin
+        - App-POS-POSAdmin
+        - App-Feedback-FeedbackAdmin
+    Marketing:
+      icon_class: 'stevens-icon-news-admin-currentColor' # (optional) Defaults to 'fa-solid fa-cubes'
+      priority: -90 # (optional) Defaults to menu item order
+      items:
+        - App-Podcast-PodcastAdmin
+        - App-Press-PressAdmin
     Other:
       icon_class: 'fa fa-folder' # (optional) Defaults to 'fa fa-folder'
       priority: -100 # (optional) Defaults to menu item order
@@ -25,6 +40,7 @@ SilverStripe\Admin\LeftAndMain:
         - SilverStripe-Reports-ReportAdmin
         - TractorCow-Fluent-Control-LocaleAdmin
         - SilverStripe-SiteConfig-SiteConfigLeftAndMain
+        - WebbuildersGroup-SiteConfigErrorPages-Control-Admin-CustomSiteConfigAdmin
 
 SilverStripe\Admin\SecurityAdmin:
   menu_priority: -1
