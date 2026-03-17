@@ -2,6 +2,7 @@
     <div class="header_nav">
         <a href="" class="nav_brand" title="Zur Startseite">
             <% include MovingLogo %>
+            <h1 class="nav_brand_title">$SiteConfig.Title</h1>
         </a>
         <div class="menus">
             <div class="place">
