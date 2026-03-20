@@ -221,6 +221,29 @@ document.addEventListener("DOMContentLoaded", function (event) {
         });
     });
 
+    const referencesliders = document.querySelectorAll('.swiper--references');
+
+    referencesliders.forEach(function (slider) {
+        const autoSwiper = slider.classList.contains('swiper--auto');
+        const swiper = new Swiper(slider, {
+            effect: 'slide',
+            direction: 'horizontal',
+            loop: true,
+            slidesPerView: 3,
+            spaceBetween: 20,
+
+            autoplay: autoSwiper ? {
+                delay: 4000,
+            } : false,
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    });
+
     const imagesliders = document.querySelectorAll('.imageswiper');
     imagesliders.forEach(function (slider) {
         const swiper = new Swiper(slider, {

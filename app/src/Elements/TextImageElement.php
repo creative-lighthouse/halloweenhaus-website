@@ -14,12 +14,13 @@ use SilverStripe\Forms\DropdownField;
  * @property ?string $Text
  * @property ?string $Variant
  * @property bool $ImageIsLinked
+ * @property ?string $Embed
  * @property int $ImageID
  * @property int $ButtonID
  * @method Image Image()
  * @method Link Button()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
@@ -30,6 +31,7 @@ class TextImageElement extends BaseElement
         "Text" => "HTMLText",
         "Variant" => "Varchar(50)",
         "ImageIsLinked" => "Boolean",
+        "Embed" => "Text",
     ];
 
     private static $has_one = [
@@ -47,6 +49,7 @@ class TextImageElement extends BaseElement
         "Image" => "Bild",
         "Button" => "Button",
         "ImageIsLinked" => "Bild verlinkt auch (zum Button-Link)",
+        "Embed" => "Embed-Code",
     ];
 
     private static $table_name = 'TextImageElement';

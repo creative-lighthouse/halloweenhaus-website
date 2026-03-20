@@ -31,7 +31,7 @@ App\Elements\TimelineItem:
 
 Silverstripe\SiteConfig\SiteConfig:
   extensions:
-    - App\CustomSiteConfig
+    - App\Extensions\CustomSiteConfig
 
 App\FleaMarket\FleaMarketProduct:
   extensions:
@@ -67,3 +67,8 @@ App\Wiki\Character:
   gallery-title: Galerie
   gallery-cms-tab: Galerie
   content-cms-tab: Top Content
+
+
+SilverStripe\LinkField\Models\Link:
+  extensions:
+    - App\Extensions\LinkExtension

@@ -93,6 +93,18 @@ a{
             background-color: var(--ColorWhite);
             color: var(--ColorBackground);
         }
+
+        &.button--primary{
+            background-color: var(--ColorPrimary);
+            border-color: var(--ColorPrimary);
+
+            &:hover {
+                background-color: transparent;
+                border-color: var(--ColorPrimary);
+                color: var(--ColorWhite);
+            }
+        }
+
     }
 
     &:hover {

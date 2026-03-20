@@ -1,10 +1,8 @@
 <section class="section--TextImageElement $Variant">
     <div class="section_content grid-layout">
-        <% if $VideoCode %>
-            <div class="section_video">
-                <a class="media" href="https://www.youtube.com/watch?v=$VideoCode" target="_blank" rel="noopener noreferrer">
-                    $Thumbnail
-                </a>
+        <% if $Embed %>
+            <div class="section_embed">
+                $Embed.Raw
             </div>
         <% else_if $Image %>
              <div class="section_image">

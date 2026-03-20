@@ -9,8 +9,8 @@ use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
  * Class \App\FleaMarket\FleaMarketPage
  *
  * @property ?string $Text
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

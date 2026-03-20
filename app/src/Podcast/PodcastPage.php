@@ -14,8 +14,8 @@ use SilverStripe\Forms\TextareaField;
  * @property ?string $Description
  * @property int $CoverImageID
  * @method Image CoverImage()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

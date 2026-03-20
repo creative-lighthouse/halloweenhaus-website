@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Extensions;
 
 use SilverStripe\Core\Extension;
 use SilverStripe\SiteConfig\SiteConfig;
