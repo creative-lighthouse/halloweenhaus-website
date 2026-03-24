@@ -20,8 +20,8 @@ use SilverStripe\ORM\DataObject;
  * @method TeaserElement Parent()
  * @method Image Image()
  * @method Link Button()
- * @mixin AssetControlExtension
  * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
@@ -56,7 +56,7 @@ class TeaserItem extends DataObject
     private static $inline_editable = false;
 
     private static $summary_fields = [
-        'ID' => 'ID',
+        "Image.CMSThumbnail" => 'Bild',
         'Title' => 'Titel',
     ];
 

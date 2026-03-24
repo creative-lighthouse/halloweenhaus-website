@@ -22,7 +22,7 @@
                             <% end_if %>
                         </a>
                     <% else %>
-                        <div class="referenceitem no_deco  no_color">
+                        <div class="referenceitem no_deco  no_color swiper-slide">
                             <% if $Text %>
                                 <div class="referenceitem_text">
                                     $Text

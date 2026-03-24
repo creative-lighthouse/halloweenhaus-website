@@ -17,8 +17,8 @@ use SilverStripe\ORM\DataObject;
  * @property int $ButtonID
  * @method ReferencesElement Parent()
  * @method Link Button()
- * @mixin AssetControlExtension
  * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

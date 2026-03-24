@@ -1,16 +1,12 @@
 @use "../variables" as *;
 
 .section.section--TeaserElement {
-    .section_content{
+    .section_content {
         text-align: center;
 
-        .teaserelement_list{
-            display: grid;
-            grid-template-columns: repeat(3, calc(100% / 3));
-            justify-content: space-around;
-            margin: 0 -10px;
+        .teaserelement_list {
 
-            .teaseritem{
+            .teaseritem {
                 background-color: var(--ColorGray);
                 display: flex;
                 flex-direction: column;
@@ -19,40 +15,44 @@
                 text-align: center;
                 padding: 20px;
                 border-radius: 20px;
-                margin: 10px;
+                grid-column: span 4;
 
-                p{
+                p {
                     margin-bottom: 0px;
                 }
 
-                .link--button{
-                    margin-top: 10px;
+                .link--button {
+                    margin-top: 20px;
                 }
 
-                .teaseritem_image{
+                .teaseritem_image {
                     width: 150px;
                     height: 150px;
                     padding: 0 20px 5px 20px;
-                    img{
+
+                    img {
                         width: 100%;
                         height: 100%;
                         object-fit: contain;
                     }
                 }
 
-                .teaseritem_title{
-                    font-size: 20px;
-                    padding: 0 10px 12px 10px;
+                .teaseritem_title {
+                    padding: 0 10px 5px 10px;
+                    margin-bottom: 10px;
                     border-bottom: 2px solid var(--ColorWhite);
+                }
+
+                @include media(max-desktop) {
+                    grid-column: span 6;
+                }
+
+                @include media(max-medium) {
+                    grid-column: span 12;
                 }
             }
 
-            @include media(max-medium) {
-                grid-template-columns: repeat(2, calc(100% / 2));
-            }
-            @include media(max-smartphone) {
-                grid-template-columns: repeat(1, calc(100% / 1));
-            }
+
         }
     }
 }

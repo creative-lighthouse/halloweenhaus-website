@@ -231,6 +231,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
             loop: true,
             slidesPerView: 3,
             spaceBetween: 20,
+            autoHeight: true,
+            calculateHeight: true,
 
             autoplay: autoSwiper ? {
                 delay: 4000,

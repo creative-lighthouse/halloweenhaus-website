@@ -17,10 +17,12 @@ use SilverStripe\Forms\DropdownField;
  * @property ?string $Embed
  * @property int $ImageID
  * @property int $ButtonID
+ * @property int $SecondaryButtonID
  * @method Image Image()
  * @method Link Button()
- * @mixin AssetControlExtension
+ * @method Link SecondaryButton()
  * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
@@ -37,17 +39,20 @@ class TextImageElement extends BaseElement
     private static $has_one = [
         "Image" => Image::class,
         "Button" => Link::class,
+        "SecondaryButton" => Link::class,
     ];
 
     private static $owns = [
         "Image",
         "Button",
+        "SecondaryButton",
     ];
 
     private static $field_labels = [
         "Text" => "Text",
         "Image" => "Bild",
-        "Button" => "Button",
+        "Button" => "Primärer Button",
+        "SecondaryButton" => "Sekundärer Button",
         "ImageIsLinked" => "Bild verlinkt auch (zum Button-Link)",
         "Embed" => "Embed-Code",
     ];
@@ -64,7 +69,9 @@ class TextImageElement extends BaseElement
     {
         $fields = parent::getCMSFields();
         $fields->removeByName("ButtonID");
+        $fields->removeByName("SecondaryButtonID");
         $fields->insertAfter('Button', LinkField::create('Button'));
+        $fields->insertAfter('SecondaryButton', LinkField::create('SecondaryButton'));
         $fields->replaceField('Variant', DropdownField::create('Variant', 'Variante', [
             "image--left" => "Bild links",
             "image--right" => "Bild rechts",

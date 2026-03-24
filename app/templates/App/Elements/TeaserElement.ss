@@ -4,7 +4,7 @@
             <h2>$Title</h2>
         <% end_if %>
         <p>$Text</p>
-        <div class="teaserelement_list">
+        <div class="teaserelement_list grid-layout">
             <% loop $TeaserItems %>
                 <div class="teaseritem">
                     <% if $Image %>
@@ -13,7 +13,7 @@
                         </div>
                     <% end_if %>
                     <% if $Title %>
-                        <h3 class="teaseritem_title">$Title</h3>
+                        <h3 class="hl3 teaseritem_title">$Title</h3>
                     <% end_if %>
                     <% if $Text %>
                         $Text

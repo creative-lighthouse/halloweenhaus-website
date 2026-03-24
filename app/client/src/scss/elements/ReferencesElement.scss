@@ -5,8 +5,7 @@
         text-align: center;
 
         .referenceelement_list{
-            display: grid;
-            grid-template-columns: repeat(3, calc(100% / 3));
+            width: 100%;
             justify-content: space-around;
             margin: 0;
 
@@ -20,6 +19,7 @@
                 padding: 20px;
                 border-radius: 20px;
                 transition: background-color 0.2s ease-in-out;
+                height: 100%;
 
                 p{
                     margin-bottom: 0px;
