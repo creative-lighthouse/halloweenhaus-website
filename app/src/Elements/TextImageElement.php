@@ -21,8 +21,8 @@ use SilverStripe\Forms\DropdownField;
  * @method Image Image()
  * @method Link Button()
  * @method Link SecondaryButton()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

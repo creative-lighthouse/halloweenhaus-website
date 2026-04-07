@@ -12,8 +12,8 @@ use DNADesign\Elemental\Models\BaseElement;
  * @property ?string $DirectVideo
  * @property int $DateFrameID
  * @method Image DateFrame()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

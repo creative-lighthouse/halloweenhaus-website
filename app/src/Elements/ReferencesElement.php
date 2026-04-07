@@ -13,8 +13,8 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
  *
  * @property ?string $Text
  * @method DataList<ReferenceItem> ReferenceItems()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

@@ -283,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     heroslider.forEach(function (slider) {
         const autoSwiper = slider.classList.contains('swiper--auto');
         const heroslider = new Swiper(slider, {
-            effect: 'slide',
+            effect: 'fade',
             direction: 'horizontal',
             loop: true,
             slidesPerView: 1,

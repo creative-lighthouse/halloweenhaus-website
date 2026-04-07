@@ -4,14 +4,14 @@
             <div class="swiper-wrapper">
                 <% loop $HeroSliderItems %>
                     <div class="swiper-slide">
-                        <img src="$Image.FocusFill(1000,1000).URL" alt="$Title" class="hero_image">
+                        <img src="$Image.FocusFill(1500,700).URL" alt="$Title" class="hero_image">
                     </div>
                 <% end_loop %>
             </div>
         </div>
         <% if $DateFrame %>
             <div class="hero_dateframe">
-                $DateFrame
+                $DateFrame.FitMax(400,400)
             </div>
         <% end_if %>
     </div>
