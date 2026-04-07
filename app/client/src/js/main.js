@@ -278,6 +278,23 @@ document.addEventListener("DOMContentLoaded", function (event) {
         });
     });
 
+    const heroslider = document.querySelectorAll('.swiper--hero');
+
+    heroslider.forEach(function (slider) {
+        const autoSwiper = slider.classList.contains('swiper--auto');
+        const heroslider = new Swiper(slider, {
+            effect: 'slide',
+            direction: 'horizontal',
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 20,
+
+            autoplay: {
+                delay: 3000,
+            }
+        });
+    });
+
 
     /**
      * Our JavaScript function, which calculates the days, hours,
