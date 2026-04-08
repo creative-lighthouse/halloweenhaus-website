@@ -23,9 +23,14 @@
                 </div>
             <% end_if %>
 
-            <% if $Button %>
+            <% if $Button || $SecondaryButton %>
                 <div class="section_button">
-                    <% include Button Button=$Button %>
+                    <% if $Button %>
+                        <% include Button Button=$Button %>
+                    <% end_if %>
+                    <% if $SecondaryButton %>
+                        <% include Button Button=$SecondaryButton %>
+                    <% end_if %>
                 </div>
             <% end_if %>
         </div>
