@@ -7,6 +7,7 @@ use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Assets\Image;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+use SilverStripe\ORM\DB;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 
 /**
@@ -69,6 +70,6 @@ class HeroSliderElement extends BaseElement
 
     public function getSlidesInRandomOrder()
     {
-        return $this->HeroSliderItems()->sort('RAND()');
+        return $this->HeroSliderItems()->sort(DB::get_conn()->random());
     }
 }
