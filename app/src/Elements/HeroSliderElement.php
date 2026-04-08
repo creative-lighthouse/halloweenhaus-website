@@ -24,6 +24,7 @@ use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 class HeroSliderElement extends BaseElement
 {
     private static $db = [
+        "UseRandomOrder" => "Boolean",
     ];
 
     private static $field_labels = [
@@ -64,5 +65,10 @@ class HeroSliderElement extends BaseElement
         $gridfield->getConfig()->addComponent(GridFieldOrderableRows::create('SortOrder'));
         $fields->addFieldToTab('Root.Main', $gridfield);
         return $fields;
+    }
+
+    public function getSlidesInRandomOrder()
+    {
+        return $this->HeroSliderItems()->sort('RAND()');
     }
 }

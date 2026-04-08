@@ -2,11 +2,19 @@
     <div class="section_content">
         <div class="swiper--hero">
             <div class="swiper-wrapper">
-                <% loop $HeroSliderItems %>
-                    <div class="swiper-slide">
-                        <img src="$Image.FocusFill(1500,700).URL" alt="$Title" class="hero_image">
-                    </div>
-                <% end_loop %>
+                <% if $UseRandomOrder %>
+                    <% loop $SlidesInRandomOrder %>
+                        <div class="swiper-slide">
+                            <img src="$Image.FocusFill(1500,700).URL" alt="$Title" class="hero_image">
+                        </div>
+                    <% end_loop %>
+                <% else %>
+                    <% loop $HeroSliderItems %>
+                        <div class="swiper-slide">
+                            <img src="$Image.FocusFill(1500,700).URL" alt="$Title" class="hero_image">
+                        </div>
+                    <% end_loop %>
+                <% end_if %>
             </div>
         </div>
         <% if $DateFrame %>
