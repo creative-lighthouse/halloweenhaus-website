@@ -233,10 +233,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
             spaceBetween: 20,
             loopedSlides: 5,
             centeredSlides: true,
-            pauseOnMouseEnter: true,
+            speed: 600, // Etwas schneller für besseres Mobile-Feeling
+            touchRatio: 1,
+            touchAngle: 45,
+            grabCursor: true,
+            passiveListeners: true, // Wichtig für Mobile Performance
 
             autoplay: autoSwiper ? {
                 delay: 4000,
+                disableOnInteraction: false,
             } : false,
 
             // Navigation arrows
@@ -267,8 +272,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     }, 100);
                 },
                 resize: function () {
-                    // Bei Fenstergrößen-Änderung neu berechnen
-                    equalizeSlideHeights(this);
+                    // Debounce für bessere Performance
+                    clearTimeout(this.resizeTimeout);
+                    this.resizeTimeout = setTimeout(() => {
+                        equalizeSlideHeights(this);
+                    }, 250);
                 }
             }
         });
@@ -284,8 +292,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
             item.style.height = 'auto';
         });
 
-        // Kurze Pause damit Browser neu rendert
-        setTimeout(() => {
+        // requestAnimationFrame statt setTimeout für bessere Performance
+        requestAnimationFrame(() => {
             // Maximale Höhe finden
             items.forEach((item) => {
                 const height = item.offsetHeight;
@@ -300,7 +308,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     item.style.height = maxHeight + 'px';
                 });
             }
-        }, 10);
+        });
     }
 
     const imagesliders = document.querySelectorAll('.imageswiper');
