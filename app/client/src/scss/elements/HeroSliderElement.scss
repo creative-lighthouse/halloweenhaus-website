@@ -25,11 +25,11 @@ section.section--HeroSlider {
                     object-fit: cover;
 
                     &.hero-zoom {
-                        animation: zoomIn 4.5s linear forwards;
+                        animation: zoomIn 6s linear forwards;
                     }
 
                     &.hero-zoom-out {
-                        animation: zoomOut 2s linear forwards;
+                        animation: zoomOut 3s linear forwards;
                     }
                 }
             }

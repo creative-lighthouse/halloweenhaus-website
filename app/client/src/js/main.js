@@ -345,6 +345,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             loop: true,
             slidesPerView: 1,
             spaceBetween: 20,
+            speed: 2000, // Fade-Geschwindigkeit in Millisekunden (Standard: 300)
 
             autoplay: {
                 delay: 4000,
