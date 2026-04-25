@@ -41,7 +41,7 @@ class TeaserElement extends BaseElement
     }
 
     private static $table_name = 'TeaserElement';
-    private static $icon = 'font-icon-thumbnails';
+    private static $icon = 'sp-icon-teaser-element';
 
     public function getType()
     {

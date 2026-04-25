@@ -30,7 +30,7 @@ class SpaceElement extends BaseElement
     ];
 
     private static $table_name = 'SpaceElement';
-    private static $icon = 'font-icon-caret-up-down';
+    private static $icon = 'sp-icon-virtual-element';
 
     public function getType() { return "Abstand"; }
 

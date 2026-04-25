@@ -50,7 +50,7 @@ class HeroSliderElement extends BaseElement
     }
 
     private static $table_name = 'HeroSliderElement';
-    private static $icon = 'font-icon-thumbnails';
+    private static $icon = 'sp-icon-hero-element';
 
     public function getType()
     {

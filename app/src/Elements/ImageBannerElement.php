@@ -48,7 +48,7 @@ class ImageBannerElement extends BaseElement
     ];
 
     private static $table_name = 'ImageBannerElement';
-    private static $icon = 'font-icon-block-file';
+    private static $icon = 'sp-icon-fullwidth-element';
 
     private static $translate = [
         'Text',

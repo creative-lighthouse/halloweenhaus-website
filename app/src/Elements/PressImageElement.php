@@ -32,7 +32,7 @@ class PressImageElement extends BaseElement
     }
 
     private static $table_name = 'PressImageElement';
-    private static $icon = 'font-icon-block-content';
+    private static $icon = 'sp-icon-medialist-element';
 
     public function getType()
     {

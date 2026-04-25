@@ -37,7 +37,7 @@ class HeroVideoElement extends BaseElement
     private static $field_labels = [];
 
     private static $table_name = 'HeroVideoElement';
-    private static $icon = 'font-icon-globe';
+    private static $icon = 'sp-icon-intro-element';
 
     public function getType()
     {

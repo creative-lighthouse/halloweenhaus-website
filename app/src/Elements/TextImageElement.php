@@ -58,7 +58,7 @@ class TextImageElement extends BaseElement
     ];
 
     private static $table_name = 'TextImageElement';
-    private static $icon = 'stevens-icon-textimage';
+    private static $icon = 'sp-icon-textimage-element';
 
     public function getType()
     {
