@@ -1,51 +1,54 @@
 <?php
 
-namespace App\Elements;
+namespace App\Press;
 
 use SilverStripe\Security\Permission;
 use SilverStripe\LinkField\Models\Link;
-use SilverStripe\LinkField\Form\LinkField;
 use SilverStripe\ORM\DataObject;
 
 /**
- * Class \App\Elements\TeaserItem
+ * Class \App\Press\PressReference
  *
  * @property ?string $Title
  * @property ?string $Text
- * @property int $SortOrder
- * @property int $ParentID
- * @property int $ButtonID
- * @method ReferencesElement Parent()
- * @method Link Button()
+ * @property int $SortField
+ * @property bool $OnSlider
+ * @property ?string $PublishDate
+ * @property int $SourceLinkID
+ * @method Link SourceLink()
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
  */
-class ReferenceItem extends DataObject
+class PressReference extends DataObject
 {
     private static $db = [
         "Title" => "Varchar(255)",
         "Text" => "HTMLText",
-        "SortOrder" => "Int",
+        "SortField" => "Int",
+        "OnSlider" => "Boolean",
+        "PublishDate" => "Date",
     ];
 
     private static $has_one = [
-        "Parent" => ReferencesElement::class,
-        "Button" => Link::class,
+        "SourceLink" => Link::class,
     ];
 
     private static $owns = [
-        "Button",
+        "SourceLink",
     ];
 
     private static $field_labels = [
         "Title" => "Quelle",
         "Text" => "Text",
+        "OnSlider" => "Auf Slider anzeigen",
+        "SourceLink" => "Quellen-Link",
+        "PublishDate" => "Veröffentlichungsdatum",
     ];
 
-    private static $default_sort = 'SortOrder ASC, ID ASC';
+    private static $default_sort = 'SortField ASC, ID ASC';
 
     private static $inline_editable = false;
 
@@ -59,7 +62,7 @@ class ReferenceItem extends DataObject
         "Text",
     ];
 
-    private static $table_name = "ReferenceItem";
+    private static $table_name = "PressReference";
 
     private static $singular_name = "Erwähnung";
     private static $plural_name = "Erwähnungen";
@@ -69,10 +72,7 @@ class ReferenceItem extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->removeFieldFromTab("Root.Main", "ParentID");
-        $fields->removeFieldFromTab("Root.Main", "SortOrder");
-        $fields->removeByName("ButtonID");
-        $fields->insertAfter('Image', LinkField::create('Button'));
+        $fields->removeFieldFromTab("Root.Main", "SortField");
         return $fields;
     }
 

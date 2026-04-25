@@ -57,7 +57,7 @@ section.section--TextImageElement {
     &:not(:has(.section_image, .section_embed)) {
         .section_text {
             grid-column: 3 / -3;
-            
+
             .section_title {
                 text-align: center;
                 max-width: 80%;
@@ -70,22 +70,36 @@ section.section--TextImageElement {
         }
     }
 
-    @include media(max-medium) {
+    @include media(max-desktop) {
         .section_content {
             grid-template-columns: 1fr;
             grid-template-rows: auto auto;
 
-            .section_image {
+            .section_image, .section_embed {
                 grid-column: 1 / -1;
                 grid-row: 1;
-                max-width: 400px;
+                max-width: 600px;
+                width: 100%;
+                height: auto;
                 margin: 0 auto;
+                aspect-ratio: 16 / 9;
+
+                iframe {
+                    width: 100%;
+                    height: 100%;
+                }
             }
 
             .section_text {
                 grid-column: 1 / -1;
                 grid-row: 2;
                 margin-top: 20px;
+
+                @include media(max-medium) {
+                    .section_button {
+                        margin: 0 auto;
+                    }
+                }
             }
         }
     }

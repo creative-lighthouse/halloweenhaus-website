@@ -17,7 +17,7 @@
             <div class="showsection showsection--details" style="view-transition-name: mediacard-$ID;">
                 <% if $VideoLink %>
                     <div class="media_video" style="max-width: $Width;">
-                        <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/{$VideoLink}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/{$VideoLink}" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 <% else_if $Image %>
                     <a href="$Image.Url" data-gallery="gallery" data-galleryid="mainimage" class="media_image" style="view-transition-name: mediaimage-$ID;">

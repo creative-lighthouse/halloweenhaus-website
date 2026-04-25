@@ -25,8 +25,8 @@ use SilverStripe\Model\List\GroupedList;
  * @method Image Image()
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @mixin PhotoGalleryExtension
- * @mixin AssetControlExtension
  * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

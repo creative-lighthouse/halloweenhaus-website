@@ -231,8 +231,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
             loop: true,
             slidesPerView: 3,
             spaceBetween: 20,
-            autoHeight: true,
-            calculateHeight: true,
+            loopedSlides: 5,
+            centeredSlides: true,
+            pauseOnMouseEnter: true,
 
             autoplay: autoSwiper ? {
                 delay: 4000,
@@ -243,8 +244,64 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                    spaceBetween: 10
+                },
+                740: {
+                    slidesPerView: 2,
+                    spaceBetween: 15
+                },
+                // when window width is >= 1024px
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                },
+            },
+            on: {
+                init: function () {
+                    // Warte kurz bis alles gerendert ist
+                    setTimeout(() => {
+                        equalizeSlideHeights(this);
+                    }, 100);
+                },
+                resize: function () {
+                    // Bei Fenstergrößen-Änderung neu berechnen
+                    equalizeSlideHeights(this);
+                }
+            }
         });
     });
+
+    function equalizeSlideHeights(swiper) {
+        // Alle Slides mit referenceitem Klasse finden
+        const items = swiper.el.querySelectorAll('.referenceitem');
+        let maxHeight = 0;
+
+        // Temporär alle auf auto setzen um echte Höhe zu messen
+        items.forEach((item) => {
+            item.style.height = 'auto';
+        });
+
+        // Kurze Pause damit Browser neu rendert
+        setTimeout(() => {
+            // Maximale Höhe finden
+            items.forEach((item) => {
+                const height = item.offsetHeight;
+                if (height > maxHeight) {
+                    maxHeight = height;
+                }
+            });
+
+            // Alle auf maximale Höhe setzen
+            if (maxHeight > 0) {
+                items.forEach((item) => {
+                    item.style.height = maxHeight + 'px';
+                });
+            }
+        }, 10);
+    }
 
     const imagesliders = document.querySelectorAll('.imageswiper');
     imagesliders.forEach(function (slider) {
@@ -290,7 +347,38 @@ document.addEventListener("DOMContentLoaded", function (event) {
             spaceBetween: 20,
 
             autoplay: {
-                delay: 3000,
+                delay: 4000,
+            },
+
+            on: {
+                init: function () {
+                    // Starte Animation beim ersten Slide
+                    const activeSlide = this.slides[this.activeIndex];
+                    const img = activeSlide.querySelector('img');
+                    if (img) {
+                        img.classList.add('hero-zoom');
+                    }
+                },
+                transitionStart: function () {
+                    // Alle nicht-aktiven Slides bekommen zoom-out Animation
+                    this.slides.forEach((slide, index) => {
+                        const img = slide.querySelector('img');
+                        if (img && index !== this.activeIndex) {
+                            img.classList.remove('hero-zoom');
+                            img.classList.add('hero-zoom-out');
+                        }
+                    });
+
+                    // Neuer aktiver Slide bekommt zoom-in Animation
+                    const activeSlide = this.slides[this.activeIndex];
+                    const img = activeSlide.querySelector('img');
+                    if (img) {
+                        img.classList.remove('hero-zoom-out');
+                        // Force reflow um Animation neu zu triggern
+                        void img.offsetWidth;
+                        img.classList.add('hero-zoom');
+                    }
+                }
             }
         });
     });

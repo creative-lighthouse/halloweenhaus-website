@@ -52,7 +52,9 @@
                 }
             }
 
-
+            @include media(max-medium) {
+                gap: 20px;
+            }
         }
     }
 }

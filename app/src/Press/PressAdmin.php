@@ -2,6 +2,7 @@
 
 namespace App\Press;
 
+use App\Press\PressReference;
 use SilverStripe\Admin\ModelAdmin;
 use SilverStripe\Forms\GridField\GridField;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
@@ -15,6 +16,7 @@ class PressAdmin extends ModelAdmin
 
     private static $managed_models = array(
         PressImage::class,
+        PressReference::class,
     );
 
     private static $url_segment = "press";

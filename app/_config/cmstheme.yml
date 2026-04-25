@@ -15,14 +15,14 @@ SilverStripe\Admin\LeftAndMain:
   cms_icon_color: currentColor
   menu_groups:
     Inhalt:
-      icon_class: 'stevens-icon-news-admin-currentColor' # (optional) Defaults to 'fa-solid fa-cubes'
+      icon_class: 'sp-icon-news-admin-currentColor' # (optional) Defaults to 'fa-solid fa-cubes'
       priority: -70 # (optional) Defaults to menu item order
       items:
         - SilverStripe-CMS-Controllers-CMSMain
         - App-Team-TeamAdmin
         - App-Wiki-WikiAdmin
     Vor Ort:
-      icon_class: 'stevens-icon-institution-admin-currentColor' # (optional) Defaults to 'fa-solid fa-cubes'
+      icon_class: 'sp-icon-institution-admin-currentColor' # (optional) Defaults to 'fa-solid fa-cubes'
       priority: -80 # (optional) Defaults to menu item order
       items:
         - App-Events-EventAdmin
@@ -31,7 +31,7 @@ SilverStripe\Admin\LeftAndMain:
         - App-POS-POSAdmin
         - App-Feedback-FeedbackAdmin
     Marketing:
-      icon_class: 'stevens-icon-news-admin-currentColor' # (optional) Defaults to 'fa-solid fa-cubes'
+      icon_class: 'sp-icon-news-admin-currentColor' # (optional) Defaults to 'fa-solid fa-cubes'
       priority: -90 # (optional) Defaults to menu item order
       items:
         - App-Podcast-PodcastAdmin

@@ -1,0 +1,68 @@
+@use "../variables" as *;
+
+.section.section--ReferenceSliderElement {
+    .section_content{
+        text-align: center;
+
+        .referenceelement_list{
+            width: 100%;
+            justify-content: space-around;
+            margin: 0;
+
+            // Wichtig: Swiper wrapper sollte Slides strecken
+            .swiper-wrapper {
+                display: flex;
+                align-items: stretch;
+
+                .referenceitem{
+                    background-color: var(--ColorGray);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: center;
+                    text-align: center;
+                    padding: 20px;
+                    border-radius: 20px;
+                    transition: background-color 0.2s ease-in-out;
+                    height: 100%;
+
+                    p{
+                        margin-bottom: 0px;
+                    }
+
+                    .link--button{
+                        margin-top: 10px;
+                    }
+
+                    .referenceitem_text{
+                        height: calc(100% - 20px);
+                        padding-bottom: 10px;
+                        border-bottom: 2px solid var(--ColorWhite);
+                    }
+
+                    .referenceitem_source{
+                        color: var(--ColorWhite);
+                        margin: 1em 0 0 0;
+                        font-weight: 200;
+                    }
+
+                    &:hover{
+                        color: var(--ColorWhite);
+                        background-color: var(--ColorPrimary);
+
+                        &.no_color{
+                            background-color: var(--ColorGray);
+                        }
+                    }
+                }
+            }
+
+            @include media(max-medium) {
+                grid-template-columns: repeat(2, calc(100% / 2));
+            }
+            @include media(max-smartphone) {
+                grid-template-columns: repeat(1, calc(100% / 1));
+            }
+        }
+    }
+}
