@@ -1,6 +1,8 @@
 @use "../variables" as *;
 
 .section.section--ReferenceSliderElement {
+    overflow: hidden;
+
     .section_content{
         text-align: center;
 
