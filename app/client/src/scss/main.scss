@@ -31,6 +31,7 @@
 @use "elements/PressImagesElement";
 @use "elements/VideoElement";
 @use "elements/HeroSliderElement";
+@use "elements/WikiElement";
 
 @use "layout/Feedback";
 @use "layout/PhotoboxGallery";
@@ -106,7 +107,7 @@ body{
 }
 
 
-section, .section {
+section {
     padding: 25px 20px;
     margin: 0 auto;
 }

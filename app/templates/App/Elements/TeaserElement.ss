@@ -1,4 +1,4 @@
-<div class="section section--TeaserElement">
+<section class="section--TeaserElement">
     <div class="section_content">
         <% if $ShowTitle %>
             <h2>$Title</h2>
@@ -23,4 +23,4 @@
             <% end_loop %>
         </div>
     </div>
-</div>
+</section>

@@ -1,4 +1,4 @@
-<section class="section section--PressImagesElement">
+<section class="section--PressImagesElement">
     <div class="section_content">
         <% if $ShowTitle %>
             <h2>$Title</h2>
@@ -10,7 +10,7 @@
                     <div class="pressimage_image">
                         <a class="pressimage_image_content" href="$Image.AbsoluteUrl" target="_blank">
                             <img data-gallery="gallery" data-glightbox="$Title" data-caption="$Title" src="$Image.URL" alt="$Image.Title" loading="lazy">
-                        </a>                            
+                        </a>
                     </div>
                     <div class="pressimage_meta">
                         <div class="pressimage_meta_content">

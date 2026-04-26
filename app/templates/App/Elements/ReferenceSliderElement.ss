@@ -1,4 +1,4 @@
-<div class="section section--ReferenceSliderElement">
+<section class="section--ReferenceSliderElement">
     <div class="section_content">
         <% if $ShowTitle %>
             <h2>$Title</h2>
@@ -42,4 +42,4 @@
             </div>
         <% end_if %>
     </div>
-</div>
+</section>

@@ -1,4 +1,4 @@
-<div class="section section--ReferencesElement">
+<section class="section--ReferencesElement">
     <div class="section_content">
         <% if $ShowTitle %>
             <h2>$Title</h2>
@@ -40,4 +40,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>

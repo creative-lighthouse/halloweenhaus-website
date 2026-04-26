@@ -3034,7 +3034,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/StevenPaw/silverstripe-cms-theme.git",
-                "reference": "ac9a5edcc0c77b3dbf9e5be858a46d3adeab1eea"
+                "reference": "06f4eeab9dacf1c8a2e5c3073ce62ffb0f003ae4"
             },
             "require": {
                 "silverstripe/admin": "^1.0 || ^2.0 || ^3.0",
@@ -3067,7 +3067,7 @@
             "support": {
                 "issues": "https://github.com/Rhym/silverstripe-cms-theme/issues"
             },
-            "time": "2026-03-30T09:53:43+00:00"
+            "time": "2026-04-26T14:11:40+00:00"
         },
         {
             "name": "sebastian/diff",

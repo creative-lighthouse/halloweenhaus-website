@@ -1,0 +1,122 @@
+@use "../variables" as *;
+
+section.section--WikiElement {
+    .section_content {
+        .wiki_banner {
+            width: 100%;
+            height: 250px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+        }
+
+        .wiki_grid {
+            grid-template-rows: auto auto 1fr;
+
+            .section_title {
+                grid-column: 4 / 10;
+                margin: 30px 20px 20px 20px;
+                text-align: center;
+            }
+
+            .wiki_content {
+                grid-column: 4 / 10;
+                text-align: center;
+            }
+
+            .section_button {
+                grid-column: 4 / 10;
+                margin: 0 auto 0 auto;
+                display: block;
+            }
+
+            .wiki_images {
+                grid-row: 1 / -1;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                &.wiki_images--left {
+                    grid-column: 1 / 4;
+                }
+
+                &.wiki_images--right {
+                    grid-column: 10 / 13;
+                }
+
+                img {
+                    margin-top: -100px;
+                    width: auto;
+                    max-width: 100%;
+                    height: auto;
+                    max-height: 300px;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+                    &:first-of-type {
+                        transform: rotate(-5deg);
+                        z-index: 1;
+                    }
+
+                    &:last-of-type {
+                        transform: rotate(5deg);
+                        z-index: 2;
+                        margin-top: -50px;
+                    }
+                }
+            }
+
+            @include media(max-desktop) {
+                .wiki_images {
+                    img {
+                        margin-top: -50px;
+
+                        &:last-of-type {
+                            margin-top: -25px;
+                        }
+                    }
+                }
+
+                .wiki_images--right {
+                    display: none;
+                }
+
+                .section_title {
+                    grid-column: 4 / -1;
+                }
+
+                .wiki_content {
+                    grid-column: 4 / -1;
+                }
+
+                .section_button {
+                    grid-column: 4 / -1;
+                }
+            }
+
+            @include media(max-medium) {
+                .wiki_images {
+                    display: none;
+                }
+
+                .section_title {
+                    grid-column: 1 / -1;
+                }
+
+                .wiki_content {
+                    grid-column: 1 / -1;
+                }
+
+                .section_button {
+                    grid-column: 1 / -1;
+                }
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-<div class="section section--VideoElement">
+<section class="section--VideoElement">
     <div class="section_content">
         <% if $ShowTitle %>
             <div class="section_title">
@@ -16,4 +16,4 @@
             </div>
         <% end_if %>
     </div>
-</div>
+</section>

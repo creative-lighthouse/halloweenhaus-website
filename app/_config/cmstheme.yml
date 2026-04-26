@@ -1,3 +1,8 @@
+---
+Name: app-cms-theme
+After:
+  - 'ryanpotter-silverstripe-cms-theme'
+---
 SilverStripe\SiteConfig\SiteConfig:
   cms_logo: '_resources/app/client/images/logo_footer.svg'
   cms_logo_width: 60 # Optional width constraint
@@ -13,6 +18,7 @@ SilverStripe\Admin\LeftAndMain:
   cms_drawer_background: '#151515'
   cms_drawer_color: 'inherit'
   cms_icon_color: currentColor
+  show_cms_info: true
   menu_groups:
     Inhalt:
       icon_class: 'sp-icon-news-admin-currentColor' # (optional) Defaults to 'fa-solid fa-cubes'

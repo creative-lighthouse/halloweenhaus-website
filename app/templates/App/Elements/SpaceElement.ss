@@ -1,4 +1,4 @@
-<section class="section section--SpaceElement $Variant" >
+<section class="section--SpaceElement $Variant" >
     <div class="section_content" style="height: {$Height}px" >
         <% if $Variant == "variant--divider" %>
             <hr class="divider-line divider-line--top">
