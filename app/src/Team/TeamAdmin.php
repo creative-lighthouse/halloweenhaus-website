@@ -16,6 +16,8 @@ class TeamAdmin extends ModelAdmin
 {
     private static $managed_models = array(
         TeamMember::class,
+        TeamApplication::class,
+        TeamApplicationInterest::class,
     );
 
     private static $url_segment = "team";
@@ -33,9 +35,13 @@ class TeamAdmin extends ModelAdmin
     {
         $form = parent::getEditForm($id, $fields);
 
-        // This check is simply to ensure you are on the managed model you want adjust accordingly
-        $gridField = $form->Fields()->dataFieldByName($this->sanitiseClassName($this->modelClass));
-        $gridField->getConfig()->addComponent(GridFieldOrderableRows::create('SortField'));
+        //Only add the sortable component to the TeamMember model, not the others
+
+        if ($this->modelClass == TeamMember::class) {
+            // This check is simply to ensure you are on the managed model you want adjust accordingly
+            $gridField = $form->Fields()->dataFieldByName($this->sanitiseClassName($this->modelClass));
+            $gridField->getConfig()->addComponent(GridFieldOrderableRows::create('SortField'));
+        }
 
         return $form;
     }
