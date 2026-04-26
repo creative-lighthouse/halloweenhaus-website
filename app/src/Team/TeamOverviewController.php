@@ -21,8 +21,19 @@ class TeamOverviewController extends PageController
     public function view()
     {
         $id = $this->getRequest()->param("ID");
+
+        // Handle null or empty ID parameter
+        if (!$id) {
+            return $this->httpError(404, 'Team member not found');
+        }
+
         $exploded = explode("-", $id);
         $article = TeamMember::get()->filter("ID", $exploded[0])->first();
+
+        if (!$article) {
+            return $this->httpError(404, 'Team member not found');
+        }
+
         return array(
             "TeamMember" => $article,
         );
