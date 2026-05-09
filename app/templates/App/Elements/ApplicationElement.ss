@@ -28,30 +28,49 @@
                 </div>
             <% end_if %>
 
-            <form class="application_form" method="POST" action="$Link/submitApplication">
+            <form class="application_form" method="POST" action="/bewerbung/submit">
                 $SecurityID
-
-                <input class="field field_name" type="text" name="Title" placeholder="Vor- & Nachname" required>
-
-                <input class="field field_birthday" type="date" name="Birthday" placeholder="Geburtstag" required>
-
-                <input class="field field_email" type="email" name="Email" placeholder="E-Mail" required>
-
-                <textarea class="field field_hobbies" name="Hobbies" placeholder="Was sind deine Hobbys, Talente & Interessen?" required></textarea>
-
-                <textarea class="field field_reason" name="ReasonToJoin" placeholder="Warum willst du ins Team von Ottos Halloweenhaus?" required></textarea>
-
-                <div class="field field_interests">
-                    <p>Wofür interessierst du dich? (Mehrfachauswahl möglich)</p>
-                    <% loop $Interests %>
-                        <label class="checkbox_label">
-                            <input type="checkbox" name="Interests[]" value="$ID">
-                            $Title
-                        </label>
-                    <% end_loop %>
+                <div class="field field_name">
+                    <label class="field_label" for="Title">Name:</label>
+                    <input class="" type="text" name="Title" placeholder="Vor- & Nachname" autocomplete="full-name" required>
                 </div>
 
-                <button class="submit_button" type="submit">Jetzt bewerben</button>
+                <div class="field field_birthday">
+                    <label class="field_label" for="Birthday">Geburtstag:</label>
+                    <input class="" type="date" name="Birthday" placeholder="Geburtstag" autocomplete="birthdate" required>
+                </div>
+
+                <div class="field field_email">
+                    <label class="field_label" for="Email">E-Mail:</label>
+                    <input class="field field_email" type="email" name="Email" placeholder="E-Mail" autocomplete="email" required>
+                </div>
+
+                <div class="field field_hobbies">
+                    <label class="field_label" for="Hobbies">Was sind deine Hobbys, Talente & Interessen?</label>
+                    <textarea class="field field_hobbies" name="Hobbies" placeholder="Was sind deine Hobbys, Talente & Interessen?" autocomplete="off" required></textarea>
+                </div>
+
+                <div class="field field_reason">
+                    <label class="field_label" for="ReasonToJoin">Warum willst du ins Team von Ottos Halloweenhaus?</label>
+                    <textarea class="field field_reason" name="ReasonToJoin" placeholder="Warum willst du ins Team von Ottos Halloweenhaus?" autocomplete="off" required></textarea>
+                </div>
+
+                <div class="field field_interests">
+                    <p class="fake-label">Welche Bereiche interessieren dich? (Mehrfachauswahl möglich)</p>
+                    <div class="interest_list">
+                        <% loop $Interests %>
+                            <label class="checkbox_label">
+                                <input type="checkbox" name="Interests[]" value="$ID">
+                                $Title
+                            </label>
+                        <% end_loop %>
+                    </div>
+                </div>
+
+                <div class="field field_send">
+                    <button class="link--button button--primary submit_button" type="submit">Jetzt bewerben</button>
+                    <a href="$Datasecuritylink" class="" target="_blank">Datenschutzerklärung</a>
+                </div>
             </form>
         <% end_if %>
     </div>

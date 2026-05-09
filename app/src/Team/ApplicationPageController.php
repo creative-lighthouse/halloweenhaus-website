@@ -6,6 +6,8 @@ use SilverStripe\Control\Controller;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\View\Requirements;
 use SilverStripe\Security\SecurityToken;
+use App\Team\TeamApplication;
+use App\Team\TeamApplicationInterest;
 
 /**
  * Controller for team application page
