@@ -8,6 +8,7 @@ use SilverStripe\Control\HTTPRequest;
 
 /**
  * Class \App\Elements\ApplicationElementController
+ *
  */
 class ApplicationElementController extends ElementController
 {
