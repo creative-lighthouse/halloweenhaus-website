@@ -67,6 +67,7 @@ class ImageBannerElement extends BaseElement
             "variant--limited" => "Begrenzte Breite",
             "variant--contained" => "Angepasste Breite",
             "variant--hovering" => "Hervorgehoben",
+            "variant--autoheight" => "Automatische Höhe",
         ]));
         $fields->replaceField('Overlay', DropdownField::create('Overlay', 'Überlagerung', [
             "" => "Keine Überlagerung",

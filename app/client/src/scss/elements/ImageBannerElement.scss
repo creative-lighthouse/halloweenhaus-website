@@ -133,4 +133,18 @@ section.section--ImageBannerElement {
             padding-left: 30px;
         }
     }
+
+    &.variant--autoheight {
+        .section_content{
+            height: auto;
+            margin: 0 auto;
+            max-width: var(--MaxWidth);
+
+            img {
+                height: auto;
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+    }
 }

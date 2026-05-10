@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 section.section--ApplicationElement {
     .section_content {
         display: grid;
@@ -90,6 +92,26 @@ section.section--ApplicationElement {
                     gap: 10px;
                     flex-direction: row;
                 }
+            }
+
+            @include media(max-medium) {
+                grid-template-columns: 1fr;
+                gap: 0;
+
+                .field {
+                    &.field_reason, &.field_hobbies, &.field_email, &.field_interests, &.field_captcha, &.field_send {
+                        grid-column: 1 / -1;
+                    }
+                }
+            }
+        }
+
+        @include media(max-medium) {
+            grid-template-columns: 1fr;
+            gap: 0;
+
+            .section_title {
+                grid-column: 1 / -1;
             }
         }
     }
