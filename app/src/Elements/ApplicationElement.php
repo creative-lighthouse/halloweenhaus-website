@@ -3,7 +3,9 @@
 namespace App\Elements;
 
 use App\Team\TeamApplicationInterest;
+use DNADesign\Elemental\Controllers\ElementController;
 use DNADesign\Elemental\Models\BaseElement;
+use SilverStripe\Control\Controller;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\Security\SecurityToken;
 
@@ -32,8 +34,9 @@ class ApplicationElement extends BaseElement
 
     private static $table_name = 'ApplicationElement';
     private static $icon = 'sp-icon-job-element';
+    private static $controller_class = ElementController::class;
 
-    private static $controller_class = ApplicationElementController::class;
+    private ?string $captchaQuestion = null;
 
     public function getType()
     {
@@ -60,5 +63,26 @@ class ApplicationElement extends BaseElement
             htmlspecialchars($token->getName()),
             htmlspecialchars($token->getValue())
         ));
+    }
+
+    public function CaptchaQuestion(): string
+    {
+        if ($this->captchaQuestion === null) {
+            $a = random_int(1, 10);
+            $b = random_int(1, 10);
+            Controller::curr()->getRequest()->getSession()->set('CaptchaAnswer', $a + $b);
+            $this->captchaQuestion = "{$a} + {$b}";
+        }
+        return $this->captchaQuestion;
+    }
+
+    public function ApplicationError(): ?string
+    {
+        $session = Controller::curr()->getRequest()->getSession();
+        $error = $session->get('ApplicationError');
+        if ($error) {
+            $session->clear('ApplicationError');
+        }
+        return $error;
     }
 }

@@ -67,6 +67,11 @@
                     </div>
                 </div>
 
+                <div class="field field_captcha">
+                    <label class="field_label" for="Captcha">$CaptchaQuestion = ?</label>
+                    <input type="number" id="Captcha" name="Captcha" required>
+                </div>
+
                 <div class="field field_send">
                     <button class="link--button button--primary submit_button" type="submit">Jetzt bewerben</button>
                     <a href="$Datasecuritylink" class="" target="_blank">Datenschutzerklärung</a>

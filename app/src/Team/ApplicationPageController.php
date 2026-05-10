@@ -76,6 +76,15 @@ class ApplicationPageController extends Controller
         // Get form data
         $data = $request->postVars();
 
+        // Captcha validation
+        $captchaAnswer = (int)($data['Captcha'] ?? -1);
+        $expectedAnswer = $request->getSession()->get('CaptchaAnswer');
+        $request->getSession()->clear('CaptchaAnswer');
+        if ($expectedAnswer === null || $captchaAnswer !== (int)$expectedAnswer) {
+            $request->getSession()->set('ApplicationError', 'Die Rechenaufgabe wurde nicht korrekt gelöst. Bitte versuche es erneut.');
+            return $this->redirectBack();
+        }
+
         // Basic validation
         if (empty($data['Title']) || empty($data['Email']) || empty($data['Birthday'])) {
             $request->getSession()->set('ApplicationError', 'Bitte fülle alle Pflichtfelder aus.');
