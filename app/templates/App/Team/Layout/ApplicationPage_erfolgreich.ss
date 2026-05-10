@@ -16,7 +16,7 @@
 
             <div class="application_success">
                 <p>Wir werden uns in Kürze bei dir melden und dich über die nächsten Schritte informieren.</p>
-                
+
                 <div class="success_info">
                     <h2>Wie geht es weiter?</h2>
                     <ul>
@@ -28,9 +28,9 @@
                 </div>
 
                 <p>Solltest du in der Zwischenzeit Fragen haben, zögere nicht, uns zu kontaktieren. Wir freuen uns darauf, von dir zu hören!</p>
-                <p>Unter dieser Emailadresse kannst du uns jederzeit erreichen: <a href="mailto:kontakt@ottos-halloweenhaus.de">kontakt@ottos-halloweenhaus.de</a></p>
-                
-                <p><a href="/" class="link--button">Zurück zur Startseite</a></p>
+                <p>Unter dieser E-Mail-Adresse kannst du uns jederzeit erreichen: <a href="mailto:kontakt@ottos-halloweenhaus.de">kontakt@ottos-halloweenhaus.de</a></p>
+
+                <p><a href="/" class="link--button button--primary">Zurück zur Startseite</a></p>
             </div>
         </div>
     </section>
