@@ -4,11 +4,7 @@ namespace App\Elements;
 
 use App\Press\PressReference;
 use DNADesign\Elemental\Models\BaseElement;
-use SilverStripe\Forms\GridField\GridField;
-use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 use SilverStripe\LinkField\Models\Link;
-use SilverStripe\ORM\DataList;
-use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
 
 /**
  * Class \App\Elements\ReferenceSlider
@@ -42,11 +38,11 @@ class ReferenceSliderElement extends BaseElement
     ];
 
     private static $table_name = 'ReferenceSliderElement';
-    private static $icon = 'font-icon-book-open';
+    private static $icon = 'sp-icon-slider-element';
 
     public function getType()
     {
-        return "Erwähnungen (neu)";
+        return "Erwähnungen (Slider)";
     }
 
     public function getCMSFields()

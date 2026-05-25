@@ -65,7 +65,7 @@ class WikiElement extends BaseElement
     ];
 
     private static $table_name = 'WikiElement';
-    private static $icon = 'sp-icon-textimage-element';
+    private static $icon = 'sp-icon-tutorial-element';
 
     public function getType()
     {

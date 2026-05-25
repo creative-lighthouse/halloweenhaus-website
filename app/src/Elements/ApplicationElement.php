@@ -33,14 +33,14 @@ class ApplicationElement extends BaseElement
     ];
 
     private static $table_name = 'ApplicationElement';
-    private static $icon = 'sp-icon-job-element';
+    private static $icon = 'sp-icon-partner-element';
     private static $controller_class = ElementController::class;
 
     private ?string $captchaQuestion = null;
 
     public function getType()
     {
-        return "Application Element";
+        return "Bewerbungsformular";
     }
 
     public function getCMSFields()

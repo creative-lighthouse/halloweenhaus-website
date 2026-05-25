@@ -22,7 +22,7 @@ class EmbedElement extends BaseElement
     ];
 
     private static $table_name = 'EmbedElement';
-    private static $icon = 'sp-icon-virtual-element';
+    private static $icon = 'sp-icon-material-element';
 
     public function getType()
     {

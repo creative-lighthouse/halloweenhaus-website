@@ -39,7 +39,7 @@ class TimelineElement extends BaseElement
     ];
 
     private static $table_name = 'TimelineElement';
-    private static $icon = 'font-icon-clock';
+    private static $icon = 'sp-icon-clock-element';
 
     public function inlineEditable()
     {

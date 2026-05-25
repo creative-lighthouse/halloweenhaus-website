@@ -2,17 +2,15 @@
 
 namespace App\Elements;
 
-use SilverStripe\ORM\DataList;
+use App\Press\PressReference;
 use DNADesign\Elemental\Models\BaseElement;
-use SilverStripe\Forms\GridField\GridField;
-use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
-use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
+use SilverStripe\Model\List\ArrayList;
+use SilverStripe\Model\ArrayData;
 
 /**
- * Class \App\Elements\ReportsElement
+ * Class \App\Elements\ReferencesElement
  *
  * @property ?string $Text
- * @method DataList<ReferenceItem> ReferenceItems()
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -30,10 +28,6 @@ class ReferencesElement extends BaseElement
         "Text" => "Text",
     ];
 
-    private static $has_many = [
-        "ReferenceItems" => ReferenceItem::class,
-    ];
-
     public function inlineEditable() {
         return false;
     }
@@ -43,19 +37,35 @@ class ReferencesElement extends BaseElement
 
     public function getType()
     {
-        return "Erwähnungen";
+        return "Erwähnungen (Liste)";
     }
 
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->removeByName("ReferenceItems");
-
-        $gridFieldConfig = GridFieldConfig_RecordEditor::create(200);
-        $sorter = GridFieldSortableRows::create('SortOrder');
-        $gridFieldConfig->addComponent($sorter);
-        $gridfield = GridField::create("ReferenceItems", "Erwähnungen", $this->ReferenceItems(), $gridFieldConfig);
-        $fields->addFieldToTab( 'Root.Main', $gridfield );
         return $fields;
+    }
+
+    public function getReferencesByYear()
+    {
+        $references = PressReference::get()->sort('PublishDate DESC, ID DESC');
+        $grouped = [];
+
+        foreach ($references as $ref) {
+            $year = $ref->PublishDate ? date('Y', strtotime($ref->PublishDate)) : 'Unbekannt';
+            $grouped[$year][] = $ref;
+        }
+
+        krsort($grouped);
+
+        $result = ArrayList::create();
+        foreach ($grouped as $year => $refs) {
+            $result->push(ArrayData::create([
+                'Year' => $year,
+                'References' => ArrayList::create($refs),
+            ]));
+        }
+
+        return $result;
     }
 }

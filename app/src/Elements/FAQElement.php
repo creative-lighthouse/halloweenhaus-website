@@ -39,7 +39,7 @@ class FAQElement extends BaseElement
     ];
 
     private static $table_name = 'FAQElement';
-    private static $icon = 'font-icon-help-circled';
+    private static $icon = 'sp-icon-qa-element';
 
     public function inlineEditable()
     {

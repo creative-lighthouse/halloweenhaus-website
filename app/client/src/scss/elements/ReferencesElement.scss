@@ -4,9 +4,20 @@ section.section--ReferencesElement {
     .section_content{
         text-align: center;
 
+        .references_year_group {
+            margin-bottom: 40px;
+        }
+
+        .references_year_heading {
+            text-align: left;
+            margin-bottom: 16px;
+        }
+
         .referenceelement_list{
             width: 100%;
-            justify-content: space-around;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
             margin: 0;
 
             .referenceitem{
@@ -23,10 +34,6 @@ section.section--ReferencesElement {
 
                 p{
                     margin-bottom: 0px;
-                }
-
-                .link--button{
-                    margin-top: 10px;
                 }
 
                 .referenceitem_text{
@@ -52,10 +59,10 @@ section.section--ReferencesElement {
             }
 
             @include media(max-medium) {
-                grid-template-columns: repeat(2, calc(100% / 2));
+                grid-template-columns: repeat(2, 1fr);
             }
             @include media(max-smartphone) {
-                grid-template-columns: repeat(1, calc(100% / 1));
+                grid-template-columns: repeat(1, 1fr);
             }
         }
     }

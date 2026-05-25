@@ -44,7 +44,7 @@ class SocialBannerElement extends BaseElement
     }
 
     private static $table_name = 'SocialBannerElement';
-    private static $icon = 'sp-icon-crown-element';
+    private static $icon = 'sp-icon-social-element';
 
     public function getType()
     {
