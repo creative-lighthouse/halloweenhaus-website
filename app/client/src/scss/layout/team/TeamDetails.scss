@@ -156,5 +156,25 @@ section.section--TeamDetails {
                 grid-template-columns: repeat(1, 1fr);
             }
         }
+
+        .teammember_participatedshows {
+            width: 100%;
+
+            h2 {
+                margin-bottom: 20px;
+            }
+
+            .showswiper{
+                position: relative;
+
+                .swiper-wrapper {
+                    .swiper-slide{
+                        text-decoration: none;
+                        color: var(--ColorWhite);
+                        text-align: center;
+                    }
+                }
+            }
+        }
     }
 }

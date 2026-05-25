@@ -40,7 +40,7 @@
 
             <% if $ParticipatedShows.Count > 0 %>
                 <div class="teammember_participatedshows">
-                    <h2>Andere beteiligte Shows</h2>
+                    <h2>Beteiligte Shows</h2>
                     <div class="showswiper swiper--showsoverview">
                         <div class="swiper-wrapper">
                             <% loop $ParticipatedShows %>
