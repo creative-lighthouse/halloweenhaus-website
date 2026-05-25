@@ -66,5 +66,9 @@ section.section--ReferenceSliderElement {
                 grid-template-columns: repeat(1, calc(100% / 1));
             }
         }
+
+        .section_button {
+            margin-top: 20px;
+        }
     }
 }
