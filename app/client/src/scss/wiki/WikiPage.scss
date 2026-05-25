@@ -107,6 +107,7 @@ section.section--WikiPage{
                 text-align: center;
                 margin: 0;
                 padding: 10px 20px;
+                font-size: clamp(3rem, 10vw, 6rem);
             }
 
             .wiki_description{
