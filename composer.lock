@@ -4,8 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0043991ec676a8faedf7debbdb12ed37",
+    "content-hash": "909b7e129caf5805c020151fa53a351b",
     "packages": [
+        {
+            "name": "atwx/silverstripe-element-overview",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/atwx/silverstripe-element-overview.git",
+                "reference": "13fa7a662d3561116d18556dced74d36e7f25510"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/atwx/silverstripe-element-overview/zipball/13fa7a662d3561116d18556dced74d36e7f25510",
+                "reference": "13fa7a662d3561116d18556dced74d36e7f25510",
+                "shasum": ""
+            },
+            "require": {
+                "dnadesign/silverstripe-elemental": "^6",
+                "silverstripe/admin": "^3",
+                "silverstripe/framework": "^6"
+            },
+            "type": "silverstripe-vendormodule",
+            "autoload": {
+                "psr-4": {
+                    "Atwx\\ElementOverview\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Adds an Element Overview ModelAdmin to SilverStripe CMS, listing all elements with links to their pages.",
+            "keywords": [
+                "cms",
+                "elemental",
+                "elements",
+                "overview",
+                "silverstripe"
+            ],
+            "support": {
+                "issues": "https://github.com/atwx/silverstripe-element-overview/issues",
+                "source": "https://github.com/atwx/silverstripe-element-overview/tree/v1.0.0"
+            },
+            "time": "2026-05-07T15:10:55+00:00"
+        },
         {
             "name": "atwx/silverstripe-vitehelper",
             "version": "v1.6",

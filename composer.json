@@ -27,7 +27,8 @@
         "atwx/silverstripe-vitehelper": "^1.3",
         "webbuilders-group/silverstripe-siteconfig-error-pages": "^3.0",
         "plastyk/dashboard": "^5.0",
-        "stevenpaw/stevens-silverstripe-icons": "dev-main"
+        "stevenpaw/stevens-silverstripe-icons": "dev-main",
+        "atwx/silverstripe-element-overview": "^1.0"
     },
     "require-dev": {
         "silverleague/ideannotator": "4.0",

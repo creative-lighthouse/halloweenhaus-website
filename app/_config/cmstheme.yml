@@ -55,6 +55,7 @@ SilverStripe\Admin\LeftAndMain:
         - TractorCow-Fluent-Control-LocaleAdmin
         - SilverStripe-SiteConfig-SiteConfigLeftAndMain
         - WebbuildersGroup-SiteConfigErrorPages-Control-Admin-CustomSiteConfigAdmin
+        - Atwx-ElementOverview-ElementOverviewAdmin
 
 SilverStripe\Admin\SecurityAdmin:
   menu_priority: -1
