@@ -20,8 +20,8 @@ use SilverStripe\ORM\DataObject;
  * @method TeaserElement Parent()
  * @method Image Image()
  * @method Link Button()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

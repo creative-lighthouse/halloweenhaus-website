@@ -14,8 +14,8 @@ use SilverStripe\ORM\DataObject;
  * @property int $ProductID
  * @method Sale Parent()
  * @method Product Product()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

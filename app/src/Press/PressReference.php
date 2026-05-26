@@ -16,8 +16,8 @@ use SilverStripe\ORM\DataObject;
  * @property ?string $PublishDate
  * @property int $SourceLinkID
  * @method Link SourceLink()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

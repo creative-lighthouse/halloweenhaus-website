@@ -25,8 +25,8 @@ use SilverStripe\Model\List\GroupedList;
  * @method ManyManyList<TeamMember> TeamMembers()
  * @method ManyManyList<Location> Locations()
  * @method ManyManyList<Artefact> Artefacts()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

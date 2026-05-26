@@ -17,8 +17,8 @@ use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
  * @property int $DateFrameID
  * @method Image DateFrame()
  * @method DataList<HeroSliderItem> HeroSliderItems()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

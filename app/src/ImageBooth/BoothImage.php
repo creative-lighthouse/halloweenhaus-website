@@ -19,8 +19,8 @@ use Endroid\QrCode\ErrorCorrectionLevel;
  * @property ?string $GroupID
  * @property int $ImageID
  * @method File Image()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

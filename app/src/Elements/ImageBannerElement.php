@@ -16,8 +16,8 @@ use SilverStripe\Forms\DropdownField;
  * @property ?string $Parallax
  * @property int $ImageID
  * @method Image Image()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

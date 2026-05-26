@@ -13,8 +13,8 @@ use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
  *
  * @property bool $IsCollapsible
  * @method DataList<FAQItem> FAQItems()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
