@@ -5,8 +5,14 @@
                 $Embed.Raw
             </div>
         <% else_if $Image %>
-             <div class="section_image">
-                $Image.FocusFillMax(600, 400)
+            <div class="section_image">
+                <% if $ImageLightbox %>
+                    <a href="$Image.AbsoluteURL" data-gallery="gallery" data-galleryid="TextImageElement-$ID" data-singleimage="true" data-glightbox="$Title" data-caption="$Title" class="section_image_lightbox">
+                        $Image.FocusFillMax(600, 400)
+                    </a>
+                <% else %>
+                    $Image.FocusFillMax(600, 400)
+                <% end_if %>
             </div>
         <% end_if %>
 

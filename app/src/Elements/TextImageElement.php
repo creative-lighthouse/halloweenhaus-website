@@ -14,6 +14,7 @@ use SilverStripe\Forms\DropdownField;
  * @property ?string $Text
  * @property ?string $Variant
  * @property bool $ImageIsLinked
+ * @property bool $ImageLightbox
  * @property ?string $Embed
  * @property int $ImageID
  * @property int $ButtonID
@@ -21,8 +22,8 @@ use SilverStripe\Forms\DropdownField;
  * @method Image Image()
  * @method Link Button()
  * @method Link SecondaryButton()
- * @mixin AssetControlExtension
  * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
@@ -33,6 +34,7 @@ class TextImageElement extends BaseElement
         "Text" => "HTMLText",
         "Variant" => "Varchar(50)",
         "ImageIsLinked" => "Boolean",
+        "ImageLightbox" => "Boolean",
         "Embed" => "Text",
     ];
 
@@ -54,6 +56,7 @@ class TextImageElement extends BaseElement
         "Button" => "Primärer Button",
         "SecondaryButton" => "Sekundärer Button",
         "ImageIsLinked" => "Bild verlinkt auch (zum Button-Link)",
+        "ImageLightbox" => "Bild öffnet Lightbox",
         "Embed" => "Embed-Code",
     ];
 

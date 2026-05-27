@@ -20,8 +20,8 @@ use SilverStripe\ORM\DataObject;
  * @method ManyManyList<Show> Shows()
  * @method ManyManyList<MediaProject> MediaProjects()
  * @mixin PhotoGalleryExtension
- * @mixin AssetControlExtension
  * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
