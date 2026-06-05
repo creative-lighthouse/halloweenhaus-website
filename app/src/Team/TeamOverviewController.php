@@ -43,4 +43,10 @@ class TeamOverviewController extends PageController
     {
         return TeamMember::get();
     }
+
+    public function getTeamMembersCacheKey(): string
+    {
+        $lastEdited = TeamMember::get()->max('LastEdited');
+        return md5($lastEdited ?? '');
+    }
 }

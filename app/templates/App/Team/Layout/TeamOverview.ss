@@ -1,6 +1,7 @@
 <div class="section section--TeamOverview">
     <div class="section_content">
         <h1 class="teammember_title">$Title</h1>
+        <% cached 'team_overview', $TeamMembersCacheKey %>
         <% if $TeamMembers.Filter("Status", "active").Count > 0 %>
             <div class="teammember_list">
                 <% loop $TeamMembers.Sort("Importance", DESC).Filter("Status", "active") %>
@@ -54,6 +55,7 @@
                 <% end_loop %>
             </div>
         <% end_if %>
+        <% end_cached %>
     </div>
 </div>
 

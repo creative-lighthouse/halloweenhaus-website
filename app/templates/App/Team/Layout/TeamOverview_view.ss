@@ -1,3 +1,4 @@
+<% cached 'team_member_detail', $TeamMember.ID, $TeamMember.LastEdited %>
 <% with $TeamMember %>
     <section class="section--TeamDetails">
         <div class="section_content">
@@ -67,3 +68,4 @@
         </div>
     </section>
 <% end_with %>
+<% end_cached %>
