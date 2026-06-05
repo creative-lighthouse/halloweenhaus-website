@@ -20,7 +20,7 @@ namespace {
         protected function init()
         {
             parent::init();
-            HTTPCacheControlMiddleware::singleton()->enablePublicCache(3600);
+            HTTPCacheControlMiddleware::singleton()->enableCache(false, 3600);
 
             //Increment page view for this page for today
             //PageStatisticsDay::incrementPageViewForPage($this->dataRecord);
