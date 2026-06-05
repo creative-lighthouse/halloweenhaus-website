@@ -432,9 +432,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 seconds = diffSeconds;
 
                 if(days > 0) {
-                    halloweenCountdown.innerHTML = 'Noch ' + days + 'd | ' + hours + 'h | ' + minutes + 'm | ' + seconds + 's bis Halloween!';
+                    halloweenCountdown.innerHTML = 'Noch ' + days + 'd | ' + hours + 'h | ' + minutes + 'm | ' + seconds + 's bis Halloween';
                 } else {
-                    halloweenCountdown.innerHTML = 'Noch ' + hours + 'h | ' + minutes + 'm | ' + seconds + 's bis Halloween!';
+                    halloweenCountdown.innerHTML = 'Noch ' + hours + 'h | ' + minutes + 'm | ' + seconds + 's bis Halloween';
                 }
             }
             else

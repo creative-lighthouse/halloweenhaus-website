@@ -51,6 +51,7 @@ section.section--TextImageElement {
             display: flex;
             flex-direction: column;
             grid-row: 1 / -1;
+            margin-top: 10px;
 
             .section_title {
                 margin-bottom: 8px;
@@ -107,7 +108,6 @@ section.section--TextImageElement {
             .section_text {
                 grid-column: 1 / -1;
                 grid-row: 2;
-                margin-top: 20px;
 
                 @include media(max-medium) {
                     .section_button {

@@ -32,27 +32,27 @@
                 $SecurityID
                 <div class="field field_name">
                     <label class="field_label" for="Title">Name:</label>
-                    <input class="" type="text" name="Title" placeholder="Vor- & Nachname" autocomplete="full-name" required>
+                    <input class="" type="text" name="Title" autocomplete="name" required>
                 </div>
 
                 <div class="field field_birthday">
                     <label class="field_label" for="Birthday">Geburtstag:</label>
-                    <input class="" type="date" name="Birthday" placeholder="Geburtstag" autocomplete="birthdate" required>
+                    <input class="" type="date" name="Birthday" autocomplete="bday" required>
                 </div>
 
                 <div class="field field_email">
                     <label class="field_label" for="Email">E-Mail:</label>
-                    <input class="field field_email" type="email" name="Email" placeholder="E-Mail" autocomplete="email" required>
+                    <input class="field field_email" type="email" name="Email" autocomplete="email" required>
                 </div>
 
                 <div class="field field_hobbies">
                     <label class="field_label" for="Hobbies">Was sind deine Hobbys, Talente & Interessen?</label>
-                    <textarea class="field field_hobbies" name="Hobbies" placeholder="Was sind deine Hobbys, Talente & Interessen?" autocomplete="off" required></textarea>
+                    <textarea class="field field_hobbies" name="Hobbies" autocomplete="off" required></textarea>
                 </div>
 
                 <div class="field field_reason">
                     <label class="field_label" for="ReasonToJoin">Warum willst du ins Team von Ottos Halloweenhaus?</label>
-                    <textarea class="field field_reason" name="ReasonToJoin" placeholder="Warum willst du ins Team von Ottos Halloweenhaus?" autocomplete="off" required></textarea>
+                    <textarea class="field field_reason" name="ReasonToJoin" autocomplete="off" required></textarea>
                 </div>
 
                 <div class="field field_interests">
