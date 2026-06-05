@@ -6,10 +6,10 @@ use App\Team\TeamApplicationInterest;
 use DNADesign\Elemental\Controllers\ElementController;
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Control\Controller;
-use SilverStripe\ORM\ArrayList;
+use SilverStripe\Model\ArrayData;
+use SilverStripe\Model\List\ArrayList;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\Security\SecurityToken;
-use SilverStripe\View\ArrayData;
 
 /**
  * Class \App\Elements\ApplicationElement

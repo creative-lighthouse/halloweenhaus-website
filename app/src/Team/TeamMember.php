@@ -151,7 +151,7 @@ class TeamMember extends DataObject
         return ShowCharacter::get()
             ->filter('TeamMemberID', $this->ID)
             ->leftJoin('Show', '"ShowCharacter"."ParentID" = "Show"."ID"')
-            ->sort('"Show"."Year" DESC, "ShowCharacter"."Title" ASC');
+            ->orderBy('"Show"."Year" DESC, "ShowCharacter"."Title" ASC');
     }
 
     public function getLink()
