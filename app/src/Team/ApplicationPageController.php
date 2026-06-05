@@ -76,20 +76,36 @@ class ApplicationPageController extends Controller
         // Get form data
         $data = $request->postVars();
 
+        // Cooldown check (prevents brute-forcing the captcha)
+        $nextAllowed = (int)$request->getSession()->get('CaptchaNextAllowed');
+        if ($nextAllowed && time() < $nextAllowed) {
+            $remaining = $nextAllowed - time();
+            $request->getSession()->set('ApplicationError', "Bitte warte noch {$remaining} Sekunden, bevor du es erneut versuchst.");
+            $this->saveFormData($request, $data);
+            return $this->redirectBack();
+        }
+
         // Captcha validation
         $captchaAnswer = (int)($data['Captcha'] ?? -1);
         $expectedAnswer = $request->getSession()->get('CaptchaAnswer');
         $request->getSession()->clear('CaptchaAnswer');
         if ($expectedAnswer === null || $captchaAnswer !== (int)$expectedAnswer) {
             $request->getSession()->set('ApplicationError', 'Die Rechenaufgabe wurde nicht korrekt gelöst. Bitte versuche es erneut.');
+            $request->getSession()->set('CaptchaNextAllowed', time() + 30);
+            $this->saveFormData($request, $data);
             return $this->redirectBack();
         }
 
         // Basic validation
         if (empty($data['Title']) || empty($data['Email']) || empty($data['Birthday'])) {
             $request->getSession()->set('ApplicationError', 'Bitte fülle alle Pflichtfelder aus.');
+            $this->saveFormData($request, $data);
             return $this->redirectBack();
         }
+
+        // Clear cooldown and saved form data on successful submission
+        $request->getSession()->clear('CaptchaNextAllowed');
+        $request->getSession()->clear('ApplicationFormData');
 
         // Create new application
         $application = TeamApplication::create();
@@ -111,6 +127,18 @@ class ApplicationPageController extends Controller
 
         // Redirect back to application page
         return $this->redirect('/bewerbung/erfolgreich');
+    }
+
+    private function saveFormData(HTTPRequest $request, array $data): void
+    {
+        $request->getSession()->set('ApplicationFormData', [
+            'Title' => $data['Title'] ?? '',
+            'Birthday' => $data['Birthday'] ?? '',
+            'Email' => $data['Email'] ?? '',
+            'Hobbies' => $data['Hobbies'] ?? '',
+            'ReasonToJoin' => $data['ReasonToJoin'] ?? '',
+            'Interests' => array_map('strval', (array)($data['Interests'] ?? [])),
+        ]);
     }
 
     /**

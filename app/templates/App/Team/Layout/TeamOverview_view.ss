@@ -33,7 +33,7 @@
                                 </div>
                                 <p class="teammember_role_character_name">$Character.Title</p>
                             </a>
-                            <p class="teammember_role_show">in <b><a href="$Parent.Link" class="no_deco">$Parent.Title</a></b></p>
+                            <p class="teammember_role_show">in <b><a href="$Parent.Link" class="no_deco">$Parent.Title ($Parent.Year)</a></b></p>
                         </div>
                     <% end_loop %>
                 </div>

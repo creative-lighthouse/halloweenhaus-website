@@ -6,8 +6,10 @@ use App\Team\TeamApplicationInterest;
 use DNADesign\Elemental\Controllers\ElementController;
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Control\Controller;
+use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\Security\SecurityToken;
+use SilverStripe\View\ArrayData;
 
 /**
  * Class \App\Elements\ApplicationElement
@@ -37,6 +39,19 @@ class ApplicationElement extends BaseElement
     private static $controller_class = ElementController::class;
 
     private ?string $captchaQuestion = null;
+    private ?array $formDataCache = null;
+    private bool $formDataLoaded = false;
+
+    private function loadFormData(): array
+    {
+        if (!$this->formDataLoaded) {
+            $session = Controller::curr()->getRequest()->getSession();
+            $this->formDataCache = $session->get('ApplicationFormData') ?: [];
+            $session->clear('ApplicationFormData');
+            $this->formDataLoaded = true;
+        }
+        return $this->formDataCache;
+    }
 
     public function getType()
     {
@@ -50,9 +65,35 @@ class ApplicationElement extends BaseElement
         return $fields;
     }
 
-    public function getInterests()
+    public function getSavedFormValues(): ?ArrayData
     {
-        return TeamApplicationInterest::get();
+        $data = $this->loadFormData();
+        return $data ? ArrayData::create($data) : null;
+    }
+
+    public function getCaptchaCooldownSeconds(): int
+    {
+        $session = Controller::curr()->getRequest()->getSession();
+        $nextAllowed = (int)$session->get('CaptchaNextAllowed');
+        if (!$nextAllowed) {
+            return 0;
+        }
+        return max(0, $nextAllowed - time());
+    }
+
+    public function getInterests(): ArrayList
+    {
+        $savedInterests = (array)($this->loadFormData()['Interests'] ?? []);
+
+        $list = ArrayList::create();
+        foreach (TeamApplicationInterest::get() as $interest) {
+            $list->push(ArrayData::create([
+                'ID' => $interest->ID,
+                'Title' => $interest->Title,
+                'Checked' => in_array((string)$interest->ID, $savedInterests),
+            ]));
+        }
+        return $list;
     }
 
     public function SecurityID(): DBHTMLText
