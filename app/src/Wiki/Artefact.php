@@ -13,6 +13,7 @@ use SilverStripe\ORM\DataObject;
  * @property ?string $Description
  * @property ?string $ShortDescription
  * @property int $SortField
+ * @property ?string $GlossaryTerms
  * @property int $ImageID
  * @method Image Image()
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
@@ -34,6 +35,7 @@ class Artefact extends DataObject
         "Description" => "HTMLText",
         "ShortDescription" => "Varchar(50)",
         "SortField" => "Int",
+        "GlossaryTerms" => "Varchar(500)",
     ];
 
     private static $many_many = [
@@ -64,6 +66,7 @@ class Artefact extends DataObject
         "ShortDescription" => "Kurze Beschreibung (Max 50 Zeichen)",
         "Shows" => "Shows",
         "ArtefactOwnerships" => "Besitzer",
+        "GlossaryTerms" => "Glossar-Begriffe (Semikolon-getrennt)",
     ];
 
     private static $summary_fields = [
@@ -87,6 +90,8 @@ class Artefact extends DataObject
     {
         $fields = parent::getCMSFields();
         //$fields->removeByName("SortField");
+        $fields->dataFieldByName('GlossaryTerms')
+            ->setDescription('Zusätzliche Begriffe, unter denen dieses Artefakt im Glossar gefunden werden soll. Mehrere Begriffe mit Semikolon trennen, z.B.: "Das Schwert;Ottos Klinge"');
         return $fields;
     }
 

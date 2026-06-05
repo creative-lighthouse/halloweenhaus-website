@@ -19,6 +19,7 @@ use SilverStripe\Model\List\GroupedList;
  * @property ?string $PublicationDate
  * @property ?string $VideoLink
  * @property int $SortField
+ * @property ?string $GlossaryTerms
  * @property int $ImageID
  * @method Image Image()
  * @method DataList<Link> Links()
@@ -40,6 +41,7 @@ class MediaProject extends DataObject
         "PublicationDate" => "Date",
         "VideoLink" => "Varchar(255)",
         "SortField" => "Int",
+        "GlossaryTerms" => "Varchar(500)",
     ];
 
     private static $has_one = [
@@ -73,6 +75,7 @@ class MediaProject extends DataObject
         "PublicationDate" => "Veröffentlichungsdatum",
         "VideoLink" => "Video-Link",
         "TeamMembers" => "Teammitglieder",
+        "GlossaryTerms" => "Glossar-Begriffe (Semikolon-getrennt)",
     ];
 
     private static $summary_fields = [
@@ -97,6 +100,8 @@ class MediaProject extends DataObject
     {
         $fields = parent::getCMSFields();
         $fields->removeByName("SortField");
+        $fields->dataFieldByName('GlossaryTerms')
+            ->setDescription('Zusätzliche Begriffe, unter denen dieses Medienprojekt im Glossar gefunden werden soll. Mehrere Begriffe mit Semikolon trennen, z.B.: "Das Video;Halloweenfilm 2023"');
         return $fields;
     }
 

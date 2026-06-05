@@ -67,7 +67,8 @@
                     <div class="showswiper swiper--showsoverview">
                         <div class="swiper-wrapper">
                             <% loop $GroupedShowCharacters.GroupedBy('ParentID') %>
-                                <a href="$Children.First.Parent.Link" class="swiper-slide showcard">
+                                <div class="swiper-slide showcard">
+                                    <a href="$Children.First.Parent.Link" class="showcard__link" aria-label="$Children.First.Parent.Title"></a>
                                     <div class="showcard_image">
                                         $Children.First.Parent.PosterImage.Fill(420,600)
                                     </div>
@@ -79,14 +80,14 @@
                                         <p class="character_actorlist_title">Gespielt von:</p>
                                         <div class="character_actorlist">
                                             <% loop $Children %>
-                                                <div class="character_actor">
+                                                <a href="$TeamMember.Link" class="character_actor">
                                                     $TeamMember.Image
                                                     <p>$TeamMember.Title</p>
-                                                </div>
+                                                </a>
                                             <% end_loop %>
                                         </div>
                                     <% end_if %>
-                                </a>
+                                </div>
                             <% end_loop %>
                         </div>
                     </div>

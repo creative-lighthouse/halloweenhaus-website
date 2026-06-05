@@ -24,6 +24,7 @@ use SilverStripe\Model\List\GroupedList;
  * @property ?string $TeamSize
  * @property ?string $SceneCount
  * @property ?string $StatisticsNote
+ * @property ?string $GlossaryTerms
  * @property int $PosterImageID
  * @property int $ShowImageID
  * @method Image PosterImage()
@@ -55,6 +56,7 @@ class Show extends DataObject
         "TeamSize" => "Varchar(255)",
         "SceneCount" => "Varchar(255)",
         "StatisticsNote" => "Varchar(255)",
+        "GlossaryTerms" => "Varchar(500)",
     ];
 
     private static $has_one = [
@@ -101,6 +103,7 @@ class Show extends DataObject
         "Locations" => "Orte",
         "Artefacts" => "Artefakte",
         "BackstageHelpers" => "Hintergrundhelfer",
+        "GlossaryTerms" => "Glossar-Begriffe (Semikolon-getrennt)",
     ];
 
     private static $summary_fields = [
@@ -140,6 +143,8 @@ class Show extends DataObject
         $fields->addFieldToTab('Root.Statistics', $fields->dataFieldByName('TeamSize'));
         $fields->addFieldToTab('Root.Statistics', $fields->dataFieldByName('SceneCount'));
         $fields->addFieldToTab('Root.Statistics', $fields->dataFieldByName('StatisticsNote'));
+        $fields->dataFieldByName('GlossaryTerms')
+            ->setDescription('Zusätzliche Begriffe, unter denen diese Show im Glossar gefunden werden soll. Mehrere Begriffe mit Semikolon trennen, z.B.: "Die Show 2019;Geisterhaus 2019"');
         return $fields;
     }
 

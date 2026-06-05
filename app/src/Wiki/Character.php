@@ -21,6 +21,7 @@ use SilverStripe\Model\List\GroupedList;
  * @property int $SortField
  * @property ?string $Type
  * @property ?string $ShortDescription
+ * @property ?string $GlossaryTerms
  * @property int $ImageID
  * @method Image Image()
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
@@ -44,6 +45,7 @@ class Character extends DataObject
         "SortField" => "Int",
         "Type" => "Varchar(255)",
         "ShortDescription" => "Varchar(50)",
+        "GlossaryTerms" => "Varchar(500)",
     ];
 
     private static $has_one = [
@@ -71,6 +73,7 @@ class Character extends DataObject
         "Image" => "Bild",
         "Type" => "Typ",
         "ShortDescription" => "Kurze Beschreibung (Max 50 Zeichen)",
+        "GlossaryTerms" => "Glossar-Begriffe (Semikolon-getrennt)",
     ];
 
     private static $summary_fields = [
@@ -101,6 +104,8 @@ class Character extends DataObject
             'other' => 'Sonstiges'
         ]), 'Description');
         $fields->removeByName("SortField");
+        $fields->dataFieldByName('GlossaryTerms')
+            ->setDescription('Zusätzliche Begriffe, unter denen dieser Eintrag im Glossar gefunden werden soll. Mehrere Begriffe mit Semikolon trennen, z.B.: "Otto;der Woodmann;Waldgeist"');
         return $fields;
     }
 

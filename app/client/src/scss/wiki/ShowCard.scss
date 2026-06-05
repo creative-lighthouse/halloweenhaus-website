@@ -1,4 +1,12 @@
 .showcard {
+    position: relative;
+
+    &__link {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
     .showcard_image{
         border-radius: 8px;
         overflow: hidden;
@@ -34,12 +42,21 @@
         gap: 4px;
 
         .character_actor {
+            position: relative;
+            z-index: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: var(--ColorGray);
             border-radius: 20px;
-            padding: 4px 12px 4px 4px;
+            padding: 4px 8px;
+            text-decoration: none;
+            color: var(--ColorWhite);
+            transition: background-color 0.15s ease;
+
+            &:hover {
+                background-color: var(--ColorPrimary);
+            }
 
             img{
                 width: 20px;

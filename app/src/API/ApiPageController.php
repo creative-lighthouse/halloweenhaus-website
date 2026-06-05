@@ -734,49 +734,47 @@ class ApiPageController extends ContentController
 
         //Create an index for all wiki relevant items with a link to them
         foreach ($shows as $show) {
-            $data[] = [
-                'type' => 'show',
-                'title' => $show->Title,
-                'year' => $show->Year,
-                'link' => $show->getLink(),
-            ];
+            $data[] = ['type' => 'show', 'title' => $show->Title, 'year' => $show->Year, 'link' => $show->getLink()];
+            foreach ($this->parseGlossaryTerms($show->GlossaryTerms) as $term) {
+                $data[] = ['type' => 'show', 'title' => $term, 'link' => $show->getLink()];
+            }
         }
         foreach ($characters as $character) {
-            $data[] = [
-                'type' => 'character',
-                'title' => $character->Title,
-                'link' => $character->getLink(),
-            ];
+            $data[] = ['type' => 'character', 'title' => $character->Title, 'link' => $character->getLink()];
+            foreach ($this->parseGlossaryTerms($character->GlossaryTerms) as $term) {
+                $data[] = ['type' => 'character', 'title' => $term, 'link' => $character->getLink()];
+            }
         }
         foreach ($teammembers as $teammember) {
-            $data[] = [
-                'type' => 'teammember',
-                'title' => $teammember->Title,
-                'link' => $teammember->getLink(),
-            ];
+            $data[] = ['type' => 'teammember', 'title' => $teammember->Title, 'link' => $teammember->getLink()];
         }
         foreach ($artefacts as $artefact) {
-            $data[] = [
-                'type' => 'artefact',
-                'title' => $artefact->Title,
-                'link' => $artefact->getLink(),
-            ];
+            $data[] = ['type' => 'artefact', 'title' => $artefact->Title, 'link' => $artefact->getLink()];
+            foreach ($this->parseGlossaryTerms($artefact->GlossaryTerms) as $term) {
+                $data[] = ['type' => 'artefact', 'title' => $term, 'link' => $artefact->getLink()];
+            }
         }
         foreach ($places as $place) {
-            $data[] = [
-                'type' => 'location',
-                'title' => $place->Title,
-                'link' => $place->getLink(),
-            ];
+            $data[] = ['type' => 'location', 'title' => $place->Title, 'link' => $place->getLink()];
+            foreach ($this->parseGlossaryTerms($place->GlossaryTerms) as $term) {
+                $data[] = ['type' => 'location', 'title' => $term, 'link' => $place->getLink()];
+            }
         }
         foreach ($mediaprojects as $mediaproject) {
-            $data[] = [
-                'type' => 'mediaproject',
-                'title' => $mediaproject->Title,
-                'link' => $mediaproject->getLink(),
-            ];
+            $data[] = ['type' => 'mediaproject', 'title' => $mediaproject->Title, 'link' => $mediaproject->getLink()];
+            foreach ($this->parseGlossaryTerms($mediaproject->GlossaryTerms) as $term) {
+                $data[] = ['type' => 'mediaproject', 'title' => $term, 'link' => $mediaproject->getLink()];
+            }
         }
 
         return json_encode($data);
+    }
+
+    private function parseGlossaryTerms(?string $terms): array
+    {
+        if (!$terms) {
+            return [];
+        }
+        return array_values(array_filter(array_map('trim', explode(';', $terms))));
     }
 }
