@@ -10,6 +10,7 @@ section.section--ReferenceSliderElement {
             width: 100%;
             justify-content: space-around;
             margin: 0;
+            position: relative;
 
             // Wichtig: Swiper wrapper sollte Slides strecken
             .swiper-wrapper {
@@ -56,6 +57,19 @@ section.section--ReferenceSliderElement {
                             background-color: var(--ColorGray);
                         }
                     }
+                }
+            }
+
+            .swiper-button-next, .swiper-button-prev {
+                color: var(--ColorWhite);
+                background-color: var(--ColorPrimary);
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                padding: 20px;
+
+                &::after {
+                    font-size: 20px;
                 }
             }
 

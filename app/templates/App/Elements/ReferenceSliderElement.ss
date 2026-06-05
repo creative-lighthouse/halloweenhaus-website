@@ -34,6 +34,8 @@
                     <% end_if %>
                 <% end_loop %>
             </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
 
         <% if $Button %>

@@ -240,8 +240,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
             passiveListeners: true, // Wichtig für Mobile Performance
 
             autoplay: autoSwiper ? {
-                delay: 4000,
-                disableOnInteraction: false,
+                delay: 7000,
+                disableOnInteraction: true,
             } : false,
 
             // Navigation arrows
