@@ -11,7 +11,7 @@
             </div>
             <div class="nav_mainmenu">
                 <a href="faq" class="nav_link faq">FAQ</a>
-                <% if $EventsPage.ShowInMenus %>
+                <% if $EventsPage.ShowInMenus && $EventsPage.hasEvents %>
                     <a href="termine" class="link--button hollow nav_link virtualqueue">$EventsPage.Title</a>
                 <% end_if %>
             </div>
