@@ -4,8 +4,11 @@ import "./eventsNavigator";
 import "./posSystem";
 import "./statisticsPage";
 import "./glossar.js";
+import { initYoutubeConsent } from "./youtubeConsent.js";
 
 document.addEventListener("DOMContentLoaded", function (event) {
+
+    initYoutubeConsent();
 
     const menu_button = document.querySelector('[data-behaviour="toggle-menu"]');
 

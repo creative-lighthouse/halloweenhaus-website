@@ -68,6 +68,17 @@ class TextImageElement extends BaseElement
         return "Text + Bild";
     }
 
+    public function getYoutubeVideoId(): ?string
+    {
+        if (!$this->Embed) {
+            return null;
+        }
+        if (preg_match('/youtube(?:-nocookie)?\.com\/embed\/([a-zA-Z0-9_-]+)/', $this->Embed, $matches)) {
+            return $matches[1];
+        }
+        return null;
+    }
+
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();

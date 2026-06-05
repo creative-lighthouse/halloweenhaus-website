@@ -12,7 +12,7 @@
         <% end_if %>
         <% if $VideoLink %>
             <div class="section_video" style="max-width: $Width;">
-                <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/{$VideoLink}" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+                <% include YoutubeVideo VideoLink=$VideoLink %>
             </div>
         <% end_if %>
     </div>

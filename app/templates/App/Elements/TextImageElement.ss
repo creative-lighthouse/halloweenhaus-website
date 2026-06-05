@@ -2,7 +2,11 @@
     <div class="section_content grid-layout">
         <% if $Embed %>
             <div class="section_embed">
-                $Embed.Raw
+                <% if $YoutubeVideoId %>
+                    <% include YoutubeVideo VideoLink=$YoutubeVideoId %>
+                <% else %>
+                    $Embed.Raw
+                <% end_if %>
             </div>
         <% else_if $Image %>
             <div class="section_image">
