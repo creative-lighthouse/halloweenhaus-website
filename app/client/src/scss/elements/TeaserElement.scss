@@ -6,6 +6,7 @@ section.section--TeaserElement {
 
         .teaserelement_list {
             gap: 30px;
+            align-items: stretch;
 
             .teaseritem {
                 background-color: var(--ColorGray);
