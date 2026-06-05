@@ -4,6 +4,7 @@ namespace App\POS;
 
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\CMS\Controllers\ContentController;
+use SilverStripe\Control\Middleware\HTTPCacheControlMiddleware;
 
 /**
  * Class \App\POS\POSPageController
@@ -14,6 +15,12 @@ use SilverStripe\CMS\Controllers\ContentController;
  */
 class POSPageController extends ContentController
 {
+    protected function init()
+    {
+        parent::init();
+        HTTPCacheControlMiddleware::singleton()->disableCache();
+    }
+
     private static $allowed_actions = [];
 
     public function index(HTTPRequest $request)

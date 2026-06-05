@@ -7,6 +7,7 @@ use App\Events\Registration;
 use App\Feedback\FeedbackEntry;
 use PageController;
 use SilverStripe\Control\HTTPRequest;
+use SilverStripe\Control\Middleware\HTTPCacheControlMiddleware;
 use SilverStripe\Model\List\GroupedList;
 use SilverStripe\Model\ArrayData;
 use SilverStripe\Model\List\ArrayList;
@@ -21,6 +22,12 @@ use SilverStripe\Security\Security;
  */
 class StatisticsPageController extends PageController
 {
+
+    protected function init()
+    {
+        parent::init();
+        HTTPCacheControlMiddleware::singleton()->disableCache();
+    }
 
     private static $allowed_actions = [
         'index'
