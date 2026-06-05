@@ -7,7 +7,7 @@
                 <% else %>
                     <span class="link--button button-prev link--buttondisabled"></span>
                 <% end_if %>
-                <a class="link--button button-overview" href="$Top.Link">Übersicht</a>
+                <a class="link--button button-overview" href="$Top.Link">↑ Zur Übersicht</a>
                 <% if $NextLocation %>
                     <a class="link--button button-next" href="$NextLocation.Link"></a>
                 <% else %>

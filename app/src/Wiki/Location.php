@@ -9,6 +9,7 @@ use SilverStripe\ORM\DataObject;
 /**
  * Class \App\Wiki\Location
  *
+ * @property ?string $URLSlug
  * @property ?string $Title
  * @property ?string $Jointime
  * @property ?string $Description
@@ -21,6 +22,7 @@ use SilverStripe\ORM\DataObject;
  * @method ManyManyList<Show> Shows()
  * @method ManyManyList<MediaProject> MediaProjects()
  * @mixin PhotoGalleryExtension
+ * @mixin WikiSlugExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -101,7 +103,7 @@ class Location extends DataObject
         $wikiPage = WikiPage::get()->first();
         if($wikiPage)
         {
-            return $wikiPage->Link("location/{$this->ID}");
+            return $wikiPage->Link("location/" . ($this->URLSlug ?: $this->ID));
         } else {
             return "";
         }

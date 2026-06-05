@@ -7,7 +7,7 @@
                 <% else %>
                     <span class="link--button button-prev link--buttondisabled"></span>
                 <% end_if %>
-                <a class="link--button button-overview" href="$Top.Link">Übersicht</a>
+                <a class="link--button button-overview" href="$Top.Link">↑ Zur Übersicht</a>
                 <% if $NextCharacter %>
                     <a class="link--button button-next" href="$NextCharacter.Link"></a>
                 <% else %>
@@ -80,10 +80,14 @@
                                         <p class="character_actorlist_title">Gespielt von:</p>
                                         <div class="character_actorlist">
                                             <% loop $Children %>
-                                                <a href="$TeamMember.Link" class="character_actor">
-                                                    $TeamMember.Image
-                                                    <p>$TeamMember.Title</p>
-                                                </a>
+                                                <% if $TeamMember.Title %>
+                                                    <a href="$TeamMember.Link" class="character_actor">
+                                                        $TeamMember.Image
+                                                        <p>$TeamMember.Title</p>
+                                                    </a>
+                                                <% else %>
+                                                    <p class="character_actor unknown_actor">Unbekannt</p>
+                                                <% end_if %>
                                             <% end_loop %>
                                         </div>
                                     <% end_if %>

@@ -12,6 +12,7 @@ use SilverStripe\Model\List\GroupedList;
 /**
  * Class \App\Wiki\Show
  *
+ * @property ?string $URLSlug
  * @property int $Year
  * @property ?string $Title
  * @property ?string $Place
@@ -35,6 +36,7 @@ use SilverStripe\Model\List\GroupedList;
  * @method ManyManyList<Location> Locations()
  * @method ManyManyList<Artefact> Artefacts()
  * @mixin PhotoGalleryExtension
+ * @mixin WikiSlugExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -167,7 +169,7 @@ class Show extends DataObject
         $wikiPage = WikiPage::get()->first();
         if($wikiPage)
         {
-            return $wikiPage->Link("show/{$this->ID}");
+            return $wikiPage->Link("show/" . ($this->URLSlug ?: $this->ID));
         } else {
             return "";
         }

@@ -120,7 +120,7 @@ class TeamMember extends DataObject
 
     public function getFormattedName()
     {
-        return str_replace(' ', '_', $this->Title);
+        return str_replace(' ', '_', $this->Title ?? '');
     }
 
     public function getThumbnail()

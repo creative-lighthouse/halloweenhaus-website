@@ -29,6 +29,7 @@ section.section--WikiPage{
             background-color: var(--ColorGray);
             border-radius: 10px;
             view-transition-name: "wiki-navigation";
+            align-items: center;
 
             .link--button{
                 flex: 1;
@@ -64,6 +65,10 @@ section.section--WikiPage{
                 &.button-overview {
                     text-transform: uppercase;
                     font-weight: 600;
+
+                    &:hover {
+                        color: var(--ColorWhite);
+                    }
                 }
 
                 &.link--buttondisabled {

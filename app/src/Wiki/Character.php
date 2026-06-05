@@ -11,6 +11,7 @@ use SilverStripe\Model\List\GroupedList;
 /**
  * Class \App\Wiki\Character
  *
+ * @property ?string $URLSlug
  * @property ?string $Title
  * @property ?string $Place
  * @property ?string $Jointime
@@ -26,6 +27,7 @@ use SilverStripe\Model\List\GroupedList;
  * @method Image Image()
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @mixin PhotoGalleryExtension
+ * @mixin WikiSlugExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -121,7 +123,7 @@ class Character extends DataObject
         $wikiPage = WikiPage::get()->first();
         if($wikiPage)
         {
-            return $wikiPage->Link("character/{$this->ID}");
+            return $wikiPage->Link("character/" . ($this->URLSlug ?: $this->ID));
         } else {
             return "";
         }

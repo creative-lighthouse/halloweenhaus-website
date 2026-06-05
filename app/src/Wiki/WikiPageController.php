@@ -58,46 +58,51 @@ class WikiPageController extends PageController
 
     public function show(HTTPRequest $request)
     {
-        $showID = $request->param('ID');
-        $show = Show::get()->byID($showID);
-        return [
-            'Show' => $show,
-        ];
+        $slug = $request->param('ID');
+        $show = Show::get()->filter('URLSlug', $slug)->first();
+        if (!$show && is_numeric($slug)) {
+            $show = Show::get()->byID($slug);
+        }
+        return ['Show' => $show];
     }
 
     public function character(HTTPRequest $request)
     {
-        $characterID = $request->param('ID');
-        $character = Character::get()->byID($characterID);
-        return [
-            'Character' => $character,
-        ];
+        $slug = $request->param('ID');
+        $character = Character::get()->filter('URLSlug', $slug)->first();
+        if (!$character && is_numeric($slug)) {
+            $character = Character::get()->byID($slug);
+        }
+        return ['Character' => $character];
     }
 
     public function location(HTTPRequest $request)
     {
-        $locationID = $request->param('ID');
-        $location = Location::get()->byID($locationID);
-        return [
-            'Location' => $location,
-        ];
+        $slug = $request->param('ID');
+        $location = Location::get()->filter('URLSlug', $slug)->first();
+        if (!$location && is_numeric($slug)) {
+            $location = Location::get()->byID($slug);
+        }
+        return ['Location' => $location];
     }
 
     public function artefact(HTTPRequest $request)
     {
-        $artefactID = $request->param('ID');
-        $artefact = Artefact::get()->byID($artefactID);
-        return [
-            'Artefact' => $artefact,
-        ];
+        $slug = $request->param('ID');
+        $artefact = Artefact::get()->filter('URLSlug', $slug)->first();
+        if (!$artefact && is_numeric($slug)) {
+            $artefact = Artefact::get()->byID($slug);
+        }
+        return ['Artefact' => $artefact];
     }
 
     public function media(HTTPRequest $request)
     {
-        $mediaID = $request->param('ID');
-        $mediaProject = MediaProject::get()->byID($mediaID);
-        return [
-            'MediaProject' => $mediaProject,
-        ];
+        $slug = $request->param('ID');
+        $mediaProject = MediaProject::get()->filter('URLSlug', $slug)->first();
+        if (!$mediaProject && is_numeric($slug)) {
+            $mediaProject = MediaProject::get()->byID($slug);
+        }
+        return ['MediaProject' => $mediaProject];
     }
 }

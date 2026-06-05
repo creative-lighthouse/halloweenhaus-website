@@ -8,6 +8,7 @@ use SilverStripe\ORM\DataObject;
 /**
  * Class \App\Wiki\Artefact
  *
+ * @property ?string $URLSlug
  * @property ?string $Title
  * @property ?string $Jointime
  * @property ?string $Description
@@ -21,6 +22,7 @@ use SilverStripe\ORM\DataObject;
  * @method ManyManyList<Show> Shows()
  * @method ManyManyList<MediaProject> MediaProjects()
  * @mixin PhotoGalleryExtension
+ * @mixin WikiSlugExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -107,7 +109,7 @@ class Artefact extends DataObject
         $wikiPage = WikiPage::get()->first();
         if($wikiPage)
         {
-            return $wikiPage->Link("artefact/{$this->ID}");
+            return $wikiPage->Link("artefact/" . ($this->URLSlug ?: $this->ID));
         } else {
             return "";
         }

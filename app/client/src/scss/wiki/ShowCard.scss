@@ -1,5 +1,6 @@
 .showcard {
     position: relative;
+    transition: transform 0.2s ease;
 
     &__link {
         position: absolute;
@@ -15,6 +16,7 @@
         aspect-ratio: 210/297;
         transition: transform 0.3s ease-in-out;
         background-color: var(--ColorBlack);
+        pointer-events: none;
 
         img{
             width: 100%;
@@ -31,6 +33,15 @@
 
         .showcard_title{
             font-weight: 500;
+        }
+    }
+
+    .character_actorlist_title{
+        margin: 10px 0 2px 0;
+
+        &.title--animatronic {
+            font-size: 12px;
+            opacity: 0.5;
         }
     }
 
@@ -53,6 +64,16 @@
             text-decoration: none;
             color: var(--ColorWhite);
             transition: background-color 0.15s ease;
+            margin: 0;
+
+            &.unknown_actor {
+                opacity: 0.3;
+                pointer-events: none;
+
+                &:hover {
+                    background-color: var(--ColorGray);
+                }
+            }
 
             &:hover {
                 background-color: var(--ColorPrimary);
@@ -80,6 +101,7 @@
     }
 
     &:hover{
+        transform: scale(1.02);
         .showcard_image{
             transform: scale(1.05) translateY(-5px);
         }

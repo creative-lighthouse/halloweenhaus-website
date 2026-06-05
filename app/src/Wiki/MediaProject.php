@@ -13,6 +13,7 @@ use SilverStripe\Model\List\GroupedList;
 /**
  * Class \App\Wiki\MediaProject
  *
+ * @property ?string $URLSlug
  * @property ?string $Title
  * @property ?string $Place
  * @property ?string $Description
@@ -26,6 +27,7 @@ use SilverStripe\Model\List\GroupedList;
  * @method ManyManyList<TeamMember> TeamMembers()
  * @method ManyManyList<Location> Locations()
  * @method ManyManyList<Artefact> Artefacts()
+ * @mixin WikiSlugExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -117,7 +119,7 @@ class MediaProject extends DataObject
         $wikiPage = WikiPage::get()->first();
         if($wikiPage)
         {
-            return $wikiPage->Link("media/{$this->ID}");
+            return $wikiPage->Link("media/" . ($this->URLSlug ?: $this->ID));
         } else {
             return "";
         }
