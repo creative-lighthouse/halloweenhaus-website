@@ -14,16 +14,35 @@
                 <% if $Character.ShortDescription %><p class="charactercard_shortdescription">$Character.ShortDescription</p><% end_if %>
                 <% if $Character.Jointime %><p class="charactercard_jointime"><b>Erstauftritt:</b> $Character.Jointime</p><% end_if %>
                 <% if $Character.Type == 'animatronic' %>
-                    <p class="character_actorlist_title title--animatronic">Animatronik</p>
+                    <p class="character_actorlist_title title--animatronic">Animatronic</p>
+                    <% if $Top.Children.Count > 0 %>
+                        <p class="character_actorlist_title">Umgesetzt von:</p>
+                        <div class="character_actorlist">
+                            <% loop $Top.Children %>
+                                <% if $TeamMember.Title %>
+                                    <a href="$TeamMember.Link" class="character_actor">
+                                        $TeamMember.Image
+                                        <p>$TeamMember.Title</p>
+                                    </a>
+                                <% else %>
+                                    <p class="character_actor unknown_actor">Unbekannt</p>
+                                <% end_if %>
+                            <% end_loop %>
+                        </div>
+                    <% end_if %>
                 <% else %>
                     <% if $Top.Children.Count > 0 %>
                         <p class="character_actorlist_title">Gespielt von:</p>
                         <div class="character_actorlist">
                             <% loop $Top.Children %>
-                                <a href="$TeamMember.Link" class="character_actor">
-                                    $TeamMember.Image
-                                    <p>$TeamMember.Title</p>
-                                </a>
+                                <% if $TeamMember.Title %>
+                                    <a href="$TeamMember.Link" class="character_actor">
+                                        $TeamMember.Image
+                                        <p>$TeamMember.Title</p>
+                                    </a>
+                                <% else %>
+                                    <p class="character_actor unknown_actor">Unbekannt</p>
+                                <% end_if %>
                             <% end_loop %>
                         </div>
                     <% end_if %>

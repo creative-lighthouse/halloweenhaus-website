@@ -76,20 +76,40 @@
                                         <h2 class="showcard_dates">$Children.First.Parent.Year</h2>
                                         <h3 class="showcard_title">$Children.First.Parent.Title</h3>
                                     </div>
-                                    <% if $Children.Count > 0 %>
-                                        <p class="character_actorlist_title">Gespielt von:</p>
-                                        <div class="character_actorlist">
-                                            <% loop $Children %>
-                                                <% if $TeamMember.Title %>
-                                                    <a href="$TeamMember.Link" class="character_actor">
-                                                        $TeamMember.Image
-                                                        <p>$TeamMember.Title</p>
-                                                    </a>
-                                                <% else %>
-                                                    <p class="character_actor unknown_actor">Unbekannt</p>
-                                                <% end_if %>
-                                            <% end_loop %>
-                                        </div>
+
+                                    <% if $Up.Type == 'animatronic' %>
+                                        <p class="character_actorlist_title title--animatronic">Animatronic</p>
+                                        <% if $Children.Count > 0 %>
+                                            <p class="character_actorlist_title">Umgesetzt von:</p>
+                                            <div class="character_actorlist">
+                                                <% loop $Children %>
+                                                    <% if $TeamMember.Title %>
+                                                        <a href="$TeamMember.Link" class="character_actor">
+                                                            $TeamMember.Image
+                                                            <p>$TeamMember.Title</p>
+                                                        </a>
+                                                    <% else %>
+                                                        <p class="character_actor unknown_actor">Unbekannt</p>
+                                                    <% end_if %>
+                                                <% end_loop %>
+                                            </div>
+                                        <% end_if %>
+                                    <% else %>
+                                        <% if $Children.Count > 0 %>
+                                            <p class="character_actorlist_title">Gespielt von:</p>
+                                            <div class="character_actorlist">
+                                                <% loop $Children %>
+                                                    <% if $TeamMember.Title %>
+                                                        <a href="$TeamMember.Link" class="character_actor">
+                                                            $TeamMember.Image
+                                                            <p>$TeamMember.Title</p>
+                                                        </a>
+                                                    <% else %>
+                                                        <p class="character_actor unknown_actor">Unbekannt</p>
+                                                    <% end_if %>
+                                                <% end_loop %>
+                                            </div>
+                                        <% end_if %>
                                     <% end_if %>
                                 </div>
                             <% end_loop %>

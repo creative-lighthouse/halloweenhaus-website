@@ -9,11 +9,11 @@
     transition: transform 0.2s ease-in-out;
 
     .mediaprojectcard_image {
-        aspect-ratio: 4/3;
+        aspect-ratio: 16/10;
         border-radius: 10px;
         overflow: hidden;
         mask-image: url("../../icons/media_mask.png");
-        mask-size: cover;
+        mask-size: 100% 100%;
         background-color: var(--ColorGray);
 
         img{
@@ -25,7 +25,11 @@
     }
 
     .mediaprojectcard_name{
-        margin: 10px 0 0 0;
+        margin: 20px 0 0 0;
+    }
+
+    .mediaprojectcard_publicationdate {
+        margin-bottom: 5px;
     }
 
     &:hover{
