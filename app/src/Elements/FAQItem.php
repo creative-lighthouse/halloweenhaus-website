@@ -16,8 +16,8 @@ use SilverStripe\Security\Permission;
  * @method FAQElement Parent()
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @mixin PhotoGalleryExtension
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
@@ -61,6 +61,16 @@ class FAQItem extends DataObject
         $fields->removeFieldFromTab("Root.Main", "ParentID");
         $fields->removeFieldFromTab("Root.Main", "SortOrder");
         return $fields;
+    }
+
+    protected function onBeforeWrite(): void
+    {
+        parent::onBeforeWrite();
+
+        if (!$this->isInDB()) {
+            $max = FAQItem::get()->filter('ParentID', $this->ParentID)->max('SortOrder');
+            $this->SortOrder = $max !== null ? (int)$max + 1 : 1;
+        }
     }
 
     public function canView($member = null)

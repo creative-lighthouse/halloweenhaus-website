@@ -10,8 +10,8 @@ use SilverStripe\Forms\DropdownField;
  *
  * @property int $Height
  * @property ?string $Variant
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

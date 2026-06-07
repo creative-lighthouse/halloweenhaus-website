@@ -9,8 +9,8 @@ use DNADesign\Elemental\Models\BaseElement;
  * Class \App\Elements\TeaserElement
  *
  * @property ?string $Text
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

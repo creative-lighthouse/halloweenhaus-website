@@ -29,8 +29,8 @@ use SilverStripe\Forms\DropdownField;
  * @method ManyManyList<Show> HelpedShows()
  * @method ManyManyList<MediaProject> MediaProjects()
  * @mixin PhotoGalleryExtension
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

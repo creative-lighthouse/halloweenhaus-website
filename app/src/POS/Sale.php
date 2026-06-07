@@ -12,8 +12,8 @@ use SilverStripe\ORM\DataObject;
  * @property float $TotalPrice
  * @property ?string $SaleTime
  * @method DataList<ProductSale> ProductSales()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

@@ -23,8 +23,8 @@ use SilverStripe\ORM\DataObject;
  * @method ManyManyList<MediaProject> MediaProjects()
  * @mixin PhotoGalleryExtension
  * @mixin WikiSlugExtension
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
