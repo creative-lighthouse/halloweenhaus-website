@@ -24,7 +24,9 @@
                                 <div class="faq_gallery">
                                     <% loop PhotoGalleryImages %>
                                         <div class="item_gallery_image">
-                                            <a data-gallery="gallery" data-glightbox="description: $Title" data-caption="$Title" href="$Image.FitMax(2000,2000).URL"><img src="$Image.FocusFill(150,150).URL" /></a>
+                                            <a href="$Image.AbsoluteURL" data-gallery="gallery" data-galleryid="FAQElement-$Up.ID" data-glightbox="$Title" data-caption="$Title" class="section_image_lightbox">
+                                                $Image.FocusFill(150,150)
+                                            </a>
                                         </div>
                                     <% end_loop %>
                                 </div>
