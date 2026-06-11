@@ -1,6 +1,8 @@
 @use "../../variables" as *;
 
 section.section--TeamDetails {
+    margin-top: 70px;
+
     .section_content{
         display: flex;
         flex-direction: column;
@@ -71,6 +73,11 @@ section.section--TeamDetails {
 
         .teammember_description{
             width: 100%;
+            max-width: 800px;
+
+            h2 {
+                margin-bottom: 5px;
+            }
         }
 
         .social_icons{
