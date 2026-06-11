@@ -34,6 +34,10 @@
         gap: 16px;
         padding: 24px;
         text-align: center;
+
+        @include media(max-medium) {
+            padding: 5px;
+        }
     }
 
     &__play {
@@ -62,6 +66,10 @@
         opacity: 0.75;
         line-height: 1.5;
         margin-bottom: 0;
+
+        @include media(max-medium) {
+            font-size: 0.7rem;
+        }
     }
 
     &__btn {
