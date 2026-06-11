@@ -29,7 +29,11 @@
                         <div class="teammember_role_item">
                             <a href="$Character.Link" class="teammember_role_character no_deco">
                                 <div class="teammember_role_character_image">
-                                    $Character.Image.FocusFill(300,300)
+                                    <% if $RoleImage %>
+                                        $RoleImage.FocusFill(300,300)
+                                    <% else %>
+                                        $Character.Image.FocusFill(300,300)
+                                    <% end_if %>
                                 </div>
                                 <p class="teammember_role_character_name">$Character.Title</p>
                             </a>
