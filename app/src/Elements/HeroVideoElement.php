@@ -15,7 +15,6 @@ use DNADesign\Elemental\Models\BaseElement;
  * @property ?string $DateFrameSubText
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
- * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

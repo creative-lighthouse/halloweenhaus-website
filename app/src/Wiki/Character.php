@@ -28,8 +28,8 @@ use SilverStripe\Model\List\GroupedList;
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @mixin PhotoGalleryExtension
  * @mixin WikiSlugExtension
- * @mixin AssetControlExtension
  * @mixin FileLinkTracking
+ * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
