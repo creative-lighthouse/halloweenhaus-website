@@ -57,6 +57,11 @@
             color: var(--ColorWhite);
             margin-left: 4px;
         }
+
+        @include media(max-medium) {
+            width: 40px;
+            height: 40px;
+        }
     }
 
     &__notice {
