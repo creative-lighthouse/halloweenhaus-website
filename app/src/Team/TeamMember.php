@@ -153,9 +153,8 @@ class TeamMember extends DataObject
             ->leftJoin('Show', '"ShowCharacter"."ParentID" = "Show"."ID"')
             ->leftJoin('Characters', '"ShowCharacter"."CharacterID" = "Characters"."ID"')
             ->alterDataQuery(function (\SilverStripe\ORM\DataQuery $query) {
-                $query->sort('"Show"."Year"', 'DESC', true);
-                $query->sort('"Characters"."Title"', 'ASC');
-                return $query;
+                return $query->sort('"Characters"."Title"', 'ASC')
+                ->sort('"Show"."Year"', 'DESC', true);
             });
     }
 
