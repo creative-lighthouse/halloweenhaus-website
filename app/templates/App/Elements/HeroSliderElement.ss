@@ -17,9 +17,14 @@
                 <% end_if %>
             </div>
         </div>
-        <% if $DateFrame %>
+        <% if $DateFrameTitle || $DateFrameText || $DateFrameSubText %>
             <div class="hero_dateframe">
-                $DateFrame.FitMax(400,400)
+                <img src="../_resources/app/client/images/DekoFrame.svg" alt="Date Frame Background" class="dateframe_background">
+                <div class="dateframe_text_wrap">
+                    <h2 class="dateframe_title">$DateFrameTitle</h2>
+                    <p class="dateframe_text">$DateFrameText</p>
+                    <p class="dateframe_subtext">$DateFrameSubText</p>
+                </div>
             </div>
         <% end_if %>
     </div>

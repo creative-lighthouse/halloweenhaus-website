@@ -1,0 +1,109 @@
+@use "../variables.scss" as *;
+
+.hero_dateframe {
+    position: absolute;
+    z-index: 5;
+    bottom: -125px;
+    height: 250px;
+    width: 800px;
+    max-width: 80vw;
+    left: 50%;
+    transform-origin: center;
+    transform: translateX(-50%);
+    min-width: 300px;
+    animation: float 30s ease-in-out infinite;
+
+    .dateframe_text_wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        text-align: center;
+        color: #6A482A;
+        padding: 40px 20px 20px;
+        font-family: "TheReconLegend";
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        aspect-ratio: 2 / 1;
+        left: 50%;
+        transform: translateX(-50%);
+
+        .dateframe_title {
+            font-family: "Dracutaz";
+            width: 90%;
+            border-bottom: 2px solid #6A482A;
+            line-height: 0.8;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 10px;
+            font-size: clamp(80px, 9vw, 80px);
+
+            @include media(max-medium) {
+                font-size: clamp(40px, 15vw, 45px);
+            padding-bottom: 5px;
+            }
+        }
+
+        .dateframe_text {
+            margin: 0;
+            padding-top: clamp(5px, 1.5vw, 15px);
+            line-height: 0.8;
+            font-size: clamp(40px, 5vw, 50px);
+
+            @include media(max-medium) {
+                font-size: clamp(24px, 3vw, 32px);
+            }
+        }
+
+        .dateframe_subtext {
+            margin: 0;
+            line-height: 1.2;
+            font-size: clamp(20px, 2vw, 24px);
+
+            @include media(max-medium) {
+                font-size: clamp(14px, 1.5vw, 18px);
+            }
+        }
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    @include media(max-medium) {
+        height: 140px;
+        bottom: -70px;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translate(-50%, 0) rotate(-1deg);
+    }
+    15% {
+        transform: translate(-50%, -8px) rotate(0.4deg);
+    }
+    30% {
+        transform: translate(-50%, -10px) rotate(0.1deg);
+    }
+    45% {
+        transform: translate(-50%, -5px) rotate(-0.6deg);
+    }
+    60% {
+        transform: translate(-50%, -2px) rotate(0.8deg);
+    }
+    75% {
+        transform: translate(-50%, 8px) rotate(-1.9deg);
+    }
+    88% {
+        transform: translate(-50%, -4px) rotate(0.2deg);
+    }
+    100% {
+        transform: translate(-50%, 0) rotate(-1deg);
+    }
+}

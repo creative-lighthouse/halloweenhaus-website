@@ -5,9 +5,12 @@
         <% else %>
             $EmbedCode.Raw
         <% end_if %>
-        <% if $DateFrame %>
+        <% if $DateFrameTitle || $DateFrameText || $DateFrameSubText %>
             <div class="hero_dateframe">
-                $DateFrame
+                <img src="../_resources/app/client/images/DekoFrame.svg" alt="Date Frame Background" class="dateframe_background">
+                <h1 class="dateframe_title">$DateFrameTitle</h1>
+                <p class="dateframe_text">$DateFrameText</p>
+                <p class="dateframe_subtext">$DateFrameSubText</p>
             </div>
         <% end_if %>
     </div>

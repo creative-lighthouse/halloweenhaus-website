@@ -14,8 +14,9 @@ use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
  * Class \App\Elements\HeroSliderElement
  *
  * @property bool $UseRandomOrder
- * @property int $DateFrameID
- * @method Image DateFrame()
+ * @property ?string $DateFrameTitle
+ * @property ?string $DateFrameText
+ * @property ?string $DateFrameSubText
  * @method DataList<HeroSliderItem> HeroSliderItems()
  * @mixin AssetControlExtension
  * @mixin FileLinkTracking
@@ -27,13 +28,12 @@ class HeroSliderElement extends BaseElement
 {
     private static $db = [
         "UseRandomOrder" => "Boolean",
+        "DateFrameTitle" => "Varchar(255)",
+        "DateFrameText" => "Varchar(255)",
+        "DateFrameSubText" => "Varchar(255)",
     ];
 
     private static $field_labels = [
-    ];
-
-    private static $has_one = [
-        "DateFrame" => Image::class,
     ];
 
     private static $has_many = [
@@ -41,7 +41,7 @@ class HeroSliderElement extends BaseElement
     ];
 
     private static $owns = [
-        "DateFrame",
+        "HeroSliderItems",
     ];
 
     public function inlineEditable()
