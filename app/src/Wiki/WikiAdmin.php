@@ -2,8 +2,9 @@
 
 namespace App\Wiki;
 
-use App\Wiki\Show;
 use App\Wiki\MediaProject;
+use App\Wiki\Show;
+use App\Wiki\WikiMusic;
 use SilverStripe\Admin\ModelAdmin;
 use SilverStripe\Forms\GridField\GridField;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
@@ -20,6 +21,7 @@ class WikiAdmin extends ModelAdmin
         Location::class,
         Artefact::class,
         MediaProject::class,
+        WikiMusic::class,
     );
 
     private static $url_segment = "wiki";

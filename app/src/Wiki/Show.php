@@ -33,6 +33,7 @@ use SilverStripe\Model\List\GroupedList;
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @method DataList<ShowCharacter> ShowCharacters()
  * @method ManyManyList<TeamMember> BackstageHelpers()
+ * @method ManyManyList<WikiMusic> Music()
  * @method ManyManyList<Location> Locations()
  * @method ManyManyList<Artefact> Artefacts()
  * @mixin PhotoGalleryExtension
@@ -72,6 +73,7 @@ class Show extends DataObject
 
     private static $many_many = [
         "BackstageHelpers" => TeamMember::class,
+        "Music" => WikiMusic::class,
     ];
 
     private static $belongs_many_many = [

@@ -23,6 +23,7 @@ class WikiPageController extends PageController
         'artefact',
         'shows',
         'media',
+        'music',
     ];
 
     public function index(HTTPRequest $request)
@@ -104,5 +105,18 @@ class WikiPageController extends PageController
             $mediaProject = MediaProject::get()->byID($slug);
         }
         return ['MediaProject' => $mediaProject];
+    }
+
+    public function music(HTTPRequest $request = null)
+    {
+        if (!$request) {
+            return WikiMusic::get()->sort('PublicationDate DESC');
+        }
+        $slug = $request->param('ID');
+        $music = WikiMusic::get()->filter('URLSlug', $slug)->first();
+        if (!$music && is_numeric($slug)) {
+            $music = WikiMusic::get()->byID($slug);
+        }
+        return ['WikiMusic' => $music];
     }
 }

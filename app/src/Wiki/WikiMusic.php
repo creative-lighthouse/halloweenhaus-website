@@ -2,84 +2,78 @@
 
 namespace App\Wiki;
 
-use App\Team\TeamMember;
-use SilverStripe\Assets\Image;
-use App\Wiki\ArtefactOwnership;
+use App\Wiki\Artefact;
+use App\Wiki\Character;
+use App\Wiki\Location;
+use App\Wiki\MediaProject;
+use SilverStripe\Assets\File;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\Forms\DropdownField;
-use SilverStripe\LinkField\Models\Link;
-use SilverStripe\Model\List\GroupedList;
 
 /**
- * Class \App\Wiki\MediaProject
+ * Class \App\Wiki\WikiMusic
  *
- * @property ?string $URLSlug
  * @property ?string $Title
- * @property ?string $Place
- * @property ?string $Description
  * @property ?string $PublicationDate
- * @property ?string $VideoLink
- * @property int $SortField
+ * @property ?string $Author
+ * @property ?string $ShortDescription
+ * @property ?string $Description
+ * @property ?string $MusicVideoLink
  * @property ?string $GlossaryTerms
- * @property int $ImageID
- * @method Image Image()
- * @method DataList<Link> Links()
- * @method ManyManyList<TeamMember> TeamMembers()
- * @method ManyManyList<WikiMusic> Music()
+ * @property ?string $URLSlug
+ * @property int $SoundFileID
+ * @method File SoundFile()
  * @method ManyManyList<Location> Locations()
  * @method ManyManyList<Artefact> Artefacts()
- * @mixin WikiSlugExtension
+ * @method ManyManyList<Character> Characters()
+ * @method ManyManyList<MediaProject> MediaProjects()
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
  */
-class MediaProject extends DataObject
+class WikiMusic extends DataObject
 {
     private static $db = [
         "Title" => "Varchar(255)",
-        "Place" => "Varchar(255)",
-        "Description" => "HTMLText",
         "PublicationDate" => "Date",
-        "VideoLink" => "Varchar(255)",
-        "SortField" => "Int",
+        "Author" => "Varchar(255)",
+        "ShortDescription" => "Varchar(255)",
+        "Description" => "HTMLText",
+        "MusicVideoLink" => "Varchar(255)",
         "GlossaryTerms" => "Varchar(500)",
+        "URLSlug" => "Varchar(255)",
     ];
 
     private static $has_one = [
-        "Image" => Image::class,
-    ];
-
-    private static $has_many = [
-        "Links" => Link::class,
+        "SoundFile" => File::class,
     ];
 
     private static $owns = [
-        "Image",
-        "Links",
-    ];
-
-    private static $many_many = [
-        "TeamMembers" => TeamMember::class,
-        "Music" => WikiMusic::class,
+        "SoundFile",
     ];
 
     private static $belongs_many_many = [
         "Locations" => Location::class,
         "Artefacts" => Artefact::class,
+        "Characters" => Character::class,
+        "MediaProjects" => MediaProject::class,
     ];
 
-    private static $default_sort = "PublicationDate DESC";
+    private static $default_sort = "PublicationDate DESC, Title ASC";
 
     private static $field_labels = [
         "Title" => "Titel",
-        "Place" => "Veröffentlichungsort",
         "Description" => "Beschreibung",
         "PublicationDate" => "Veröffentlichungsdatum",
-        "VideoLink" => "Video-Link",
-        "TeamMembers" => "Teammitglieder",
-        "GlossaryTerms" => "Glossar-Begriffe (Semikolon-getrennt)",
+        "MusicEmbed" => "Musik-Einbettung",
+        "Author" => "Autor",
+        "GlossaryTerms" => "Glossarbegriffe",
+        "SoundFile" => "Musikdatei",
+        "Locations" => "Orte",
+        "Artefacts" => "Artefakte",
+        "Characters" => "Charaktere",
+        "MediaProjects" => "Medienprojekte",
     ];
 
     private static $summary_fields = [
@@ -89,16 +83,16 @@ class MediaProject extends DataObject
 
     private static $searchable_fields = [
         "Title",
-        "Place",
         "PublicationDate",
+        "GlossaryTerms",
     ];
 
-    private static $table_name = "MediaProjects";
+    private static $table_name = "WikiMusic";
 
-    private static $singular_name = "Medienprojekt";
-    private static $plural_name = "Medienprojekte";
+    private static $singular_name = "Musikstück";
+    private static $plural_name = "Musikstücke";
 
-    private static $url_segment = "mediaproject";
+    private static $url_segment = "music";
 
     public function getCMSFields()
     {
@@ -121,20 +115,20 @@ class MediaProject extends DataObject
         $wikiPage = WikiPage::get()->first();
         if($wikiPage)
         {
-            return $wikiPage->Link("media/" . ($this->URLSlug ?: $this->ID));
+            return $wikiPage->Link("music/" . ($this->URLSlug ?: $this->ID));
         } else {
             return "";
         }
     }
 
-    public function NextMediaProject()
+    public function NextMusic()
     {
-        return MediaProject::get()->filter('PublicationDate:GreaterThan', $this->PublicationDate)->sort('PublicationDate', 'ASC')->first();
+        return WikiMusic::get()->filter('PublicationDate:GreaterThan', $this->PublicationDate)->sort('PublicationDate', 'ASC')->first();
     }
 
-    public function PreviousMediaProject()
+    public function PreviousMusic()
     {
-        return MediaProject::get()->filter('PublicationDate:LessThan', $this->PublicationDate)->sort('PublicationDate', 'DESC')->first();
+        return WikiMusic::get()->filter('PublicationDate:LessThan', $this->PublicationDate)->sort('PublicationDate', 'DESC')->first();
     }
 
     public function getRenderPublicationDate()

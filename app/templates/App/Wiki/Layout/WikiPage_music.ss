@@ -1,0 +1,66 @@
+<section class="section--WikiPage showoverview--itemdetails">
+    <% with $Music %>
+        <div class="section_content">
+            <div class="wiki-navigation">
+                <% if $PrevMusic %>
+                    <a class="link--button button-prev" href="$PrevMusic.Link"></a>
+                <% else %>
+                    <span class="link--button button-prev link--buttondisabled"></span>
+                <% end_if %>
+                <a class="link--button button-overview" href="$Top.Link">↑ Zur Übersicht</a>
+                <% if $NextMusic %>
+                    <a class="link--button button-next" href="$NextMusic.Link"></a>
+                <% else %>
+                    <span class="link--button button-next link--buttondisabled"></span>
+                <% end_if %>
+            </div>
+            <div class="showsection showsection--details" style="view-transition-name: mediacard-$ID;">
+                <% if $VideoLink %>
+                    <div class="media_video" style="max-width: $Width;">
+                        <% include YoutubeVideo VideoLink=$VideoLink %>
+                    </div>
+                <% else_if $Image %>
+                    <a href="$Image.Url" data-gallery="gallery" data-galleryid="mainimage" class="media_image" style="view-transition-name: mediaimage-$ID;">
+                        $Image.FocusFill(400,300)
+                    </a>
+                <% else %>
+                    <br>
+                <% end_if %>
+                <h1 class="media_title" style="view-transition-name: mediatitle-$ID;">$Title</h1>
+                <p class="media_publicationdate">Veröffentlicht am $RenderPublicationDate</p>
+                <div class="media_description glossarizable">
+                    $Description
+                </div>
+            </div>
+            <% if $PhotoGalleryImages.Count > 0 %>
+                <div class="showsection showsection--gallery">
+                    <h2>Galerie</h2>
+                    <div class="imageswiper swiper--showsoverview">
+                        <div class="swiper-wrapper">
+                            <% loop $PhotoGalleryImages %>
+                                <a href="$Image.Url" data-gallery="gallery" data-galleryid="mediagallery" <% if $Up.Images.Count <= 1 %>data-singleimage=true<% end_if %> <% if $Title %>data-description="$Title"<% end_if %> class="swiper-slide imagecard">
+                                    $Image.FocusFill(500, 300)
+                                </a>
+                            <% end_loop %>
+                        </div>
+                    </div>
+                </div>
+            <% end_if %>
+            <% if $TeamMembers.Count > 0 %>
+                <div class="showsection showsection--teammembers">
+                    <h2>Beteiligte Teammitglieder</h2>
+                    <div class="teammembersgrid">
+                        <% loop $TeamMembers %>
+                            <a href="$Link" class="teammembercard" style="view-transition-name: teammembercard-$ID;">
+                                <div class="teammembercard_image" style="view-transition-name: teammemberimage-$ID;">
+                                    $Image.FocusFill(200,200)
+                                </div>
+                                <h3 class="teammembercard_title">$Title</h3>
+                            </a>
+                        <% end_loop %>
+                    </div>
+                </div>
+            <% end_if %>
+        </div>
+    <% end_with %>
+</section>

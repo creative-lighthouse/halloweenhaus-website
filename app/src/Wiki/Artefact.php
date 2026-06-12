@@ -21,6 +21,7 @@ use SilverStripe\ORM\DataObject;
  * @method DataList<ArtefactOwnership> ArtefactOwnerships()
  * @method ManyManyList<Show> Shows()
  * @method ManyManyList<MediaProject> MediaProjects()
+ * @method ManyManyList<WikiMusic> Music()
  * @mixin PhotoGalleryExtension
  * @mixin WikiSlugExtension
  * @mixin FileLinkTracking
@@ -43,6 +44,7 @@ class Artefact extends DataObject
     private static $many_many = [
         "Shows" => Show::class,
         "MediaProjects" => MediaProject::class,
+        "Music" => WikiMusic::class,
     ];
 
     private static $has_one = [

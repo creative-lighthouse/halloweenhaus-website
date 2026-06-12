@@ -26,6 +26,7 @@ use SilverStripe\Model\List\GroupedList;
  * @property int $ImageID
  * @method Image Image()
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
+ * @method ManyManyList<WikiMusic> Music()
  * @mixin PhotoGalleryExtension
  * @mixin WikiSlugExtension
  * @mixin FileLinkTracking
@@ -54,8 +55,14 @@ class Character extends DataObject
         "Image" => Image::class,
     ];
 
+    private static $many_many = [
+        "Music" => WikiMusic::class,
+    ];
+
     private static $belongs_many = [
-        "ShowCharacters" => ShowCharacter::class
+        "ShowCharacters" => ShowCharacter::class,
+        "MediaProjects" => MediaProject::class,
+        "Shows" => Show::class,
     ];
 
     private static $owns = [
