@@ -5,10 +5,13 @@ import "./posSystem";
 import "./statisticsPage";
 import "./glossar.js";
 import { initYoutubeConsent } from "./youtubeConsent.js";
+import { initAudioPlayers, initYoutubeAudioPlayers } from "./audioPlayer.js";
 
 document.addEventListener("DOMContentLoaded", function (event) {
 
     initYoutubeConsent();
+    initAudioPlayers();
+    initYoutubeAudioPlayers();
 
     const menu_button = document.querySelector('[data-behaviour="toggle-menu"]');
 

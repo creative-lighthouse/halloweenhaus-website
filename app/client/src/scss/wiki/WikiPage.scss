@@ -4,6 +4,8 @@
 @use "ArtefactCard";
 @use "MediaprojectCard";
 @use "ShowCard";
+@use "MusicCard";
+@use "AudioPlayer";
 
 section.section--WikiPage{
     margin-top: 110px;
@@ -258,6 +260,28 @@ section.section--WikiPage{
                     display: grid;
                     grid-template-columns: repeat(3, calc(1fr / 3));
                     gap: 20px;
+
+                    @include media(max-medium) {
+                        grid-template-columns: repeat(2, calc(100% / 2 - 20px / 2));
+                    }
+
+                    @include media(max-smartphone) {
+                        grid-template-columns: repeat(1, calc(100% / 1));
+                    }
+                }
+            }
+
+            &.showsection--music{
+                padding: 20px;
+
+                .musicgrid{
+                    display: grid;
+                    grid-template-columns: repeat(2, calc(1fr / 2));
+                    gap: 20px;
+
+                    @include media(max-medium) {
+                    grid-template-columns: 1fr;
+                    }
                 }
             }
         }

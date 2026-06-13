@@ -1,0 +1,29 @@
+.musiccard {
+    padding: 10px;
+    background-color: var(--ColorBackground);
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--ColorWhite);
+    position: relative;
+    overflow: hidden;
+
+    .musiccard_publicationdate {
+        margin: 0;
+        font-size: 12px;
+    }
+
+    .musiccard_icon {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        aspect-ratio: 1;
+        height: 80px;
+        opacity: 0.1;
+        transition: opacity 0.15s ease;
+        color: var(--ColorWhite);
+    }
+}
