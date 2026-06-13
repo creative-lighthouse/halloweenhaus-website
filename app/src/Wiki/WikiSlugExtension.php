@@ -8,7 +8,7 @@ use SilverStripe\Forms\FieldList;
 /**
  * Class \App\Wiki\WikiSlugExtension
  *
- * @property Artefact|Character|Location|MediaProject|Show|WikiSlugExtension $owner
+ * @property Artefact|Character|Location|MediaProject|Show|WikiMusic|WikiSlugExtension $owner
  * @property ?string $URLSlug
  */
 class WikiSlugExtension extends Extension

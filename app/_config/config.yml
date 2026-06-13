@@ -77,6 +77,10 @@ App\Wiki\MediaProject:
   extensions:
     - App\Wiki\WikiSlugExtension
 
+App\Wiki\WikiMusic:
+  extensions:
+    - App\Wiki\WikiSlugExtension
+
 SilverStripe\LinkField\Models\Link:
   extensions:
     - App\Extensions\LinkExtension

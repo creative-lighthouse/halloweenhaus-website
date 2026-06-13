@@ -1,5 +1,5 @@
 <section class="section--WikiPage showoverview--itemdetails">
-    <% with $Music %>
+    <% with $WikiMusic %>
         <div class="section_content">
             <div class="wiki-navigation">
                 <% if $PrevMusic %>
@@ -15,19 +15,17 @@
                 <% end_if %>
             </div>
             <div class="showsection showsection--details" style="view-transition-name: mediacard-$ID;">
-                <% if $VideoLink %>
-                    <div class="media_video" style="max-width: $Width;">
-                        <% include YoutubeVideo VideoLink=$VideoLink %>
-                    </div>
-                <% else_if $Image %>
-                    <a href="$Image.Url" data-gallery="gallery" data-galleryid="mainimage" class="media_image" style="view-transition-name: mediaimage-$ID;">
-                        $Image.FocusFill(400,300)
-                    </a>
-                <% else %>
-                    <br>
-                <% end_if %>
                 <h1 class="media_title" style="view-transition-name: mediatitle-$ID;">$Title</h1>
                 <p class="media_publicationdate">Veröffentlicht am $RenderPublicationDate</p>
+                <% if $SoundFile %>
+                    <div class="wikimusic_audioplayer">
+                        <% include Includes/AudioPlayer SoundFile=$SoundFile %>
+                    </div>
+                <% else_if $MusicVideoLink %>
+                    <div class="wikimusic_audioplayer">
+                        <% include Includes/YoutubeAudioPlayer MusicVideoLink=$MusicVideoLink %>
+                    </div>
+                <% end_if %>
                 <div class="media_description glossarizable">
                     $Description
                 </div>

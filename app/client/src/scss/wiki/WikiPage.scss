@@ -325,6 +325,16 @@ section.section--WikiPage{
                 }
             }
 
+            .wikimusic_audioplayer {
+                display: flex;
+                justify-content: center;
+                margin: 20px 0;
+
+                .audioplayer-button {
+                    cursor: pointer;
+                }
+            }
+
             .media_video {
                 aspect-ratio: 16 / 9;
             }

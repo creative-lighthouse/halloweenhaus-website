@@ -12,6 +12,7 @@ use SilverStripe\ORM\DataObject;
 /**
  * Class \App\Wiki\WikiMusic
  *
+ * @property ?string $URLSlug
  * @property ?string $Title
  * @property ?string $PublicationDate
  * @property ?string $Author
@@ -19,13 +20,13 @@ use SilverStripe\ORM\DataObject;
  * @property ?string $Description
  * @property ?string $MusicVideoLink
  * @property ?string $GlossaryTerms
- * @property ?string $URLSlug
  * @property int $SoundFileID
  * @method File SoundFile()
  * @method ManyManyList<Location> Locations()
  * @method ManyManyList<Artefact> Artefacts()
  * @method ManyManyList<Character> Characters()
  * @method ManyManyList<MediaProject> MediaProjects()
+ * @mixin WikiSlugExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -42,7 +43,6 @@ class WikiMusic extends DataObject
         "Description" => "HTMLText",
         "MusicVideoLink" => "Varchar(255)",
         "GlossaryTerms" => "Varchar(500)",
-        "URLSlug" => "Varchar(255)",
     ];
 
     private static $has_one = [
@@ -126,7 +126,7 @@ class WikiMusic extends DataObject
         return WikiMusic::get()->filter('PublicationDate:GreaterThan', $this->PublicationDate)->sort('PublicationDate', 'ASC')->first();
     }
 
-    public function PreviousMusic()
+    public function PrevMusic()
     {
         return WikiMusic::get()->filter('PublicationDate:LessThan', $this->PublicationDate)->sort('PublicationDate', 'DESC')->first();
     }
