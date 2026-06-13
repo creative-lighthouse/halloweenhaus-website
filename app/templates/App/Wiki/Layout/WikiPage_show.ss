@@ -128,6 +128,16 @@
                     </div>
                 </div>
             <% end_if %>
+            <% if $Music.Count > 0 %>
+                <div class="showsection showsection--music">
+                    <h2>Musik und Leitmotive in der Show</h2>
+                    <div class="musicgrid">
+                        <% loop $Music %>
+                            <% include Includes/Wiki/MusicCard %>
+                        <% end_loop %>
+                    </div>
+                </div>
+            <% end_if %>
         </div>
     <% end_with %>
 </section>
