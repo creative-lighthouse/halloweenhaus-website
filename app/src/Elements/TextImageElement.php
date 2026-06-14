@@ -12,17 +12,16 @@ use SilverStripe\Forms\DropdownField;
  * Class \App\Elements\TextImageElement
  *
  * @property ?string $Text
- * @property ?string $TitleAlign
- * @property ?string $BackgroundColor
- * @property bool $OnlyNearHalloween
  * @property ?string $Variant
- * @property ?string $ImgWidth
  * @property bool $ImageIsLinked
- * @property ?string $ButtonAlign
+ * @property bool $ImageLightbox
+ * @property ?string $Embed
  * @property int $ImageID
  * @property int $ButtonID
+ * @property int $SecondaryButtonID
  * @method Image Image()
  * @method Link Button()
+ * @method Link SecondaryButton()
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -33,73 +32,63 @@ class TextImageElement extends BaseElement
 {
     private static $db = [
         "Text" => "HTMLText",
-        "TitleAlign" => "Varchar(50)",
-        "BackgroundColor" => "Varchar(50)",
-        "OnlyNearHalloween" => "Boolean",
         "Variant" => "Varchar(50)",
-        "ImgWidth" => "Varchar(50)",
         "ImageIsLinked" => "Boolean",
-        "ButtonAlign" => "Varchar(50)",
+        "ImageLightbox" => "Boolean",
+        "Embed" => "Text",
     ];
 
     private static $has_one = [
         "Image" => Image::class,
         "Button" => Link::class,
+        "SecondaryButton" => Link::class,
     ];
 
     private static $owns = [
         "Image",
         "Button",
+        "SecondaryButton",
     ];
 
     private static $field_labels = [
         "Text" => "Text",
         "Image" => "Bild",
-        "Button" => "Button",
+        "Button" => "Primärer Button",
+        "SecondaryButton" => "Sekundärer Button",
         "ImageIsLinked" => "Bild verlinkt auch (zum Button-Link)",
-        "OnlyNearHalloween" => "Nur nahe Halloween zu sehen",
+        "ImageLightbox" => "Bild öffnet Lightbox",
+        "Embed" => "Embed-Code",
     ];
 
     private static $table_name = 'TextImageElement';
-    private static $icon = 'font-icon-block-promo-3';
+    private static $icon = 'sp-icon-textimage-element';
 
     public function getType()
     {
-        return "Text+Bild";
+        return "Text + Bild";
+    }
+
+    public function getYoutubeVideoId(): ?string
+    {
+        if (!$this->Embed) {
+            return null;
+        }
+        if (preg_match('/youtube(?:-nocookie)?\.com\/embed\/([a-zA-Z0-9_-]+)/', $this->Embed, $matches)) {
+            return $matches[1];
+        }
+        return null;
     }
 
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
         $fields->removeByName("ButtonID");
+        $fields->removeByName("SecondaryButtonID");
         $fields->insertAfter('Button', LinkField::create('Button'));
+        $fields->insertAfter('SecondaryButton', LinkField::create('SecondaryButton'));
         $fields->replaceField('Variant', DropdownField::create('Variant', 'Variante', [
-            "" => "Bild links",
-            "image-right" => "Bild rechts",
-        ]));
-        $fields->replaceField('ImgWidth', DropdownField::create('ImgWidth', 'Bildbreite', [
-            "image-30" => "30%",
-            "image-40" => "40%",
-            "image-50" => "50%",
-            "image-60" => "60%",
-            "image-70" => "70%",
-            "image-100" => "100%",
-        ]));
-        $fields->replaceField('BackgroundColor', DropdownField::create('BackgroundColor', 'Hintergrundfarbe', [
-            "color--background-transparent" => "Transparent",
-            "color--background-light" => "Hellgrau"
-        ]));
-        $fields->insertAfter('Title', DropdownField::create('TitleAlign', 'Titel-Ausrichtung', [
-            "" => "Automatisch",
-            "style--title-left" => "Linksbündig",
-            "style--title-center" => "Zentriert",
-            "style--title-right" => "Rechtsbündig",
-        ]));
-        $fields->insertAfter('Button', DropdownField::create('ButtonAlign', 'Button-Ausrichtung', [
-            "" => "Automatisch",
-            "style--button-left" => "Linksbündig",
-            "style--button-center" => "Zentriert",
-            "style--button-right" => "Rechtsbündig",
+            "image--left" => "Bild links",
+            "image--right" => "Bild rechts",
         ]));
         return $fields;
     }

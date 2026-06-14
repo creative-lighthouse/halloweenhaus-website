@@ -10,8 +10,9 @@ use DNADesign\Elemental\Models\BaseElement;
  *
  * @property ?string $EmbedCode
  * @property ?string $DirectVideo
- * @property int $DateFrameID
- * @method Image DateFrame()
+ * @property ?string $DateFrameTitle
+ * @property ?string $DateFrameText
+ * @property ?string $DateFrameSubText
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -24,20 +25,15 @@ class HeroVideoElement extends BaseElement
     private static $db = [
         "EmbedCode" => "Text",
         "DirectVideo" => "Varchar(512)",
-    ];
-
-    private static $has_one = [
-        "DateFrame" => Image::class,
-    ];
-
-    private static $owns = [
-        "DateFrame",
+        "DateFrameTitle" => "Varchar(255)",
+        "DateFrameText" => "Varchar(255)",
+        "DateFrameSubText" => "Varchar(255)",
     ];
 
     private static $field_labels = [];
 
     private static $table_name = 'HeroVideoElement';
-    private static $icon = 'font-icon-globe';
+    private static $icon = 'sp-icon-intro-element';
 
     public function getType()
     {

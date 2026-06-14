@@ -9,17 +9,21 @@ use SilverStripe\ORM\DataObject;
 /**
  * Class \App\Wiki\Location
  *
+ * @property ?string $URLSlug
  * @property ?string $Title
  * @property ?string $Jointime
  * @property ?string $Description
  * @property int $SortField
  * @property ?string $ShortDescription
+ * @property ?string $GlossaryTerms
  * @property int $ImageID
  * @method Image Image()
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @method ManyManyList<Show> Shows()
  * @method ManyManyList<MediaProject> MediaProjects()
+ * @method ManyManyList<WikiMusic> Music()
  * @mixin PhotoGalleryExtension
+ * @mixin WikiSlugExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -34,11 +38,13 @@ class Location extends DataObject
         "Description" => "HTMLText",
         "SortField" => "Int",
         "ShortDescription" => "Varchar(50)",
+        "GlossaryTerms" => "Varchar(500)",
     ];
 
     private static $many_many = [
         "Shows" => Show::class,
         "MediaProjects" => MediaProject::class,
+        "Music" => WikiMusic::class,
     ];
 
     private static $has_one = [
@@ -58,6 +64,7 @@ class Location extends DataObject
         "Image" => "Haupt-Bild",
         "ShortDescription" => "Kurze Beschreibung (Max 50 Zeichen)",
         "Images" => "Ortsbilder",
+        "GlossaryTerms" => "Glossar-Begriffe (Semikolon-getrennt)",
     ];
 
     private static $summary_fields = [
@@ -81,7 +88,8 @@ class Location extends DataObject
     {
         $fields = parent::getCMSFields();
         $fields->removeByName("SortField");
-
+        $fields->dataFieldByName('GlossaryTerms')
+            ->setDescription('Zusätzliche Begriffe, unter denen dieser Ort im Glossar gefunden werden soll. Mehrere Begriffe mit Semikolon trennen, z.B.: "Das Waldhaus;Woodmanns Hütte"');
         return $fields;
     }
 
@@ -97,7 +105,7 @@ class Location extends DataObject
         $wikiPage = WikiPage::get()->first();
         if($wikiPage)
         {
-            return $wikiPage->Link("location/{$this->ID}");
+            return $wikiPage->Link("location/" . ($this->URLSlug ?: $this->ID));
         } else {
             return "";
         }

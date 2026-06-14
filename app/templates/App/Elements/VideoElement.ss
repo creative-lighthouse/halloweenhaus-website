@@ -1,4 +1,4 @@
-<div class="section section--VideoElement">
+<section class="section--VideoElement">
     <div class="section_content">
         <% if $ShowTitle %>
             <div class="section_title">
@@ -12,8 +12,8 @@
         <% end_if %>
         <% if $VideoLink %>
             <div class="section_video" style="max-width: $Width;">
-                <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/{$VideoLink}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <% include YoutubeVideo VideoLink=$VideoLink %>
             </div>
         <% end_if %>
     </div>
-</div>
+</section>

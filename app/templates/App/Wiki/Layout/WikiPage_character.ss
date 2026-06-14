@@ -7,7 +7,7 @@
                 <% else %>
                     <span class="link--button button-prev link--buttondisabled"></span>
                 <% end_if %>
-                <a class="link--button button-overview" href="$Top.Link">Übersicht</a>
+                <a class="link--button button-overview" href="$Top.Link">↑ Zur Übersicht</a>
                 <% if $NextCharacter %>
                     <a class="link--button button-next" href="$NextCharacter.Link"></a>
                 <% else %>
@@ -67,7 +67,8 @@
                     <div class="showswiper swiper--showsoverview">
                         <div class="swiper-wrapper">
                             <% loop $GroupedShowCharacters.GroupedBy('ParentID') %>
-                                <a href="$Children.First.Parent.Link" class="swiper-slide showcard">
+                                <div class="swiper-slide showcard">
+                                    <a href="$Children.First.Parent.Link" class="showcard__link" aria-label="$Children.First.Parent.Title"></a>
                                     <div class="showcard_image">
                                         $Children.First.Parent.PosterImage.Fill(420,600)
                                     </div>
@@ -75,18 +76,42 @@
                                         <h2 class="showcard_dates">$Children.First.Parent.Year</h2>
                                         <h3 class="showcard_title">$Children.First.Parent.Title</h3>
                                     </div>
-                                    <% if $Children.Count > 0 %>
-                                        <p class="character_actorlist_title">Gespielt von:</p>
-                                        <div class="character_actorlist">
-                                            <% loop $Children %>
-                                                <div class="character_actor">
-                                                    $TeamMember.Image
-                                                    <p>$TeamMember.Title</p>
-                                                </div>
-                                            <% end_loop %>
-                                        </div>
+
+                                    <% if $Up.Type == 'animatronic' %>
+                                        <p class="character_actorlist_title title--animatronic">Animatronic</p>
+                                        <% if $Children.Count > 0 %>
+                                            <p class="character_actorlist_title">Umgesetzt von:</p>
+                                            <div class="character_actorlist">
+                                                <% loop $Children %>
+                                                    <% if $TeamMember.Title %>
+                                                        <a href="$TeamMember.Link" class="character_actor">
+                                                            $TeamMember.Image
+                                                            <p>$TeamMember.Title</p>
+                                                        </a>
+                                                    <% else %>
+                                                        <p class="character_actor unknown_actor">Unbekannt</p>
+                                                    <% end_if %>
+                                                <% end_loop %>
+                                            </div>
+                                        <% end_if %>
+                                    <% else %>
+                                        <% if $Children.Count > 0 %>
+                                            <p class="character_actorlist_title">Gespielt von:</p>
+                                            <div class="character_actorlist">
+                                                <% loop $Children %>
+                                                    <% if $TeamMember.Title %>
+                                                        <a href="$TeamMember.Link" class="character_actor">
+                                                            $TeamMember.Image
+                                                            <p>$TeamMember.Title</p>
+                                                        </a>
+                                                    <% else %>
+                                                        <p class="character_actor unknown_actor">Unbekannt</p>
+                                                    <% end_if %>
+                                                <% end_loop %>
+                                            </div>
+                                        <% end_if %>
                                     <% end_if %>
-                                </a>
+                                </div>
                             <% end_loop %>
                         </div>
                     </div>
@@ -113,6 +138,16 @@
                                     </div>
                                 </div>
                             </a>
+                        <% end_loop %>
+                    </div>
+                </div>
+            <% end_if %>
+            <% if $Music.Count > 0 %>
+                <div class="showsection showsection--music">
+                    <h2>Musik und Leitmotive</h2>
+                    <div class="musicgrid">
+                        <% loop $Music %>
+                            <% include Includes/Wiki/MusicCard %>
                         <% end_loop %>
                     </div>
                 </div>

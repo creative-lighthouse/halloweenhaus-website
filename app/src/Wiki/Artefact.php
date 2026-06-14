@@ -8,18 +8,22 @@ use SilverStripe\ORM\DataObject;
 /**
  * Class \App\Wiki\Artefact
  *
+ * @property ?string $URLSlug
  * @property ?string $Title
  * @property ?string $Jointime
  * @property ?string $Description
  * @property ?string $ShortDescription
  * @property int $SortField
+ * @property ?string $GlossaryTerms
  * @property int $ImageID
  * @method Image Image()
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @method DataList<ArtefactOwnership> ArtefactOwnerships()
  * @method ManyManyList<Show> Shows()
  * @method ManyManyList<MediaProject> MediaProjects()
+ * @method ManyManyList<WikiMusic> Music()
  * @mixin PhotoGalleryExtension
+ * @mixin WikiSlugExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -34,11 +38,13 @@ class Artefact extends DataObject
         "Description" => "HTMLText",
         "ShortDescription" => "Varchar(50)",
         "SortField" => "Int",
+        "GlossaryTerms" => "Varchar(500)",
     ];
 
     private static $many_many = [
         "Shows" => Show::class,
         "MediaProjects" => MediaProject::class,
+        "Music" => WikiMusic::class,
     ];
 
     private static $has_one = [
@@ -64,6 +70,7 @@ class Artefact extends DataObject
         "ShortDescription" => "Kurze Beschreibung (Max 50 Zeichen)",
         "Shows" => "Shows",
         "ArtefactOwnerships" => "Besitzer",
+        "GlossaryTerms" => "Glossar-Begriffe (Semikolon-getrennt)",
     ];
 
     private static $summary_fields = [
@@ -87,6 +94,8 @@ class Artefact extends DataObject
     {
         $fields = parent::getCMSFields();
         //$fields->removeByName("SortField");
+        $fields->dataFieldByName('GlossaryTerms')
+            ->setDescription('Zusätzliche Begriffe, unter denen dieses Artefakt im Glossar gefunden werden soll. Mehrere Begriffe mit Semikolon trennen, z.B.: "Das Schwert;Ottos Klinge"');
         return $fields;
     }
 
@@ -102,7 +111,7 @@ class Artefact extends DataObject
         $wikiPage = WikiPage::get()->first();
         if($wikiPage)
         {
-            return $wikiPage->Link("artefact/{$this->ID}");
+            return $wikiPage->Link("artefact/" . ($this->URLSlug ?: $this->ID));
         } else {
             return "";
         }

@@ -41,11 +41,11 @@ class FactElement extends BaseElement
     }
 
     private static $table_name = 'FactElement';
-    private static $icon = 'font-icon-info-circled';
+    private static $icon = 'sp-icon-counter-element';
 
     public function getType()
     {
-        return "Fakten";
+        return "Fakten & Zahlen";
     }
 
     public function getCMSFields()

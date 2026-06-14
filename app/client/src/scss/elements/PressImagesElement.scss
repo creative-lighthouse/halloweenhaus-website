@@ -1,6 +1,6 @@
 @use "../variables" as *;
 
-.section.section--PressImagesElement {
+section.section--PressImagesElement {
     .section_content{
         .press_images{
             display: grid;
@@ -44,7 +44,7 @@
                     margin-top: -100px;
                     border-radius: 20px;
                     margin-bottom: 30px;
-                    background-color: var(--ColorBackgroundLight);
+                    background-color: var(--ColorGray);
 
                     .pressimage_meta_content{
                         width: 90%;

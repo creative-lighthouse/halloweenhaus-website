@@ -4,6 +4,8 @@
 @use "ArtefactCard";
 @use "MediaprojectCard";
 @use "ShowCard";
+@use "MusicCard";
+@use "AudioPlayer";
 
 section.section--WikiPage{
     margin-top: 110px;
@@ -26,17 +28,19 @@ section.section--WikiPage{
         .wiki-navigation{
             display: grid;
             grid-template-columns: 10% 1fr 10%;
-            background-color: var(--ColorBackgroundLight);
+            background-color: var(--ColorGray);
             border-radius: 10px;
             view-transition-name: "wiki-navigation";
+            align-items: center;
 
             .link--button{
                 flex: 1;
                 text-align: center;
-                background-color: var(--ColorBackgroundLight);
+                background-color: var(--ColorGray);
                 border-radius: 10px;
                 padding: 10px 20px;
                 margin: 0;
+                border: none;
 
                 &.button-prev {
                     &::before{
@@ -63,6 +67,10 @@ section.section--WikiPage{
                 &.button-overview {
                     text-transform: uppercase;
                     font-weight: 600;
+
+                    &:hover {
+                        color: var(--ColorWhite);
+                    }
                 }
 
                 &.link--buttondisabled {
@@ -81,7 +89,7 @@ section.section--WikiPage{
         }
 
         .showsection{
-            background-color: var(--ColorBackgroundLight);
+            background-color: var(--ColorGray);
             border-radius: 10px;
 
             h2{
@@ -92,6 +100,7 @@ section.section--WikiPage{
                 width: 100%;
                 height: 300px;
                 overflow: hidden;
+                margin-bottom: 20px;
 
                 img {
                     width: 100%;
@@ -106,6 +115,7 @@ section.section--WikiPage{
                 text-align: center;
                 margin: 0;
                 padding: 10px 20px;
+                font-size: clamp(3rem, 10vw, 6rem);
             }
 
             .wiki_description{
@@ -250,6 +260,28 @@ section.section--WikiPage{
                     display: grid;
                     grid-template-columns: repeat(3, calc(1fr / 3));
                     gap: 20px;
+
+                    @include media(max-medium) {
+                        grid-template-columns: repeat(2, calc(100% / 2 - 20px / 2));
+                    }
+
+                    @include media(max-smartphone) {
+                        grid-template-columns: repeat(1, calc(100% / 1));
+                    }
+                }
+            }
+
+            &.showsection--music{
+                padding: 20px;
+
+                .musicgrid{
+                    display: grid;
+                    grid-template-columns: repeat(2, calc(1fr / 2));
+                    gap: 20px;
+
+                    @include media(max-medium) {
+                    grid-template-columns: 1fr;
+                    }
                 }
             }
         }
@@ -290,6 +322,16 @@ section.section--WikiPage{
                     height: 100%;
                     object-fit: cover;
                     display: block;
+                }
+            }
+
+            .wikimusic_audioplayer {
+                display: flex;
+                justify-content: center;
+                margin: 20px 0;
+
+                .audioplayer-button {
+                    cursor: pointer;
                 }
             }
 
@@ -516,7 +558,7 @@ section.section--WikiPage{
         color: var(--ColorWhite);
         text-decoration: none;
         font-size: 14px;
-        background-color: var(--ColorBackgroundLight);
+        background-color: var(--ColorGray);
         padding: 8px 12px;
         border-radius: 8px;
         width: auto;

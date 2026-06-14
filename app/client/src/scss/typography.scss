@@ -2,7 +2,7 @@
 
 body{
     font-family: 'Metropolis', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     color: white;
     line-height: 1.4;
@@ -29,16 +29,38 @@ body{
 }
 
 h1, h2, h3, h4, h5{
-    font-weight: 700;
+    font-weight: 500;
     margin: 0;
+    font-family: "TheReconLegend", sans-serif;
 }
 
-h1{
-    font-size: 35px;
-    font-weight: 700;
+h1, .hl1 {
+    font-family: "OttosRaven", sans-serif;
+    font-size: 60px;
+    line-height: 60px;
+    font-weight: 500;
+
+    @include media(max-medium) {
+        font-size: 40px;
+        line-height: 40px;
+    }
 }
 
-a{
+h2, .hl2 {
+    font-size: 38px;
+    line-height: 39px;
+}
+
+h3, .hl3 {
+    font-size: 32px;
+    line-height: 36px;
+}
+
+p {
+    margin: 0 0 20px 0;
+}
+
+a, button{
     cursor: pointer;
     color: var(--ColorWhite);
 
@@ -58,35 +80,31 @@ a{
         display: inline-block;
         padding: 10px 20px;
         color: var(--ColorWhite);
-        font-weight: 500;
+        font-weight: 600;
         transition: 0.2s ease-in-out;
         text-decoration: none;
         cursor: pointer;
-
-        &.centered{
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        &.hollow{
-            border-radius: 20px;
-            background-color: transparent;
-            border: 1px solid var(--ColorWhite);
-            color: var(--ColorWhite);
-
-            &:hover {
-                background-color: var(--ColorPrimary);
-                color: var(--ColorWhite);
-                border: 1px solid var(--ColorPrimary);
-            }
-        }
+        border: 2px solid var(--ColorWhite);
+        border-radius: var(--RoundedBorder);
+        line-height: 1;
 
         &:hover {
             text-decoration: none;
-            background-color: var(--ColorPrimary);
-            color: var(--ColorWhite);
+            background-color: var(--ColorWhite);
+            color: var(--ColorBackground);
         }
+
+        &.button--primary{
+            background-color: var(--ColorPrimary);
+            border-color: var(--ColorPrimary);
+
+            &:hover {
+                background-color: transparent;
+                border-color: var(--ColorPrimary);
+                color: var(--ColorWhite);
+            }
+        }
+
     }
 
     &:hover {

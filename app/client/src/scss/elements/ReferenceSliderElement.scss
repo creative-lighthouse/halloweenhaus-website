@@ -1,0 +1,118 @@
+@use "../variables" as *;
+
+section.section--ReferenceSliderElement {
+    overflow: hidden;
+
+    .section_content{
+        text-align: center;
+
+        .referenceelement_list{
+            width: 100%;
+            justify-content: space-around;
+            margin: 0;
+            position: relative;
+
+            // Wichtig: Swiper wrapper sollte Slides strecken
+            .swiper-wrapper {
+                display: flex;
+                align-items: stretch;
+
+                .referenceitem{
+                    background-color: var(--ColorGray);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: center;
+                    text-align: center;
+                    padding: 20px;
+                    border-radius: 20px;
+                    transition: background-color 0.2s ease-in-out;
+                    height: 100%;
+
+                    p{
+                        margin-bottom: 0px;
+                    }
+
+                    .link--button{
+                        margin-top: 10px;
+                    }
+
+                    .referenceitem_text{
+                        height: calc(100% - 20px);
+                        padding-bottom: 10px;
+                        border-bottom: 2px solid var(--ColorWhite);
+                    }
+
+                    .referenceitem_source{
+                        color: var(--ColorWhite);
+                        margin: 1em 0 0 0;
+                        font-weight: 200;
+                    }
+
+                    &:hover{
+                        color: var(--ColorWhite);
+                        background-color: var(--ColorPrimary);
+
+                        &.no_color{
+                            background-color: var(--ColorGray);
+                        }
+                    }
+                }
+            }
+
+            .swiper-button-next, .swiper-button-prev {
+                color: var(--ColorWhite);
+                background-color: var(--ColorPrimary);
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                padding: 10px;
+
+                &::after {
+                    font-size: 15px;
+                }
+            }
+
+            .swiper-button-next {
+                right: -15px;
+            }
+
+            .swiper-button-prev {
+                left: -15px;
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 100%;
+                width: 100%;
+                height: 100%;
+                background-image: linear-gradient(to right, var(--ColorBackground) 85%, transparent 100%);
+                z-index: 2;
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 100%;
+                width: 100%;
+                height: 100%;
+                background-image: linear-gradient(to left, var(--ColorBackground) 85%, transparent 100%);
+                z-index: 2;
+            }
+
+            @include media(max-medium) {
+                grid-template-columns: repeat(2, calc(100% / 2));
+            }
+            @include media(max-smartphone) {
+                grid-template-columns: repeat(1, calc(100% / 1));
+            }
+        }
+
+        .section_button {
+            margin-top: 20px;
+        }
+    }
+}

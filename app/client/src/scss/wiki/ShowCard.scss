@@ -1,4 +1,13 @@
 .showcard {
+    position: relative;
+    transition: transform 0.2s ease;
+
+    &__link {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
     .showcard_image{
         border-radius: 8px;
         overflow: hidden;
@@ -7,6 +16,7 @@
         aspect-ratio: 210/297;
         transition: transform 0.3s ease-in-out;
         background-color: var(--ColorBlack);
+        pointer-events: none;
 
         img{
             width: 100%;
@@ -26,6 +36,15 @@
         }
     }
 
+    .character_actorlist_title{
+        margin: 10px 0 2px 0;
+
+        &.title--animatronic {
+            font-size: 12px;
+            opacity: 0.5;
+        }
+    }
+
     .character_actorlist{
         display: flex;
         flex-direction: column;
@@ -34,12 +53,31 @@
         gap: 4px;
 
         .character_actor {
+            position: relative;
+            z-index: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--ColorBackgroundLight);
+            background-color: var(--ColorGray);
             border-radius: 20px;
-            padding: 4px 12px 4px 4px;
+            padding: 4px 8px;
+            text-decoration: none;
+            color: var(--ColorWhite);
+            transition: background-color 0.15s ease;
+            margin: 0;
+
+            &.unknown_actor {
+                opacity: 0.3;
+                pointer-events: none;
+
+                &:hover {
+                    background-color: var(--ColorGray);
+                }
+            }
+
+            &:hover {
+                background-color: var(--ColorPrimary);
+            }
 
             img{
                 width: 20px;
@@ -63,6 +101,7 @@
     }
 
     &:hover{
+        transform: scale(1.02);
         .showcard_image{
             transform: scale(1.05) translateY(-5px);
         }

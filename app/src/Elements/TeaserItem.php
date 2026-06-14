@@ -56,7 +56,7 @@ class TeaserItem extends DataObject
     private static $inline_editable = false;
 
     private static $summary_fields = [
-        'ID' => 'ID',
+        "Image.CMSThumbnail" => 'Bild',
         'Title' => 'Titel',
     ];
 

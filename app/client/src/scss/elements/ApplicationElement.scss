@@ -1,0 +1,133 @@
+@use "../variables" as *;
+
+section.section--ApplicationElement {
+    .section_content {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: auto;
+        gap: 0 30px;
+
+        .section_title {
+            text-align: center;
+            margin-bottom: 20px;
+            grid-column: 3 / -3;
+        }
+
+        .application_error {
+            grid-column: 3 / -3;
+            border-radius: 20px;
+            background-color: #ffcccc;
+            color: #cc0000;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+
+            p {
+                margin: 0;
+            }
+        }
+
+        .application_form {
+            display: grid;
+            grid-column: 3 / -3;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 30px;
+            margin: 0 auto;
+            width: 100%;
+
+            .field {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 20px;
+
+                label, .fake-label {
+                    font-size: 16px;
+                    font-weight: 2500;
+                    margin-bottom: 5px;
+                }
+
+                input, textarea {
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 15px;
+                    font-size: 16px;
+                    margin: 0;
+                }
+
+                &.field_reason, &.field_hobbies, &.field_email, &.field_interests, &.field_captcha, &.field_send {
+                    grid-column: 1 / -1;
+                }
+
+                &.field_interests {
+
+                    .fake-label {
+                        margin-bottom: 5px;
+                    }
+
+                    .interest_list {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        gap: 20px;
+
+                        .checkbox_label {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            border: 1px solid var(--ColorGray);
+                            padding: 5px 10px;
+                            border-radius: var(--RoundedBorder);
+                            font-size: 18px;
+                            font-weight: 400;
+                            transition: 0.2s ease-in-out;
+                            cursor: pointer;
+
+                            input[type="checkbox"] {
+                                display: none;
+                            }
+
+                            &:hover {
+                                border-color: var(--ColorWhite);
+                            }
+
+                            &:has(input[type="checkbox"]:checked) {
+                                background-color: var(--ColorGray);
+                                border-color: var(--ColorWhite);
+                                color: var(--ColorWhite);
+                            }
+                        }
+                    }
+                }
+
+                &.field_send {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    flex-direction: row;
+                }
+            }
+
+            @include media(max-medium) {
+                grid-template-columns: 1fr;
+                gap: 0;
+
+                .field {
+                    &.field_reason, &.field_hobbies, &.field_email, &.field_interests, &.field_captcha, &.field_send {
+                        grid-column: 1 / -1;
+                    }
+                }
+            }
+        }
+
+        @include media(max-medium) {
+            grid-template-columns: 1fr;
+            gap: 0;
+
+            .section_title {
+                grid-column: 1 / -1;
+            }
+        }
+    }
+}

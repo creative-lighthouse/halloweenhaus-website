@@ -23,7 +23,7 @@ class EventsElement extends BaseElement
     ];
 
     private static $table_name = 'EventsElement';
-    private static $icon = 'font-icon-circle-star';
+    private static $icon = 'sp-icon-calendar-element';
 
     public function getType()
     {

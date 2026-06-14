@@ -1,5 +1,6 @@
 @use "../variables" as *;
-.section.section--ImageBannerElement {
+
+section.section--ImageBannerElement {
     margin: 0 auto;
     padding: 0;
     max-width: 100%;
@@ -130,6 +131,21 @@
 
         .section_description{
             padding-left: 30px;
+        }
+    }
+
+    &.variant--autoheight {
+        .section_content{
+            height: auto;
+            margin: 0 auto;
+            max-width: var(--MaxWidth);
+
+            img {
+                height: auto;
+                margin: 0 auto;
+                width: 100%;
+                display: block;
+            }
         }
     }
 }

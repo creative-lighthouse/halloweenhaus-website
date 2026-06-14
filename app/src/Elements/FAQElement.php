@@ -6,7 +6,7 @@ use SilverStripe\ORM\DataList;
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
-use UndefinedOffset\SortableGridField\Forms\GridFieldSortableRows;
+use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 
 /**
  * Class \App\Elements\TimelineElement
@@ -30,6 +30,14 @@ class FAQElement extends BaseElement
         "FAQItems" => FAQItem::class
     ];
 
+    private static $owns = [
+        "FAQItems"
+    ];
+
+    private static $cascade_duplicates = [
+        "FAQItems"
+    ];
+
     private static $field_labels = [
         "IsCollapsible" => "Ist einklappbar"
     ];
@@ -39,7 +47,7 @@ class FAQElement extends BaseElement
     ];
 
     private static $table_name = 'FAQElement';
-    private static $icon = 'font-icon-help-circled';
+    private static $icon = 'sp-icon-qa-element';
 
     public function inlineEditable()
     {
@@ -55,12 +63,10 @@ class FAQElement extends BaseElement
     {
         $fields = parent::getCMSFields();
         $fields->removeByName("FAQItems");
-
-        $gridFieldConfig = GridFieldConfig_RecordEditor::create(200);
-        $sorter = GridFieldSortableRows::create('SortOrder');
-        $gridFieldConfig->addComponent($sorter);
-        $gridfield = GridField::create("FAQItems", "Eintrag", $this->FAQItems(), $gridFieldConfig);
-        $fields->addFieldToTab('Root.Main', $gridfield);
+        
+        $itemsConfig = GridFieldConfig_RecordEditor::create();
+        $itemsConfig->addComponent(new GridFieldOrderableRows('SortOrder'));
+        $fields->addFieldToTab('Root.Main', GridField::create('FAQItems', 'Einträge', $this->FAQItems(), $itemsConfig));
 
         return $fields;
     }

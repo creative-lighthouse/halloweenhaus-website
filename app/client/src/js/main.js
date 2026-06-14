@@ -4,8 +4,14 @@ import "./eventsNavigator";
 import "./posSystem";
 import "./statisticsPage";
 import "./glossar.js";
+import { initYoutubeConsent } from "./youtubeConsent.js";
+import { initAudioPlayers, initYoutubeAudioPlayers } from "./audioPlayer.js";
 
 document.addEventListener("DOMContentLoaded", function (event) {
+
+    initYoutubeConsent();
+    initAudioPlayers();
+    initYoutubeAudioPlayers();
 
     const menu_button = document.querySelector('[data-behaviour="toggle-menu"]');
 
@@ -38,20 +44,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
             }
         });
     }
-
-    //ListToggleElement
-    let listToggleElements = [...document.querySelectorAll('[data-behaviour="list-toggle"]')];
-    listToggleElements.forEach((element) => {
-        element.addEventListener("click", (e) => {
-            e.preventDefault();
-            const item = element.parentNode.parentNode;
-            item.classList.toggle("list_item--visible")
-
-            listToggleElements.filter(e => e.parentNode.parentNode != item).forEach((e) => {
-                e.parentNode.parentNode.classList.remove("list_item--visible")
-            });
-        })
-    });
 
     //TimelineFilter
     let timelineItems = [...document.querySelectorAll('[data-behaviour="timelineItem"]')];
@@ -221,6 +213,96 @@ document.addEventListener("DOMContentLoaded", function (event) {
         });
     });
 
+    const referencesliders = document.querySelectorAll('.swiper--references');
+
+    referencesliders.forEach(function (slider) {
+        const autoSwiper = slider.classList.contains('swiper--auto');
+        const swiper = new Swiper(slider, {
+            effect: 'slide',
+            direction: 'horizontal',
+            loop: true,
+            slidesPerView: 3,
+            spaceBetween: 20,
+            loopedSlides: 5,
+            centeredSlides: true,
+            speed: 600, // Etwas schneller für besseres Mobile-Feeling
+            touchRatio: 1,
+            touchAngle: 45,
+            grabCursor: true,
+            passiveListeners: true, // Wichtig für Mobile Performance
+
+            autoplay: autoSwiper ? {
+                delay: 7000,
+                disableOnInteraction: true,
+            } : false,
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                    spaceBetween: 10
+                },
+                740: {
+                    slidesPerView: 2,
+                    spaceBetween: 15
+                },
+                // when window width is >= 1024px
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                },
+            },
+            on: {
+                init: function () {
+                    // Warte kurz bis alles gerendert ist
+                    setTimeout(() => {
+                        equalizeSlideHeights(this);
+                    }, 100);
+                },
+                resize: function () {
+                    // Debounce für bessere Performance
+                    clearTimeout(this.resizeTimeout);
+                    this.resizeTimeout = setTimeout(() => {
+                        equalizeSlideHeights(this);
+                    }, 250);
+                }
+            }
+        });
+    });
+
+    function equalizeSlideHeights(swiper) {
+        // Alle Slides mit referenceitem Klasse finden
+        const items = swiper.el.querySelectorAll('.referenceitem');
+        let maxHeight = 0;
+
+        // Temporär alle auf auto setzen um echte Höhe zu messen
+        items.forEach((item) => {
+            item.style.height = 'auto';
+        });
+
+        // requestAnimationFrame statt setTimeout für bessere Performance
+        requestAnimationFrame(() => {
+            // Maximale Höhe finden
+            items.forEach((item) => {
+                const height = item.offsetHeight;
+                if (height > maxHeight) {
+                    maxHeight = height;
+                }
+            });
+
+            // Alle auf maximale Höhe setzen
+            if (maxHeight > 0) {
+                items.forEach((item) => {
+                    item.style.height = maxHeight + 'px';
+                });
+            }
+        });
+    }
+
     const imagesliders = document.querySelectorAll('.imageswiper');
     imagesliders.forEach(function (slider) {
         const swiper = new Swiper(slider, {
@@ -249,6 +331,58 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     slidesPerView: 3,
                     spaceBetween: 30
                 },
+            }
+        });
+    });
+
+    const heroslider = document.querySelectorAll('.swiper--hero');
+
+    heroslider.forEach(function (slider) {
+        const autoSwiper = slider.classList.contains('swiper--auto');
+        const heroslider = new Swiper(slider, {
+            effect: 'fade',
+            direction: 'horizontal',
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 20,
+            speed: 2000, // Fade-Geschwindigkeit in Millisekunden (Standard: 300)
+            preventInteractionOnTransition: true,
+            watchSlidesProgress: false,
+
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+
+            on: {
+                init: function () {
+                    // Starte Animation beim ersten Slide
+                    const activeSlide = this.slides[this.activeIndex];
+                    const img = activeSlide.querySelector('img');
+                    if (img) {
+                        img.classList.add('hero-zoom');
+                    }
+                },
+                transitionStart: function () {
+                    // Alle nicht-aktiven Slides bekommen zoom-out Animation
+                    this.slides.forEach((slide, index) => {
+                        const img = slide.querySelector('img');
+                        if (img && index !== this.activeIndex) {
+                            img.classList.remove('hero-zoom');
+                            img.classList.add('hero-zoom-out');
+                        }
+                    });
+
+                    // Neuer aktiver Slide bekommt zoom-in Animation
+                    const activeSlide = this.slides[this.activeIndex];
+                    const img = activeSlide.querySelector('img');
+                    if (img) {
+                        img.classList.remove('hero-zoom-out');
+                        // Force reflow um Animation neu zu triggern
+                        void img.offsetWidth;
+                        img.classList.add('hero-zoom');
+                    }
+                }
             }
         });
     });
@@ -290,9 +424,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 seconds = diffSeconds;
 
                 if(days > 0) {
-                    halloweenCountdown.innerHTML = 'Noch ' + days + 'd | ' + hours + 'h | ' + minutes + 'm | ' + seconds + 's bis Halloween!';
+                    halloweenCountdown.innerHTML = 'Noch ' + days + 'd | ' + hours + 'h | ' + minutes + 'm | ' + seconds + 's bis Halloween';
                 } else {
-                    halloweenCountdown.innerHTML = 'Noch ' + hours + 'h | ' + minutes + 'm | ' + seconds + 's bis Halloween!';
+                    halloweenCountdown.innerHTML = 'Noch ' + hours + 'h | ' + minutes + 'm | ' + seconds + 's bis Halloween';
                 }
             }
             else

@@ -1,4 +1,4 @@
-<div class="section section--SocialBannerElement">
+<section class="section--SocialBannerElement">
     <div class="section_content">
         <% if $ShowTitle %>
             <h2>$Title</h2>
@@ -9,4 +9,4 @@
             <% end_loop %>
         </div>
     </div>
-</div>
+</section>

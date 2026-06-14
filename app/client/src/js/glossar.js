@@ -2,7 +2,7 @@
 (async function() {
     try {
         // Fetch the wiki index
-        const response = await fetch('https://halloweenhaus-website.ddev.site/api/wikiindex');
+        const response = await fetch('/api/wikiindex');
         const wikiIndex = await response.json();
 
         if (!wikiIndex || !Array.isArray(wikiIndex)) {

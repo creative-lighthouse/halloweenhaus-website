@@ -1,12 +1,18 @@
 .charactercard{
+    position: relative;
     background-color: var(--ColorBackground);
     border-radius: 55px 55px 20px 20px;
     padding: 10px;
     text-align: center;
     box-shadow: var(--BoxShadow);
     transition: transform 0.2s ease-in-out;
-    text-decoration: none;
     color: var(--ColorWhite);
+
+    &__link {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
 
     .charactercard_image{
         width: 100%;
@@ -14,6 +20,7 @@
         border-radius: 45px;
         overflow: hidden;
         margin-bottom: 10px;
+            pointer-events: none;
 
         img{
             width: 100%;
@@ -30,15 +37,17 @@
             font-size: 12px;
             opacity: 0.8;
             margin-bottom: 8px;
+            pointer-events: none;
         }
 
         .charactercard_jointime{
             font-size: 12px;
             opacity: 0.6;
+            pointer-events: none;
         }
 
         .character_actorlist_title{
-            margin: 0 0 4px 0;
+            margin: 10px 0 2px 0;
 
             &.title--animatronic {
                 font-size: 12px;
@@ -54,23 +63,33 @@
             gap: 4px;
 
             .character_actor {
+                position: relative;
+                z-index: 1;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: var(--ColorBackgroundLight);
+                background-color: var(--ColorGray);
                 border-radius: 20px;
-                padding: 4px 12px 4px 4px;
+                padding: 6px 8px;
+                text-decoration: none;
+                color: var(--ColorWhite);
+                transition: background-color 0.15s ease;
+
+                &:hover {
+                    background-color: var(--ColorPrimary);
+                }
 
                 img{
                     width: 20px;
                     height: 20px;
                     border-radius: 50%;
                     object-fit: cover;
-                    margin-right: 8px;
+                    margin-right: 5px;
                 }
 
                 p{
                     margin: 0;
+                    line-height: 1;
                 }
             }
         }
@@ -82,7 +101,7 @@
     }
 
     &:hover{
-        transform: scale(1.05);
+        transform: scale(1.02);
 
         img{
             transform: scale(1.1);

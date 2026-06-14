@@ -120,7 +120,7 @@ class TeamMember extends DataObject
 
     public function getFormattedName()
     {
-        return str_replace(' ', '_', $this->Title);
+        return str_replace(' ', '_', $this->Title ?? '');
     }
 
     public function getThumbnail()
@@ -148,7 +148,14 @@ class TeamMember extends DataObject
 
     public function getRoles()
     {
-        return ShowCharacter::get()->filter('TeamMemberID', $this->ID);
+        return ShowCharacter::get()
+            ->filter('TeamMemberID', $this->ID)
+            ->leftJoin('Show', '"ShowCharacter"."ParentID" = "Show"."ID"')
+            ->leftJoin('Characters', '"ShowCharacter"."CharacterID" = "Characters"."ID"')
+            ->alterDataQuery(function (\SilverStripe\ORM\DataQuery $query) {
+                return $query->sort('"Characters"."Title"', 'ASC')
+                ->sort('"Show"."Year"', 'DESC', true);
+            });
     }
 
     public function getLink()

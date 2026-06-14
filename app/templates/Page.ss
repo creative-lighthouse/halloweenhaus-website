@@ -35,8 +35,6 @@
         <meta name="msapplication-TileColor" content="#151515">
         <meta name="theme-color" content="#151515">
 
-        $ViteClient.RAW
-        <link rel="stylesheet" href="$Vite('app/client/src/scss/main.scss')">
         <link rel="manifest" href="site.webmanifest" />
 
         <!-- Google tag (gtag.js) -->
@@ -49,39 +47,39 @@
             gtag('config', 'G-QW9HQK22TZ');
         </script>
         <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "Ottos Halloweenhaus",
-            "image": "https://ottos-halloweenhaus.de/assets/hwhs_logo2026_profile_white.png",
-            "description": "Ottos Halloweenhaus ist ein jährliches Event von Künstlerinnen und Künstlern rund um Stormarn. Hier fließen Dekorationen, Musik, Lichtdesign, Informatik, Schauspiel, Robotik, Film und viele weitere Fähigkeiten zusammen in eine etwa zwanzigminütige Show, welche das Highlight auf jeder Halloween Route ist.",
-            "url": "https://ottos-halloweenhaus.de/",
-            "email": "kontakt@ottos-halloweenhaus.de",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Deepenstegen 25A",
-                "addressLocality": "Lütjensee",
-                "addressRegion": "Schleswig-Holstein",
-                "postalCode": "22952",
-                "addressCountry": "Deutschland"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "53.636641691530905",
-                "longitude": "10.383277797990278"
-            },
-            "priceRange": "Kostenlos",
-            "paymentAccepted": "Spenden",
-            "sameAs": [
-                "https://www.youtube.com/@OttosHalloweenhaus",
-                "https://www.instagram.com/ottos.halloweenhaus/"
-            ],
-            "publisher": {
-                "@type": "Organization",
-                "name": "Creative Lighthouse e.V.",
-                "url": "https://creative-lighthouse.com/"
+            {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "Ottos Halloweenhaus",
+                "image": "https://ottos-halloweenhaus.de/assets/hwhs_logo2026_profile_white.png",
+                "description": "Ottos Halloweenhaus ist ein jährliches Event von Künstlerinnen und Künstlern rund um Stormarn. Hier fließen Dekorationen, Musik, Lichtdesign, Informatik, Schauspiel, Robotik, Film und viele weitere Fähigkeiten zusammen in eine etwa zwanzigminütige Show, welche das Highlight auf jeder Halloween Route ist.",
+                "url": "https://ottos-halloweenhaus.de/",
+                "email": "kontakt@ottos-halloweenhaus.de",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Deepenstegen 25A",
+                    "addressLocality": "Lütjensee",
+                    "addressRegion": "Schleswig-Holstein",
+                    "postalCode": "22952",
+                    "addressCountry": "Deutschland"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": "53.636641691530905",
+                    "longitude": "10.383277797990278"
+                },
+                "priceRange": "Kostenlos",
+                "paymentAccepted": "Spenden",
+                "sameAs": [
+                    "https://www.youtube.com/@OttosHalloweenhaus",
+                    "https://www.instagram.com/ottos.halloweenhaus/"
+                ],
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Creative Lighthouse e.V.",
+                    "url": "https://creative-lighthouse.com/"
+                }
             }
-        }
         </script>
     </head>
     <body>

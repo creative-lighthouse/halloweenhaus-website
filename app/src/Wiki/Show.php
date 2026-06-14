@@ -12,6 +12,7 @@ use SilverStripe\Model\List\GroupedList;
 /**
  * Class \App\Wiki\Show
  *
+ * @property ?string $URLSlug
  * @property int $Year
  * @property ?string $Title
  * @property ?string $Place
@@ -24,6 +25,7 @@ use SilverStripe\Model\List\GroupedList;
  * @property ?string $TeamSize
  * @property ?string $SceneCount
  * @property ?string $StatisticsNote
+ * @property ?string $GlossaryTerms
  * @property int $PosterImageID
  * @property int $ShowImageID
  * @method Image PosterImage()
@@ -31,9 +33,11 @@ use SilverStripe\Model\List\GroupedList;
  * @method DataList<PhotoGalleryImage> PhotoGalleryImages()
  * @method DataList<ShowCharacter> ShowCharacters()
  * @method ManyManyList<TeamMember> BackstageHelpers()
+ * @method ManyManyList<WikiMusic> Music()
  * @method ManyManyList<Location> Locations()
  * @method ManyManyList<Artefact> Artefacts()
  * @mixin PhotoGalleryExtension
+ * @mixin WikiSlugExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -55,6 +59,7 @@ class Show extends DataObject
         "TeamSize" => "Varchar(255)",
         "SceneCount" => "Varchar(255)",
         "StatisticsNote" => "Varchar(255)",
+        "GlossaryTerms" => "Varchar(500)",
     ];
 
     private static $has_one = [
@@ -68,6 +73,7 @@ class Show extends DataObject
 
     private static $many_many = [
         "BackstageHelpers" => TeamMember::class,
+        "Music" => WikiMusic::class,
     ];
 
     private static $belongs_many_many = [
@@ -101,6 +107,7 @@ class Show extends DataObject
         "Locations" => "Orte",
         "Artefacts" => "Artefakte",
         "BackstageHelpers" => "Hintergrundhelfer",
+        "GlossaryTerms" => "Glossar-Begriffe (Semikolon-getrennt)",
     ];
 
     private static $summary_fields = [
@@ -140,6 +147,8 @@ class Show extends DataObject
         $fields->addFieldToTab('Root.Statistics', $fields->dataFieldByName('TeamSize'));
         $fields->addFieldToTab('Root.Statistics', $fields->dataFieldByName('SceneCount'));
         $fields->addFieldToTab('Root.Statistics', $fields->dataFieldByName('StatisticsNote'));
+        $fields->dataFieldByName('GlossaryTerms')
+            ->setDescription('Zusätzliche Begriffe, unter denen diese Show im Glossar gefunden werden soll. Mehrere Begriffe mit Semikolon trennen, z.B.: "Die Show 2019;Geisterhaus 2019"');
         return $fields;
     }
 
@@ -162,7 +171,7 @@ class Show extends DataObject
         $wikiPage = WikiPage::get()->first();
         if($wikiPage)
         {
-            return $wikiPage->Link("show/{$this->ID}");
+            return $wikiPage->Link("show/" . ($this->URLSlug ?: $this->ID));
         } else {
             return "";
         }

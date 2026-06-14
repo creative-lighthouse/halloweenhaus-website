@@ -1,3 +1,8 @@
+---
+Name: app-cms-theme
+After:
+  - 'ryanpotter-silverstripe-cms-theme'
+---
 SilverStripe\SiteConfig\SiteConfig:
   cms_logo: '_resources/app/client/images/logo_footer.svg'
   cms_logo_width: 60 # Optional width constraint
@@ -13,18 +18,44 @@ SilverStripe\Admin\LeftAndMain:
   cms_drawer_background: '#151515'
   cms_drawer_color: 'inherit'
   cms_icon_color: currentColor
+  show_cms_info: true
   menu_groups:
+    Inhalt:
+      icon_class: 'sp-icon-news-admin-currentColor' # (optional) Defaults to 'fa-solid fa-cubes'
+      priority: -70 # (optional) Defaults to menu item order
+      items:
+        - SilverStripe-CMS-Controllers-CMSMain
+        - App-Team-TeamAdmin
+        - App-Wiki-WikiAdmin
+    Vor Ort:
+      icon_class: 'sp-icon-institution-admin-currentColor' # (optional) Defaults to 'fa-solid fa-cubes'
+      priority: -80 # (optional) Defaults to menu item order
+      items:
+        - App-Events-EventAdmin
+        - App-FleaMarket-FleaMarketAdmin
+        - App-ImageBooth-ImageBoothAdmin
+        - App-POS-POSAdmin
+        - App-Feedback-FeedbackAdmin
+    Marketing:
+      icon_class: 'sp-icon-news-admin-currentColor' # (optional) Defaults to 'fa-solid fa-cubes'
+      priority: -90 # (optional) Defaults to menu item order
+      items:
+        - App-Podcast-PodcastAdmin
+        - App-Press-PressAdmin
     Other:
       icon_class: 'fa fa-folder' # (optional) Defaults to 'fa fa-folder'
       priority: -100 # (optional) Defaults to menu item order
       items:
         - SilverStripe-SiteConfig-SiteConfig
         - SilverStripe-Admin-SecurityAdmin
+        - SilverStripe-AssetAdmin-Controller-AssetAdmin
         - SilverStripe-CampaignAdmin-CampaignAdmin
         - SilverStripe-VersionedAdmin-ArchiveAdmin
         - SilverStripe-Reports-ReportAdmin
         - TractorCow-Fluent-Control-LocaleAdmin
         - SilverStripe-SiteConfig-SiteConfigLeftAndMain
+        - WebbuildersGroup-SiteConfigErrorPages-Control-Admin-CustomSiteConfigAdmin
+        - Atwx-ElementOverview-ElementOverviewAdmin
 
 SilverStripe\Admin\SecurityAdmin:
   menu_priority: -1

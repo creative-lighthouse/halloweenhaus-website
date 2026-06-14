@@ -13,18 +13,22 @@ use SilverStripe\Model\List\GroupedList;
 /**
  * Class \App\Wiki\MediaProject
  *
+ * @property ?string $URLSlug
  * @property ?string $Title
  * @property ?string $Place
  * @property ?string $Description
  * @property ?string $PublicationDate
  * @property ?string $VideoLink
  * @property int $SortField
+ * @property ?string $GlossaryTerms
  * @property int $ImageID
  * @method Image Image()
  * @method DataList<Link> Links()
  * @method ManyManyList<TeamMember> TeamMembers()
+ * @method ManyManyList<WikiMusic> Music()
  * @method ManyManyList<Location> Locations()
  * @method ManyManyList<Artefact> Artefacts()
+ * @mixin WikiSlugExtension
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -40,6 +44,7 @@ class MediaProject extends DataObject
         "PublicationDate" => "Date",
         "VideoLink" => "Varchar(255)",
         "SortField" => "Int",
+        "GlossaryTerms" => "Varchar(500)",
     ];
 
     private static $has_one = [
@@ -56,7 +61,8 @@ class MediaProject extends DataObject
     ];
 
     private static $many_many = [
-        "TeamMembers" => TeamMember::class
+        "TeamMembers" => TeamMember::class,
+        "Music" => WikiMusic::class,
     ];
 
     private static $belongs_many_many = [
@@ -73,6 +79,7 @@ class MediaProject extends DataObject
         "PublicationDate" => "Veröffentlichungsdatum",
         "VideoLink" => "Video-Link",
         "TeamMembers" => "Teammitglieder",
+        "GlossaryTerms" => "Glossar-Begriffe (Semikolon-getrennt)",
     ];
 
     private static $summary_fields = [
@@ -97,6 +104,8 @@ class MediaProject extends DataObject
     {
         $fields = parent::getCMSFields();
         $fields->removeByName("SortField");
+        $fields->dataFieldByName('GlossaryTerms')
+            ->setDescription('Zusätzliche Begriffe, unter denen dieses Medienprojekt im Glossar gefunden werden soll. Mehrere Begriffe mit Semikolon trennen, z.B.: "Das Video;Halloweenfilm 2023"');
         return $fields;
     }
 
@@ -112,7 +121,7 @@ class MediaProject extends DataObject
         $wikiPage = WikiPage::get()->first();
         if($wikiPage)
         {
-            return $wikiPage->Link("media/{$this->ID}");
+            return $wikiPage->Link("media/" . ($this->URLSlug ?: $this->ID));
         } else {
             return "";
         }

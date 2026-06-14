@@ -7,7 +7,7 @@
                 <% else %>
                     <span class="link--button button-prev link--buttondisabled"></span>
                 <% end_if %>
-                <a class="link--button button-overview" href="$Top.Link">Übersicht</a>
+                <a class="link--button button-overview" href="$Top.Link">↑ Zur Übersicht</a>
                 <% if $NextMediaProject %>
                     <a class="link--button button-next" href="$NextMediaProject.Link"></a>
                 <% else %>
@@ -17,7 +17,7 @@
             <div class="showsection showsection--details" style="view-transition-name: mediacard-$ID;">
                 <% if $VideoLink %>
                     <div class="media_video" style="max-width: $Width;">
-                        <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/{$VideoLink}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <% include YoutubeVideo VideoLink=$VideoLink %>
                     </div>
                 <% else_if $Image %>
                     <a href="$Image.Url" data-gallery="gallery" data-galleryid="mainimage" class="media_image" style="view-transition-name: mediaimage-$ID;">
@@ -57,6 +57,16 @@
                                 </div>
                                 <h3 class="teammembercard_title">$Title</h3>
                             </a>
+                        <% end_loop %>
+                    </div>
+                </div>
+            <% end_if %>
+            <% if $Music.Count > 0 %>
+                <div class="showsection showsection--music">
+                    <h2>Musik und Leitmotive im Projekt</h2>
+                    <div class="musicgrid">
+                        <% loop $Music %>
+                            <% include Includes/Wiki/MusicCard %>
                         <% end_loop %>
                     </div>
                 </div>

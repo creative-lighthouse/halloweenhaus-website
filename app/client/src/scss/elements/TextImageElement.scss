@@ -1,142 +1,120 @@
 @use "../variables" as *;
 
-.section.section--TextImageElement {
-    padding: 30px 20px;
-
+section.section--TextImageElement {
     .section_content {
-        max-width: var(--MaxWidthContent);
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
+        grid-template-rows: auto 1fr auto;
         align-items: center;
 
-        .textimage_image {
-            width: 100%;
-            height: auto;
-            flex-shrink: 0;
+        .section_image, .section_embed {
+            grid-column: 1 / 6;
+            grid-row: 1 / -1;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            //height: 100%;
+            aspect-ratio: 16 / 9;
 
             img {
                 width: 100%;
-                height: 100%;
-                object-fit: cover;
+                height: auto;
+                object-fit: contain;
+                border-radius: var(--RoundedBorder);
+                overflow: hidden;
+                display: block;
             }
 
-            @include media(medium) {
-                padding-left: 0px;
-                padding-right: 20px;
+            .section_image_lightbox {
+                display: block;
+                cursor: zoom-in;
+
+                img {
+                    transition: opacity 0.2s ease;
+                }
+
+                &:hover img {
+                    opacity: 0.85;
+                }
+            }
+
+            iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+                border-radius: var(--RoundedBorder);
+                overflow: hidden;
             }
         }
 
-        .textimage_text {
-            width: 100%;
+        .section_text {
+            grid-column: 7 / -1;
+            display: flex;
+            flex-direction: column;
+            grid-row: 1 / -1;
+            margin-top: 10px;
 
-            .textimage_text_content {
-                position: relative;
-                height: 100%;
-
-                .textimage_text_button {
-                    @include media(max-medium) {
-                        text-align: center;
-                        right: 0;
-                    }
-                }
-
-                .textimage_text_title {
-                    &.style--title-left{
-                        text-align: left;
-                    }
-
-                    &.style--title-center {
-                        text-align: center;
-                    }
-
-                    &.style--title-right {
-                        text-align: right;
-                    }
-                }
-
-                .textimage_button{
-                    &.style--button-left{
-                        justify-self: left;
-                    }
-                    &.style--button-center {
-                        justify-self: center;
-                    }
-                    &.style--button-right {
-                        justify-self: right;
-                    }
-                }
-            }
-
-            @include media(max-medium) {
-                padding-top: 20px;
-                text-align: center;
-            }
-        }
-
-        @include media(medium) {
-            flex-wrap: nowrap;
-
-            &.image-30 {
-                .textimage_image {
-                    width: 30%;
-                }
-            }
-
-            &.image-40 {
-                .textimage_image {
-                    width: 40%;
-                }
-            }
-
-            &.image-50 {
-                .textimage_image {
-                    width: 50%;
-                }
-            }
-
-            &.image-60 {
-                .textimage_image {
-                    width: 60%;
-                }
-            }
-
-            &.image-70 {
-                .textimage_image {
-                    width: 70%;
-                }
-            }
-
-            &.image-right {
-                .textimage_text {
-                    order: 1;
-                }
-
-                .textimage_image {
-                    padding-left: 20px;
-                    padding-right: 0px;
-                    order: 2;
-                }
-            }
-
-            &.image-100 {
-                flex-wrap: wrap;
-                .textimage_image {
-                    width: 100%;
-                    padding: 0 0 20px 0;
-                }
-
-                &.image-right {
-                    .textimage_image {
-                        padding: 20px 0 0 0;
-                    }
-                }
+            .section_title {
+                margin-bottom: 8px;
             }
         }
     }
 
-    &.color--background-light {
-        max-width: 100%;
-        background-color: var(--ColorBackgroundLight);
+    &.image--right {
+        .section_image, .section_embed {
+            grid-column: 8 / -1;
+        }
+
+        .section_text {
+            grid-column: 1 / 8;
+        }
+    }
+
+    &:not(:has(.section_image, .section_embed)) {
+        .section_text {
+            grid-column: 3 / -3;
+
+            .section_title {
+                text-align: center;
+                max-width: 80%;
+                margin: 0 auto;
+            }
+
+            .section_button {
+                margin: 0 auto;
+            }
+        }
+    }
+
+    @include media(max-desktop) {
+        .section_content {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+
+            .section_image, .section_embed {
+                grid-column: 1 / -1;
+                grid-row: 1;
+                max-width: 600px;
+                width: 100%;
+                height: auto;
+                margin: 0 auto;
+                aspect-ratio: 16 / 10;
+
+                iframe {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .section_text {
+                grid-column: 1 / -1;
+                grid-row: 2;
+
+                @include media(max-medium) {
+                    .section_button {
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
     }
 }

@@ -1,0 +1,36 @@
+section.section--ApplicationPage {
+    .section_content {
+        max-width: 600px;
+        text-align: center;
+
+        .section_title {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .application_success {
+
+            .success_info {
+                background-color: var(--ColorGray);
+                padding: 20px;
+                border-radius: 20px;
+                margin-bottom: 20px;
+                text-align: left;
+            }
+
+            ul {
+                list-style: none;
+
+                li {
+                    padding: 10px 0;
+
+                    &:last-of-type {
+                        padding-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}

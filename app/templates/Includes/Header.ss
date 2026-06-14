@@ -2,6 +2,7 @@
     <div class="header_nav">
         <a href="" class="nav_brand" title="Zur Startseite">
             <% include MovingLogo %>
+            <h1 class="nav_brand_title">$SiteConfig.Title</h1>
         </a>
         <div class="menus">
             <div class="place">
@@ -10,7 +11,7 @@
             </div>
             <div class="nav_mainmenu">
                 <a href="faq" class="nav_link faq">FAQ</a>
-                <% if $EventsPage.ShowInMenus %>
+                <% if $EventsPage.ShowInMenus && $EventsPage.hasEvents %>
                     <a href="termine" class="link--button hollow nav_link virtualqueue">$EventsPage.Title</a>
                 <% end_if %>
             </div>

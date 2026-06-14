@@ -1,5 +1,6 @@
+<% cached 'team_member_detail', $TeamMember.ID, $TeamMember.LastEdited %>
 <% with $TeamMember %>
-    <div class="section section--TeamDetails">
+    <section class="section--TeamDetails">
         <div class="section_content">
             <a class="white no_deco back" href="$Top.Link">Zurück zur Übersicht</a>
             <div class="teammember_item_image">
@@ -22,17 +23,21 @@
             </div>
 
             <% if $Roles.Count > 0 %>
+                <h2 class="teammember_roles_title">Gespielte Rollen</h2>
                 <div class="teammember_roles">
-                    <h2>Gespielte Rollen</h2>
                     <% loop $Roles %>
                         <div class="teammember_role_item">
                             <a href="$Character.Link" class="teammember_role_character no_deco">
                                 <div class="teammember_role_character_image">
-                                    $Character.Image.FocusFill(200,200)
+                                    <% if $RoleImage %>
+                                        $RoleImage.FocusFill(300,300)
+                                    <% else %>
+                                        $Character.Image.FocusFill(300,300)
+                                    <% end_if %>
                                 </div>
                                 <p class="teammember_role_character_name">$Character.Title</p>
                             </a>
-                            <p class="teammember_role_show">in <a href="$Parent.Link" class="no_deco">$Parent.Title</a></p>
+                            <p class="teammember_role_show">in <b><a href="$Parent.Link" class="no_deco">$Parent.Title ($Parent.Year)</a></b></p>
                         </div>
                     <% end_loop %>
                 </div>
@@ -40,7 +45,7 @@
 
             <% if $ParticipatedShows.Count > 0 %>
                 <div class="teammember_participatedshows">
-                    <h2>Andere beteiligte Shows</h2>
+                    <h2>Beteiligte Shows</h2>
                     <div class="showswiper swiper--showsoverview">
                         <div class="swiper-wrapper">
                             <% loop $ParticipatedShows %>
@@ -65,6 +70,6 @@
                 <% end_loop %>
             </div>
         </div>
-
-    </div>
+    </section>
 <% end_with %>
+<% end_cached %>

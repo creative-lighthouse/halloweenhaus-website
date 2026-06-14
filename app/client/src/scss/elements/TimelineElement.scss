@@ -1,10 +1,11 @@
 @use "../variables" as *;
 
-.section.section--TimelineElement {
+section.section--TimelineElement {
     .section_content{
         padding: 40px 0;
         .section_title{
             text-align: center;
+            margin-bottom: 20px;
         }
 
         .section_list_filter{
@@ -17,15 +18,18 @@
                 padding: 5px 10px;
                 text-decoration: none;
 
+                &.active {
+                    background-color: var(--ColorWhite);
+                    color: var(--ColorBackground);
+                }
+
                 &.hidden{
                     display: none;
                 }
 
                 &:hover{
-                    background-color: var(--ColorPrimary);
-                    border: 1px solid var(--ColorPrimary);
-
-                        color: var(--ColorWhite);
+                    background-color: var(--ColorGray);
+                    color: var(--ColorWhite);
                 }
             }
         }

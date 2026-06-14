@@ -16,7 +16,7 @@
         margin-bottom: 10px;
         border-radius: 10px;
         clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-        background-color: var(--ColorBackgroundLight);
+        background-color: var(--ColorGray);
 
         img{
             width: 100%;
@@ -53,7 +53,7 @@
         gap: 4px;
 
         .artefact_ownershipentry {
-            background-color: var(--ColorBackgroundLight);
+            background-color: var(--ColorGray);
             border-radius: 20px;
             padding: 5px 10px;
             margin: 0;

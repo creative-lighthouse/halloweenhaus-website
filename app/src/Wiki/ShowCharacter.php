@@ -2,9 +2,10 @@
 
 namespace App\Wiki;
 
-use App\Wiki\Show;
-use App\Wiki\Character;
 use App\Team\TeamMember;
+use App\Wiki\Character;
+use App\Wiki\Show;
+use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
 
 /**
@@ -14,9 +15,11 @@ use SilverStripe\ORM\DataObject;
  * @property int $ParentID
  * @property int $CharacterID
  * @property int $TeamMemberID
+ * @property int $RoleImageID
  * @method Show Parent()
  * @method Character Character()
  * @method TeamMember TeamMember()
+ * @method Image RoleImage()
  * @mixin FileLinkTracking
  * @mixin AssetControlExtension
  * @mixin SiteTreeLinkTracking
@@ -33,6 +36,7 @@ class ShowCharacter extends DataObject
         "Parent" => Show::class,
         "Character" => Character::class,
         "TeamMember" => TeamMember::class,
+        "RoleImage" => Image::class,
     ];
 
     private static $default_sort = "CharacterID ASC";
@@ -41,18 +45,24 @@ class ShowCharacter extends DataObject
         "Note" => "Notiz",
         "Character" => "Charakter",
         "TeamMember" => "Teammitglied",
+        "RoleImage" => "Bild der Rolle",
     ];
 
     private static $summary_fields = [
         "Character.Title" => "Charakter",
         "TeamMember.Title" => "Teammitglied",
         "Note" => "Notiz",
+        "RoleImage.CMSThumbnail" => "Bild der Rolle",
     ];
 
     private static $searchable_fields = [
         "Character.Title",
         "TeamMember.Title",
         "Note",
+    ];
+
+    private static $owns = [
+        "RoleImage",
     ];
 
     private static $table_name = "ShowCharacter";

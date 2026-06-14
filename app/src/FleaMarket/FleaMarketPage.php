@@ -25,6 +25,9 @@ class FleaMarketPage extends Page
 
     private static $icon = "app/client/icons/fleamarket.svg";
 
+    private static $singular_name = "Flohmarkt";
+    private static $plural_name = "Flohmärkte";
+
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();

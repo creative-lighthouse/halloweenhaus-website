@@ -48,7 +48,7 @@ class ImageBannerElement extends BaseElement
     ];
 
     private static $table_name = 'ImageBannerElement';
-    private static $icon = 'font-icon-block-file';
+    private static $icon = 'sp-icon-fullwidth-element';
 
     private static $translate = [
         'Text',
@@ -67,6 +67,7 @@ class ImageBannerElement extends BaseElement
             "variant--limited" => "Begrenzte Breite",
             "variant--contained" => "Angepasste Breite",
             "variant--hovering" => "Hervorgehoben",
+            "variant--autoheight" => "Automatische Höhe",
         ]));
         $fields->replaceField('Overlay', DropdownField::create('Overlay', 'Überlagerung', [
             "" => "Keine Überlagerung",

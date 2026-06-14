@@ -1,0 +1,8 @@
+---
+Name: approutes
+After:
+  - '#coreroutes'
+---
+SilverStripe\Control\Director:
+  rules:
+    'bewerbung': 'App\Team\ApplicationPageController'

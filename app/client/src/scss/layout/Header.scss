@@ -25,6 +25,21 @@
             flex-shrink: 0;
             padding: 10px 30px 10px 10px;
             transition: height 0.2s ease-in-out;
+            display: flex;
+            text-decoration: none;
+            align-items: center;
+
+            .header_icon {
+                height: 80px;
+                width: 80px;
+                transition: 0.2s ease-in-out;
+            }
+
+            .nav_brand_title {
+                text-decoration: none;
+                hyphens: none;
+                transition: 0.2s ease-in-out;
+            }
 
             svg {
                 width: 100%;
@@ -40,39 +55,25 @@
                     transform-origin: 22px 17px;
                     animation: leftright 40s infinite;
                 }
-
-                &.mobile{
-                    display: none;
-                    @include media(max-desktop) {
-                        display: block;
-                    }
-                }
-
-                &.desktop{
-                    display: block;
-                    @include media(max-desktop) {
-                        display: none;
-                    }
-                }
-
-                .menu--fixed &{
-                    &.mobile{
-                        display: none;
-                    }
-
-                    &.desktop{
-                        display: block;
-                    }
-                }
             }
 
             .menu--fixed &{
                 height: 50px;
+
+                .header_icon {
+                    height: 40px;
+                    width: 40px;
+                }
+
+                .nav_brand_title {
+                    opacity: 0;
+                    font-size: 10px;
+                }
             }
 
             @include media(max-medium) {
                 padding: 10px;
-                max-width: 50%;
+                max-width: 80%;
             }
         }
 
@@ -81,6 +82,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
+            position: relative;
 
             .nav_link {
                 text-decoration: none;
@@ -92,6 +94,7 @@
                 line-height: 20px;
                 font-weight: 400;
                 text-align: center;
+                border-radius: 16px;
 
                 &:hover {
                     background-color: var(--ColorPrimary);
@@ -159,10 +162,10 @@
 
             .nav_secondarymenu{
                 opacity: 0;
-                width: 50%;
+                width: 100%;
                 flex-direction: column;
                 position: absolute;
-                top: 100px;
+                top: calc(100% + 25px);
                 right: 0;
                 z-index: 999;
                 transition: 0.2s ease-in-out;

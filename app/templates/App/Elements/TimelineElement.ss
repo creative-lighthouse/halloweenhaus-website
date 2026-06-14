@@ -1,4 +1,4 @@
-<div class="section section--TimelineElement">
+<section class="section--TimelineElement">
     <div class="section_content">
         <% if $ShowTitle %>
             <div class="section_title">
@@ -60,4 +60,4 @@
             <% end_loop %>
         </div>
     </div>
-</div>
+</section>

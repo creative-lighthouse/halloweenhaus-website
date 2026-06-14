@@ -7,6 +7,7 @@ use App\Events\Event;
 use App\Events\Registration;
 use SilverStripe\Forms\Form;
 use App\Feedback\FeedbackPage;
+use SilverStripe\Control\Middleware\HTTPCacheControlMiddleware;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Model\List\GroupedList;
@@ -28,6 +29,12 @@ use SilverStripe\Forms\Validation\RequiredFieldsValidator;
  */
 class EventPageController extends PageController
 {
+
+    protected function init()
+    {
+        parent::init();
+        HTTPCacheControlMiddleware::singleton()->disableCache();
+    }
 
     private static $allowed_actions = [
         "view",

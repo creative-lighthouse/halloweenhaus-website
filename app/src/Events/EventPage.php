@@ -3,8 +3,10 @@
 namespace App\Events;
 
 use Page;
+use DateTime;
+use DateTimeZone;
+use App\Events\Event;
 use SilverStripe\Assets\Image;
-
 use SilverStripe\AssetAdmin\Forms\UploadField;
 
 /**
@@ -37,5 +39,22 @@ class EventPage extends Page
         $fields = parent::getCMSFields();
         $fields->addFieldToTab("Root.Main", UploadField::create("HeaderImage", "Headerbild"));
         return $fields;
+    }
+
+    public function hasEvents()
+    {
+        $now = new DateTime("now", new DateTimeZone("Europe/Berlin"));
+        $events = Event::get()->filter([
+            "EventDate:GreaterThanOrEqual" => $now->format("Y-m-d"),
+            "Visible" => true,
+        ]);
+
+        foreach ($events as $event) {
+            if ($event->FreeTimeSlotsInFuture()->Count() > 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

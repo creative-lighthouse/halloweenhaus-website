@@ -35,7 +35,7 @@ class VideoElement extends BaseElement
     private static $inline_editable = true;
 
     private static $table_name = 'VideoElement';
-    private static $icon = 'font-icon-block-media';
+    private static $icon = 'sp-icon-video-element';
 
     public function getType()
     {
