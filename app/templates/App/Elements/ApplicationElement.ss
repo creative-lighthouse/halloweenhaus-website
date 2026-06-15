@@ -46,17 +46,17 @@
                 </div>
 
                 <div class="field field_hobbies">
-                    <label class="field_label" for="Hobbies">Was sind deine Hobbys, Talente & Interessen?</label>
+                    <label class="field_label" for="Hobbies">Was sind Deine Hobbys, Talente & Interessen?</label>
                     <textarea class="field field_hobbies" name="Hobbies" autocomplete="off" required>$SavedFormValues.Hobbies</textarea>
                 </div>
 
                 <div class="field field_reason">
-                    <label class="field_label" for="ReasonToJoin">Warum willst du ins Team von Ottos Halloweenhaus?</label>
+                    <label class="field_label" for="ReasonToJoin">Warum willst Du ins Team von Ottos Halloweenhaus?</label>
                     <textarea class="field field_reason" name="ReasonToJoin" autocomplete="off" required>$SavedFormValues.ReasonToJoin</textarea>
                 </div>
 
                 <div class="field field_interests">
-                    <p class="fake-label">Welche Bereiche interessieren dich? (Mehrfachauswahl möglich)</p>
+                    <p class="fake-label">Welche Bereiche interessieren Dich? (Mehrfachauswahl möglich)</p>
                     <div class="interest_list">
                         <% loop $Interests %>
                             <label class="checkbox_label">
@@ -77,7 +77,7 @@
                         <p class="captcha_cooldown">Bitte warte noch <strong><span class="captcha_countdown">$CaptchaCooldownSeconds</span> Sekunden</strong>, bevor du es erneut versuchst.</p>
                     <% end_if %>
                     <button class="link--button button--primary submit_button" type="submit"<% if $CaptchaCooldownSeconds %> disabled data-cooldown="$CaptchaCooldownSeconds"<% end_if %>>Jetzt bewerben</button>
-                    <a href="$Datasecuritylink" class="" target="_blank">Datenschutzerklärung</a>
+                    <a href="impressum-und-datenschutz" class="" target="_blank">Datenschutzerklärung</a>
                 </div>
             </form>
             <script>
