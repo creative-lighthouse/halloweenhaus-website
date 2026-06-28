@@ -1,0 +1,50 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install frontend dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build frontend
+        run: yarn build
+        env:
+          DDEV_PRIMARY_URL: https://ottos-halloweenhaus.de
+
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Deploy via rsync
+        run: |
+          rsync -avz --delete \
+            -e "ssh -p 222 -o StrictHostKeyChecking=no" \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --exclude='.env' \
+            --exclude='.ddev' \
+            --exclude='public/assets/' \
+            ./ speuni@www553.your-server.de:public_html/ottos-halloweenhaus/2026/
+
+      - name: Run post-deploy tasks on server
+        run: |
+          ssh -p 222 -o StrictHostKeyChecking=no speuni@www553.your-server.de << 'EOF'
+            cd public_html/ottos-halloweenhaus/2026/
+            composer install --no-interaction --prefer-dist --optimize-autoloader
+            php vendor/bin/sake dev/build flush=all
+          EOF
