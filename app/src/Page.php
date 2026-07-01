@@ -14,8 +14,8 @@ namespace {
  * @method ElementalArea ElementalArea()
  * @mixin ElementalPageExtension
  * @mixin DashboardSearchResultExtension
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

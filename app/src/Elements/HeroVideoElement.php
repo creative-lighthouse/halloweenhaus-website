@@ -13,8 +13,8 @@ use DNADesign\Elemental\Models\BaseElement;
  * @property ?string $DateFrameTitle
  * @property ?string $DateFrameText
  * @property ?string $DateFrameSubText
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

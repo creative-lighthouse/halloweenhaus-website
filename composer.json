@@ -5,7 +5,7 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/StevenPaw/silverstripe-cms-theme.git"
+            "url": "https://github.com/StevenPaw/silverstripe-sociallink.git"
         }
     ],
     "require": {
@@ -28,7 +28,8 @@
         "webbuilders-group/silverstripe-siteconfig-error-pages": "^3.0",
         "plastyk/dashboard": "^5.0",
         "stevenpaw/stevens-silverstripe-icons": "dev-main",
-        "atwx/silverstripe-element-overview": "^1.0"
+        "atwx/silverstripe-element-overview": "^1.0",
+        "stevenpaw/silverstripe-sociallink": "6.x-dev"
     },
     "require-dev": {
         "silverleague/ideannotator": "4.0",

@@ -340,14 +340,24 @@ section.section--WikiPage{
             }
 
             .media_title{
-                margin: 0 auto;
+                margin: 10px auto;
                 text-align: center;
+                font-size: 60px;
+                padding: 0 20px;
             }
 
             .media_publicationdate{
                 margin: 0 auto 20px auto;
                 opacity: 0.8;
                 text-align: center;
+                padding: 0 20px;
+            }
+
+            .media_composer {
+                margin: 0 auto;
+                padding: 0 20px;
+                text-align: center;
+                opacity: 0.8;
             }
 
             .character_image{
@@ -501,6 +511,46 @@ section.section--WikiPage{
                     background: linear-gradient(to left, transparent 0%, var(--ColorBackground) 8%, var(--ColorBackground) 100%);
                     pointer-events: none;
                     z-index: 10;
+                }
+            }
+        }
+
+        .showsection--links {
+            padding: 20px;
+
+            .wikilinks {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                li a {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    color: var(--ColorWhite);
+                    text-decoration: none;
+
+                    &:hover,
+                    &:focus {
+                        opacity: 0.75;
+                    }
+
+                    .wikilink__icon {
+                        flex-shrink: 0;
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        align-items: center;
+
+                        svg {
+                            width: 100%;
+                            height: 100%;
+                            fill: currentColor;
+                        }
+                    }
                 }
             }
         }

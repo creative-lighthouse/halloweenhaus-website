@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "909b7e129caf5805c020151fa53a351b",
+    "content-hash": "2dbfd69dab36ae705d8c08293ee1e041",
     "packages": [
         {
             "name": "atwx/silverstripe-element-overview",
@@ -1107,7 +1107,7 @@
                     "role": "Owner"
                 },
                 {
-                    "name": "André Rothe",
+                    "name": "Andr\u00e9 Rothe",
                     "email": "phosco@gmx.de",
                     "homepage": "https://www.phosco.info",
                     "role": "Committer"
@@ -1213,7 +1213,7 @@
                     "homepage": "https://github.com/Nyholm"
                 },
                 {
-                    "name": "Márk Sági-Kazár",
+                    "name": "M\u00e1rk S\u00e1gi-Kaz\u00e1r",
                     "email": "mark.sagikazar@gmail.com",
                     "homepage": "https://github.com/sagikazarmark"
                 },
@@ -1412,7 +1412,7 @@
                     "homepage": "https://github.com/Nyholm"
                 },
                 {
-                    "name": "Márk Sági-Kazár",
+                    "name": "M\u00e1rk S\u00e1gi-Kaz\u00e1r",
                     "email": "mark.sagikazar@gmail.com",
                     "homepage": "https://github.com/sagikazarmark"
                 },
@@ -1422,7 +1422,7 @@
                     "homepage": "https://github.com/Tobion"
                 },
                 {
-                    "name": "Márk Sági-Kazár",
+                    "name": "M\u00e1rk S\u00e1gi-Kaz\u00e1r",
                     "email": "mark.sagikazar@gmail.com",
                     "homepage": "https://sagikazarmark.hu"
                 }
@@ -4861,6 +4861,49 @@
             "time": "2020-12-06T22:00:29+00:00"
         },
         {
+            "name": "stevenpaw/silverstripe-sociallink",
+            "version": "6.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/StevenPaw/silverstripe-sociallink.git",
+                "reference": "39cadf6b460490a5a99d0088896faed091b39497"
+            },
+            "require": {
+                "php": "^8.3",
+                "silverstripe/cms": "^6",
+                "silverstripe/framework": "^6.1",
+                "silverstripe/linkfield": "^5",
+                "silverstripe/versioned": "^3"
+            },
+            "require-dev": {
+                "phpstan/extension-installer": "^1.3",
+                "phpunit/phpunit": "^11.3",
+                "silverstripe/standards": "^1",
+                "squizlabs/php_codesniffer": "^3.7"
+            },
+            "default-branch": true,
+            "type": "silverstripe-vendormodule",
+            "extra": {
+                "expose": [
+                    "client/dist"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "Stevenpaw\\SocialLink\\": "src/"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "A small module for adding social links to silverstripe linkfields",
+            "keywords": [
+                "CMS",
+                "silverstripe"
+            ],
+            "time": "2026-07-01T06:59:22+00:00"
+        },
+        {
             "name": "stevenpaw/stevens-silverstripe-icons",
             "version": "dev-main",
             "source": {
@@ -8154,7 +8197,7 @@
             ],
             "authors": [
                 {
-                    "name": "Ondřej Mirtes"
+                    "name": "Ond\u0159ej Mirtes"
                 },
                 {
                     "name": "Markus Staab"
@@ -8416,7 +8459,7 @@
             ],
             "authors": [
                 {
-                    "name": "Werner Krauß",
+                    "name": "Werner Krau\u00df",
                     "email": "werner.krauss@netwerkstatt.at"
                 }
             ],
@@ -8432,6 +8475,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "ryanpotter/silverstripe-cms-theme": 20,
+        "stevenpaw/silverstripe-sociallink": 20,
         "stevenpaw/stevens-silverstripe-icons": 20
     },
     "prefer-stable": true,

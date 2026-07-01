@@ -14,8 +14,8 @@ use SilverStripe\ORM\DataObject;
  * @property int $SortField
  * @property int $ImageID
  * @method Image Image()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

@@ -13,8 +13,8 @@ use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
  *
  * @property bool $IsCollapsible
  * @method DataList<FAQItem> FAQItems()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

@@ -12,8 +12,8 @@ use SilverStripe\LinkField\Models\Link;
  * @property ?string $Text
  * @property int $ButtonID
  * @method Link Button()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension

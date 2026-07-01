@@ -7,6 +7,7 @@ use App\Wiki\Character;
 use App\Wiki\Location;
 use App\Wiki\MediaProject;
 use SilverStripe\Assets\File;
+use SilverStripe\LinkField\Models\Link;
 use SilverStripe\ORM\DataObject;
 
 /**
@@ -15,20 +16,21 @@ use SilverStripe\ORM\DataObject;
  * @property ?string $URLSlug
  * @property ?string $Title
  * @property ?string $PublicationDate
- * @property ?string $Author
+ * @property ?string $Composer
  * @property ?string $ShortDescription
  * @property ?string $Description
  * @property ?string $MusicVideoLink
  * @property ?string $GlossaryTerms
  * @property int $SoundFileID
  * @method File SoundFile()
+ * @method DataList<Link> Links()
  * @method ManyManyList<Location> Locations()
  * @method ManyManyList<Artefact> Artefacts()
  * @method ManyManyList<Character> Characters()
  * @method ManyManyList<MediaProject> MediaProjects()
  * @mixin WikiSlugExtension
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
@@ -38,7 +40,7 @@ class WikiMusic extends DataObject
     private static $db = [
         "Title" => "Varchar(255)",
         "PublicationDate" => "Date",
-        "Author" => "Varchar(255)",
+        "Composer" => "Varchar(255)",
         "ShortDescription" => "Varchar(255)",
         "Description" => "HTMLText",
         "MusicVideoLink" => "Varchar(255)",
@@ -49,8 +51,13 @@ class WikiMusic extends DataObject
         "SoundFile" => File::class,
     ];
 
+    private static $has_many = [
+        "Links" => Link::class,
+    ];
+
     private static $owns = [
         "SoundFile",
+        "Links",
     ];
 
     private static $belongs_many_many = [

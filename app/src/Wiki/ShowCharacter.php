@@ -20,8 +20,8 @@ use SilverStripe\ORM\DataObject;
  * @method Character Character()
  * @method TeamMember TeamMember()
  * @method Image RoleImage()
- * @mixin FileLinkTracking
  * @mixin AssetControlExtension
+ * @mixin FileLinkTracking
  * @mixin SiteTreeLinkTracking
  * @mixin RecursivePublishable
  * @mixin VersionedStateExtension
