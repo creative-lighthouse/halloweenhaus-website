@@ -1,7 +1,7 @@
 ---
 Name: app-cms-theme
 After:
-  - 'ryanpotter-silverstripe-cms-theme'
+  - 'stevenpaw-silverstripe-cms-backend-theme'
 ---
 SilverStripe\SiteConfig\SiteConfig:
   cms_logo: '_resources/app/client/images/logo_footer.svg'

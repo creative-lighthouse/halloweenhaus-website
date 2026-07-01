@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2dbfd69dab36ae705d8c08293ee1e041",
+    "content-hash": "e8a5107c2b32d1e5b2bfd6ffc5342770",
     "packages": [
         {
             "name": "atwx/silverstripe-element-overview",
@@ -1107,7 +1107,7 @@
                     "role": "Owner"
                 },
                 {
-                    "name": "Andr\u00e9 Rothe",
+                    "name": "André Rothe",
                     "email": "phosco@gmx.de",
                     "homepage": "https://www.phosco.info",
                     "role": "Committer"
@@ -1213,7 +1213,7 @@
                     "homepage": "https://github.com/Nyholm"
                 },
                 {
-                    "name": "M\u00e1rk S\u00e1gi-Kaz\u00e1r",
+                    "name": "Márk Sági-Kazár",
                     "email": "mark.sagikazar@gmail.com",
                     "homepage": "https://github.com/sagikazarmark"
                 },
@@ -1412,7 +1412,7 @@
                     "homepage": "https://github.com/Nyholm"
                 },
                 {
-                    "name": "M\u00e1rk S\u00e1gi-Kaz\u00e1r",
+                    "name": "Márk Sági-Kazár",
                     "email": "mark.sagikazar@gmail.com",
                     "homepage": "https://github.com/sagikazarmark"
                 },
@@ -1422,7 +1422,7 @@
                     "homepage": "https://github.com/Tobion"
                 },
                 {
-                    "name": "M\u00e1rk S\u00e1gi-Kaz\u00e1r",
+                    "name": "Márk Sági-Kazár",
                     "email": "mark.sagikazar@gmail.com",
                     "homepage": "https://sagikazarmark.hu"
                 }
@@ -4861,6 +4861,59 @@
             "time": "2020-12-06T22:00:29+00:00"
         },
         {
+            "name": "stevenpaw/silverstripe-cms-backend-theme",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/StevenPaw/silverstripe-cms-backend-theme.git",
+                "reference": "0657f45bb265304a2d7ce2eb7a2e6d952ce21463"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/StevenPaw/silverstripe-cms-backend-theme/zipball/0657f45bb265304a2d7ce2eb7a2e6d952ce21463",
+                "reference": "0657f45bb265304a2d7ce2eb7a2e6d952ce21463",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/admin": "^1.0 || ^2.0 || ^3.0",
+                "silverstripe/framework": "^4.0 || ^5.0 || ^6.0",
+                "silverstripe/siteconfig": "^4.0 || ^5.0 || ^6.0"
+            },
+            "type": "silverstripe-vendormodule",
+            "extra": {
+                "expose": [
+                    "dist"
+                ],
+                "installer-name": "silverstripe-cms-backend-theme"
+            },
+            "autoload": {
+                "psr-4": {
+                    "StevenPaw\\SilverStripeCMSBackendTheme\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Steven Paw",
+                    "homepage": "https://stevenpaw.de/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CMS Backend Theme",
+            "keywords": [
+                "silverstripe",
+                "theme"
+            ],
+            "support": {
+                "issues": "https://github.com/StevenPaw/silverstripe-cms-backend-theme/issues",
+                "source": "https://github.com/StevenPaw/silverstripe-cms-backend-theme/tree/v1.1.0"
+            },
+            "time": "2026-06-17T09:05:07+00:00"
+        },
+        {
             "name": "stevenpaw/silverstripe-sociallink",
             "version": "6.x-dev",
             "source": {
@@ -8197,7 +8250,7 @@
             ],
             "authors": [
                 {
-                    "name": "Ond\u0159ej Mirtes"
+                    "name": "Ondřej Mirtes"
                 },
                 {
                     "name": "Markus Staab"
@@ -8459,7 +8512,7 @@
             ],
             "authors": [
                 {
-                    "name": "Werner Krau\u00df",
+                    "name": "Werner Krauß",
                     "email": "werner.krauss@netwerkstatt.at"
                 }
             ],
